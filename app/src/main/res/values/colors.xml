@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="stroke_pressed">#BB0000</color>
+    <color name="end_color_pressed">#0037FF</color>
+    <color name="start_color_pressed">#669A1D</color>
+    <color name="stroke_focused">#83009D</color>
+    <color name="pressed_color">#256628</color>
+    <color name="default_color">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background_focused">#2196F3</color>
+    <color name="stroke_normal">#9C27B0</color>
+    <color name="focused_color">#243C68</color>
+    <color name="end_color_normal">#902760</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#009688</color>
+    <color name="colorAccent">#1D7A18</color>
+    <color name="my_spinner_text_color">#354B81</color>
+    <color name="cardview_light_background">#FFFFFF</color> <!-- Or the desired color value -->
+    <color name="start_color_normal">#58620C</color>
+    <color name="colorText">#dddddd</color>
+    <color name="lightblue500">#326B85</color>
+    <color name="dark">#3F51B5</color>
+    <color name="black">#6E1D7C</color>
+    <color name="button_background">#2a2d93</color>
+    <color name="button_stroke">#000000</color>
+    <color name="black_overlay">#03A9F4</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="edit_text_password_color">#2a2d93</color>
+
+</resources>

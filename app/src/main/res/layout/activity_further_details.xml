@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" android:paddingRight="0dp" android:layout_marginRight="0dp"
+        android:background="@drawable/yagyavalkyar" android:layout_marginLeft="0dp" android:paddingLeft="0dp"
+        android:layout_marginStart="0dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".FurtherDetailsActivity">
+        <RelativeLayout
+                android:layout_width="wrap_content" android:layout_height="35dp" android:layout_marginTop="10dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="1.0"
+                android:id="@+id/relativeLayout">
+            <RadioGroup
+                    android:id="@+id/radio_group7" android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="0dp" android:layout_marginEnd="0dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="0dp" android:layout_marginStart="0dp"
+                    android:layout_alignParentLeft="true" android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="3dp">
+
+                <TextView
+                        android:layout_width="150dp" android:layout_height="wrap_content"
+                        android:id="@+id/NumberOfDays" android:layout_marginTop="0dp" android:text=""
+                        tools:text="Number Of Days" android:maxLines="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:gravity="center"
+                        android:textColor="@android:color/black" android:inputType=""
+                        android:autofillHints="" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp" tools:targetApi="o" android:hint="@string/NumberOfDays"
+                        android:textSize="14sp" android:textStyle="italic"/>
+                <RadioButton
+                        android:id="@+id/radio1G7" android:layout_width="20dp" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:checked="false" android:text="@string/OneDay"
+                        android:textSize="14sp"/>
+
+                <RadioButton
+                        android:id="@+id/radio2G7"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="@string/fifteen_days"
+                        android:textSize="14sp" />
+            </RadioGroup>
+        </RelativeLayout>
+        <EditText
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textColor="@color/design_default_color_primary_dark"
+                android:id="@+id/your_mother_name" android:textColorHint="#504f4f" android:maxLines="1"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" android:textStyle="bold"
+                android:layout_marginTop="8dp" android:textSize="14sp" tools:targetApi="o"
+                android:hint="@string/your_mother_name" tools:text="Your Mother's Name"
+                tools:layout_editor_absoluteX="8dp" android:autofillHints="" android:inputType="textCapCharacters"
+                android:text="" android:gravity="center"/>
+
+        <EditText
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textColor="@color/design_default_color_primary_dark"
+                android:id="@+id/father_mother_name" android:textColorHint="#504f4f" android:maxLines="1"
+                app:layout_constraintTop_toBottomOf="@+id/your_mother_name" android:textStyle="bold"
+                android:layout_marginTop="8dp" android:textSize="14sp" tools:targetApi="o"
+                android:hint="@string/father_mother_name" tools:text="Father-Mother's Name" android:text="" android:gravity="center"
+                tools:layout_editor_absoluteX="8dp" android:inputType="textCapCharacters" android:autofillHints=""/>
+        <EditText
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textColor="@color/design_default_color_primary_dark"
+                android:id="@+id/father_Grandmother_name" android:textColorHint="#504f4f" android:maxLines="1"
+                app:layout_constraintTop_toBottomOf="@+id/father_mother_name" android:textStyle="bold"
+                android:layout_marginTop="8dp" android:textSize="14sp" tools:targetApi="o" android:text="" android:gravity="center"
+                android:hint="@string/father_Grandmother_name" tools:text="Father-GrandMother's Name"
+                tools:layout_editor_absoluteX="8dp" android:autofillHints="" android:inputType="textCapCharacters"/>
+
+        <EditText
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textColor="@color/design_default_color_primary_dark"
+                android:id="@+id/father_GreatGrandmother_name" android:textColorHint="#504f4f" android:maxLines="1"
+                app:layout_constraintTop_toBottomOf="@+id/father_Grandmother_name" android:textStyle="bold"
+                android:layout_marginTop="8dp" android:textSize="14sp" tools:targetApi="o" android:text="" android:gravity="center"
+                android:hint="@string/father_GreatGrandmother_name" tools:text="Father-GreatGrandMother's Name"
+                tools:layout_editor_absoluteX="8dp" android:autofillHints="" android:inputType="textCapCharacters"/>
+
+        <EditText
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textColor="@color/design_default_color_primary_dark"
+                android:id="@+id/mother_mother_name" android:textColorHint="#504f4f" android:maxLines="1"
+                app:layout_constraintTop_toBottomOf="@+id/father_GreatGrandmother_name" android:textStyle="bold"
+                android:layout_marginTop="8dp" android:textSize="14sp" tools:targetApi="o"
+                android:hint="@string/mother_mother_name" tools:text="Mother-Mother's Name" android:text="" android:gravity="center"
+                tools:layout_editor_absoluteX="8dp" android:autofillHints="" android:inputType="textCapCharacters"/>
+
+
+        <EditText
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textColor="@color/design_default_color_primary_dark"
+                android:id="@+id/mother_grandmother_name" android:textColorHint="#504f4f" android:maxLines="1" android:text="" android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/mother_mother_name" android:textStyle="bold" android:layout_marginTop="8dp"
+                android:textSize="14sp" tools:targetApi="o" tools:text="Mother-GrandMother's Name" android:hint="@string/mother_grandmother_s_name"
+                tools:layout_editor_absoluteX="8dp" android:autofillHints="" android:inputType="textCapCharacters"/>
+        <EditText
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textColor="@color/design_default_color_primary_dark"
+                android:id="@+id/mother_greatgrandmother_name" android:textColorHint="#504f4f" android:maxLines="1"
+                app:layout_constraintTop_toBottomOf="@+id/mother_grandmother_name" android:textStyle="bold" android:text="" android:gravity="center"
+                android:layout_marginTop="8dp" android:textSize="14sp" tools:targetApi="o" android:hint="@string/mother_greatgrandmother_name"
+                tools:text="Mother-Great GrandMother's Name" tools:layout_editor_absoluteX="8dp" android:autofillHints="" android:inputType="textCapCharacters"/>
+        <TextView
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/closeRelatives"
+                android:layout_marginTop="10dp" android:text="" tools:text="If you want to carryout Tharpanam for the deceased closed relatives?"
+                android:maxLines="2" android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center" android:textColor="@android:color/black"
+                android:inputType="" android:autofillHints="" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="0dp"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/mother_greatgrandmother_name"
+                android:layout_marginEnd="8dp" android:layout_marginRight="0dp" tools:targetApi="o" android:textSize="12sp" android:textStyle="italic"/>
+
+        <Button android:id="@+id/AddRelatives" android:layout_marginTop="10dp" android:layout_width="match_parent"
+                android:layout_height="wrap_content" tools:text="ADD/EDIT DECEASED PERSONS" app:layout_constraintEnd_toEndOf="parent"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center" android:textColorHint="#F8F5F5"
+                tools:targetApi="o" android:textColor="@android:color/background_light" app:layout_constraintTop_toBottomOf="@+id/closeRelatives"
+                android:background="@drawable/mybutton" style="?android:attr/buttonBarButtonStyle" android:textStyle="bold"  android:textSize="24sp"
+                android:text="@string/ADD_EDIT_DECEASED_PERSONS" app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"/>
+
+        <Button android:id="@+id/ProceedToTharpanam" android:layout_marginTop="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+                tools:text="PROCEED TO THARPANAM" android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
+                android:textColorHint="#FCFBFB" tools:targetApi="o" android:textColor="@android:color/background_light"
+                android:background="@drawable/mybutton" android:text="@string/PROCEED_TO_THARPANAM" style="?android:attr/buttonBarButtonStyle"
+                android:textStyle="bold" app:layout_constraintTop_toBottomOf="@+id/AddRelatives"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

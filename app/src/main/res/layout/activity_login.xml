@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/eight_padding"
+    android:layout_marginTop="@dimen/eight_padding"
+    android:layout_marginRight="@dimen/eight_padding"
+    android:layout_marginBottom="@dimen/eight_padding"
+    tools:context=".LoginActivity"
+    android:background = "@drawable/yagyavalkyar">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="@dimen/zero_padding"
+        android:layout_height="wrap_content"
+        android:fillViewport="false"
+        android:orientation="vertical"
+        android:padding="@dimen/reset_padding"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1">
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:showIn="@layout/activity_login">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="cursive"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textColor="@color/my_spinner_text_color"
+                android:textSize="78sp"
+                android:gravity="center_horizontal" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_text_email_input"
+                android:layout_below="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edit_text_email"
+                    android:textColor="@color/design_default_color_primary_dark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:fontFamily="sans-serif"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/general_padding"
+                    android:textColorHint="@color/colorAccent" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_text_password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_text_email_input"
+                android:hint="@string/password">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edit_text_password"
+                    android:textColor="#21065D"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_password"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:fontFamily="sans-serif"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/general_padding"
+                    android:textColorHint="@color/colorAccent" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:id="@+id/checkBox"
+                    android:layout_below="@+id/edit_text_password_input"
+                    android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                        android:layout_below="@id/edit_text_password_input"
+                        android:id="@+id/saveLoginCheckBox"
+                        android:textStyle="italic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/remember" tools:ignore="ObsoleteLayoutParam"/>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/login_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/checkBox"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/small_padding"
+                    android:padding="@dimen/general_padding"
+                    android:text="@string/login_button"
+                    android:textSize="24sp" android:textStyle="bold"
+                    android:background="@drawable/mybutton"
+                    android:textAllCaps="false"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:textColor="@android:color/background_light"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/reset_password_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_button"
+                android:layout_marginTop="@dimen/margin_top"
+                android:background="@null"
+                android:padding="@dimen/general_padding"
+                android:text="@string/btn_forgot_password"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reset_password_button"
+                android:padding="@dimen/general_padding"
+                android:textSize="30sp" android:textStyle="italic|bold"
+                android:text="@string/text_view_signup"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorAccent"
+                android:gravity="center_horizontal" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/skip_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_view_signup"
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:padding="@dimen/general_padding"
+                    android:text="@string/skip_login_button"
+                    android:textAllCaps="false"
+                    android:textColor="@color/design_default_color_error" />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

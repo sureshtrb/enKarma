@@ -1,0 +1,78 @@
+# === Android specific ===
+*.apk
+*.ap_
+*.dex
+*.class
+
+# Build folders
+/build/
+.gradle/
+**/build/
+
+# Local config files
+local.properties
+
+# Keystore files (DO NOT commit private keys)
+*.jks
+*.keystore
+keystore.properties
+
+# Proguard
+proguard/
+proguard-rules.pro
+
+# External/native builds
+.externalNativeBuild/
+.cxx/
+
+# Generated files
+bin/
+gen/
+out/
+
+# IntelliJ/Android Studio
+*.iml
+.idea/
+*.iws
+.idea_modules/
+*.ipr
+
+# Android Studio Navigation editor
+.navigation/
+
+# Studio captures
+captures/
+
+# Log files
+*.log
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+*.suo
+*.sln
+*.user
+*.tmp
+
+# Coverage reports
+*.ec
+*.gcno
+*.gcda
+coverage/
+
+# === Kotlin ===
+*.kotlin_module
+
+# === Compose previews cache ===
+.compose-cache/
+
+# === Flutter (if used for multiplatform or shared module) ===
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.metadata
+.dart_tool/
+.pub-cache/
+build/
