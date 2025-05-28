@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 //import kotlinx.android.synthetic.main.activity_ansestor_data.*
 
@@ -10,7 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.karma.sureshtrb.enKarma.databinding.ActivityAnsestorDataBinding
+import com.sureshtrb.enKarma.databinding.ActivityAnsestorDataBinding
 import kotlin.collections.arrayListOf
 
 var yrGFatherLive: String = ""

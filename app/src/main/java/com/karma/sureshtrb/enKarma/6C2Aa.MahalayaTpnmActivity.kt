@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 /*import kotlinx.android.synthetic.main.activity_mahalaya_tpnm.**/
 //import android.annotation.TargetApi
 //import android.content.Context
@@ -20,11 +20,13 @@ import android.text.style.*
 //import android.view.Menu
 //import android.view.MenuItem
 //import android.widget.Button
-import com.karma.sureshtrb.enKarma.databinding.ActivityMahalayaTpnmBinding
+import com.sureshtrb.enKarma.databinding.ActivityMahalayaTpnmBinding
 //import java.io.FileOutputStream
 ////import java.io.IOException
 //import android.view.MenuInflater
 import androidx.compose.ui.semantics.text
+import androidx.compose.ui.semantics.SemanticsProperties
+
 //import formattedTexts
 //import kotlin.text.set
 import kotlin.toString
@@ -818,7 +820,7 @@ class MahalayaTpnmActivity : AppCompatActivity() {
     var mendPos15 = 0
     var mendPos16 = 0
     var mendPos17 = 0 }
-@RequiresApi(Build.VERSION_CODES.KITKAT)
+
 private lateinit var binding: ActivityMahalayaTpnmBinding
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -830,8 +832,8 @@ override fun onCreate(savedInstanceState: Bundle?) {
     val intentKeys = arrayOf("Naal", "Idam", "TamilYear", "Ayanamm", "KAALAM", "RASEEE", "BAKKSHAMM", "TODAYSTHITHI", "KIZHAMAAII", "NAKSM", "YGM", "KRNM", "Peyar", "Appa", "Thatha", "Kollu", "Yellu", "AmmaAppa", "AmmaThatha", "AmmaKolluThatha", "howManyDays", "ammaName", "appaAmmaName", "appaPattiName", "appaKolluPattiName", "ammaAmmaName", "ammaPattiName", "ammaKolluPattiName")
     val stringVars = arrayOf(::dateTdy, ::Idam, ::Varusham, ::ayyanamm, ::kalam, ::rasee, ::baksham, ::todThithi, ::kizhamai, ::nachathirm, ::yog, ::kar, ::yrNamee, ::yrFNamee, ::yrGFNamee, ::yrGGFNamee, ::yrGGGFNamee, ::MFNamee, ::MGFNamee, ::MGGFNamee, ::noOfDays, ::amName, ::apAmmaName, ::apPattiName, ::apKolluPattiName, ::amAmmaName, ::amPattiName, ::amKolluPattiName)
     for (i in intentKeys.indices) stringVars[i].set(
-    intent.getStringExtra(intentKeys[i]) ?: ""
-);
+        intent.getStringExtra(intentKeys[i]) ?: ""
+    );
     val nVars = arrayOf(::nOne, ::nTwo, ::nThree, ::nFour, ::nFive, ::nSix, ::nSeven, ::nEight, ::nNine, ::nTen, ::nEleven, ::nTwelve, ::nThirteen, ::nFourteen, ::nFifteen);
     val bVars = arrayOf(::bOne, ::bTwo, ::bThree, ::bFour, ::bFive, ::bSix, ::bSeven, ::bEight, ::bNine, ::bTen, ::bEleven, ::bTwelve, ::bThirteen, ::bFourteen, ::bFifteen);
     val gtVars = arrayOf(::gtOne, ::gtTwo, ::gtThree, ::gtFour, ::gtFive, ::gtSix, ::gtSeven, ::gtEight, ::gtNine, ::gtTen, ::gtEleven, ::gtTwelve, ::gtThirteen, ::gtFourteen, ::gtFifteen);
@@ -841,15 +843,15 @@ override fun onCreate(savedInstanceState: Bundle?) {
         nVars[i].set(intent.getStringExtra("N${i + 1}") ?: "")
         val bValue = intent.getStringExtra("B${i + 1}") ?: ""
         if (gndrVars[i].get() == "ஆண்") bVars[i].set(
-    when (bValue) {
-        "Elder (மூத்த)" -> "ஜேஷ்ட"
-        "Younger (இளைய)" -> "கனிஷ்ட"
-        else -> " "
-    }
-); gtVars[i].set(intent.getStringExtra("G${i + 1}") ?: "")
+            when (bValue) {
+                "Elder (மூத்த)" -> "ஜேஷ்ட"
+                "Younger (இளைய)" -> "கனிஷ்ட"
+                else -> " "
+            }
+        ); gtVars[i].set(intent.getStringExtra("G${i + 1}") ?: "")
         reVars[i].set(intent.getStringExtra("R${i + 1}") ?: "")
         gndrVars[i].set(intent.getStringExtra("gdr${i + 1}") ?: "")
-    /* This was already handled in the previous simplification */
+        /* This was already handled in the previous simplification */
     }
     supportActionBar!!.setHomeAsUpIndicator(R.drawable.home);
     supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -864,13 +866,14 @@ override fun onCreate(savedInstanceState: Bundle?) {
 private fun drawPage(page: PdfDocument.Page, pageNumber: Int) {
     var pageNumber = pageNumber
     val canvas = page.canvas
-pageNumber++
+    pageNumber++
     /* Make sure page numbers start at 1 */
     val paint = Paint()
     paint.color = Color.BLACK
     paint.textSize = 40f
     val pageInfo = page.info
-    val logo = BitmapFactory.decodeResource(getApplicationContext().resources, R.drawable.mediumlogo75px)
+    val logo =
+        BitmapFactory.decodeResource(getApplicationContext().resources, R.drawable.mediumlogo75px)
     canvas.drawBitmap(logo, (pageInfo.pageWidth / 12 - logo.width / 6).toFloat(), 0f, paint)
     paint.textSize = 15f
     val mTextPaint = TextPaint()
@@ -891,7 +894,8 @@ pageNumber++
         maha_combination.subSequence(mstartPos14, mendPos14),
         maha_combination.subSequence(mstartPos15, mendPos15),
         maha_combination.subSequence(mstartPos16, mendPos16),
-        maha_combination.subSequence(mstartPos17, mendPos17))
+        maha_combination.subSequence(mstartPos17, mendPos17)
+    )
     val footerText1 = SpannableString("$mheading (Page No. $pageNumber of $mtotalpages)")
     val exExFlag = Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
     val start: Int = 0
@@ -900,12 +904,21 @@ pageNumber++
     footerText1.setSpan(ForegroundColorSpan(Color.RED), start, footerText1.length, exExFlag)
     val footerText = footerText1.toString()
     if (pageNumber in 1..mtotalpages && pageNumber <= pageTexts.size) {
-        val mTextLayout = StaticLayout(pageTexts[pageNumber - 1],
-            mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+        val mTextLayout = StaticLayout(
+            pageTexts[pageNumber - 1],
+            mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true
+        )
         mTextLayout.draw(canvas); paint.textSize = 14f
-        canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), pageInfo.pageHeight.toFloat(), paint) }
+        canvas.drawText(
+            footerText,
+            (pageInfo.pageWidth / 3 - footerText.length).toFloat(),
+            pageInfo.pageHeight.toFloat(),
+            paint
+        )
+    }
     binding.printButton.setOnClickListener {
-        val mTLineCount = binding.MahalayaTPNMTextView.lineCount; println("mTLineCount : $mTLineCount")
+        val mTLineCount =
+            binding.MahalayaTPNMTextView.lineCount; println("mTLineCount : $mTLineCount")
         println("totalChar : ${binding.MahalayaTPNMTextView.length()}")
         mtotalpages = ((mTLineCount / 50 + 0.99) / 0.99).toInt()
         println("mtotalpages : $mtotalpages")
@@ -914,14 +927,14 @@ pageNumber++
         for (page in 1..mtotalpages) {
             val startLine = (page - 1) * 50
             val endLine = minOf(startLine + 50, mTLineCount) - 1
-startPositions.add(binding.MahalayaTPNMTextView.layout.getLineStart(startLine))
-endPositions.add(binding.MahalayaTPNMTextView.layout.getLineEnd(endLine))
-}
+            startPositions.add(binding.MahalayaTPNMTextView.layout.getLineStart(startLine))
+            endPositions.add(binding.MahalayaTPNMTextView.layout.getLineEnd(endLine))
+        }
         // Now you have startPositions and endPositions lists containing the start and end positions for
-    // each page. You can use these to extract
-    // the text for each page as needed.
+        // each page. You can use these to extract
+        // the text for each page as needed.
 
-    /* Example: To get the text for page 1:
+        /* Example: To get the text for page 1:
     val page1Text = binding.MahalayaTPNMTextView.text.toString().substring(startPositions[0], endPositions[0])
     val page2Text = binding.MahalayaTPNMTextView.text.toString().substring(startPositions[1], endPositions[1]) /* Removed comma */
     val page3Text = binding.MahalayaTPNMTextView.text.toString().substring(startPositions[2], endPositions[2]) /* Removed comma */
@@ -945,34 +958,37 @@ endPositions.add(binding.MahalayaTPNMTextView.layout.getLineEnd(endLine))
     /* ... access other pages similarly ... */
 }*/
         binding.printButton.setOnClickListener {
-    val textView = binding.MahalayaTPNMTextView
-    val mTLineCount = textView.lineCount
-    println("mTLineCount : $mTLineCount")
-    val totalChar = textView.length()
-    println("totalChar : $totalChar")
+            val textView = binding.MahalayaTPNMTextView
+            val mTLineCount = textView.lineCount
+            println("mTLineCount : $mTLineCount")
+            val totalChar = textView.length()
+            println("totalChar : $totalChar")
 
-    mtotalpages = (mTLineCount + 49) / 50 /* Calculate total pages efficiently */
-    println("mtotalpages : $mtotalpages")
+            mtotalpages = (mTLineCount + 49) / 50 /* Calculate total pages efficiently */
+            println("mtotalpages : $mtotalpages")
 
-    val pageTexts = mutableListOf<String>() /* Store text for each page */
-    val startPositions = mutableListOf<Int>() /* Store start positions for each page */
-    val endPositions = mutableListOf<Int>() /* Store end positions for each page */
+            val pageTexts = mutableListOf<String>() /* Store text for each page */
+            val startPositions = mutableListOf<Int>() /* Store start positions for each page */
+            val endPositions = mutableListOf<Int>() /* Store end positions for each page */
 
-    for (page in 1..mtotalpages) {
-        val startLine = (page - 1) * 50 /* Calculate start line for current page */
-        val endLine = minOf(startLine + 50, mTLineCount) -1 /* Calculate end line, considering total lines */
+            for (page in 1..mtotalpages) {
+                val startLine = (page - 1) * 50 /* Calculate start line for current page */
+                val endLine = minOf(
+                    startLine + 50,
+                    mTLineCount
+                ) - 1 /* Calculate end line, considering total lines */
 
-        val startPos = textView.layout.getLineStart(startLine)
-        val endPos = textView.layout.getLineEnd(endLine)
+                val startPos = textView.layout.getLineStart(startLine)
+                val endPos = textView.layout.getLineEnd(endLine)
 
-        startPositions.add(startPos)
-        endPositions.add(endPos)
-        pageTexts.add(textView.text.toString().substring(startPos, endPos))
-    }
+                startPositions.add(startPos)
+                endPositions.add(endPos)
+                pageTexts.add(textView.text.toString().substring(startPos, endPos))
+            }
 
-    // Now you have pageTexts, startPositions, and endPositions lists
-    /* containing data for each page. You can use them for further processing. */
-}
+            // Now you have pageTexts, startPositions, and endPositions lists
+            /* containing data for each page. You can use them for further processing. */
+        }
 
     }
     fun trial() {
@@ -981,11 +997,26 @@ endPositions.add(binding.MahalayaTPNMTextView.layout.getLineEnd(endLine))
         val start: Int = 0
 
         /* Helper function to create a formatted SpannableString */
-        fun createFormattedString(text: String, size: Int, style: Int, color: Int): SpannableString {
+        fun createFormattedString(
+            text: String,
+            size: Int,
+            style: Int,
+            color: Int
+        ): SpannableString {
             val spannableString = SpannableString(text)
-            spannableString.setSpan(AbsoluteSizeSpan(size, true), start, spannableString.length, exExFlag)
+            spannableString.setSpan(
+                AbsoluteSizeSpan(size, true),
+                start,
+                spannableString.length,
+                exExFlag
+            )
             spannableString.setSpan(StyleSpan(style), start, spannableString.length, exExFlag)
-            spannableString.setSpan(ForegroundColorSpan(color), start, spannableString.length, exExFlag)
+            spannableString.setSpan(
+                ForegroundColorSpan(color),
+                start,
+                spannableString.length,
+                exExFlag
+            )
             return spannableString
         }
 
@@ -994,242 +1025,1383 @@ endPositions.add(binding.MahalayaTPNMTextView.layout.getLineEnd(endLine))
         // data class FormattedText(val text: SpannableString, val size: Int, val style: Int, val color: Int)
         /* List to hold formatted text data */
         val formattedTexts = listOf(
-            /*0 mheading*/ FormattedText("\nமஹாளய தர்ப்பணம் dateToday கர்த்தா - yourName".replace("""(dateToday)""".toRegex(), dateTdy).replace("""(yourName)""".toRegex(), yrNamee), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*1 mHeading1*/ FormattedText(SpannableString("\nஆசமனம்\n").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*2 mComment1*/ FormattedText("\nஒவ்வொரு உத்தரிணி ஜலம் எடுத்து வலது கையில் விட்டு ஒவ்வொரு மந்திரத்துக்கும் உட்கொள்ளவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*3 mBody1*/ FormattedText("\nஓம் அச்யுதாய நம: |  ஓம் அனந்தாய நம: |  ஓம் கோவிந்தாய நம: ||", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*4 mComment2*/ FormattedText("\nஒரு உத்தரிணி ஜலம் எடுத்து வலது கையில் விட்டு கீழே விடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*5 mBody2*/ FormattedText(" - அபஉபஸ்ப்ருஸ்ய ||\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*6 mComment3*/ FormattedText(" வலது கட்டை விரலால் வாயை துடைத்துக் கொள்ளவும் \n விரல்களால் அங்கங்களை தொடவும் \n நடு மற்றும் மோதிர விரல் வலது கன்னம்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*7 mBody3*/ FormattedText("- கேசவா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*8 mComment4*/ FormattedText("\n நடு மற்றும் மோதிர விரல் - இடது கன்னம்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*9 mBody4*/ FormattedText("- நாராயணா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*10 mComment5*/ FormattedText("\n ஆள்காட்டி மற்றும் கட்டை விரல் - வலது மூக்கு", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*11 mBody5*/ FormattedText("- மாதவா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*12 mComment6*/ FormattedText("\n ஆள்காட்டி மற்றும் கட்டை விரல் - இடது மூக்கு", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*13 mBody6*/ FormattedText("- கோவிந்தா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*14 mComment7*/ FormattedText("\n நடு மற்றும் கட்டை விரல் - வலது கண்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*15 mBody7*/ FormattedText("- விஷ்ணு", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*16 mComment8*/ FormattedText("\n நடு மற்றும் கட்டை விரல் - இடது கண்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*17 mBody8*/ FormattedText("- மதுஸூதனா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*18 mComment9*/ FormattedText("\n மோதிர மற்றும் கட்டை விரல் - வலது காது", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*19 mBody9*/ FormattedText("- த்ரிவிக்ரமா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*20 mComment10*/ FormattedText("\n மோதிர மற்றும் கட்டை விரல் - இடது காது", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*21 mBody10*/ FormattedText("- வாமனா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*22 mComment11*/FormattedText("\n வலது உள்ளங்கை - மார்பு", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*23 mBody11*/FormattedText("- ஸ்ரீதரா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*24 mComment12*/FormattedText("\n ஐந்து விரல் நுனி - முன் தலை", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*25 mBody12*/FormattedText("- ஹ்ருஷீகேஷா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*26 mComment13*/FormattedText("\n ஐந்து விரல் நுனி - வலது தோள்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*27 mBody13*/FormattedText("- பத்மநாபா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*28 mComment14*/FormattedText("\n ஐந்து விரல் நுனி - இடது தோள்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*29 mBody14*/FormattedText("- தாமோதரா\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*30 mComment15A*/FormattedText("\n இஃது மஹாளயதினத்தன்று மாத்யான்ஹிக காலத்தில் மாத்யான்ஹிக, ப்ரம்ஹயக்ஞ, தேவரிஷி பித்ரு தர்ப்பணங்களை யதாவத் முடித்துக் கொண்டு செய்ய வேண்டிய கர்மா.  \n  இதற்கு", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*31 mComment15B*/ FormattedText(" இரண்டு", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*32 mComment15C*/ FormattedText(" மூன்று", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*33 mComment15D*/ FormattedText(" 7, 5, 3 பில்  ஒத்தப்படையில் உள்ள  மடித்த கூர்ச்சம், 3 பில் பவித்ரம் ஒன்று கொஞ்சம் எள்ளும்,", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*34 mComment15E*/ FormattedText(" 7, 5, 3 பில்  ஒத்தப்படையில் உள்ள  மடித்த கூர்ச்சம், 3 பில் பவித்ரம் ஒன்று கொஞ்சம் எள்ளும், சிறிது அரிசியும்,", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*35 mComment15F*/ FormattedText(" சொம்பு, பஞ்சபாத்ரத்தில் தீர்த்தம் தேவை. \nகிழக்கு முகமாக ஆசனத்தில் அமர்ந்து அமைதியாக நிறுத்தி நிதானமாக, பித்ரு தேவதைகளை மனதில் தியானித்து கீழ்க்கூறிய பிரகாரம் தர்ப்பணம் செய்ய வேண்டும்.\nமூன்று பில் பவித்ரம் தரித்து-\n", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*36 mBody15*/ FormattedText("தர்பேஷு ஆசீன:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*37 mComment16*/ FormattedText(" \n- என்று சொல்லி 3 கட்டை தர்பங்களை ஆசனமாகவும்\n", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*38 mBody16*/ FormattedText("தர்பான் தாரயமாண:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*39 mComment17*/ FormattedText(" \n- என்று சொல்லி 3 கட்டை தர்பங்களை பவித்ரத்துடன் கையிலிடுக்கிக் கொண்டும், சங்கல்பம் செய்ய வேண்டும்.\n", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*0 mheading*/
+            FormattedText(
+                "\nமஹாளய தர்ப்பணம் dateToday கர்த்தா - yourName".replace(
+                    """(dateToday)""".toRegex(),
+                    dateTdy
+                ).replace("""(yourName)""".toRegex(), yrNamee),
+                16,
+                Typeface.BOLD,
+                Color.parseColor("#8b008b")
+            ),
+            /*1 mHeading1*/
+            FormattedText(SpannableString("\nஆசமனம்\n").apply {
+                setSpan(
+                    UnderlineSpan(),
+                    0,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+            /*2 mComment1*/
+            FormattedText(
+                "\nஒவ்வொரு உத்தரிணி ஜலம் எடுத்து வலது கையில் விட்டு ஒவ்வொரு மந்திரத்துக்கும் உட்கொள்ளவும்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*3 mBody1*/
+            FormattedText(
+                "\nஓம் அச்யுதாய நம: |  ஓம் அனந்தாய நம: |  ஓம் கோவிந்தாய நம: ||",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*4 mComment2*/
+            FormattedText(
+                "\nஒரு உத்தரிணி ஜலம் எடுத்து வலது கையில் விட்டு கீழே விடவும்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*5 mBody2*/
+            FormattedText(" - அபஉபஸ்ப்ருஸ்ய ||\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*6 mComment3*/
+            FormattedText(
+                " வலது கட்டை விரலால் வாயை துடைத்துக் கொள்ளவும் \n விரல்களால் அங்கங்களை தொடவும் \n நடு மற்றும் மோதிர விரல் வலது கன்னம்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*7 mBody3*/
+            FormattedText("- கேசவா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*8 mComment4*/
+            FormattedText(
+                "\n நடு மற்றும் மோதிர விரல் - இடது கன்னம்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*9 mBody4*/
+            FormattedText("- நாராயணா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*10 mComment5*/
+            FormattedText(
+                "\n ஆள்காட்டி மற்றும் கட்டை விரல் - வலது மூக்கு",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*11 mBody5*/
+            FormattedText("- மாதவா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*12 mComment6*/
+            FormattedText(
+                "\n ஆள்காட்டி மற்றும் கட்டை விரல் - இடது மூக்கு",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*13 mBody6*/
+            FormattedText("- கோவிந்தா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*14 mComment7*/
+            FormattedText(
+                "\n நடு மற்றும் கட்டை விரல் - வலது கண்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*15 mBody7*/
+            FormattedText("- விஷ்ணு", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*16 mComment8*/
+            FormattedText(
+                "\n நடு மற்றும் கட்டை விரல் - இடது கண்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*17 mBody8*/
+            FormattedText("- மதுஸூதனா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*18 mComment9*/
+            FormattedText(
+                "\n மோதிர மற்றும் கட்டை விரல் - வலது காது",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*19 mBody9*/
+            FormattedText("- த்ரிவிக்ரமா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*20 mComment10*/
+            FormattedText(
+                "\n மோதிர மற்றும் கட்டை விரல் - இடது காது",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*21 mBody10*/
+            FormattedText("- வாமனா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*22 mComment11*/
+            FormattedText("\n வலது உள்ளங்கை - மார்பு", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*23 mBody11*/
+            FormattedText("- ஸ்ரீதரா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*24 mComment12*/
+            FormattedText("\n ஐந்து விரல் நுனி - முன் தலை", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*25 mBody12*/
+            FormattedText("- ஹ்ருஷீகேஷா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*26 mComment13*/
+            FormattedText("\n ஐந்து விரல் நுனி - வலது தோள்", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*27 mBody13*/
+            FormattedText("- பத்மநாபா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*28 mComment14*/
+            FormattedText("\n ஐந்து விரல் நுனி - இடது தோள்", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*29 mBody14*/
+            FormattedText("- தாமோதரா\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*30 mComment15A*/
+            FormattedText(
+                "\n இஃது மஹாளயதினத்தன்று மாத்யான்ஹிக காலத்தில் மாத்யான்ஹிக, ப்ரம்ஹயக்ஞ, தேவரிஷி பித்ரு தர்ப்பணங்களை யதாவத் முடித்துக் கொண்டு செய்ய வேண்டிய கர்மா.  \n  இதற்கு",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*31 mComment15B*/
+            FormattedText(" இரண்டு", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*32 mComment15C*/
+            FormattedText(" மூன்று", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*33 mComment15D*/
+            FormattedText(
+                " 7, 5, 3 பில்  ஒத்தப்படையில் உள்ள  மடித்த கூர்ச்சம், 3 பில் பவித்ரம் ஒன்று கொஞ்சம் எள்ளும்,",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*34 mComment15E*/
+            FormattedText(
+                " 7, 5, 3 பில்  ஒத்தப்படையில் உள்ள  மடித்த கூர்ச்சம், 3 பில் பவித்ரம் ஒன்று கொஞ்சம் எள்ளும், சிறிது அரிசியும்,",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*35 mComment15F*/
+            FormattedText(
+                " சொம்பு, பஞ்சபாத்ரத்தில் தீர்த்தம் தேவை. \nகிழக்கு முகமாக ஆசனத்தில் அமர்ந்து அமைதியாக நிறுத்தி நிதானமாக, பித்ரு தேவதைகளை மனதில் தியானித்து கீழ்க்கூறிய பிரகாரம் தர்ப்பணம் செய்ய வேண்டும்.\nமூன்று பில் பவித்ரம் தரித்து-\n",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*36 mBody15*/
+            FormattedText("தர்பேஷு ஆசீன:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*37 mComment16*/
+            FormattedText(
+                " \n- என்று சொல்லி 3 கட்டை தர்பங்களை ஆசனமாகவும்\n",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*38 mBody16*/
+            FormattedText("தர்பான் தாரயமாண:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*39 mComment17*/
+            FormattedText(
+                " \n- என்று சொல்லி 3 கட்டை தர்பங்களை பவித்ரத்துடன் கையிலிடுக்கிக் கொண்டும், சங்கல்பம் செய்ய வேண்டும்.\n",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
 
-            /*40 mHeading2*/ FormattedText(SpannableString("சங்கல்பம்\n").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*41 mBody17*/ FormattedText("  ஓம் சுக்லாம்பரதரம் விஷ்ணும் சசிவர்ணம் சதுர்புஜம் \n        ப்ரஸன்ன வதனம் த்யாயேத் ஸர்வ விக்ன உபசாந்தயே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*42 mComment18*/ FormattedText("\n     முன் தலையில் கை வைத்துக் கொண்டு-\n", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*43 mBody18*/ FormattedText("ஓம் ப்ரணவஸ்ய - பரப்ரும்மரிஷி:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*44 mComment19*/ FormattedText("\n நுனிமூக்கில் கை வைத்துக் கொண்டு-\n", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*45 mBody19*/ FormattedText("தேவீ காயத்ரீச் சந்த:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*46 mComment20*/ FormattedText("\n ஹ்ருதயத்தில் கை வைத்துக் கொண்டு-\n", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*40 mHeading2*/
+            FormattedText(SpannableString("சங்கல்பம்\n").apply {
+                setSpan(
+                    UnderlineSpan(),
+                    0,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+            /*41 mBody17*/
+            FormattedText(
+                "  ஓம் சுக்லாம்பரதரம் விஷ்ணும் சசிவர்ணம் சதுர்புஜம் \n        ப்ரஸன்ன வதனம் த்யாயேத் ஸர்வ விக்ன உபசாந்தயே",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*42 mComment18*/
+            FormattedText(
+                "\n     முன் தலையில் கை வைத்துக் கொண்டு-\n",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*43 mBody18*/
+            FormattedText(
+                "ஓம் ப்ரணவஸ்ய - பரப்ரும்மரிஷி:",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*44 mComment19*/
+            FormattedText(
+                "\n நுனிமூக்கில் கை வைத்துக் கொண்டு-\n",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*45 mBody19*/
+            FormattedText("தேவீ காயத்ரீச் சந்த:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*46 mComment20*/
+            FormattedText(
+                "\n ஹ்ருதயத்தில் கை வைத்துக் கொண்டு-\n",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
 
-            /*47 mBody20*/ FormattedText("ஸவிதா பரமாத்மா தேவதா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*48 mComment21*/ FormattedText("\n கைகளை உள் வாங்கவும்-\n", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*49 mBody21*/ FormattedText("ப்ராணாயாமே விநியோக:\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*50 mComment22*/ FormattedText("  ப்ராணாயாமம்  செய்ய வேண்டும் ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*51 mBody22*/ FormattedText("\n   ஓம் பூ: ஓம் புவ: ஓம் சுவ: ஓம் மஹ: ஓம் ஜந: ஓம் தப: ஓம் ஸத்யம் \nதத்ஸவிதுர் வரேண்யம் பர்கோ தேவஸ்ய தீமஹி தியோயோ ந:  ப்ரசோதயாத் ஓம் ஆப: ஜ்யோதீரஸ: அம்ருதம் ப்ரம்ஹ பூர்புவஸ்வரோம்\n    ஓம் அபவித்ர: பவித்ரோவா ஸர்வாவஸ்தாம் கதோபிவா யஸ்மரேத் புண்டரீகாக்ஷ்ம் ஸபாஹ்யாப்யந்தர: சுசி:\n    மானஸம் வாசிகம் பாபம் கர்மனா ஸமுபார்ஜிதம் ஸ்ரீராம ஸ்மரணேநைவ வ்யபோஹதி நஸம்சய:\n    ஸ்ரீராம ராமராம  திதிர்விஷ்ணு: ததாவார: நக்ஷத்ரம் விஷ்ணுரேவச யோகஸ்ச கரணம் சைவ ஸர்வம் விஷ்ணுமயம் ஜகத்\n    ஸ்ரீகோவிந்த கோவிந்தகோவிந்த அத்ய ஸ்ரீ பகவத: மஹாபுருஷஸ்ய விஷ்ணோ: ஆக்ஞயா ப்ரவர்த்தமானஸ்ய \n\n  ஆத்ய ப்ரம்ஹண:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*52 mComment23*/ FormattedText(" \n- ஆதி ப்ரும்மாவிலிருந்து from 1st Brahma’s life ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*53 mBody23*/ FormattedText("\n  த்விதீயே பரார்த்தே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*54 mComment24*/ FormattedText(" \n- Brahma’s 2nd Parardha. 1 Parardha = 50 Brahma years ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*55 mBody24*/ FormattedText("\n  ஸ்வேத வராஹ கல்பே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*56 mComment25*/ FormattedText(" \n- first of the thirty Kalpas- Matsya Purana ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*57 mBody25*/ FormattedText("\n  வைவஸ்வத மன்வந்தரே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*58 mComment26*/ FormattedText(" \n- 14 manvantras = 1 Kalpa, now 7th - Vaivasvata)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*59 mBody26*/ FormattedText("\n  அஷ்டா விம்சதிதமே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*47 mBody20*/
+            FormattedText("ஸவிதா பரமாத்மா தேவதா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*48 mComment21*/
+            FormattedText("\n கைகளை உள் வாங்கவும்-\n", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*49 mBody21*/
+            FormattedText("ப்ராணாயாமே விநியோக:\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*50 mComment22*/
+            FormattedText("  ப்ராணாயாமம்  செய்ய வேண்டும் ", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*51 mBody22*/
+            FormattedText(
+                "\n   ஓம் பூ: ஓம் புவ: ஓம் சுவ: ஓம் மஹ: ஓம் ஜந: ஓம் தப: ஓம் ஸத்யம் \nதத்ஸவிதுர் வரேண்யம் பர்கோ தேவஸ்ய தீமஹி தியோயோ ந:  ப்ரசோதயாத் ஓம் ஆப: ஜ்யோதீரஸ: அம்ருதம் ப்ரம்ஹ பூர்புவஸ்வரோம்\n    ஓம் அபவித்ர: பவித்ரோவா ஸர்வாவஸ்தாம் கதோபிவா யஸ்மரேத் புண்டரீகாக்ஷ்ம் ஸபாஹ்யாப்யந்தர: சுசி:\n    மானஸம் வாசிகம் பாபம் கர்மனா ஸமுபார்ஜிதம் ஸ்ரீராம ஸ்மரணேநைவ வ்யபோஹதி நஸம்சய:\n    ஸ்ரீராம ராமராம  திதிர்விஷ்ணு: ததாவார: நக்ஷத்ரம் விஷ்ணுரேவச யோகஸ்ச கரணம் சைவ ஸர்வம் விஷ்ணுமயம் ஜகத்\n    ஸ்ரீகோவிந்த கோவிந்தகோவிந்த அத்ய ஸ்ரீ பகவத: மஹாபுருஷஸ்ய விஷ்ணோ: ஆக்ஞயா ப்ரவர்த்தமானஸ்ய \n\n  ஆத்ய ப்ரம்ஹண:",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*52 mComment23*/
+            FormattedText(
+                " \n- ஆதி ப்ரும்மாவிலிருந்து from 1st Brahma’s life ",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*53 mBody23*/
+            FormattedText("\n  த்விதீயே பரார்த்தே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*54 mComment24*/
+            FormattedText(
+                " \n- Brahma’s 2nd Parardha. 1 Parardha = 50 Brahma years ",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*55 mBody24*/
+            FormattedText("\n  ஸ்வேத வராஹ கல்பே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*56 mComment25*/
+            FormattedText(
+                " \n- first of the thirty Kalpas- Matsya Purana ",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*57 mBody25*/
+            FormattedText("\n  வைவஸ்வத மன்வந்தரே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*58 mComment26*/
+            FormattedText(
+                " \n- 14 manvantras = 1 Kalpa, now 7th - Vaivasvata)",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*59 mBody26*/
+            FormattedText("\n  அஷ்டா விம்சதிதமே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
 
-            /*60 mComment27*/ FormattedText(" \n-(18,000 Kalpas completed)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*61 mBody27*/ FormattedText("\n  கலியுகே ப்ரதமேபாதே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*62 mComment28*/ FormattedText(" \n-(first quarter of the Kaliyuga)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*63 mBody28*/ FormattedText("\n  ஜம்பூத்வீபே பாரதவர்ஷே பரதகண்டே மேரோ: தக்ஷிணேபார்ச்வே சகாப்தே அஸ்மின் வர்த்தமானே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*64 mComment29*/ FormattedText(" \n-(geographical area of our motherland)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*65 mBody29*/ FormattedText("\n  வ்யவஹாரிகே ப்ரபவாதீநாம் ஷஷ்ட்யா: ஸம்வத்ஸராணாம் மத்யே ஸ்ரீtamilYear நாம ஸம்வத்ஸரே".replace("""(tamilYear)""".toRegex(), Varusham), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*66 mComment30*/ FormattedText(" \n-(specifies the year)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*67 mBody30*/ FormattedText("\n  sunPosition".replace("""(sunPosition)""".toRegex(), ayyanamm), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*68 mComment31*/ FormattedText(" \n-(Uttarayana [roughly January to June] and Dakshinayana [roughly July to December])", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*69 mBody31*/ FormattedText("\n  season ருதௌ".replace("""(season)""".toRegex(), kalam), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*70 mComment32*/ FormattedText(" \n-(season of the year, Vasanta/ Greeshma/ Varsha/ Sharat/ Hemanta/ Shishira)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*71 mBody32*/ FormattedText("\n  sunRasi மாஸே".replace("""(sunRasi)""".toRegex(), rasee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*72 mComment33*/ FormattedText(" \n-(12 months - Mesha, Vrushabha, Mithuna, Kataka, Simha, Kanya, Tula, Vrichika, Dhanur, Makara, Kumbha, and Meena)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*73 mComment33*/ FormattedText("\n  moonPosition பக்ஷே".replace("""(moonPosition)""".toRegex(), baksham), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*74 mComment34*/ FormattedText(" \n-(Shukla - day after amavasya to pournami/ Krishna - day after pournami to amavasya)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*75 mBody34*/ FormattedText("\n  Thithiயாம் புண்யதிதௌ".replace("""(Thithi)""".toRegex(), todThithi), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*76 mComment35*/ FormattedText(" \n-(15 tithis and repeats)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*77 mBody35*/ FormattedText("\n  weekDay வாஸரயுக்தாயாம்".replace("""(weekDay)""".toRegex(), kizhamai), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*78 mComment36*/ FormattedText(" \n-(Sunday-Bhanu, Monday-Indu, Tuesday-Bhauma, Wednesday-Sowmya, Thursday-Guru, Friday-ப்ருகு, Saturday-Sthira)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*79 mBody36*/ FormattedText("\n  natchatram நக்ஷ்த்ரயுக்தாயாம்".replace("""(natchatram)""".toRegex(), nachathirm), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*80 mComment37*/ FormattedText(" \n- (27 nakshatras)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*81 mBody37*/ FormattedText("\n  Yogam நாமயோக Karana கரணயுக்தாயாம் ஏவங்குண விசேஷேண விசிஷ்டாயாம் அஸ்யாம் Thithiயாம் புண்யதிதௌ".replace("""(Yogam)""".toRegex(), yog).replace("""(Karana)""".toRegex(), kar).replace("""(Thithi)""".toRegex(), todThithi), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*82 mComment38A*/ FormattedText("\nபூணூலை ", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*60 mComment27*/
+            FormattedText(" \n-(18,000 Kalpas completed)", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*61 mBody27*/
+            FormattedText("\n  கலியுகே ப்ரதமேபாதே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*62 mComment28*/
+            FormattedText(" \n-(first quarter of the Kaliyuga)", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*63 mBody28*/
+            FormattedText(
+                "\n  ஜம்பூத்வீபே பாரதவர்ஷே பரதகண்டே மேரோ: தக்ஷிணேபார்ச்வே சகாப்தே அஸ்மின் வர்த்தமானே",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*64 mComment29*/
+            FormattedText(
+                " \n-(geographical area of our motherland)",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*65 mBody29*/
+            FormattedText(
+                "\n  வ்யவஹாரிகே ப்ரபவாதீநாம் ஷஷ்ட்யா: ஸம்வத்ஸராணாம் மத்யே ஸ்ரீtamilYear நாம ஸம்வத்ஸரே".replace(
+                    """(tamilYear)""".toRegex(),
+                    Varusham
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*66 mComment30*/
+            FormattedText(" \n-(specifies the year)", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*67 mBody30*/
+            FormattedText(
+                "\n  sunPosition".replace("""(sunPosition)""".toRegex(), ayyanamm),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*68 mComment31*/
+            FormattedText(
+                " \n-(Uttarayana [roughly January to June] and Dakshinayana [roughly July to December])",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*69 mBody31*/
+            FormattedText(
+                "\n  season ருதௌ".replace("""(season)""".toRegex(), kalam),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*70 mComment32*/
+            FormattedText(
+                " \n-(season of the year, Vasanta/ Greeshma/ Varsha/ Sharat/ Hemanta/ Shishira)",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*71 mBody32*/
+            FormattedText(
+                "\n  sunRasi மாஸே".replace("""(sunRasi)""".toRegex(), rasee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*72 mComment33*/
+            FormattedText(
+                " \n-(12 months - Mesha, Vrushabha, Mithuna, Kataka, Simha, Kanya, Tula, Vrichika, Dhanur, Makara, Kumbha, and Meena)",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*73 mComment33*/
+            FormattedText(
+                "\n  moonPosition பக்ஷே".replace("""(moonPosition)""".toRegex(), baksham),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*74 mComment34*/
+            FormattedText(
+                " \n-(Shukla - day after amavasya to pournami/ Krishna - day after pournami to amavasya)",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*75 mBody34*/
+            FormattedText(
+                "\n  Thithiயாம் புண்யதிதௌ".replace("""(Thithi)""".toRegex(), todThithi),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*76 mComment35*/
+            FormattedText(" \n-(15 tithis and repeats)", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*77 mBody35*/
+            FormattedText(
+                "\n  weekDay வாஸரயுக்தாயாம்".replace("""(weekDay)""".toRegex(), kizhamai),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*78 mComment36*/
+            FormattedText(
+                " \n-(Sunday-Bhanu, Monday-Indu, Tuesday-Bhauma, Wednesday-Sowmya, Thursday-Guru, Friday-ப்ருகு, Saturday-Sthira)",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*79 mBody36*/
+            FormattedText(
+                "\n  natchatram நக்ஷ்த்ரயுக்தாயாம்".replace(
+                    """(natchatram)""".toRegex(),
+                    nachathirm
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*80 mComment37*/
+            FormattedText(" \n- (27 nakshatras)", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*81 mBody37*/
+            FormattedText(
+                "\n  Yogam நாமயோக Karana கரணயுக்தாயாம் ஏவங்குண விசேஷேண விசிஷ்டாயாம் அஸ்யாம் Thithiயாம் புண்யதிதௌ".replace(
+                    """(Yogam)""".toRegex(),
+                    yog
+                ).replace("""(Karana)""".toRegex(), kar)
+                    .replace("""(Thithi)""".toRegex(), todThithi),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*82 mComment38A*/
+            FormattedText("\nபூணூலை ", 13, Typeface.ITALIC, Color.DKGRAY),
 
-            /*RED*//*83 mRedComment1*/ FormattedText(" அபஸவ்யம் ", 15, Typeface.BOLD_ITALIC, Color.RED),
+            /*RED*//*83 mRedComment1*/
+            FormattedText(" அபஸவ்யம் ", 15, Typeface.BOLD_ITALIC, Color.RED),
 
-            /*84 mComment38B*/ FormattedText(" செய்து கொண்டு தெற்குமுகமாக, முகம் மட்டுமாவது, இருந்து கூறவும்)", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*85 mBody38*/ FormattedText("\n yourGothram கோத்ராணாம் அஸ்மத் ".replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*86 mBody381*/ FormattedText("\n yourGothram கோத்ராணாம் அஸ்மத் ".replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*87 mBody39*/ FormattedText("பித்ரு ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*88 mBody39B*/ FormattedText("பிதாமஹ ப்ரபிதாமஹாநாம் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*89 mBody40*/ FormattedText("yourFatherName, ".replace("""(yourFatherName)""".toRegex(), yrFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*90 mBody41*/ FormattedText("yourGrandFatherName, yourGreatGrandFatherName ".replace("""(yourGrandFatherName)""".toRegex(), yrGFNamee).replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*91 mBody39A*/ FormattedText("ப்ரபிதாமஹ வ்ருத்தப்ரபிதாமஹாநாம் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*92 mBody41B*/ FormattedText("yourGreatGrandFatherName, yourGreatGreatGrandFatherName ".replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee).replace("""(yourGreatGreatGrandFatherName)""".toRegex(), yrGGGFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*93 mBody42*/ FormattedText("சர்மணாம் வஸூருத்ர ஆதித்யஸ்வரூபாணாம் அக்ஷ்ய த்ருப்த்யர்த்தம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*94 mBody39FM*/ FormattedText("\n\n  yourGothram கோத்ராணாம் அஸ்மத் மாத்ரு, பிதாமஹி, ப்ரபிதாமஹினாம் yourMotherName, yourFatherMotherName, yourFatherGrandMotherName நாமதேயாணாம் வசுருத்ர ஆதித்ய ஸ்வரூபானாம்".replace("""(yourGothram)""".toRegex(), urGothram).replace("""(yourMotherName)""".toRegex(), amName).replace("""(yourFatherMotherName)""".toRegex(), apAmmaName).replace("""(yourFatherGrandMotherName)""".toRegex(), apPattiName), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*95 mMBody38*/ FormattedText("\n\n  motherSideGothram கோத்ராணாம் அஸ்மத் ".replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*96 mMBody38b*/ FormattedText("\n\n  motherSideGothram கோத்ராணாம் அஸ்மத் ".replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*97 mMBody41B*/ FormattedText("மாதாமஹ, ப்ரமாதாமஹ, வ்ருத்தப்ரமாதாமஹாநாம் motherFather, motherGrandFather, " + "motherGreatGrandFather சர்மணாம் வஸூருத்ர ஆதித்ய ஸ்வரூபாணாம் உபயவம்ச பித்ருணாம் அக்ஷ்ய த்ருப்த்யர்த்தம் ".replace("""(motherFather)""".toRegex(), MFNamee).replace("""(motherGrandFather)""".toRegex(), MGFNamee).replace("""(motherGreatGrandFather)""".toRegex(), MGGFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*98 mMBody41Bc*/ FormattedText("மாதாமஹி, ப்ரமாதாமஹி, வ்ருத்தப் ப்ரமாதாமஹினாம் motherMother, motherGrandMother, " + "motherGreatGrandMother, நாமதேயாணாம் வசுருத்ர ஆதித்ய ஸ்வரூபானாம் அக்ஷ்ய த்ருப்த்யர்த்தம்".replace("""(motherMother)""".toRegex(), amAmmaName).replace("""(motherGrandMother)""".toRegex(), amPattiName).replace("""(motherGreatGrandMother)""".toRegex(), amKolluPattiName), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*99 mBody42Z*/ FormattedText("\n\n  உபயவம்சே பவானாம் பித்ருவ்ய மாதுலாதி ஞாத அக்ஞாதானாம் தத்தத் கோத்ராணாம் தத்தத் சர்மணாம் வசு வசுரூபானாம் ஸர்வேஷாம் காருண்ய பித்ரூனாம் ச அக்ஷ்ய த்ருப்த்யர்த்தம் கன்யா கதே ஸவிதரி ஆஷாட்யாதி பஞ்சமாபர பக்ஷ மஹாளய புண்யகாலே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*100 mBody42ZA*/ FormattedText(" பக்க்ஷிய மஹாளயச்ரார்த்தம் திலதர்ப்பண ரூபேண அத்ய கரிஷ்யே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*101 mBody42ZB*/ FormattedText("ஸக்ருத் மஹாளயச்ரார்த்தம் திலதர்ப்பண ரூபேண அத்ய கரிஷ்யே", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*102 mComment39*/ FormattedText("\n- கையில் உள்ள தர்பங்களை போட்டுவிட்டு கிழக்கு முகமாக திரும்பி பூணல் ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*Green*//*103 mGreenComment1*/ FormattedText(" ஸவ்யம் ", 15, Typeface.BOLD_ITALIC, Color.GREEN),
-            /*104 mComment40*/ FormattedText(" செய்து கொண்டு கையை ஜலத்தால் அலம்பவும். \nதனக்கு எதிரில் ஒரு தாம்பாளத்தில் கொஞ்சம் கட்டை தர்பங்களை கிழக்கு மேற்காக பரப்பி \nஅதன்மேல் தெற்கு நுனியாக", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*105 mComment40Two*/ FormattedText(" இரண்டு", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*106 mComment40Three*/ FormattedText(" மூன்று", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*107 mComment41*/ FormattedText(" கூர்ச்சங்களை வைத்து \nஅதன் மேல் கட்டை தர்பங்கள் கொஞ்சம் போட்டு பூணூலை ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*RED*//*108 mRedComment2*/ FormattedText(" அபஸவ்யம் ", 15, Typeface.BOLD_ITALIC, Color.RED),
-            /*109 mComment41A*/ FormattedText(" செய்து கொண்டு \nஎள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*110 mComment41C*/ FormattedText("செய்து கொண்டு \nஎள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*111 mComment41D*/ FormattedText(" எடுத்துக் கொண்டு \nஆவாஹநாதி தர்ப்பணம் செய்யவும்\n", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*112 mHeading3*/ FormattedText(SpannableString("ஆவாஹனம்-ஆஸனம்\n").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }, 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*113 mComment42*/ FormattedText("பூணல் - ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*RED*//*114 mRedComment3*/ FormattedText(" அபஸவ்யம் ", 15, Typeface.BOLD_ITALIC, Color.RED),
-            /*115 mComment42A*/ FormattedText(SpannableString("\nமந்திரம்: மேலண்டைகூர்ச்சம் : பிதாவர்கம்").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*116 mBody46*/ FormattedText("\nஓம் உசந்தஸ்த்வா நிதீமஹி உசந்த: ஸமீதீமஹி உசந்நு உசத: ஆவஹ பித்ருன் ஹவிஷே அத்தவே yourGothram கோத்ரான் அஸ்மத் பித்ரு ".replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*117 mBody48A*/ FormattedText("ப்ரபிதாமஹ வ்ருத்தப்ரபிதாமஹாநாம் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*118 mBody48B*/ FormattedText("பிதாமஹ ப்ரபிதாமஹாநாம் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*119 mBody49*/ FormattedText("yourFatherName, ".replace("""(yourFatherName)""".toRegex(), yrFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*120 mBody50*/ FormattedText("yourGrandFatherName, yourGreatGrandFatherName ".replace("""(yourGrandFatherName)""".toRegex(), yrGFNamee).replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*121 mBody51B*/ FormattedText("yourGreatGrandFatherName, yourGreatGreatGrandFatherName ".replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee).replace("""(yourGreatGreatGrandFatherName)""".toRegex(), yrGGGFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*122 mBody52*/ FormattedText("சர்மணாம்  வஸூருத்ர ஆதித்ய ஸ்வரூபான் அஸ்மின்கூர்ச்சே ஆவாஹயாமி\nஅவகீர்யா\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*123 mComment43*/ FormattedText("- என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*124 mComment43A*/ FormattedText("- என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*125 mComment44*/ FormattedText("- என்று எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*126 mComment44A*/ FormattedText("- என்று எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*127 mComment45*/ FormattedText(" போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*128 mComment45A*/ FormattedText(" போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*129 mHeading4*/ FormattedText(SpannableString("\nஆஸனமந்திரம்\n").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*130 mComment46*/ FormattedText("மூன்று கட்டை தர்பங்களை எடுத்துக்கொண்டு", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*131 mComment46A*/ FormattedText("மூன்று கட்டை தர்பங்களை எடுத்துக்கொண்டு", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*132 mBody53*/ FormattedText("\nஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயாநை: \nஅஸ்மின்யக்ஞே ஸ்வதயாமதந்த: அதிப்ருவந்து தேவந்து அஸ்மான் yourGothram கோத்ராணாம் அஸ்மத் பித்ரு".replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*133 mBody56*/ FormattedText("பிதாமஹ ப்ரபிதாமஹாநாம் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*134 mBody55*/ FormattedText("ப்ரபிதாமஹ வ்ருத்தப்ரபிதாமஹாநாம் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*135 mBody57*/ FormattedText("yourFatherName, ".replace("""(yourFatherName)""".toRegex(), yrFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*136 mBody58*/ FormattedText("yourGrandFatherName, yourGreatGrandFatherName ".replace("""(yourGrandFatherName)""".toRegex(), yrGFNamee).replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*137 mBody59B*/ FormattedText("yourGreatGrandFatherName, yourGreatGreatGrandFatherName ".replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee).replace("""(yourGreatGreatGrandFatherName)""".toRegex(), yrGGGFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*138 mBody60*/ FormattedText("சர்மணாம் வஸூருத்ர ஆதித்ய ஸ்வரூபாணாம் அஸ்மின்கூர்ச்சே இதமாஸனம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*139 mComment47*/ FormattedText("\n என்று கட்டை தர்பங்களை போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*140 mComment47A*/ FormattedText("\n என்று கட்டை தர்பங்களை போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*141 mComment47B*/ FormattedText("\n என்று கட்டை தர்பங்களை போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*142 mBody61*/ FormattedText("\nகந்தாதி ஸகலாராதனை: ஸ்வர்ச்சிதம்\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*143 mComment48*/ FormattedText("\n என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*144 mComment48A*/ FormattedText("\n என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*145 mComment48B*/ FormattedText("\n என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*146 mComment48C*/ FormattedText("\n என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*147 mComment48E*/ FormattedText("\n என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*148 mComment49*/ FormattedText("\n என்று எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*149 mComment49A*/ FormattedText("\n என்று எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*150 mComment49B*/ FormattedText("\n என்று எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*151 mComment49C*/ FormattedText("\n என்று எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*152 mComment49D*/ FormattedText("\n என்று கூறும்போது எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*153 mComment49E*/ FormattedText("\n என்று எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*154 mComment50*/ FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*155 mComment50A*/ FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*156 mComment50*/ FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*157 mComment50A*/ FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*158 mComment50*/ FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*159 mComment50A*/ FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*160 mComment50*/ FormattedText(SpannableString("\n(மந்திரம்: நடுகூர்ச்சம்-மாதாமஹவர்கம்)\n   ஆவாஹன மந்திரம்").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*161 mMBody46*/ FormattedText("\nஓம் உசந்தஸ்த்வா நிதீமஹி உசந்த: ஸமீதீமஹி உசந்நு உசத: ஆவஹ பித்ருன்னு ஹவிஷே அத்தவே motherSideGothram கோத்ரான் அஸ்மத்".replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*162 mMBody51B*/ FormattedText("மாதாமஹ ப்ரமாதாமஹ வ்ருத்த ப்ரமாதாமஹான் motherFather, motherGrandFather, motherGreatGrandFather சர்மணாம் வஸூருத்ர ஆதித்ய ஸ்வரூபான் அஸ்மின்கூர்ச்சே ஆவாஹயாமி அவகீர்யா".replace("""(motherFather)""".toRegex(), MFNamee).replace("""(motherGrandFather)""".toRegex(), MGFNamee).replace("""(motherGreatGrandFather)""".toRegex(), MGGFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*163 mMHeading4*/ FormattedText(SpannableString("\nஆஸனமந்திரம்\n").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*164 mMComment46*/ FormattedText("மூன்று கட்டை தர்பங்களை எடுத்துக்கொண்டு", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*165 mMBody53*/ FormattedText("\nஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயாநை: \nஅஸ்மின்யக்ஞே ஸ்வதயாமதந்த: அதிப்ருவந்து தேவந்து அஸ்மான் motherSideGothram கோத்ராணாம் அஸ்மத்".replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*166 mMBody51C1*/ FormattedText("மாதாமஹ ப்ரமாதாமஹ வ்ருத்த ப்ரமாதாமஹாணாம் motherFather , motherGrandFather , motherGreatGrandFather சர்மணாம் வஸூருத்ர ஆதித்ய ஸ்வரூபாணாம் அஸ்மின்கூர்ச்சே இதமாஸனம்".replace("""(motherFather)""".toRegex(), MFNamee).replace("""(motherGrandFather)""".toRegex(), MGFNamee).replace("""(motherGreatGrandFather)""".toRegex(), MGGFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*167 mMBody61*/ FormattedText("\nகந்தாதி ஸகலாராதனை: ஸ்வர்ச்சிதம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*168 mComment42AP*/ FormattedText(SpannableString("\nமந்திரம்: கீழ்கூர்ச்சம்-பித்ருவர்கம்\n   ஆவாஹன மந்திரம்").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*169 mBody46P*/ FormattedText("\nஓம் உசந்தஸ்த்வா நிதீமஹி உசந்த: ஸமீதீமஹி உசந்நு உசத: ஆவஹ பித்ருன்னு ஹவிஷே அத்தவே உபயவம்சே பவானு பித்ருவ்ய மாதுளாஹி ஞாத அக்ஞாதானு தத்தத் கோத்ராணு தத்தது சர்மணாம் வசுவசுரூபானு சர்வாணு காருண்ய  பிந்ருதுனு அஸ்வின் கூர்ச்சே ஆவாஹயாமி \nஅவகீர்யா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*170 mHeading4P*/ FormattedText(SpannableString("\nஆஸனமந்திரம்\n").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*171 mBody46PAS*/ FormattedText("\n   ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின்யக்ஞே ஸ்வதயாமதந்த: அதிப்ருவந்து தேவந்து அஸ்மான் உபயவம்சே பவானாம் பிருத்வ்ய மாதுளாஹி ஞாத அக்ஞாதானாம் தத்தத் கோத்ராணாம்  தத்தத் சர்மணாம் வசு வசுரூபானாம் சர்வேஷாம் காருண்ய பித்ருனாம் அஸ்வின் கூர்சே இதமாசனம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*172 mBody61P*/ FormattedText("\nகந்தாதி ஸகலாராதனை: ஸ்வர்ச்சிதம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*173 mComment42AP1*/ FormattedText("\n\n கீழ்வரும் மந்திரங்களை கூறி", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*174 mHeading4P1*/ FormattedText(" த்ருப்யதாம் / த்ருப்யத்வம் ", 14, Typeface.BOLD_ITALLIC, Color.parseColor("#0000ee")),
-            /*175 mComment42AP2A*/ FormattedText("என்று கூறும்போது எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*176 mComment42AP2B*/ FormattedText(" கையில் வைத்துக்கொண்டு சிறிது சிறிதாக ஜலமுடன் கட்டை விரல் வழியாக கூர்ச்சத்தின் மேல் விடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-            /*177 mHeading5*/ FormattedText(SpannableString("\n\nபிதாவர்க்கம் (மேல்கூர்ச்சம்)").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*178 mBody62*/ FormattedText("\n1.a.   ஓம் உதீரதாம் அவரே உத்பராஸ: உந்மத்யமா: பிதர: ஸோம்யாஸ: அஸூம்யஈயு: " + "அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ yourGothram கோத்ர: அஸ்மத் பிதா".replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*179 mBody64*/ FormattedText(" yourFatherName சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n1.b. ஓம் அங்கீரஸோந: பிதரோ நவக்வா: அதர்வாண: ப்ருகவ: ஸோம்யாஸ: தேஷாம்வயம் ஸூமதௌ யக்ஞியாநாம் அபிபத்ரே " + "ஸௌமனஸே ஸ்யாம yourGothram கோத்ர: அஸ்மத் பிதா".replace("""(yourFatherName)""".toRegex(), yrFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*180 mBody66*/ FormattedText(" yourFatherName சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n1.c.   ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின் யக்ஞே ஸ்வதயா மதந்த: அதிப்ருவந்து " + "தேவந்து அஸ்மான் yourGothram கோத்ர: அஸ்மத் பிதா".replace("""(yourFatherName)""".toRegex(), yrFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*181 mBody68*/ FormattedText(" yourFatherName சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n".replace("""(yourFatherName)""".toRegex(), yrFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*182 mBody69*/ FormattedText("\n2.a.    ஓம் ஊர்ஜம் வஹந்தி: அம்ருதம்க்ருதம் பய:கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த " + "தர்பயதமே பித்ருன் yourGothram கோத்ர: அஸ்மத்".replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*183 mBody70A*/ FormattedText(" பிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*184 mBody70B*/ FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*185 mBody71*/ FormattedText("yourGrandFatherName சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n2.b.   ஓம் பித்ருப்ய: ஸ்வாதாயிப்ய: ஸ்வாதாநம: பிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வதாநம: ப்ரபிதாமஹேப்ய: ஸ்வதாயிப்ய: " + "ஸ்வாதாநம: yourGothram கோத்ர: அஸ்மத்".replace("""(yourGrandFatherName)""".toRegex(), yrGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*186 mBody72*/ FormattedText("yourGreatGrandFatherName சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n2.b.   ஓம் பித்ருப்ய: ஸ்வாதாயிப்ய: ஸ்வாதாநம: பிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வதாநம: ப்ரபிதாமஹேப்ய: ஸ்வதாயிப்ய: " + "ஸ்வாதாநம: yourGothram கோத்ர: அஸ்மத்".replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*187 mBody73A*/ FormattedText(" பிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*188 mBody73B*/ FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*189 mBody74*/ FormattedText("yourGrandFatherName சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n2.c.   ஓம் யேசேஹபிதர: யேசநேஹ யாங்குச்ச வித்மயான் ஊசன ப்ரவித்ம த்வம்வேத்த யதிதே ஜாதவேத: ஸ்வதாபி: யக்ஞம் " + "ஸூக்ருதம் ஜூஷஸ்வ yourGothram கோத்ர: அஸ்மத்".replace("""(yourGrandFatherName)""".toRegex(), yrGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*190 mBody75*/ FormattedText("yourGreatGrandFatherName சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n2.c.   ஓம் யேசேஹபிதர: யேசநேஹ யாங்குச்ச வித்மயான் ஊசன ப்ரவித்ம த்வம்வேத்த யதிதே ஜாதவேத: ஸ்வதாபி: யக்ஞம் " + "ஸூக்ருதம் ஜூஷஸ்வ yourGothram கோத்ர: அஸ்மத்".replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*191 mBody76A*/ FormattedText(" பிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*192 mBody76B*/ FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*193 mBody77*/ FormattedText("yourGrandFatherName சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.a.    ஓம் மதுவாதா: ருதாயதே மதுக்ஷரந்தி ஸிந்தவ: மாத்வீர்ந: ஸந்து ஓஷதீ: yourGothram கோத்ர: அஸ்மத்".replace("""(yourGrandFatherName)""".toRegex(), yrGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*194 mBody78*/ FormattedText("yourGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.a.    ஓம் மதுவாதா: ருதாயதே மதுக்ஷரந்தி ஸிந்தவ: மாத்வீர்ந: ஸந்து ஓஷதீ: yourGothram கோத்ர: அஸ்மத்".replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*195 mBody79A*/ FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*196 mBody79B*/ FormattedText(" வ்ருத்தப்ரபிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*197 mBody80*/ FormattedText("yourGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.b.  ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்தீவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா yourGothram கோத்ர: அஸ்மத்".replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*198 mBody81*/ FormattedText("yourGreatGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.b.  ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்தீவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா yourGothram கோத்ர: அஸ்மத்".replace("""(yourGreatGreatGrandFatherName)""".toRegex(), yrGGGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*199 mBody82A*/ FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*200 mBody82B*/ FormattedText(" வ்ருத்தப்ரபிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*201 mBody83*/ FormattedText("yourGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.c.  ஓம் மதுமாந்த: வநஸ்பதி: மதுமாந் அஸ்துஸூர்ய: மாத்வீர்காவ: பவந்துந: yourGothram கோத்ர: அஸ்மத்".replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*202 mBody84*/ FormattedText("yourGreatGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.c.  ஓம் மதுமாந்த: வநஸ்பதி: மதுமாந் அஸ்துஸூர்ய: மாத்வீர்காவ: பவந்துந: yourGothram கோத்ர: அஸ்மத்".replace("""(yourGreatGreatGrandFatherName)""".toRegex(), yrGGGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*203 mBody85A*/ FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*204 mBody85B*/ FormattedText(" வ்ருத்தப்ரபிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*205 mBody86*/ FormattedText("yourGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்".replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*206 mBody87*/ FormattedText("yourGreatGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n".replace("""(yourGreatGreatGrandFatherName)""".toRegex(), yrGGGFNamee).replace("""(yourGothram)""".toRegex(), urGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*207 mBody62P*/ FormattedText("\n\n4.a.   ஓம் உதீரதாம் அவரே உத்பராஸ: உந்மத்யமா: பிதர: ஸோம்யாஸ: அஸூம்யஈயு: அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ yourGothram கோத்ர: அஸ்மத் மாதா yourMotherName நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n4.b.   ஓம் அங்கீரஸோந: பிதரோ நவக்வா: அதர்வாண: ப்ருகவ: ஸோம்யாஸ: தேஷாம்வயம் ஸூமதௌ யக்ஞியாநாம் அபிபத்ரே ஸௌமனஸே ஸ்யாம yourGothram கோத்ர அஸ்மத் மாதா yourMotherName நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n4.c.   ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின் யக்ஞே ஸ்வதயா மதந்த: அதிப்ருவந்து " + "தேவந்து அஸ்மான் yourGothram கோத்ர அஸ்மத் மாதா yourMotherName நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n".replace("""(yourGothram)""".toRegex(), urGothram).replace("""(yourMotherName)""".toRegex(), amName), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*208 mBody62P2*/ FormattedText("\n5.a.    ஓம் ஊர்ஜம் வஹந்தி: அம்ருதம்க்ருதம் பய:கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்பயதமே பித்ருன் yourGothram கோத்ர: அஸ்மத் பிதாமஹி yourFatherMotherName நாமதேயா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n5.b.   ஓம் பித்ருப்ய: ஸ்வாதாயிப்ய: ஸ்வாதாநம: பிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வதாநம: ப்ரபிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வாதாநம: yourGothram கோத்ர அஸ்மத் பிதாமஹி yourFatherMotherName நாமதேயா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n5.c.   ஓம் யேசேஹபிதர: யேசநேஹ யாங்குச்ச வித்மயான் ஊசன ப்ரவித்ம த்வம்வேத்த யதிதே ஜாதவேத: ஸ்வதாபி: யக்ஞம் " + "ஸூக்ருதம் ஜூஷஸ்வ yourGothram கோத்ர அஸ்மத் பிதாமஹி yourFatherMotherName நாமதேயா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்\n.".replace("""(yourGothram)""".toRegex(), urGothram).replace("""(yourFatherMotherName)""".toRegex(), apAmmaName), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*209 mBody62P3*/ FormattedText("\n6.a.    ஓம் மதுவாதா: ருதாயதே மதுக்ஷரந்தி ஸிந்தவ: மாத்வீர்ந: ஸந்து ஓஷதீ: yourGothram கோத்ர அஸ்மத்  ப்ரபிதாமஹி yourFatherGrandMotherName நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n6.b.      ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்தீவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா yourGothram கோத்ர அஸ்மத்ப்ரபிதாமஹி yourFatherGrandMotherName நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n6.c.      ஓம் மதுமாந்த: வநஸ்பதி: மதுமாந் அஸ்துஸூர்ய: மாத்வீர்காவ: பவந்துந: yourGothram கோத்ர அஸ்மத் " + "ப்ரபிதாமஹி yourFatherGrandMotherName நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n".replace("""(yourGothram)""".toRegex(), urGothram).replace("""(yourFatherGrandMotherName)""".toRegex(), apPattiName), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*210 mMHeading5mG*/ FormattedText(SpannableString("\nநடுகூர்ச்சம் - மாதாமஹவர்கம்").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-            /*211 mMBody62*/ FormattedText("\nI.a.   ஓம் உதீரதாம் அவரே உத்பராஸ: உந்மத்யமா: பிதர: ஸோம்யாஸ: அஸூம்யஈயு: " + "அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ motherSideGothram கோத்ர: அஸ்மத் ".replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*212 mMBody63*/ FormattedText(" மாதாமஹ: motherFather  சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nI.b.  ஓம் அங்கீரஸோந: பிநரோ நவக்வா: அதர்வாண: ப்ருகவ: ஸோம்யாஸ: தேஷாம்வயம் ஸூமதௌ யக்ஞியாநாம் அபிபத்ரே " + "ஸௌமனஸே ஸ்யாம motherSideGothram கோத்ர: அஸ்மத்".replace("""(motherFather)""".toRegex(), MFNamee).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*213 mMBody64*/ FormattedText("மாதாமஹ: motherFather  சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nI.c.  ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின்யக்ஞே ஸ்வதயாமதந்த: " + "அதிப்ருவந்து தேவந்து அஸ்மான் motherSideGothram கோத்ர: அஸ்மத்".replace("""(motherFather)""".toRegex(), MFNamee).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*214 mMBody66*/ FormattedText(" மாதாமஹ: motherFather  சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம். \n\nII.a. ஓம் " + "ஊர்ஜம்வஹந்தீ: அம்ருதம் க்ருதம் பய:கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்பயதமே பித்ரூன் motherSideGothram கோத்ர: அஸ்மத்".replace("""(motherFather)""".toRegex(), MFNamee).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*215 mMBody68*/ FormattedText("ப்ரமாதாமஹ: motherGrandFather சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nII.b. ஓம் பித்ருப்ய: ஸ்வாதாயிப்ய: ஸ்வதாநம: பிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வதாநம: ப்ரபிதாமஹேப்ய: ஸ்வதாயிப்ய: " + "ஸ்வதாநம: motherSideGothram கோத்ர: அஸ்மத்".replace("""(motherGrandFather)""".toRegex(), MGFNamee).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*216 mMBody69*/ FormattedText("ப்ரமாதாமஹ: motherGrandFather சர்மா  ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nII.c. யேசேஹபிதர: யேசநேஹ யாங்குச்ச வித்மயான் ஊசந ப்ரவித்ம த்வம்வேத்த யதிதேஜாதவேத: ஸ்வதாபி: யக்ஞம் " + "ஸூக்ருதம் ஜூஷஸ்வ motherSideGothram கோத்ர: அஸ்மத்".replace("""(motherGrandFather)""".toRegex(), MGFNamee).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*217 mMBody71*/ FormattedText("ப்ரமாதாமஹ: motherGrandFather சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம். \n\nIII.a.    " + "ஓம் மதுவாதா: ருதாயதே மதுக்ஷரந்தி ஸிந்தவ: மாத்வீர்ந: ஸந்து ஓஷதீ: motherSideGothram கோத்ர: அஸ்மத்".replace("""(motherGrandFather)""".toRegex(), MGFNamee).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*218 mMBody72*/ FormattedText("வ்ருத்தப்ரமாதாமஹ: motherGreatGrandFather சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\nIII.b.    ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்திவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா  motherSideGothram கோத்ர: அஸ்மத்".replace("""(motherGreatGrandFather)""".toRegex(), MGGFNamee).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*219 mMBody74*/ FormattedText("வ்ருத்தப்ரமாதாமஹ: motherGreatGrandFather சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\nIII.b.    ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்திவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா  motherSideGothram கோத்ர: அஸ்மத்".replace("""(motherGreatGrandFather)""".toRegex(), MGGFNamee).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*220 mMBody75*/ FormattedText("வ்ருத்தப்ரமாதாமஹ: motherGreatGrandFather சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n" + "    த்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n".replace("""(motherGreatGrandFather)""".toRegex(), MGGFNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*221 mMBody62M*/ FormattedText("\nIV.a.     ஓம் உதீரதாம் அவரே உத்பராஸ: உந்மத்யமா: பிதர: ஸோம்யாஸ: அஸூம்யஈயு: " + "அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ motherSideGothram கோத்ர அஸ்மத்".replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*222 mMBody63M*/ FormattedText(" மாதாமஹி motherMother  நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nIV.b.     ஓம் அங்கீரஸோந: பிநரோ நவக்வா: அதர்வாண: ப்ருகவ: ஸோம்யாஸ: தேஷாம்வயம் ஸூமதௌ யக்ஞியாநாம் " + "அபிபத்ரே ஸௌமனஸே ஸ்யாம motherSideGothram கோத்ர அஸ்மத்".replace("""(motherMother)""".toRegex(), amAmmaName).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*223 mMBody64M*/ FormattedText("மாதாமஹி motherMother  நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nIV.c.     ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின்யக்ஞே ஸ்வதயாமதந்த: " + "அதிப்ருவந்து தேவந்து அஸ்மான் motherSideGothram கோத்ர அஸ்மத்".replace("""(motherMother)""".toRegex(), amAmmaName).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*224 mMBody66M*/ FormattedText(" மாதாமஹி motherMother  நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம். \n\nV.a.      " + "ஓம் ஊர்ஜம்வஹந்தீ: அம்ருதம் க்ருதம் பய:கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்பயதமே பித்ரூன் motherSideGothram கோத்ர அஸ்மத்".replace("""(motherMother)""".toRegex(), amAmmaName).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*225 mMBody68M*/ FormattedText("ப்ரமாதாமஹி motherGrandMother நாமதேயா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nV.b.      ஓம் பித்ருப்ய: ஸ்வாதாயிப்ய: ஸ்வதாநம: பிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வதாநம: ப்ரபிதாமஹேப்ய: ஸ்வதாயிப்ய: " + "ஸ்வதாநம: motherSideGothram கோத்ர அஸ்மத்".replace("""(motherGrandMother)""".toRegex(), amPattiName).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*226 mMBody69M*/ FormattedText("ப்ரமாதாமஹி motherGrandMother நாமதேயா  ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nV.c.      யேசேஹபிதர: யேசநேஹ யாங்குச்ச வித்மயான் ஊசந ப்ரவித்ம த்வம்வேத்த யதிதேஜாதவேத: ஸ்வதாபி: யக்ஞம் " + "ஸூக்ருதம் ஜூஷஸ்வ motherSideGothram கோத்ர அஸ்மத்".replace("""(motherGrandMother)""".toRegex(), amPattiName).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*227 mMBody71M*/ FormattedText("ப்ரமாதாமஹி motherGrandMother நாமதேயா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\nVI.a.    ஓம் மதுவாதா: ருதாயதே மதுக்ஷரந்தி ஸிந்தவ: மாத்வீர்ந: ஸந்து ஓஷதீ: motherSideGothram கோத்ர அஸ்மத்".replace("""(motherGrandMother)""".toRegex(), amPattiName).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*228 mMBody72M*/ FormattedText("வ்ருத்தப்ரமாதாமஹி motherGreatGrandMother நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\nVI.b.    ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்திவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா  motherSideGothram கோத்ர அஸ்மத்".replace("""(motherGreatGrandMother)""".toRegex(), amKolluPattiName).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*229 mMBody74M*/ FormattedText("வ்ருத்தப்ரமாதாமஹி motherGreatGrandMother நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\nVI.c.    ஓம் மதுமாந்த: வநஸ்பதி: மதுமாந் அஸ்துஸூர்ய: மாத்வீர் காவோபவந்துந: motherSideGothram கோத்ர அஸ்மத்".replace("""(motherGreatGrandMother)""".toRegex(), amKolluPattiName).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-            /*230 mMBody75M*/ FormattedText("வ்ருத்தப்ரமாதாமஹி motherGreatGrandMother நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n" + "    த்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n".replace("""(motherGreatGrandMother)""".toRegex(), amKolluPattiName).replace("""(motherSideGothram)""".toRegex(), MGothram), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*84 mComment38B*/
+            FormattedText(
+                " செய்து கொண்டு தெற்குமுகமாக, முகம் மட்டுமாவது, இருந்து கூறவும்)",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*85 mBody38*/
+            FormattedText(
+                "\n yourGothram கோத்ராணாம் அஸ்மத் ".replace(
+                    """(yourGothram)""".toRegex(),
+                    urGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*86 mBody381*/
+            FormattedText(
+                "\n yourGothram கோத்ராணாம் அஸ்மத் ".replace(
+                    """(yourGothram)""".toRegex(),
+                    urGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*87 mBody39*/
+            FormattedText("பித்ரு ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*88 mBody39B*/
+            FormattedText("பிதாமஹ ப்ரபிதாமஹாநாம் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*89 mBody40*/
+            FormattedText(
+                "yourFatherName, ".replace("""(yourFatherName)""".toRegex(), yrFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*90 mBody41*/
+            FormattedText(
+                "yourGrandFatherName, yourGreatGrandFatherName ".replace(
+                    """(yourGrandFatherName)""".toRegex(),
+                    yrGFNamee
+                ).replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*91 mBody39A*/
+            FormattedText(
+                "ப்ரபிதாமஹ வ்ருத்தப்ரபிதாமஹாநாம் ",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*92 mBody41B*/
+            FormattedText(
+                "yourGreatGrandFatherName, yourGreatGreatGrandFatherName ".replace(
+                    """(yourGreatGrandFatherName)""".toRegex(),
+                    yrGGFNamee
+                ).replace("""(yourGreatGreatGrandFatherName)""".toRegex(), yrGGGFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*93 mBody42*/
+            FormattedText(
+                "சர்மணாம் வஸூருத்ர ஆதித்யஸ்வரூபாணாம் அக்ஷ்ய த்ருப்த்யர்த்தம்",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*94 mBody39FM*/
+            FormattedText(
+                "\n\n  yourGothram கோத்ராணாம் அஸ்மத் மாத்ரு, பிதாமஹி, ப்ரபிதாமஹினாம் yourMotherName, yourFatherMotherName, yourFatherGrandMotherName நாமதேயாணாம் வசுருத்ர ஆதித்ய ஸ்வரூபானாம்".replace(
+                    """(yourGothram)""".toRegex(),
+                    urGothram
+                ).replace("""(yourMotherName)""".toRegex(), amName)
+                    .replace("""(yourFatherMotherName)""".toRegex(), apAmmaName)
+                    .replace("""(yourFatherGrandMotherName)""".toRegex(), apPattiName),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*95 mMBody38*/
+            FormattedText(
+                "\n\n  motherSideGothram கோத்ராணாம் அஸ்மத் ".replace(
+                    """(motherSideGothram)""".toRegex(),
+                    MGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*96 mMBody38b*/
+            FormattedText(
+                "\n\n  motherSideGothram கோத்ராணாம் அஸ்மத் ".replace(
+                    """(motherSideGothram)""".toRegex(),
+                    MGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*97 mMBody41B*/
+            FormattedText(
+                "மாதாமஹ, ப்ரமாதாமஹ, வ்ருத்தப்ரமாதாமஹாநாம் motherFather, motherGrandFather, " + "motherGreatGrandFather சர்மணாம் வஸூருத்ர ஆதித்ய ஸ்வரூபாணாம் உபயவம்ச பித்ருணாம் அக்ஷ்ய த்ருப்த்யர்த்தம் ".replace(
+                    """(motherFather)""".toRegex(),
+                    MFNamee
+                ).replace("""(motherGrandFather)""".toRegex(), MGFNamee)
+                    .replace("""(motherGreatGrandFather)""".toRegex(), MGGFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*98 mMBody41Bc*/
+            FormattedText(
+                "மாதாமஹி, ப்ரமாதாமஹி, வ்ருத்தப் ப்ரமாதாமஹினாம் motherMother, motherGrandMother, " + "motherGreatGrandMother, நாமதேயாணாம் வசுருத்ர ஆதித்ய ஸ்வரூபானாம் அக்ஷ்ய த்ருப்த்யர்த்தம்".replace(
+                    """(motherMother)""".toRegex(),
+                    amAmmaName
+                ).replace("""(motherGrandMother)""".toRegex(), amPattiName)
+                    .replace("""(motherGreatGrandMother)""".toRegex(), amKolluPattiName),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*99 mBody42Z*/
+            FormattedText(
+                "\n\n  உபயவம்சே பவானாம் பித்ருவ்ய மாதுலாதி ஞாத அக்ஞாதானாம் தத்தத் கோத்ராணாம் தத்தத் சர்மணாம் வசு வசுரூபானாம் ஸர்வேஷாம் காருண்ய பித்ரூனாம் ச அக்ஷ்ய த்ருப்த்யர்த்தம் கன்யா கதே ஸவிதரி ஆஷாட்யாதி பஞ்சமாபர பக்ஷ மஹாளய புண்யகாலே",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*100 mBody42ZA*/
+            FormattedText(
+                " பக்க்ஷிய மஹாளயச்ரார்த்தம் திலதர்ப்பண ரூபேண அத்ய கரிஷ்யே",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*101 mBody42ZB*/
+            FormattedText(
+                "ஸக்ருத் மஹாளயச்ரார்த்தம் திலதர்ப்பண ரூபேண அத்ய கரிஷ்யே",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*102 mComment39*/
+            FormattedText(
+                "\n- கையில் உள்ள தர்பங்களை போட்டுவிட்டு கிழக்கு முகமாக திரும்பி பூணல் ",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*Green*//*103 mGreenComment1*/
+            FormattedText(" ஸவ்யம் ", 15, Typeface.BOLD_ITALIC, Color.GREEN),
+            /*104 mComment40*/
+            FormattedText(
+                " செய்து கொண்டு கையை ஜலத்தால் அலம்பவும். \nதனக்கு எதிரில் ஒரு தாம்பாளத்தில் கொஞ்சம் கட்டை தர்பங்களை கிழக்கு மேற்காக பரப்பி \nஅதன்மேல் தெற்கு நுனியாக",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*105 mComment40Two*/
+            FormattedText(" இரண்டு", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*106 mComment40Three*/
+            FormattedText(" மூன்று", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*107 mComment41*/
+            FormattedText(
+                " கூர்ச்சங்களை வைத்து \nஅதன் மேல் கட்டை தர்பங்கள் கொஞ்சம் போட்டு பூணூலை ",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*RED*//*108 mRedComment2*/
+            FormattedText(" அபஸவ்யம் ", 15, Typeface.BOLD_ITALIC, Color.RED),
+            /*109 mComment41A*/
+            FormattedText(" செய்து கொண்டு \nஎள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*110 mComment41C*/
+            FormattedText(
+                "செய்து கொண்டு \nஎள்ளும், சிறிது அரிசியையும்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*111 mComment41D*/
+            FormattedText(
+                " எடுத்துக் கொண்டு \nஆவாஹநாதி தர்ப்பணம் செய்யவும்\n",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*112 mHeading3*/
+            FormattedText(SpannableString("ஆவாஹனம்-ஆஸனம்\n").apply {
+                setSpan(
+                    UnderlineSpan(),
+                    0,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }, 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+            /*113 mComment42*/
+            FormattedText("பூணல் - ", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*RED*//*114 mRedComment3*/
+            FormattedText(" அபஸவ்யம் ", 15, Typeface.BOLD_ITALIC, Color.RED),
+            /*115 mComment42A*/
+            FormattedText(SpannableString("\nமந்திரம்: மேலண்டைகூர்ச்சம் : பிதாவர்கம்").apply {
+                setSpan(
+                    UnderlineSpan(),
+                    0,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+            /*116 mBody46*/
+            FormattedText(
+                "\nஓம் உசந்தஸ்த்வா நிதீமஹி உசந்த: ஸமீதீமஹி உசந்நு உசத: ஆவஹ பித்ருன் ஹவிஷே அத்தவே yourGothram கோத்ரான் அஸ்மத் பித்ரு ".replace(
+                    """(yourGothram)""".toRegex(),
+                    urGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*117 mBody48A*/
+            FormattedText(
+                "ப்ரபிதாமஹ வ்ருத்தப்ரபிதாமஹாநாம் ",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*118 mBody48B*/
+            FormattedText("பிதாமஹ ப்ரபிதாமஹாநாம் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*119 mBody49*/
+            FormattedText(
+                "yourFatherName, ".replace("""(yourFatherName)""".toRegex(), yrFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*120 mBody50*/
+            FormattedText(
+                "yourGrandFatherName, yourGreatGrandFatherName ".replace(
+                    """(yourGrandFatherName)""".toRegex(),
+                    yrGFNamee
+                ).replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*121 mBody51B*/
+            FormattedText(
+                "yourGreatGrandFatherName, yourGreatGreatGrandFatherName ".replace(
+                    """(yourGreatGrandFatherName)""".toRegex(),
+                    yrGGFNamee
+                ).replace("""(yourGreatGreatGrandFatherName)""".toRegex(), yrGGGFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*122 mBody52*/
+            FormattedText(
+                "சர்மணாம்  வஸூருத்ர ஆதித்ய ஸ்வரூபான் அஸ்மின்கூர்ச்சே ஆவாஹயாமி\nஅவகீர்யா\n",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*123 mComment43*/
+            FormattedText("- என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*124 mComment43A*/
+            FormattedText("- என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*125 mComment44*/
+            FormattedText("- என்று எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*126 mComment44A*/
+            FormattedText("- என்று எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*127 mComment45*/
+            FormattedText(" போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*128 mComment45A*/
+            FormattedText(" போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*129 mHeading4*/
+            FormattedText(SpannableString("\nஆஸனமந்திரம்\n").apply {
+                setSpan(
+                    UnderlineSpan(),
+                    0,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+            /*130 mComment46*/
+            FormattedText(
+                "மூன்று கட்டை தர்பங்களை எடுத்துக்கொண்டு",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*131 mComment46A*/
+            FormattedText(
+                "மூன்று கட்டை தர்பங்களை எடுத்துக்கொண்டு",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*132 mBody53*/
+            FormattedText(
+                "\nஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயாநை: \nஅஸ்மின்யக்ஞே ஸ்வதயாமதந்த: அதிப்ருவந்து தேவந்து அஸ்மான் yourGothram கோத்ராணாம் அஸ்மத் பித்ரு".replace(
+                    """(yourGothram)""".toRegex(),
+                    urGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*133 mBody56*/
+            FormattedText("பிதாமஹ ப்ரபிதாமஹாநாம் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*134 mBody55*/
+            FormattedText(
+                "ப்ரபிதாமஹ வ்ருத்தப்ரபிதாமஹாநாம் ",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*135 mBody57*/
+            FormattedText(
+                "yourFatherName, ".replace("""(yourFatherName)""".toRegex(), yrFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*136 mBody58*/
+            FormattedText(
+                "yourGrandFatherName, yourGreatGrandFatherName ".replace(
+                    """(yourGrandFatherName)""".toRegex(),
+                    yrGFNamee
+                ).replace("""(yourGreatGrandFatherName)""".toRegex(), yrGGFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*137 mBody59B*/
+            FormattedText(
+                "yourGreatGrandFatherName, yourGreatGreatGrandFatherName ".replace(
+                    """(yourGreatGrandFatherName)""".toRegex(),
+                    yrGGFNamee
+                ).replace("""(yourGreatGreatGrandFatherName)""".toRegex(), yrGGGFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*138 mBody60*/
+            FormattedText(
+                "சர்மணாம் வஸூருத்ர ஆதித்ய ஸ்வரூபாணாம் அஸ்மின்கூர்ச்சே இதமாஸனம்",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*139 mComment47*/
+            FormattedText("\n என்று கட்டை தர்பங்களை போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*140 mComment47A*/
+            FormattedText("\n என்று கட்டை தர்பங்களை போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*141 mComment47B*/
+            FormattedText("\n என்று கட்டை தர்பங்களை போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*142 mBody61*/
+            FormattedText(
+                "\nகந்தாதி ஸகலாராதனை: ஸ்வர்ச்சிதம்\n",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*143 mComment48*/
+            FormattedText("\n என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*144 mComment48A*/
+            FormattedText("\n என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*145 mComment48B*/
+            FormattedText("\n என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*146 mComment48C*/
+            FormattedText("\n என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*147 mComment48E*/
+            FormattedText("\n என்று எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*148 mComment49*/
+            FormattedText(
+                "\n என்று எள்ளும், சிறிது அரிசியையும்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*149 mComment49A*/
+            FormattedText(
+                "\n என்று எள்ளும், சிறிது அரிசியையும்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*150 mComment49B*/
+            FormattedText(
+                "\n என்று எள்ளும், சிறிது அரிசியையும்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*151 mComment49C*/
+            FormattedText(
+                "\n என்று எள்ளும், சிறிது அரிசியையும்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*152 mComment49D*/
+            FormattedText(
+                "\n என்று கூறும்போது எள்ளும், சிறிது அரிசியையும்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*153 mComment49E*/
+            FormattedText(
+                "\n என்று எள்ளும், சிறிது அரிசியையும்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*154 mComment50*/
+            FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*155 mComment50A*/
+            FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*156 mComment50*/
+            FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*157 mComment50A*/
+            FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*158 mComment50*/
+            FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*159 mComment50A*/
+            FormattedText(" போடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*160 mComment50*/
+            FormattedText(SpannableString("\n(மந்திரம்: நடுகூர்ச்சம்-மாதாமஹவர்கம்)\n   ஆவாஹன மந்திரம்").apply {
+                setSpan(
+                    UnderlineSpan(),
+                    0,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+            /*161 mMBody46*/
+            FormattedText(
+                "\nஓம் உசந்தஸ்த்வா நிதீமஹி உசந்த: ஸமீதீமஹி உசந்நு உசத: ஆவஹ பித்ருன்னு ஹவிஷே அத்தவே motherSideGothram கோத்ரான் அஸ்மத்".replace(
+                    """(motherSideGothram)""".toRegex(),
+                    MGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*162 mMBody51B*/
+            FormattedText(
+                "மாதாமஹ ப்ரமாதாமஹ வ்ருத்த ப்ரமாதாமஹான் motherFather, motherGrandFather, motherGreatGrandFather சர்மணாம் வஸூருத்ர ஆதித்ய ஸ்வரூபான் அஸ்மின்கூர்ச்சே ஆவாஹயாமி அவகீர்யா".replace(
+                    """(motherFather)""".toRegex(),
+                    MFNamee
+                ).replace("""(motherGrandFather)""".toRegex(), MGFNamee)
+                    .replace("""(motherGreatGrandFather)""".toRegex(), MGGFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*163 mMHeading4*/
+            FormattedText(SpannableString("\nஆஸனமந்திரம்\n").apply {
+                setSpan(
+                    UnderlineSpan(),
+                    0,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+            /*164 mMComment46*/
+            FormattedText(
+                "மூன்று கட்டை தர்பங்களை எடுத்துக்கொண்டு",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*165 mMBody53*/
+            FormattedText(
+                "\nஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயாநை: \nஅஸ்மின்யக்ஞே ஸ்வதயாமதந்த: அதிப்ருவந்து தேவந்து அஸ்மான் motherSideGothram கோத்ராணாம் அஸ்மத்".replace(
+                    """(motherSideGothram)""".toRegex(),
+                    MGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*166 mMBody51C1*/
+            FormattedText(
+                "மாதாமஹ ப்ரமாதாமஹ வ்ருத்த ப்ரமாதாமஹாணாம் motherFather , motherGrandFather , motherGreatGrandFather சர்மணாம் வஸூருத்ர ஆதித்ய ஸ்வரூபாணாம் அஸ்மின்கூர்ச்சே இதமாஸனம்".replace(
+                    """(motherFather)""".toRegex(),
+                    MFNamee
+                ).replace("""(motherGrandFather)""".toRegex(), MGFNamee)
+                    .replace("""(motherGreatGrandFather)""".toRegex(), MGGFNamee),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*167 mMBody61*/
+            FormattedText(
+                "\nகந்தாதி ஸகலாராதனை: ஸ்வர்ச்சிதம்",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*168 mComment42AP*/
+            FormattedText(SpannableString("\nமந்திரம்: கீழ்கூர்ச்சம்-பித்ருவர்கம்\n   ஆவாஹன மந்திரம்").apply {
+                setSpan(
+                    UnderlineSpan(),
+                    0,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+            /*169 mBody46P*/
+            FormattedText(
+                "\nஓம் உசந்தஸ்த்வா நிதீமஹி உசந்த: ஸமீதீமஹி உசந்நு உசத: ஆவஹ பித்ருன்னு ஹவிஷே அத்தவே உபயவம்சே பவானு பித்ருவ்ய மாதுளாஹி ஞாத அக்ஞாதானு தத்தத் கோத்ராணு தத்தது சர்மணாம் வசுவசுரூபானு சர்வாணு காருண்ய  பிந்ருதுனு அஸ்வின் கூர்ச்சே ஆவாஹயாமி \nஅவகீர்யா",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*170 mHeading4P*/
+            FormattedText(SpannableString("\nஆஸனமந்திரம்\n").apply {
+                setSpan(
+                    UnderlineSpan(),
+                    0,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+            /*171 mBody46PAS*/
+            FormattedText(
+                "\n   ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின்யக்ஞே ஸ்வதயாமதந்த: அதிப்ருவந்து தேவந்து அஸ்மான் உபயவம்சே பவானாம் பிருத்வ்ய மாதுளாஹி ஞாத அக்ஞாதானாம் தத்தத் கோத்ராணாம்  தத்தத் சர்மணாம் வசு வசுரூபானாம் சர்வேஷாம் காருண்ய பித்ருனாம் அஸ்வின் கூர்சே இதமாசனம்",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*172 mBody61P*/
+            FormattedText(
+                "\nகந்தாதி ஸகலாராதனை: ஸ்வர்ச்சிதம்",
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*173 mComment42AP1*/
+            FormattedText("\n\n கீழ்வரும் மந்திரங்களை கூறி", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*174 mHeading4P1*/
+            FormattedText(
+                " த்ருப்யதாம் / த்ருப்யத்வம் ",
+                14,
+                Typeface.BOLD_ITALLIC,
+                Color.parseColor("#0000ee")
+            ),
+            /*175 mComment42AP2A*/
+            FormattedText("என்று கூறும்போது எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
+            /*176 mComment42AP2B*/
+            FormattedText(
+                " கையில் வைத்துக்கொண்டு சிறிது சிறிதாக ஜலமுடன் கட்டை விரல் வழியாக கூர்ச்சத்தின் மேல் விடவும்",
+                13,
+                Typeface.ITALIC,
+                Color.DKGRAY
+            ),
+            /*177 mHeading5*/
+            FormattedText(SpannableString("\n\nபிதாவர்க்கம் (மேல்கூர்ச்சம்)").apply {
+                setSpan(
+                    UnderlineSpan(),
+                    0,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+            /*178 mBody62*/
+            FormattedText(
+                "\n1.a.   ஓம் உதீரதாம் அவரே உத்பராஸ: உந்மத்யமா: பிதர: ஸோம்யாஸ: அஸூம்யஈயு: " + "அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ yourGothram கோத்ர: அஸ்மத் பிதா".replace(
+                    """(yourGothram)""".toRegex(),
+                    urGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*179 mBody64*/
+            FormattedText(
+                " yourFatherName சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n1.b. ஓம் அங்கீரஸோந: பிதரோ நவக்வா: அதர்வாண: ப்ருகவ: ஸோம்யாஸ: தேஷாம்வயம் ஸூமதௌ யக்ஞியாநாம் அபிபத்ரே " + "ஸௌமனஸே ஸ்யாம yourGothram கோத்ர: அஸ்மத் பிதா".replace(
+                    """(yourFatherName)""".toRegex(),
+                    yrFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*180 mBody66*/
+            FormattedText(
+                " yourFatherName சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n1.c.   ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின் யக்ஞே ஸ்வதயா மதந்த: அதிப்ருவந்து " + "தேவந்து அஸ்மான் yourGothram கோத்ர: அஸ்மத் பிதா".replace(
+                    """(yourFatherName)""".toRegex(),
+                    yrFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*181 mBody68*/
+            FormattedText(
+                " yourFatherName சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n".replace(
+                    """(yourFatherName)""".toRegex(),
+                    yrFNamee
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*182 mBody69*/
+            FormattedText(
+                "\n2.a.    ஓம் ஊர்ஜம் வஹந்தி: அம்ருதம்க்ருதம் பய:கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த " + "தர்பயதமே பித்ருன் yourGothram கோத்ர: அஸ்மத்".replace(
+                    """(yourGothram)""".toRegex(),
+                    urGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*183 mBody70A*/
+            FormattedText(" பிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*184 mBody70B*/
+            FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*185 mBody71*/
+            FormattedText(
+                "yourGrandFatherName சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n2.b.   ஓம் பித்ருப்ய: ஸ்வாதாயிப்ய: ஸ்வாதாநம: பிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வதாநம: ப்ரபிதாமஹேப்ய: ஸ்வதாயிப்ய: " + "ஸ்வாதாநம: yourGothram கோத்ர: அஸ்மத்".replace(
+                    """(yourGrandFatherName)""".toRegex(),
+                    yrGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*186 mBody72*/
+            FormattedText(
+                "yourGreatGrandFatherName சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n2.b.   ஓம் பித்ருப்ய: ஸ்வாதாயிப்ய: ஸ்வாதாநம: பிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வதாநம: ப்ரபிதாமஹேப்ய: ஸ்வதாயிப்ய: " + "ஸ்வாதாநம: yourGothram கோத்ர: அஸ்மத்".replace(
+                    """(yourGreatGrandFatherName)""".toRegex(),
+                    yrGGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*187 mBody73A*/
+            FormattedText(" பிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*188 mBody73B*/
+            FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*189 mBody74*/
+            FormattedText(
+                "yourGrandFatherName சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n2.c.   ஓம் யேசேஹபிதர: யேசநேஹ யாங்குச்ச வித்மயான் ஊசன ப்ரவித்ம த்வம்வேத்த யதிதே ஜாதவேத: ஸ்வதாபி: யக்ஞம் " + "ஸூக்ருதம் ஜூஷஸ்வ yourGothram கோத்ர: அஸ்மத்".replace(
+                    """(yourGrandFatherName)""".toRegex(),
+                    yrGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*190 mBody75*/
+            FormattedText(
+                "yourGreatGrandFatherName சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n2.c.   ஓம் யேசேஹபிதர: யேசநேஹ யாங்குச்ச வித்மயான் ஊசன ப்ரவித்ம த்வம்வேத்த யதிதே ஜாதவேத: ஸ்வதாபி: யக்ஞம் " + "ஸூக்ருதம் ஜூஷஸ்வ yourGothram கோத்ர: அஸ்மத்".replace(
+                    """(yourGreatGrandFatherName)""".toRegex(),
+                    yrGGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*191 mBody76A*/
+            FormattedText(" பிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*192 mBody76B*/
+            FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*193 mBody77*/
+            FormattedText(
+                "yourGrandFatherName சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.a.    ஓம் மதுவாதா: ருதாயதே மதுக்ஷரந்தி ஸிந்தவ: மாத்வீர்ந: ஸந்து ஓஷதீ: yourGothram கோத்ர: அஸ்மத்".replace(
+                    """(yourGrandFatherName)""".toRegex(),
+                    yrGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*194 mBody78*/
+            FormattedText(
+                "yourGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.a.    ஓம் மதுவாதா: ருதாயதே மதுக்ஷரந்தி ஸிந்தவ: மாத்வீர்ந: ஸந்து ஓஷதீ: yourGothram கோத்ர: அஸ்மத்".replace(
+                    """(yourGreatGrandFatherName)""".toRegex(),
+                    yrGGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*195 mBody79A*/
+            FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*196 mBody79B*/
+            FormattedText(" வ்ருத்தப்ரபிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*197 mBody80*/
+            FormattedText(
+                "yourGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.b.  ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்தீவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா yourGothram கோத்ர: அஸ்மத்".replace(
+                    """(yourGreatGrandFatherName)""".toRegex(),
+                    yrGGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*198 mBody81*/
+            FormattedText(
+                "yourGreatGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.b.  ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்தீவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா yourGothram கோத்ர: அஸ்மத்".replace(
+                    """(yourGreatGreatGrandFatherName)""".toRegex(),
+                    yrGGGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*199 mBody82A*/
+            FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*200 mBody82B*/
+            FormattedText(" வ்ருத்தப்ரபிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*201 mBody83*/
+            FormattedText(
+                "yourGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.c.  ஓம் மதுமாந்த: வநஸ்பதி: மதுமாந் அஸ்துஸூர்ய: மாத்வீர்காவ: பவந்துந: yourGothram கோத்ர: அஸ்மத்".replace(
+                    """(yourGreatGrandFatherName)""".toRegex(),
+                    yrGGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*202 mBody84*/
+            FormattedText(
+                "yourGreatGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\n3.c.  ஓம் மதுமாந்த: வநஸ்பதி: மதுமாந் அஸ்துஸூர்ய: மாத்வீர்காவ: பவந்துந: yourGothram கோத்ர: அஸ்மத்".replace(
+                    """(yourGreatGreatGrandFatherName)""".toRegex(),
+                    yrGGGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*203 mBody85A*/
+            FormattedText(" ப்ரபிதாமஹான்னு: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*204 mBody85B*/
+            FormattedText(" வ்ருத்தப்ரபிதாமஹ: ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+            /*205 mBody86*/
+            FormattedText(
+                "yourGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்".replace(
+                    """(yourGreatGrandFatherName)""".toRegex(),
+                    yrGGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*206 mBody87*/
+            FormattedText(
+                "yourGreatGreatGrandFatherName சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n".replace(
+                    """(yourGreatGreatGrandFatherName)""".toRegex(),
+                    yrGGGFNamee
+                ).replace("""(yourGothram)""".toRegex(), urGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*207 mBody62P*/
+            FormattedText(
+                "\n\n4.a.   ஓம் உதீரதாம் அவரே உத்பராஸ: உந்மத்யமா: பிதர: ஸோம்யாஸ: அஸூம்யஈயு: அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ yourGothram கோத்ர: அஸ்மத் மாதா yourMotherName நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n4.b.   ஓம் அங்கீரஸோந: பிதரோ நவக்வா: அதர்வாண: ப்ருகவ: ஸோம்யாஸ: தேஷாம்வயம் ஸூமதௌ யக்ஞியாநாம் அபிபத்ரே ஸௌமனஸே ஸ்யாம yourGothram கோத்ர அஸ்மத் மாதா yourMotherName நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n4.c.   ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின் யக்ஞே ஸ்வதயா மதந்த: அதிப்ருவந்து " + "தேவந்து அஸ்மான் yourGothram கோத்ர அஸ்மத் மாதா yourMotherName நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n".replace(
+                    """(yourGothram)""".toRegex(),
+                    urGothram
+                ).replace("""(yourMotherName)""".toRegex(), amName),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*208 mBody62P2*/
+            FormattedText(
+                "\n5.a.    ஓம் ஊர்ஜம் வஹந்தி: அம்ருதம்க்ருதம் பய:கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்பயதமே பித்ருன் yourGothram கோத்ர: அஸ்மத் பிதாமஹி yourFatherMotherName நாமதேயா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n5.b.   ஓம் பித்ருப்ய: ஸ்வாதாயிப்ய: ஸ்வாதாநம: பிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வதாநம: ப்ரபிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வாதாநம: yourGothram கோத்ர அஸ்மத் பிதாமஹி yourFatherMotherName நாமதேயா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n5.c.   ஓம் யேசேஹபிதர: யேசநேஹ யாங்குச்ச வித்மயான் ஊசன ப்ரவித்ம த்வம்வேத்த யதிதே ஜாதவேத: ஸ்வதாபி: யக்ஞம் " + "ஸூக்ருதம் ஜூஷஸ்வ yourGothram கோத்ர அஸ்மத் பிதாமஹி yourFatherMotherName நாமதேயா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்\n.".replace(
+                    """(yourGothram)""".toRegex(),
+                    urGothram
+                ).replace("""(yourFatherMotherName)""".toRegex(), apAmmaName),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*209 mBody62P3*/
+            FormattedText(
+                "\n6.a.    ஓம் மதுவாதா: ருதாயதே மதுக்ஷரந்தி ஸிந்தவ: மாத்வீர்ந: ஸந்து ஓஷதீ: yourGothram கோத்ர அஸ்மத்  ப்ரபிதாமஹி yourFatherGrandMotherName நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n6.b.      ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்தீவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா yourGothram கோத்ர அஸ்மத்ப்ரபிதாமஹி yourFatherGrandMotherName நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n6.c.      ஓம் மதுமாந்த: வநஸ்பதி: மதுமாந் அஸ்துஸூர்ய: மாத்வீர்காவ: பவந்துந: yourGothram கோத்ர அஸ்மத் " + "ப்ரபிதாமஹி yourFatherGrandMotherName நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n".replace(
+                    """(yourGothram)""".toRegex(),
+                    urGothram
+                ).replace("""(yourFatherGrandMotherName)""".toRegex(), apPattiName),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*210 mMHeading5mG*/
+            FormattedText(SpannableString("\nநடுகூர்ச்சம் - மாதாமஹவர்கம்").apply {
+                setSpan(
+                    UnderlineSpan(),
+                    0,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+            /*211 mMBody62*/
+            FormattedText(
+                "\nI.a.   ஓம் உதீரதாம் அவரே உத்பராஸ: உந்மத்யமா: பிதர: ஸோம்யாஸ: அஸூம்யஈயு: " + "அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ motherSideGothram கோத்ர: அஸ்மத் ".replace(
+                    """(motherSideGothram)""".toRegex(),
+                    MGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*212 mMBody63*/
+            FormattedText(
+                " மாதாமஹ: motherFather  சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nI.b.  ஓம் அங்கீரஸோந: பிநரோ நவக்வா: அதர்வாண: ப்ருகவ: ஸோம்யாஸ: தேஷாம்வயம் ஸூமதௌ யக்ஞியாநாம் அபிபத்ரே " + "ஸௌமனஸே ஸ்யாம motherSideGothram கோத்ர: அஸ்மத்".replace(
+                    """(motherFather)""".toRegex(),
+                    MFNamee
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*213 mMBody64*/
+            FormattedText(
+                "மாதாமஹ: motherFather  சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nI.c.  ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின்யக்ஞே ஸ்வதயாமதந்த: " + "அதிப்ருவந்து தேவந்து அஸ்மான் motherSideGothram கோத்ர: அஸ்மத்".replace(
+                    """(motherFather)""".toRegex(),
+                    MFNamee
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*214 mMBody66*/
+            FormattedText(
+                " மாதாமஹ: motherFather  சர்மா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம். \n\nII.a. ஓம் " + "ஊர்ஜம்வஹந்தீ: அம்ருதம் க்ருதம் பய:கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்பயதமே பித்ரூன் motherSideGothram கோத்ர: அஸ்மத்".replace(
+                    """(motherFather)""".toRegex(),
+                    MFNamee
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*215 mMBody68*/
+            FormattedText(
+                "ப்ரமாதாமஹ: motherGrandFather சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nII.b. ஓம் பித்ருப்ய: ஸ்வாதாயிப்ய: ஸ்வதாநம: பிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வதாநம: ப்ரபிதாமஹேப்ய: ஸ்வதாயிப்ய: " + "ஸ்வதாநம: motherSideGothram கோத்ர: அஸ்மத்".replace(
+                    """(motherGrandFather)""".toRegex(),
+                    MGFNamee
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*216 mMBody69*/
+            FormattedText(
+                "ப்ரமாதாமஹ: motherGrandFather சர்மா  ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nII.c. யேசேஹபிதர: யேசநேஹ யாங்குச்ச வித்மயான் ஊசந ப்ரவித்ம த்வம்வேத்த யதிதேஜாதவேத: ஸ்வதாபி: யக்ஞம் " + "ஸூக்ருதம் ஜூஷஸ்வ motherSideGothram கோத்ர: அஸ்மத்".replace(
+                    """(motherGrandFather)""".toRegex(),
+                    MGFNamee
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*217 mMBody71*/
+            FormattedText(
+                "ப்ரமாதாமஹ: motherGrandFather சர்மா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம். \n\nIII.a.    " + "ஓம் மதுவாதா: ருதாயதே மதுக்ஷரந்தி ஸிந்தவ: மாத்வீர்ந: ஸந்து ஓஷதீ: motherSideGothram கோத்ர: அஸ்மத்".replace(
+                    """(motherGrandFather)""".toRegex(),
+                    MGFNamee
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*218 mMBody72*/
+            FormattedText(
+                "வ்ருத்தப்ரமாதாமஹ: motherGreatGrandFather சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\nIII.b.    ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்திவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா  motherSideGothram கோத்ர: அஸ்மத்".replace(
+                    """(motherGreatGrandFather)""".toRegex(),
+                    MGGFNamee
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*219 mMBody74*/
+            FormattedText(
+                "வ்ருத்தப்ரமாதாமஹ: motherGreatGrandFather சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\nIII.b.    ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்திவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா  motherSideGothram கோத்ர: அஸ்மத்".replace(
+                    """(motherGreatGrandFather)""".toRegex(),
+                    MGGFNamee
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*220 mMBody75*/
+            FormattedText(
+                "வ்ருத்தப்ரமாதாமஹ: motherGreatGrandFather சர்மா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n" + "    த்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n".replace(
+                    """(motherGreatGrandFather)""".toRegex(),
+                    MGGFNamee
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*221 mMBody62M*/
+            FormattedText(
+                "\nIV.a.     ஓம் உதீரதாம் அவரே உத்பராஸ: உந்மத்யமா: பிதர: ஸோம்யாஸ: அஸூம்யஈயு: " + "அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ motherSideGothram கோத்ர அஸ்மத்".replace(
+                    """(motherSideGothram)""".toRegex(),
+                    MGothram
+                ), 14, Typeface.BOLD, Color.parseColor("#0000ee")
+            ),
+            /*222 mMBody63M*/
+            FormattedText(
+                " மாதாமஹி motherMother  நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nIV.b.     ஓம் அங்கீரஸோந: பிநரோ நவக்வா: அதர்வாண: ப்ருகவ: ஸோம்யாஸ: தேஷாம்வயம் ஸூமதௌ யக்ஞியாநாம் " + "அபிபத்ரே ஸௌமனஸே ஸ்யாம motherSideGothram கோத்ர அஸ்மத்".replace(
+                    """(motherMother)""".toRegex(),
+                    amAmmaName
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*223 mMBody64M*/
+            FormattedText(
+                "மாதாமஹி motherMother  நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nIV.c.     ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின்யக்ஞே ஸ்வதயாமதந்த: " + "அதிப்ருவந்து தேவந்து அஸ்மான் motherSideGothram கோத்ர அஸ்மத்".replace(
+                    """(motherMother)""".toRegex(),
+                    amAmmaName
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*224 mMBody66M*/
+            FormattedText(
+                " மாதாமஹி motherMother  நாமதேயா வஸூரூப: ஸ்வதாநம: த்ருப்யதாம். \n\nV.a.      " + "ஓம் ஊர்ஜம்வஹந்தீ: அம்ருதம் க்ருதம் பய:கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்பயதமே பித்ரூன் motherSideGothram கோத்ர அஸ்மத்".replace(
+                    """(motherMother)""".toRegex(),
+                    amAmmaName
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*225 mMBody68M*/
+            FormattedText(
+                "ப்ரமாதாமஹி motherGrandMother நாமதேயா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nV.b.      ஓம் பித்ருப்ய: ஸ்வாதாயிப்ய: ஸ்வதாநம: பிதாமஹேப்ய: ஸ்வதாயிப்ய: ஸ்வதாநம: ப்ரபிதாமஹேப்ய: ஸ்வதாயிப்ய: " + "ஸ்வதாநம: motherSideGothram கோத்ர அஸ்மத்".replace(
+                    """(motherGrandMother)""".toRegex(),
+                    amPattiName
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*226 mMBody69M*/
+            FormattedText(
+                "ப்ரமாதாமஹி motherGrandMother நாமதேயா  ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\nV.c.      யேசேஹபிதர: யேசநேஹ யாங்குச்ச வித்மயான் ஊசந ப்ரவித்ம த்வம்வேத்த யதிதேஜாதவேத: ஸ்வதாபி: யக்ஞம் " + "ஸூக்ருதம் ஜூஷஸ்வ motherSideGothram கோத்ர அஸ்மத்".replace(
+                    """(motherGrandMother)""".toRegex(),
+                    amPattiName
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*227 mMBody71M*/
+            FormattedText(
+                "ப்ரமாதாமஹி motherGrandMother நாமதேயா ருத்ரரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\nVI.a.    ஓம் மதுவாதா: ருதாயதே மதுக்ஷரந்தி ஸிந்தவ: மாத்வீர்ந: ஸந்து ஓஷதீ: motherSideGothram கோத்ர அஸ்மத்".replace(
+                    """(motherGrandMother)""".toRegex(),
+                    amPattiName
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*228 mMBody72M*/
+            FormattedText(
+                "வ்ருத்தப்ரமாதாமஹி motherGreatGrandMother நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\nVI.b.    ஓம் மதுநக்தம் உதோஷஸ: மதுமத் பார்த்திவம் ரஜ: மதுத்யௌ: அஸ்துந: பிதா  motherSideGothram கோத்ர அஸ்மத்".replace(
+                    """(motherGreatGrandMother)""".toRegex(),
+                    amKolluPattiName
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*229 mMBody74M*/
+            FormattedText(
+                "வ்ருத்தப்ரமாதாமஹி motherGreatGrandMother நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n" + "\nVI.c.    ஓம் மதுமாந்த: வநஸ்பதி: மதுமாந் அஸ்துஸூர்ய: மாத்வீர் காவோபவந்துந: motherSideGothram கோத்ர அஸ்மத்".replace(
+                    """(motherGreatGrandMother)""".toRegex(),
+                    amKolluPattiName
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
+            /*230 mMBody75M*/
+            FormattedText(
+                "வ்ருத்தப்ரமாதாமஹி motherGreatGrandMother நாமதேயா ஆதித்யரூப: ஸ்வதாநம: த்ருப்யதாம்.\n\n" + "    த்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n".replace(
+                    """(motherGreatGrandMother)""".toRegex(),
+                    amKolluPattiName
+                ).replace("""(motherSideGothram)""".toRegex(), MGothram),
+                14,
+                Typeface.BOLD,
+                Color.parseColor("#0000ee")
+            ),
         )
 
         fun bottomPithruKoorcham() {
@@ -1237,25 +2409,60 @@ endPositions.add(binding.MahalayaTPNMTextView.layout.getLineEnd(endLine))
             val start: Int = 0
 
             /* Helper function to create a formatted SpannableString */
-            fun createFormattedString(text: String, size: Int, style: Int, color: Int): SpannableString {
+            fun createFormattedString(
+                text: String,
+                size: Int,
+                style: Int,
+                color: Int
+            ): SpannableString {
                 val spannableString = SpannableString(text)
-                spannableString.setSpan(AbsoluteSizeSpan(size, true), start, spannableString.length, exExFlag
+                spannableString.setSpan(
+                    AbsoluteSizeSpan(size, true), start, spannableString.length, exExFlag
                 )
                 spannableString.setSpan(StyleSpan(style), start, spannableString.length, exExFlag)
-                spannableString.setSpan(ForegroundColorSpan(color), start, spannableString.length, exExFlag)
+                spannableString.setSpan(
+                    ForegroundColorSpan(color),
+                    start,
+                    spannableString.length,
+                    exExFlag
+                )
                 return spannableString
             }
 
             /* Data class to hold text and formatting information */
-            data class FormattedText(val text: String, val size: Int, val style: Int, val color: Int)
+            data class FormattedText(
+                val text: String,
+                val size: Int,
+                val style: Int,
+                val color: Int
+            )
             // data class FormattedText(val text: SpannableString, val size: Int, val style: Int, val color: Int)
             /* List to hold formatted text data */
             val formattedTexts = listOf(
-                /*231 mHeading5P*/ FormattedText(SpannableString("\nகீழ்கூர்ச்சம்-பித்ருவர்கம்  ").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-                /*232 mHeading5P*/ FormattedText(SpannableString("(விசேஷ தர்ப்பணம்)").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-                /*233 strAdditionP1*/ FormattedText("\nA.", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*234 strAdditionP1ab*/ FormattedText("\nA.", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*235 strAdditionP1*/ FormattedText("\nA.", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*231 mHeading5P*/
+                FormattedText(SpannableString("\nகீழ்கூர்ச்சம்-பித்ருவர்கம்  ").apply {
+                    setSpan(
+                        UnderlineSpan(),
+                        0,
+                        length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+                /*232 mHeading5P*/
+                FormattedText(SpannableString("(விசேஷ தர்ப்பணம்)").apply {
+                    setSpan(
+                        UnderlineSpan(),
+                        0,
+                        length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+                /*233 strAdditionP1*/
+                FormattedText("\nA.", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*234 strAdditionP1ab*/
+                FormattedText("\nA.", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*235 strAdditionP1*/
+                FormattedText("\nA.", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
                 /*236 strAdditionP2*/
                 FormattedText("\nB.", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
                 /*237 strAdditionP2P*/
@@ -1666,7 +2873,18 @@ endPositions.add(binding.MahalayaTPNMTextView.layout.getLineEnd(endLine))
                     Typeface.BOLD,
                     Color.parseColor("#0000ee")
                 ),
-                /*345 strAdditionP7zMB*/ FormattedText(" NEWPERSONGOTHRAM7 கோத்ரா அஸ்மத் BORNORDER7 NEWRELATION7 NEWNAME7".replace("""(NEWPERSONGOTHRAM7)""".toRegex(), gtSeven).replace("""(BORNORDER7)""".toRegex(), bSeven).replace("""(NEWRELATION7)""".toRegex(), reSeven).replace("""(NEWNAME7)""".toRegex(), nSeven), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*345 strAdditionP7zMB*/
+                FormattedText(
+                    " NEWPERSONGOTHRAM7 கோத்ரா அஸ்மத் BORNORDER7 NEWRELATION7 NEWNAME7".replace(
+                        """(NEWPERSONGOTHRAM7)""".toRegex(),
+                        gtSeven
+                    ).replace("""(BORNORDER7)""".toRegex(), bSeven)
+                        .replace("""(NEWRELATION7)""".toRegex(), reSeven)
+                        .replace("""(NEWNAME7)""".toRegex(), nSeven),
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
                 /*346 strAdditionP7zMC*/
                 FormattedText(
                     " NEWPERSONGOTHRAM7 கோத்ரா அஸ்மத் BORNORDER7 NEWRELATION7 NEWNAME7".replace(
@@ -2871,3601 +4089,4399 @@ endPositions.add(binding.MahalayaTPNMTextView.layout.getLineEnd(endLine))
                     Typeface.BOLD,
                     Color.parseColor("#0000ee")
                 ),
-                /*538 strAdditionP1cL1*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*539 strAdditionP1cL2*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*540 strAdditionP1cL3*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*541 strAdditionP1cM1*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*542 strAdditionP1cM2*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*543 strAdditionP1cM3*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*544 strAdditionP1cN1*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*545 strAdditionP1cN2*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*546 strAdditionP1cN3*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*547 strAdditionP1cO1*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*548 strAdditionP1cO2*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*549 strAdditionP1cO3*/ FormattedText(" ஸ்வதா நமஸ்த் த்ருப்யதாம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*550 mBody87P1*/ FormattedText("\n   ஓம் உதீரதாம் அவரே உத்பராஸ: உந்மத்யமா: பிதர: ஸோம்யாஸ: அஸூம்யஈயு: அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ உபயவம்சே பவானாம் பித்ருவ்ய மாதுலாதி ஞாத அக்ஞாதானாம் தத்தத் கோத்ரா: தத்தத் சர்மாண: வஸுவஸு ஸ்வரூபா: பித்ருவ்ய மாதுலாதி வர்க்கத்வய அவசிஷ்டா: ஸர்வே காருணிக பித்ர: ஸ்வதா நமஸ்த்ருப்யந்தாம்\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*551 mBody87P2*/ FormattedText("   ஓம் அங்கீரஸோந: பிதரோ நவக்வா: அதர்வாண: ப்ருகவ: ஸோம்யாஸ: தேஷாம்வயம் ஸூமதௌ யக்ஞியாநாம் அபிபத்ரே ஸௌமனஸே ஸ்யாம உபயவம்சே பவானாம் பித்ருவ்ய மாதுலாதி ஞாத அக்ஞாதானாம் தத்தத் கோத்ரா: தத்தத் சர்மாண: வஸுவஸு ஸ்வரூபா: பித்ருவ்ய மாதுலாதி வர்க்கத்வய அவசிஷ்டா: ஸர்வே காருணிக பித்ர: ஸ்வதா நமஸ்த்ருப்யந்தாம்\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*552 mBody87P3*/ FormattedText("   ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின் யக்ஞே ஸ்வதயா மதந்த: அதிப்ருவந்து தேவந்து அஸ்மான் உபயவம்சே பவானாம் பித்ருவ்ய மாதுலாதி ஞாத அக்ஞாதானாம் தத்தத் கோத்ரா: தத்தத் சர்மாண: வஸுவஸு ஸ்வரூபா: பித்ருவ்ய மாதுலாதி வர்க்கத்வய அவசிஷ்டா: ஸர்வே காருணிக பித்ர: ஸ்வதா நமஸ்த்ருப்யந்தாம்்\n\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம் \n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*553 mComment51*/ FormattedText("\n வடக்கு நோக்கி கீழ்வரும் மந்திரங்களை கூறவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*554 mBody88*/ FormattedText("\nஓம் அத்ரபிதர: மாதயத்வம் யாதாபாகம் ஆவ்ருஷாயத்வம் அமீமதந்த பிதர: யதாபாகம் ஆவ்ருஷாயிஷத\n\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*555 mComment51a*/ FormattedText("\nபூணல்  ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*556 mGreenComment2*/ FormattedText(" ஸவ்யம் ", 13, Typeface.ITALIC, Color.GREEN),
-                /*557 mComment52*/ FormattedText("   கிழக்கு நோக்கி பித்ருக்களை ப்ரார்த்தனை செய்து கொண்டு கீழ்வரும் மந்திரங்களை கூறவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*558 mBody89*/ FormattedText("\nஓம் நமோவ: பிதர: ஸூஷ்மாய நமோவ: பிதர: தபஸே நமோவ: பிதர: யஜ்ஜீவம் தஸ்மை நமோவ: பிதர: ரஸாய நமோவ: பிதர: கோராய மன்யவே ஸ்வதாயைவ: பிதரோ நம:\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*559 mRedComment4*/ FormattedText("அபஸவ்யம் ", 13, Typeface.ITALIC, Color.RED),
-                /*560 mComment53*/ FormattedText("\n  கட்டதர்பங்களை எடுத்துக்கொண்டு மந்திரம் சொல்லி", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*561 mComment54*/ FormattedText(" இரண்டு ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*562 mComment54a*/ FormattedText(" மூன்று ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*563 mComment55*/ FormattedText("கூர்ச்சத்தின் மீது வைக்கவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*564 mComment55A*/ FormattedText(SpannableString("\nமேல் கூர்ச்சம்").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-                /*565 mBody90*/ FormattedText("\nஓம் ஏதத்வ: பிதரோவாஸ: க்ருஹான்ன: பிதரோதத்த: உதாயுஷா ஸ்வாயுஷா உத்பர்ஜந்யஸ்ய தாமபி: உதஸ்தாம் அம்ருதாம் அநு\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*566 mBody90P*/ FormattedText("\nஓம் ஏதத்வ: பிதரோவாஸ: க்ருஹான்ன: பிதரோதத்த: உதாயுஷா ஸ்வாயுஷா உத்பர்ஜந்யஸ்ய தாமபி: உதஸ்தாம் அம்ருதாம் அநு\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*567 mComment55BP*/ FormattedText(SpannableString("\n நடு கூர்ச்சம் ").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-                /*568 mComment55B*/ FormattedText(SpannableString("\n கீழ் கூர்ச்சம் ").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-                /*569 mBody90P2*/ FormattedText("\nஓம் ஏதத்வ: பிதரோவாஸ: க்ருஹான்ன: பிதரோதத்த: உதாயுஷா ஸ்வாயுஷா உத்பர்ஜந்யஸ்ய தாமபி: உதஸ்தாம் அம்ருதாம் அநு\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*570 mComment55C*/ FormattedText("\n  மேல்கூர்ச்சத்திற்கு", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*571 mComment56*/ FormattedText("\n கீழ் வரும் மந்திரம் கூறி எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*572 mComment57*/ FormattedText("\nகீழ் வரும் மந்திரம் கூறி எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*573 mComment57A*/ FormattedText("\n இரண்டு கூர்ச்சத்திற்கும் கீழ் வரும் மந்திரம் கூறி எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*574 mComment58*/ FormattedText(" ஜலமும் விடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*575 mComment58A*/ FormattedText("யும் ஜலமும் விடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*576 mBody90P2*/ FormattedText("\nஓம் ஊர்ஜம்வஹந்தீ: அம்ருதம்க்ருதம்பய: கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்ப்பயதமே பித்ரூன்\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*577 mComment55DP*/ FormattedText("\n  நடுகூர்ச்சத்திற்கு ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*578 mComment55D*/ FormattedText("\n  கீழ்கூர்ச்சத்திற்கு ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*579 mMBody91P*/ FormattedText("\nஓம் ஊர்ஜம்வஹந்தீ: அம்ருதம்க்ருதம்பய: கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்ப்பயதமே பித்ரூன்\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*580 mMBody91*/ FormattedText("\nஓம் ஊர்ஜம்வஹந்தீ: அம்ருதம்க்ருதம்பய: கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்ப்பயதமே பித்ரூன்\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*581 mComment55EP*/ FormattedText("\n  மூன்று கூர்ச்சத்திற்கு எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*582 mComment55E*/ FormattedText("\n  இரண்டு கூர்ச்சத்திற்கும் கீழ் வரும் மந்திரம் கூறி எள்ளும்,", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*583 mMBody91A*/ FormattedText("\n\nஆப்ரம்ஹ ஸ்தம்ப பர்யந்தம் தேவரிஷி பித்ருமானவா: த்ருப்யந்து பிதர: ஸர்வே மாத்ரு மாதாமஹாதய: அதீதகுல கோடீநாம் ஸப்தத்வீப நிவாஸிநாம் ஆப்ரம்ஹ புவனாந் லோகான் \nஇதமஸ்து திலோதகம் \n        இதமஸ்து திலோதகம் \n                இதமஸ்து திலோதகம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*584 mGreenComment3*/ FormattedText(" ஸவ்யம் ", 13, Typeface.ITALIC, Color.GREEN),
-                /*585 mBody92*/ FormattedText("\nமமோ பார்த்த சமஸ்த துரித க்ஷயத்வாரா ஸ்ரீ பரமேஸ்வர ப்ரீத்யர்த்தம் வாஜே வாஜே அவத இதி மந்த்ரேன ஸகாருண்யக ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*586 mVARGAI1A*/ FormattedText(" வர்கைக ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*587 mVARGAI1B*/ FormattedText(" வர்கத்வய ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*588 mBody93*/ FormattedText(" பித்ரு விசர்ஜனம் கரிஷ்யே  \nஅபஉபஸ்ய்ருஸ்ய", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*589 mComment59*/ FormattedText("\n என்று ஜலத்தை தொடவும்\n\nநெற்றியில் கை வைத்துக் கொண்டு\n ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*590 mBody94*/ FormattedText("வாஜே வாஜே அவத இத்யஸ்ய மந்த்ரஸ்ய  வஸிஷ்டரிஷி:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*591 mComment60*/ FormattedText("\n(மூக்கு நுனியை தொட்டுக்கொண்டு)\n ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*592 mBody95*/ FormattedText("த்ருஷ்டுப்சந்த:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*593 mComment61*/ FormattedText("\n(ஹிருதயத்தைத் தொட்டுக்கொண்டு)\n", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*594 mBody96*/ FormattedText("வாஜிநோ தேவதா ஆவாஹித ஸகாருண்யக", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*595 mVARGAI2A*/ FormattedText(" வர்கைக ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*596 mVARGAI1BP*/ FormattedText(" வர்கத்வய ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*597 mBody97*/ FormattedText("பித்ரு விஸர்ஜனே வினியோக:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*598 mComment62*/ FormattedText("\n என்று கைகளை உள்வாங்கவும்\n", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*599 mHeading6*/ FormattedText(SpannableString("\nவிஸர்ஜனம்\n").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
-                /*600 mRedComment5*/ FormattedText(" அபஸவ்யம் ", 13, Typeface.ITALIC, Color.RED),
-                /*601 mComment63*/ FormattedText("\n கீழ் வரும் மந்திரம் கூறி எள்ளை", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*602 Comment64*/ FormattedText("\nகீழ் வரும் மந்திரம் கூறி எள்ளும், சிறிது அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*603 MComment64*/ FormattedText(" மேல் கூர்ச்சத்தில் ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*604 mComment65*/ FormattedText("போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*605 mBody98*/ FormattedText("\nஓம் உத்திஷ்டந்து அஸ்மத் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*606 mBody98A*/ FormattedText("ஸபத்நீக", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*607 mBody99A*/ FormattedText(" பித்ரு பிதாமஹ ப்ரபிதாமஹ:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*608 mBody99A*/ FormattedText(" பித்ரு ப்ரபிதாமஹ: வ்ருத்தப்ரபிதாமஹ:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*609 mMComment64AP*/ FormattedText("\n நடு கூர்ச்சத்தில் ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*610 mBody98PA*/ FormattedText("\nஓம் உத்திஷ்டந்து அஸ்மத் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*611 mBody98PMB*/ FormattedText("ஸபத்நீக", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*612 mBody98PC*/ FormattedText(" மாதாமஹ ப்ரமாதாமஹ வ்ருத்தப்ரமாதாமஹ:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*613 mMComment64A*/ FormattedText("\n கீழ் கூர்ச்சத்தில் ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*614 mMBody98*/ FormattedText("\n ஓம் உத்திஷ்டந்து அஸ்மத் ஸர்வே காருண்ய  பிதர:||", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*615 mComment66*/ FormattedText("\n கீழ்வரும் மந்திரங்களை சொல்லி கட்டை தர்பத்தை கூர்சங்களின் மேல் வைத்து தொட்டுக் கொண்டு \n", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*616 mBody100*/ FormattedText("\nஓம் வாஜே வாஜே அவதவாஜிந: நோதனேஷூ விப்ரா: அம்ருதா: ருதக்ஞா: அஸ்யமத்வ: பிபத மாதயத்வம் த்ருப்தாயாத பதிபி: தேவயானை:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*617 mComment67*/ FormattedText("\n எழுந்து", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*618 mGreenComment4*/ FormattedText(" ஸவ்யம் ", 13, Typeface.ITALIC, Color.GREEN),
-                /*619 mComment68*/ FormattedText("செய்து கொண்டு கீழ்வரும் மந்திரங்களை கூறி மூன்று ப்ரதட்சனம் செய்யவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*620 mBody101*/ FormattedText("\nஓம் ஆமாவாஜஸ்ய ப்ரஸவ: ஜகம்யாத் ஏமே த்யாவா ப்ருதிவீ விஸ்வருபே ஆமாகந்தம் பிதரா மாதரா யுவம் ஆமாஸோம: அம்ருதத்வாய கம்யாத்\n\nஓம் தேவதாப்ய: பித்ருப்யச்ச மஹாயோகிப்ய: ஏவச நமஸ்வதாயை ஸ்வாஹாயை நித்யமேவ நமோநம:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*621 mComment69*/ FormattedText(" \nஎன்று நமஸ்கரிக்கவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*622 mBody102*/ FormattedText("\nஅபிவாதயே yourPravaras ப்ரவரான்வித: yourGothram கோத்ர:  காத்யாயன ஸூத்ர: ஸ்ரீஶுக்ல யஜூர் வேத காண்வஶாகாத்யாயீ ஸ்ரீ yourName ஶர்மா நாமாஹம் அஸ்மி போ:".replace("""(yourPravaras)""".toRegex(), urPravaras).replace("""(yourGothram)""".toRegex(), urGothram).replace("""(yourName)""".toRegex(), yrNamee), 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*623 mComment70*/ FormattedText(" \nஉட்கார்ந்து கொண்டு\n", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*624 mBody103*/ FormattedText("\nமயாக்ருதமிதம் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*625 mBody103B*/ FormattedText("பக்க்ஷிய மஹாளய புண்யகால ப்ரயுக்த அஸ்மது ஸகாருண்யக", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*626 mVARGAI3A*/ FormattedText(" வர்கைக ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*627 mVARGAI1BP2*/ FormattedText(" வர்கத்வய ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*628 mBody104*/ FormattedText("பித்ரூன் உத்திச்ய திலதர்ப்பணாக்யம் கர்ம ஸர்வம் \nஸ்ரீ கிருஷ்ணார்ப்பணமஸ்து \n      ஸ்ரீ வாஸூதேவார்ப்பணமஸ்து \n            தத்ஸது ப்ரும்மார்ப்பணமஸ்து", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*629 mComment71*/ FormattedText(" \n என்று நேராக வலது கையால் ஜலம் விடவும்\n", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*630 mBody105*/ FormattedText("\nகாயேனவாசா மனஸேந்த்ரியைர்வா புத்யாத்மனாவா ப்ரக்ருதே: ஸ்வபாவாத் கரோமியத்யத் ஸகலம் பரஸ்மை நாராயணாயேதி ஸமர்ப்பயாமி ஸ்ரீமந் நாராயண ஸ்ரீ நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண \nப்ராயச்சித்தாநி அசேஷாணி தப: கர்ம ஆத்மகாநிவை யாநி தேஷாம் அசேஷாணாம் க்ருஷ்ணானுஸ்மரணம் பரம்  ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*631 mRedComment6*/ FormattedText("\n\n(அபஸவ்யம் ", 13, Typeface.ITALIC, Color.RED),
-                /*632 mComment72*/ FormattedText("செய்து கொண்டு\n", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*633 mComment73*/ FormattedText(" இரண்டு ", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*634 mComment74*/ FormattedText("கூர்ச்சங்களை பிரித்து தெற்கு நுனியாக வைத்துக் கொண்டு, மீதி எல்லா எள்ளையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*635 mComment75*/ FormattedText("கூர்ச்சங்களை பிரித்து தெற்கு நுனியாக வைத்துக் கொண்டு, மீதி எல்லா எள்ளையும், அரிசியையும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*636 mComment76*/ FormattedText(" கையில் சேர்த்து ஜலம் விட்டபடியே பூமியில் போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*637 mBody106*/ FormattedText("\nயேஷாம் நமாதா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*638 mBody107Big*/ FormattedText(" நபிதா ", 20, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*639 mBody108*/ FormattedText("நப்ராதா: நாந்யகோத்ரிண: தேஸர்வே த்ருப்திமாயாந்து மயோத்ஸ்ருஷ்டை: குசோதகை:\n த்ருப்யத்வம்  த்ருப்யத்வம்  த்ருப்யத்வம்", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
-                /*640 mGreenComment5*/ FormattedText("\nஸவ்யம் ", 13, Typeface.ITALIC, Color.GREEN),
-                /*641 mComment77*/ FormattedText("\n என்று சொல்லி பவித்ரத்தை அவிழ்த்து போடவும்\n\n ஆசமனம் செய்து வீபூதி இட்டுக் கொண்டு மறுபடி ஆசமனம் செய்யவும்", 13, Typeface.ITALIC, Color.DKGRAY),
-                /*642 mHeading7*/ FormattedText(SpannableString("\nமுற்றும்\n").apply { setSpan(UnderlineSpan(), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+                /*538 strAdditionP1cL1*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*539 strAdditionP1cL2*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*540 strAdditionP1cL3*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*541 strAdditionP1cM1*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*542 strAdditionP1cM2*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*543 strAdditionP1cM3*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*544 strAdditionP1cN1*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*545 strAdditionP1cN2*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*546 strAdditionP1cN3*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*547 strAdditionP1cO1*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*548 strAdditionP1cO2*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*549 strAdditionP1cO3*/
+                FormattedText(
+                    " ஸ்வதா நமஸ்த் த்ருப்யதாம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*550 mBody87P1*/
+                FormattedText(
+                    "\n   ஓம் உதீரதாம் அவரே உத்பராஸ: உந்மத்யமா: பிதர: ஸோம்யாஸ: அஸூம்யஈயு: அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ உபயவம்சே பவானாம் பித்ருவ்ய மாதுலாதி ஞாத அக்ஞாதானாம் தத்தத் கோத்ரா: தத்தத் சர்மாண: வஸுவஸு ஸ்வரூபா: பித்ருவ்ய மாதுலாதி வர்க்கத்வய அவசிஷ்டா: ஸர்வே காருணிக பித்ர: ஸ்வதா நமஸ்த்ருப்யந்தாம்\n",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*551 mBody87P2*/
+                FormattedText(
+                    "   ஓம் அங்கீரஸோந: பிதரோ நவக்வா: அதர்வாண: ப்ருகவ: ஸோம்யாஸ: தேஷாம்வயம் ஸூமதௌ யக்ஞியாநாம் அபிபத்ரே ஸௌமனஸே ஸ்யாம உபயவம்சே பவானாம் பித்ருவ்ய மாதுலாதி ஞாத அக்ஞாதானாம் தத்தத் கோத்ரா: தத்தத் சர்மாண: வஸுவஸு ஸ்வரூபா: பித்ருவ்ய மாதுலாதி வர்க்கத்வய அவசிஷ்டா: ஸர்வே காருணிக பித்ர: ஸ்வதா நமஸ்த்ருப்யந்தாம்\n",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*552 mBody87P3*/
+                FormattedText(
+                    "   ஓம் ஆயந்துந: பிதர: ஸோம்யாஸ: அக்னிஷ்வாத்தா: பதிபி: தேவயானை: அஸ்மின் யக்ஞே ஸ்வதயா மதந்த: அதிப்ருவந்து தேவந்து அஸ்மான் உபயவம்சே பவானாம் பித்ருவ்ய மாதுலாதி ஞாத அக்ஞாதானாம் தத்தத் கோத்ரா: தத்தத் சர்மாண: வஸுவஸு ஸ்வரூபா: பித்ருவ்ய மாதுலாதி வர்க்கத்வய அவசிஷ்டா: ஸர்வே காருணிக பித்ர: ஸ்வதா நமஸ்த்ருப்யந்தாம்்\n\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம் \n",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*553 mComment51*/
+                FormattedText(
+                    "\n வடக்கு நோக்கி கீழ்வரும் மந்திரங்களை கூறவும் ",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*554 mBody88*/
+                FormattedText(
+                    "\nஓம் அத்ரபிதர: மாதயத்வம் யாதாபாகம் ஆவ்ருஷாயத்வம் அமீமதந்த பிதர: யதாபாகம் ஆவ்ருஷாயிஷத\n\n",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*555 mComment51a*/
+                FormattedText("\nபூணல்  ", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*556 mGreenComment2*/
+                FormattedText(" ஸவ்யம் ", 13, Typeface.ITALIC, Color.GREEN),
+                /*557 mComment52*/
+                FormattedText(
+                    "   கிழக்கு நோக்கி பித்ருக்களை ப்ரார்த்தனை செய்து கொண்டு கீழ்வரும் மந்திரங்களை கூறவும்",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*558 mBody89*/
+                FormattedText(
+                    "\nஓம் நமோவ: பிதர: ஸூஷ்மாய நமோவ: பிதர: தபஸே நமோவ: பிதர: யஜ்ஜீவம் தஸ்மை நமோவ: பிதர: ரஸாய நமோவ: பிதர: கோராய மன்யவே ஸ்வதாயைவ: பிதரோ நம:\n",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*559 mRedComment4*/
+                FormattedText("அபஸவ்யம் ", 13, Typeface.ITALIC, Color.RED),
+                /*560 mComment53*/
+                FormattedText(
+                    "\n  கட்டதர்பங்களை எடுத்துக்கொண்டு மந்திரம் சொல்லி",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*561 mComment54*/
+                FormattedText(" இரண்டு ", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*562 mComment54a*/
+                FormattedText(" மூன்று ", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*563 mComment55*/
+                FormattedText("கூர்ச்சத்தின் மீது வைக்கவும்", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*564 mComment55A*/
+                FormattedText(SpannableString("\nமேல் கூர்ச்சம்").apply {
+                    setSpan(
+                        UnderlineSpan(),
+                        0,
+                        length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+                /*565 mBody90*/
+                FormattedText(
+                    "\nஓம் ஏதத்வ: பிதரோவாஸ: க்ருஹான்ன: பிதரோதத்த: உதாயுஷா ஸ்வாயுஷா உத்பர்ஜந்யஸ்ய தாமபி: உதஸ்தாம் அம்ருதாம் அநு\n",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*566 mBody90P*/
+                FormattedText(
+                    "\nஓம் ஏதத்வ: பிதரோவாஸ: க்ருஹான்ன: பிதரோதத்த: உதாயுஷா ஸ்வாயுஷா உத்பர்ஜந்யஸ்ய தாமபி: உதஸ்தாம் அம்ருதாம் அநு\n",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*567 mComment55BP*/
+                FormattedText(SpannableString("\n நடு கூர்ச்சம் ").apply {
+                    setSpan(
+                        UnderlineSpan(),
+                        0,
+                        length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+                /*568 mComment55B*/
+                FormattedText(SpannableString("\n கீழ் கூர்ச்சம் ").apply {
+                    setSpan(
+                        UnderlineSpan(),
+                        0,
+                        length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+                /*569 mBody90P2*/
+                FormattedText(
+                    "\nஓம் ஏதத்வ: பிதரோவாஸ: க்ருஹான்ன: பிதரோதத்த: உதாயுஷா ஸ்வாயுஷா உத்பர்ஜந்யஸ்ய தாமபி: உதஸ்தாம் அம்ருதாம் அநு\n",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*570 mComment55C*/
+                FormattedText("\n  மேல்கூர்ச்சத்திற்கு", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*571 mComment56*/
+                FormattedText(
+                    "\n கீழ் வரும் மந்திரம் கூறி எள்ளை",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*572 mComment57*/
+                FormattedText(
+                    "\nகீழ் வரும் மந்திரம் கூறி எள்ளும், சிறிது அரிசியையும்",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*573 mComment57A*/
+                FormattedText(
+                    "\n இரண்டு கூர்ச்சத்திற்கும் கீழ் வரும் மந்திரம் கூறி எள்ளும், சிறிது அரிசியையும்",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*574 mComment58*/
+                FormattedText(" ஜலமும் விடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*575 mComment58A*/
+                FormattedText("யும் ஜலமும் விடவும் ", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*576 mBody90P2*/
+                FormattedText(
+                    "\nஓம் ஊர்ஜம்வஹந்தீ: அம்ருதம்க்ருதம்பய: கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்ப்பயதமே பித்ரூன்\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*577 mComment55DP*/
+                FormattedText("\n  நடுகூர்ச்சத்திற்கு ", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*578 mComment55D*/
+                FormattedText("\n  கீழ்கூர்ச்சத்திற்கு ", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*579 mMBody91P*/
+                FormattedText(
+                    "\nஓம் ஊர்ஜம்வஹந்தீ: அம்ருதம்க்ருதம்பய: கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்ப்பயதமே பித்ரூன்\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*580 mMBody91*/
+                FormattedText(
+                    "\nஓம் ஊர்ஜம்வஹந்தீ: அம்ருதம்க்ருதம்பய: கீலாலம் பரிஸ்ருதம் ஸ்வதாஸ்த தர்ப்பயதமே பித்ரூன்\nத்ருப்யத்வம்     த்ருப்யத்வம்     த்ருப்யத்வம்\n",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*581 mComment55EP*/
+                FormattedText(
+                    "\n  மூன்று கூர்ச்சத்திற்கு எள்ளை",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*582 mComment55E*/
+                FormattedText(
+                    "\n  இரண்டு கூர்ச்சத்திற்கும் கீழ் வரும் மந்திரம் கூறி எள்ளும்,",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*583 mMBody91A*/
+                FormattedText(
+                    "\n\nஆப்ரம்ஹ ஸ்தம்ப பர்யந்தம் தேவரிஷி பித்ருமானவா: த்ருப்யந்து பிதர: ஸர்வே மாத்ரு மாதாமஹாதய: அதீதகுல கோடீநாம் ஸப்தத்வீப நிவாஸிநாம் ஆப்ரம்ஹ புவனாந் லோகான் \nஇதமஸ்து திலோதகம் \n        இதமஸ்து திலோதகம் \n                இதமஸ்து திலோதகம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*584 mGreenComment3*/
+                FormattedText(" ஸவ்யம் ", 13, Typeface.ITALIC, Color.GREEN),
+                /*585 mBody92*/
+                FormattedText(
+                    "\nமமோ பார்த்த சமஸ்த துரித க்ஷயத்வாரா ஸ்ரீ பரமேஸ்வர ப்ரீத்யர்த்தம் வாஜே வாஜே அவத இதி மந்த்ரேன ஸகாருண்யக ",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*586 mVARGAI1A*/
+                FormattedText(" வர்கைக ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*587 mVARGAI1B*/
+                FormattedText(" வர்கத்வய ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*588 mBody93*/
+                FormattedText(
+                    " பித்ரு விசர்ஜனம் கரிஷ்யே  \nஅபஉபஸ்ய்ருஸ்ய",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*589 mComment59*/
+                FormattedText(
+                    "\n என்று ஜலத்தை தொடவும்\n\nநெற்றியில் கை வைத்துக் கொண்டு\n ",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*590 mBody94*/
+                FormattedText(
+                    "வாஜே வாஜே அவத இத்யஸ்ய மந்த்ரஸ்ய  வஸிஷ்டரிஷி:",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*591 mComment60*/
+                FormattedText(
+                    "\n(மூக்கு நுனியை தொட்டுக்கொண்டு)\n ",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*592 mBody95*/
+                FormattedText("த்ருஷ்டுப்சந்த:", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*593 mComment61*/
+                FormattedText(
+                    "\n(ஹிருதயத்தைத் தொட்டுக்கொண்டு)\n",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*594 mBody96*/
+                FormattedText(
+                    "வாஜிநோ தேவதா ஆவாஹித ஸகாருண்யக",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*595 mVARGAI2A*/
+                FormattedText(" வர்கைக ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*596 mVARGAI1BP*/
+                FormattedText(" வர்கத்வய ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*597 mBody97*/
+                FormattedText(
+                    "பித்ரு விஸர்ஜனே வினியோக:",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*598 mComment62*/
+                FormattedText("\n என்று கைகளை உள்வாங்கவும்\n", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*599 mHeading6*/
+                FormattedText(SpannableString("\nவிஸர்ஜனம்\n").apply {
+                    setSpan(
+                        UnderlineSpan(),
+                        0,
+                        length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
+                /*600 mRedComment5*/
+                FormattedText(" அபஸவ்யம் ", 13, Typeface.ITALIC, Color.RED),
+                /*601 mComment63*/
+                FormattedText(
+                    "\n கீழ் வரும் மந்திரம் கூறி எள்ளை",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*602 Comment64*/
+                FormattedText(
+                    "\nகீழ் வரும் மந்திரம் கூறி எள்ளும், சிறிது அரிசியையும்",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*603 MComment64*/
+                FormattedText(" மேல் கூர்ச்சத்தில் ", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*604 mComment65*/
+                FormattedText("போடவும்", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*605 mBody98*/
+                FormattedText(
+                    "\nஓம் உத்திஷ்டந்து அஸ்மத் ",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*606 mBody98A*/
+                FormattedText("ஸபத்நீக", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*607 mBody99A*/
+                FormattedText(
+                    " பித்ரு பிதாமஹ ப்ரபிதாமஹ:",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*608 mBody99A*/
+                FormattedText(
+                    " பித்ரு ப்ரபிதாமஹ: வ்ருத்தப்ரபிதாமஹ:",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*609 mMComment64AP*/
+                FormattedText("\n நடு கூர்ச்சத்தில் ", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*610 mBody98PA*/
+                FormattedText(
+                    "\nஓம் உத்திஷ்டந்து அஸ்மத் ",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*611 mBody98PMB*/
+                FormattedText("ஸபத்நீக", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*612 mBody98PC*/
+                FormattedText(
+                    " மாதாமஹ ப்ரமாதாமஹ வ்ருத்தப்ரமாதாமஹ:",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*613 mMComment64A*/
+                FormattedText("\n கீழ் கூர்ச்சத்தில் ", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*614 mMBody98*/
+                FormattedText(
+                    "\n ஓம் உத்திஷ்டந்து அஸ்மத் ஸர்வே காருண்ய  பிதர:||",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*615 mComment66*/
+                FormattedText(
+                    "\n கீழ்வரும் மந்திரங்களை சொல்லி கட்டை தர்பத்தை கூர்சங்களின் மேல் வைத்து தொட்டுக் கொண்டு \n",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*616 mBody100*/
+                FormattedText(
+                    "\nஓம் வாஜே வாஜே அவதவாஜிந: நோதனேஷூ விப்ரா: அம்ருதா: ருதக்ஞா: அஸ்யமத்வ: பிபத மாதயத்வம் த்ருப்தாயாத பதிபி: தேவயானை:",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*617 mComment67*/
+                FormattedText("\n எழுந்து", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*618 mGreenComment4*/
+                FormattedText(" ஸவ்யம் ", 13, Typeface.ITALIC, Color.GREEN),
+                /*619 mComment68*/
+                FormattedText(
+                    "செய்து கொண்டு கீழ்வரும் மந்திரங்களை கூறி மூன்று ப்ரதட்சனம் செய்யவும்",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*620 mBody101*/
+                FormattedText(
+                    "\nஓம் ஆமாவாஜஸ்ய ப்ரஸவ: ஜகம்யாத் ஏமே த்யாவா ப்ருதிவீ விஸ்வருபே ஆமாகந்தம் பிதரா மாதரா யுவம் ஆமாஸோம: அம்ருதத்வாய கம்யாத்\n\nஓம் தேவதாப்ய: பித்ருப்யச்ச மஹாயோகிப்ய: ஏவச நமஸ்வதாயை ஸ்வாஹாயை நித்யமேவ நமோநம:",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*621 mComment69*/
+                FormattedText(" \nஎன்று நமஸ்கரிக்கவும்", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*622 mBody102*/
+                FormattedText(
+                    "\nஅபிவாதயே yourPravaras ப்ரவரான்வித: yourGothram கோத்ர:  காத்யாயன ஸூத்ர: ஸ்ரீஶுக்ல யஜூர் வேத காண்வஶாகாத்யாயீ ஸ்ரீ yourName ஶர்மா நாமாஹம் அஸ்மி போ:".replace(
+                        """(yourPravaras)""".toRegex(),
+                        urPravaras
+                    ).replace("""(yourGothram)""".toRegex(), urGothram)
+                        .replace("""(yourName)""".toRegex(), yrNamee),
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*623 mComment70*/
+                FormattedText(" \nஉட்கார்ந்து கொண்டு\n", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*624 mBody103*/
+                FormattedText("\nமயாக்ருதமிதம் ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*625 mBody103B*/
+                FormattedText(
+                    "பக்க்ஷிய மஹாளய புண்யகால ப்ரயுக்த அஸ்மது ஸகாருண்யக",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*626 mVARGAI3A*/
+                FormattedText(" வர்கைக ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*627 mVARGAI1BP2*/
+                FormattedText(" வர்கத்வய ", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*628 mBody104*/
+                FormattedText(
+                    "பித்ரூன் உத்திச்ய திலதர்ப்பணாக்யம் கர்ம ஸர்வம் \nஸ்ரீ கிருஷ்ணார்ப்பணமஸ்து \n      ஸ்ரீ வாஸூதேவார்ப்பணமஸ்து \n            தத்ஸது ப்ரும்மார்ப்பணமஸ்து",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*629 mComment71*/
+                FormattedText(
+                    " \n என்று நேராக வலது கையால் ஜலம் விடவும்\n",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*630 mBody105*/
+                FormattedText(
+                    "\nகாயேனவாசா மனஸேந்த்ரியைர்வா புத்யாத்மனாவா ப்ரக்ருதே: ஸ்வபாவாத் கரோமியத்யத் ஸகலம் பரஸ்மை நாராயணாயேதி ஸமர்ப்பயாமி ஸ்ரீமந் நாராயண ஸ்ரீ நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண நாராயண \nப்ராயச்சித்தாநி அசேஷாணி தப: கர்ம ஆத்மகாநிவை யாநி தேஷாம் அசேஷாணாம் க்ருஷ்ணானுஸ்மரணம் பரம்  ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண ஸ்ரீகிருஷ்ண",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*631 mRedComment6*/
+                FormattedText("\n\n(அபஸவ்யம் ", 13, Typeface.ITALIC, Color.RED),
+                /*632 mComment72*/
+                FormattedText("செய்து கொண்டு\n", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*633 mComment73*/
+                FormattedText(" இரண்டு ", 13, Typeface.ITALIC, Color.DKGRAY),
+                /*634 mComment74*/
+                FormattedText(
+                    "கூர்ச்சங்களை பிரித்து தெற்கு நுனியாக வைத்துக் கொண்டு, மீதி எல்லா எள்ளையும்",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*635 mComment75*/
+                FormattedText(
+                    "கூர்ச்சங்களை பிரித்து தெற்கு நுனியாக வைத்துக் கொண்டு, மீதி எல்லா எள்ளையும், அரிசியையும்",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*636 mComment76*/
+                FormattedText(
+                    " கையில் சேர்த்து ஜலம் விட்டபடியே பூமியில் போடவும்",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*637 mBody106*/
+                FormattedText("\nயேஷாம் நமாதா", 14, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*638 mBody107Big*/
+                FormattedText(" நபிதா ", 20, Typeface.BOLD, Color.parseColor("#0000ee")),
+                /*639 mBody108*/
+                FormattedText(
+                    "நப்ராதா: நாந்யகோத்ரிண: தேஸர்வே த்ருப்திமாயாந்து மயோத்ஸ்ருஷ்டை: குசோதகை:\n த்ருப்யத்வம்  த்ருப்யத்வம்  த்ருப்யத்வம்",
+                    14,
+                    Typeface.BOLD,
+                    Color.parseColor("#0000ee")
+                ),
+                /*640 mGreenComment5*/
+                FormattedText("\nஸவ்யம் ", 13, Typeface.ITALIC, Color.GREEN),
+                /*641 mComment77*/
+                FormattedText(
+                    "\n என்று சொல்லி பவித்ரத்தை அவிழ்த்து போடவும்\n\n ஆசமனம் செய்து வீபூதி இட்டுக் கொண்டு மறுபடி ஆசமனம் செய்யவும்",
+                    13,
+                    Typeface.ITALIC,
+                    Color.DKGRAY
+                ),
+                /*642 mHeading7*/
+                FormattedText(SpannableString("\nமுற்றும்\n").apply {
+                    setSpan(
+                        UnderlineSpan(),
+                        0,
+                        length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }.toString(), 16, Typeface.BOLD, Color.parseColor("#8b008b")),
             )
 
-                val exExFlag = Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                val start: Int = 0
-                mHeading5P = createFormattedString(
-                    formattedTexts[231].text,
-                    formattedTexts[231].size,
-                    formattedTexts[231].style,
-                    formattedTexts[231].color
-                )
-                personHead = createFormattedString(
-                    formattedTexts[232].text,
-                    formattedTexts[232].size,
-                    formattedTexts[232].style,
-                    formattedTexts[232].color
-                )
-                strAdditionP1 = createFormattedString(
-                    formattedTexts[233].text,
-                    formattedTexts[233].size,
-                    formattedTexts[233].style,
-                    formattedTexts[233].color
-                )
-                strAdditionP1ab = createFormattedString(
-                    formattedTexts[234].text,
-                    formattedTexts[234].size,
-                    formattedTexts[234].style,
-                    formattedTexts[234].color
-                )
-                strAdditionP1ac = createFormattedString(
-                    formattedTexts[235].text,
-                    formattedTexts[235].size,
-                    formattedTexts[235].style,
-                    formattedTexts[235].color
-                )
-                strAdditionP2 = createFormattedString(
-                    formattedTexts[236].text,
-                    formattedTexts[236].size,
-                    formattedTexts[236].style,
-                    formattedTexts[236].color
-                )
-                strAdditionP2P = createFormattedString(
-                    formattedTexts[237].text,
-                    formattedTexts[237].size,
-                    formattedTexts[237].style,
-                    formattedTexts[237].color
-                )
-                strAdditionP2bb = createFormattedString(
-                    formattedTexts[238].text,
-                    formattedTexts[238].size,
-                    formattedTexts[238].style,
-                    formattedTexts[238].color
-                )
-                strAdditionP2bc = createFormattedString(
-                    formattedTexts[239].text,
-                    formattedTexts[239].size,
-                    formattedTexts[239].style,
-                    formattedTexts[239].color
-                )
-                strAdditionP3 = createFormattedString(
-                    formattedTexts[240].text,
-                    formattedTexts[240].size,
-                    formattedTexts[240].style,
-                    formattedTexts[240].color
-                )
-                strAdditionP3P = createFormattedString(
-                    formattedTexts[241].text,
-                    formattedTexts[241].size,
-                    formattedTexts[241].style,
-                    formattedTexts[241].color
-                )
-                strAdditionP3cb = createFormattedString(
-                    formattedTexts[242].text,
-                    formattedTexts[242].size,
-                    formattedTexts[242].style,
-                    formattedTexts[242].color
-                )
-                strAdditionP3cc = createFormattedString(
-                    formattedTexts[243].text,
-                    formattedTexts[243].size,
-                    formattedTexts[243].style,
-                    formattedTexts[243].color
-                )
-                strAdditionP4 = createFormattedString(
-                    formattedTexts[244].text,
-                    formattedTexts[244].size,
-                    formattedTexts[244].style,
-                    formattedTexts[244].color
-                )
-                strAdditionP4db = createFormattedString(
-                    formattedTexts[245].text,
-                    formattedTexts[245].size,
-                    formattedTexts[245].style,
-                    formattedTexts[245].color
-                )
-                strAdditionP4dc = createFormattedString(
-                    formattedTexts[246].text,
-                    formattedTexts[246].size,
-                    formattedTexts[246].style,
-                    formattedTexts[246].color
-                )
-                strAdditionP5 = createFormattedString(
-                    formattedTexts[247].text,
-                    formattedTexts[247].size,
-                    formattedTexts[247].style,
-                    formattedTexts[247].color
-                )
-                strAdditionP5eb = createFormattedString(
-                    formattedTexts[248].text,
-                    formattedTexts[248].size,
-                    formattedTexts[248].style,
-                    formattedTexts[248].color
-                )
-                strAdditionP5ec = createFormattedString(
-                    formattedTexts[249].text,
-                    formattedTexts[249].size,
-                    formattedTexts[249].style,
-                    formattedTexts[249].color
-                )
-                strAdditionP6 = createFormattedString(
-                    formattedTexts[250].text,
-                    formattedTexts[250].size,
-                    formattedTexts[250].style,
-                    formattedTexts[250].color
-                )
-                strAdditionP6fb = createFormattedString(
-                    formattedTexts[251].text,
-                    formattedTexts[251].size,
-                    formattedTexts[251].style,
-                    formattedTexts[251].color
-                )
-                strAdditionP6fc = createFormattedString(
-                    formattedTexts[252].text,
-                    formattedTexts[252].size,
-                    formattedTexts[252].style,
-                    formattedTexts[252].color
-                )
-                strAdditionP7 = createFormattedString(
-                    formattedTexts[253].text,
-                    formattedTexts[253].size,
-                    formattedTexts[253].style,
-                    formattedTexts[253].color
-                )
-                strAdditionP7gb = createFormattedString(
-                    formattedTexts[254].text,
-                    formattedTexts[254].size,
-                    formattedTexts[254].style,
-                    formattedTexts[254].color
-                )
-                strAdditionP7gc = createFormattedString(
-                    formattedTexts[255].text,
-                    formattedTexts[255].size,
-                    formattedTexts[255].style,
-                    formattedTexts[255].color
-                )
-                strAdditionP8 = createFormattedString(
-                    formattedTexts[256].text,
-                    formattedTexts[256].size,
-                    formattedTexts[256].style,
-                    formattedTexts[256].color
-                )
-                strAdditionP8hb = createFormattedString(
-                    formattedTexts[257].text,
-                    formattedTexts[257].size,
-                    formattedTexts[257].style,
-                    formattedTexts[257].color
-                )
-                strAdditionP8hc = createFormattedString(
-                    formattedTexts[258].text,
-                    formattedTexts[258].size,
-                    formattedTexts[258].style,
-                    formattedTexts[258].color
-                )
-                strAdditionP9 = createFormattedString(
-                    formattedTexts[259].text,
-                    formattedTexts[259].size,
-                    formattedTexts[259].style,
-                    formattedTexts[259].color
-                )
-                strAdditionP9ib = createFormattedString(
-                    formattedTexts[260].text,
-                    formattedTexts[260].size,
-                    formattedTexts[260].style,
-                    formattedTexts[260].color
-                )
-                strAdditionP9ic = createFormattedString(
-                    formattedTexts[261].text,
-                    formattedTexts[261].size,
-                    formattedTexts[261].style,
-                    formattedTexts[261].color
-                )
-                strAdditionP10 = createFormattedString(
-                    formattedTexts[262].text,
-                    formattedTexts[262].size,
-                    formattedTexts[262].style,
-                    formattedTexts[262].color
-                )
-                strAdditionP10jb = createFormattedString(
-                    formattedTexts[263].text,
-                    formattedTexts[263].size,
-                    formattedTexts[263].style,
-                    formattedTexts[263].color
-                )
-                strAdditionP10jc = createFormattedString(
-                    formattedTexts[264].text,
-                    formattedTexts[264].size,
-                    formattedTexts[264].style,
-                    formattedTexts[264].color
-                )
-                strAdditionP11 = createFormattedString(
-                    formattedTexts[265].text,
-                    formattedTexts[265].size,
-                    formattedTexts[265].style,
-                    formattedTexts[265].color
-                )
-                strAdditionP11kb = createFormattedString(
-                    formattedTexts[266].text,
-                    formattedTexts[266].size,
-                    formattedTexts[266].style,
-                    formattedTexts[266].color
-                )
-                strAdditionP11kc = createFormattedString(
-                    formattedTexts[267].text,
-                    formattedTexts[267].size,
-                    formattedTexts[267].style,
-                    formattedTexts[267].color
-                )
-                strAdditionP12 = createFormattedString(
-                    formattedTexts[268].text,
-                    formattedTexts[268].size,
-                    formattedTexts[268].style,
-                    formattedTexts[268].color
-                )
-                strAdditionP12lb = createFormattedString(
-                    formattedTexts[269].text,
-                    formattedTexts[269].size,
-                    formattedTexts[269].style,
-                    formattedTexts[269].color
-                )
-                strAdditionP12lc = createFormattedString(
-                    formattedTexts[270].text,
-                    formattedTexts[270].size,
-                    formattedTexts[270].style,
-                    formattedTexts[270].color
-                )
-                strAdditionP13 = createFormattedString(
-                    formattedTexts[271].text,
-                    formattedTexts[271].size,
-                    formattedTexts[271].style,
-                    formattedTexts[271].color
-                )
-                strAdditionP13mb = createFormattedString(
-                    formattedTexts[272].text,
-                    formattedTexts[272].size,
-                    formattedTexts[272].style,
-                    formattedTexts[272].color
-                )
-                strAdditionP13mc = createFormattedString(
-                    formattedTexts[273].text,
-                    formattedTexts[273].size,
-                    formattedTexts[273].style,
-                    formattedTexts[273].color
-                )
-                strAdditionP14 = createFormattedString(
-                    formattedTexts[274].text,
-                    formattedTexts[274].size,
-                    formattedTexts[274].style,
-                    formattedTexts[274].color
-                )
-                strAdditionP14nb = createFormattedString(
-                    formattedTexts[275].text,
-                    formattedTexts[275].size,
-                    formattedTexts[275].style,
-                    formattedTexts[275].color
-                )
-                strAdditionP14nc = createFormattedString(
-                    formattedTexts[276].text,
-                    formattedTexts[276].size,
-                    formattedTexts[276].style,
-                    formattedTexts[276].color
-                )
-                strAdditionP15 = createFormattedString(
-                    formattedTexts[277].text,
-                    formattedTexts[277].size,
-                    formattedTexts[277].style,
-                    formattedTexts[277].color
-                )
-                strAdditionP15ob = createFormattedString(
-                    formattedTexts[278].text,
-                    formattedTexts[278].size,
-                    formattedTexts[278].style,
-                    formattedTexts[278].color
-                )
-                strAdditionP15oc = createFormattedString(
-                    formattedTexts[279].text,
-                    formattedTexts[279].size,
-                    formattedTexts[279].style,
-                    formattedTexts[279].color
-                )
-                strAdditionP1P = createFormattedString(
-                    formattedTexts[280].text,
-                    formattedTexts[280].size,
-                    formattedTexts[280].style,
-                    formattedTexts[280].color
-                )
-                strAdditionNO1 = createFormattedString(
-                    formattedTexts[281].text,
-                    formattedTexts[281].size,
-                    formattedTexts[281].style,
-                    formattedTexts[281].color
-                )
-                strAdditionNO1B = createFormattedString(
-                    formattedTexts[282].text,
-                    formattedTexts[282].size,
-                    formattedTexts[282].style,
-                    formattedTexts[282].color
-                )
-                strAdditionNO1C = createFormattedString(
-                    formattedTexts[283].text,
-                    formattedTexts[283].size,
-                    formattedTexts[283].style,
-                    formattedTexts[283].color
-                )
-                strAdditionNO1D = createFormattedString(
-                    formattedTexts[284].text,
-                    formattedTexts[284].size,
-                    formattedTexts[284].style,
-                    formattedTexts[284].color
-                )
-                strAdditionNO1E = createFormattedString(
-                    formattedTexts[285].text,
-                    formattedTexts[285].size,
-                    formattedTexts[285].style,
-                    formattedTexts[285].color
-                )
-                strAdditionNO1F = createFormattedString(
-                    formattedTexts[286].text,
-                    formattedTexts[286].size,
-                    formattedTexts[286].style,
-                    formattedTexts[286].color
-                )
-                strAdditionNO1G = createFormattedString(
-                    formattedTexts[287].text,
-                    formattedTexts[287].size,
-                    formattedTexts[287].style,
-                    formattedTexts[287].color
-                )
-                strAdditionNO1H = createFormattedString(
-                    formattedTexts[288].text,
-                    formattedTexts[288].size,
-                    formattedTexts[288].style,
-                    formattedTexts[288].color
-                )
-                strAdditionNO1I = createFormattedString(
-                    formattedTexts[289].text,
-                    formattedTexts[289].size,
-                    formattedTexts[289].style,
-                    formattedTexts[289].color
-                )
-                strAdditionNO1J = createFormattedString(
-                    formattedTexts[290].text,
-                    formattedTexts[290].size,
-                    formattedTexts[290].style,
-                    formattedTexts[290].color
-                )
-                strAdditionNO1K = createFormattedString(
-                    formattedTexts[291].text,
-                    formattedTexts[291].size,
-                    formattedTexts[291].style,
-                    formattedTexts[291].color
-                )
-                strAdditionNO1L = createFormattedString(
-                    formattedTexts[292].text,
-                    formattedTexts[292].size,
-                    formattedTexts[292].style,
-                    formattedTexts[292].color
-                )
-                strAdditionNO1M = createFormattedString(
-                    formattedTexts[293].text,
-                    formattedTexts[293].size,
-                    formattedTexts[293].style,
-                    formattedTexts[293].color
-                )
-                strAdditionNO1N = createFormattedString(
-                    formattedTexts[294].text,
-                    formattedTexts[294].size,
-                    formattedTexts[294].style,
-                    formattedTexts[294].color
-                )
-                strAdditionNO1O = createFormattedString(
-                    formattedTexts[295].text,
-                    formattedTexts[295].size,
-                    formattedTexts[295].style,
-                    formattedTexts[295].color
-                )
-                strAdditionNO2 = createFormattedString(
-                    formattedTexts[296].text,
-                    formattedTexts[296].size,
-                    formattedTexts[296].style,
-                    formattedTexts[296].color
-                )
-                strAdditionNO2B = createFormattedString(
-                    formattedTexts[297].text,
-                    formattedTexts[297].size,
-                    formattedTexts[297].style,
-                    formattedTexts[297].color
-                )
-                strAdditionNO2C = createFormattedString(
-                    formattedTexts[298].text,
-                    formattedTexts[298].size,
-                    formattedTexts[298].style,
-                    formattedTexts[298].color
-                )
-                strAdditionNO2D = createFormattedString(
-                    formattedTexts[299].text,
-                    formattedTexts[299].size,
-                    formattedTexts[299].style,
-                    formattedTexts[299].color
-                )
-                strAdditionNO2E = createFormattedString(
-                    formattedTexts[300].text,
-                    formattedTexts[300].size,
-                    formattedTexts[300].style,
-                    formattedTexts[300].color
-                )
-                strAdditionNO2F = createFormattedString(
-                    formattedTexts[301].text,
-                    formattedTexts[301].size,
-                    formattedTexts[301].style,
-                    formattedTexts[301].color
-                )
-                strAdditionNO2G = createFormattedString(
-                    formattedTexts[302].text,
-                    formattedTexts[302].size,
-                    formattedTexts[302].style,
-                    formattedTexts[302].color
-                )
-                strAdditionNO2H = createFormattedString(
-                    formattedTexts[303].text,
-                    formattedTexts[303].size,
-                    formattedTexts[303].style,
-                    formattedTexts[303].color
-                )
-                strAdditionNO2I = createFormattedString(
-                    formattedTexts[304].text,
-                    formattedTexts[304].size,
-                    formattedTexts[304].style,
-                    formattedTexts[304].color
-                )
-                strAdditionNO2J = createFormattedString(
-                    formattedTexts[305].text,
-                    formattedTexts[305].size,
-                    formattedTexts[305].style,
-                    formattedTexts[305].color
-                )
-                strAdditionNO2K = createFormattedString(
-                    formattedTexts[306].text,
-                    formattedTexts[306].size,
-                    formattedTexts[306].style,
-                    formattedTexts[306].color
-                )
-                strAdditionNO2L = createFormattedString(
-                    formattedTexts[307].text,
-                    formattedTexts[307].size,
-                    formattedTexts[307].style,
-                    formattedTexts[307].color
-                )
-                strAdditionNO2M = createFormattedString(
-                    formattedTexts[308].text,
-                    formattedTexts[308].size,
-                    formattedTexts[308].style,
-                    formattedTexts[308].color
-                )
-                strAdditionNO2N = createFormattedString(
-                    formattedTexts[309].text,
-                    formattedTexts[309].size,
-                    formattedTexts[309].style,
-                    formattedTexts[309].color
-                )
-                strAdditionNO2O = createFormattedString(
-                    formattedTexts[310].text,
-                    formattedTexts[310].size,
-                    formattedTexts[310].style,
-                    formattedTexts[310].color
-                )
-                strAdditionNO3 = createFormattedString(
-                    formattedTexts[311].text,
-                    formattedTexts[311].size,
-                    formattedTexts[311].style,
-                    formattedTexts[311].color
-                )
-                strAdditionNO3B = createFormattedString(
-                    formattedTexts[312].text,
-                    formattedTexts[312].size,
-                    formattedTexts[312].style,
-                    formattedTexts[312].color
-                )
-                strAdditionNO3C = createFormattedString(
-                    formattedTexts[313].text,
-                    formattedTexts[313].size,
-                    formattedTexts[313].style,
-                    formattedTexts[313].color
-                )
-                strAdditionNO3D = createFormattedString(
-                    formattedTexts[314].text,
-                    formattedTexts[314].size,
-                    formattedTexts[314].style,
-                    formattedTexts[314].color
-                )
-                strAdditionNO3E = createFormattedString(
-                    formattedTexts[315].text,
-                    formattedTexts[315].size,
-                    formattedTexts[315].style,
-                    formattedTexts[315].color
-                )
-                strAdditionNO3F = createFormattedString(
-                    formattedTexts[316].text,
-                    formattedTexts[316].size,
-                    formattedTexts[316].style,
-                    formattedTexts[316].color
-                )
-                strAdditionNO3G = createFormattedString(
-                    formattedTexts[317].text,
-                    formattedTexts[317].size,
-                    formattedTexts[317].style,
-                    formattedTexts[317].color
-                )
-                strAdditionNO3H = createFormattedString(
-                    formattedTexts[318].text,
-                    formattedTexts[318].size,
-                    formattedTexts[318].style,
-                    formattedTexts[318].color
-                )
-                strAdditionNO3I = createFormattedString(
-                    formattedTexts[319].text,
-                    formattedTexts[319].size,
-                    formattedTexts[319].style,
-                    formattedTexts[319].color
-                )
-                strAdditionNO3J = createFormattedString(
-                    formattedTexts[320].text,
-                    formattedTexts[320].size,
-                    formattedTexts[320].style,
-                    formattedTexts[320].color
-                )
-                strAdditionNO3K = createFormattedString(
-                    formattedTexts[321].text,
-                    formattedTexts[321].size,
-                    formattedTexts[321].style,
-                    formattedTexts[321].color
-                )
-                strAdditionNO3L = createFormattedString(
-                    formattedTexts[322].text,
-                    formattedTexts[322].size,
-                    formattedTexts[322].style,
-                    formattedTexts[322].color
-                )
-                strAdditionNO3M = createFormattedString(
-                    formattedTexts[323].text,
-                    formattedTexts[323].size,
-                    formattedTexts[323].style,
-                    formattedTexts[323].color
-                )
-                strAdditionNO3N = createFormattedString(
-                    formattedTexts[324].text,
-                    formattedTexts[324].size,
-                    formattedTexts[324].style,
-                    formattedTexts[324].color
-                )
-                strAdditionNO3O = createFormattedString(
-                    formattedTexts[325].text,
-                    formattedTexts[325].size,
-                    formattedTexts[325].style,
-                    formattedTexts[325].color
-                )
-                strAdditionP1zM = createFormattedString(
-                    formattedTexts[326].text,
-                    formattedTexts[326].size,
-                    formattedTexts[326].style,
-                    formattedTexts[326].color
-                )
-                strAdditionP1zMB = createFormattedString(
-                    formattedTexts[327].text,
-                    formattedTexts[327].size,
-                    formattedTexts[327].style,
-                    formattedTexts[327].color
-                )
-                strAdditionP1zMC = createFormattedString(
-                    formattedTexts[328].text,
-                    formattedTexts[328].size,
-                    formattedTexts[328].style,
-                    formattedTexts[328].color
-                )
-                strAdditionP2zM = createFormattedString(
-                    formattedTexts[329].text,
-                    formattedTexts[329].size,
-                    formattedTexts[329].style,
-                    formattedTexts[329].color
-                )
-                strAdditionP2zMB = createFormattedString(
-                    formattedTexts[330].text,
-                    formattedTexts[330].size,
-                    formattedTexts[330].style,
-                    formattedTexts[330].color
-                )
-                strAdditionP2zMC = createFormattedString(
-                    formattedTexts[331].text,
-                    formattedTexts[331].size,
-                    formattedTexts[331].style,
-                    formattedTexts[331].color
-                )
-                strAdditionP3zM = createFormattedString(
-                    formattedTexts[332].text,
-                    formattedTexts[332].size,
-                    formattedTexts[332].style,
-                    formattedTexts[332].color
-                )
-                strAdditionP3zMB = createFormattedString(
-                    formattedTexts[333].text,
-                    formattedTexts[333].size,
-                    formattedTexts[333].style,
-                    formattedTexts[333].color
-                )
-                strAdditionP3zMC = createFormattedString(
-                    formattedTexts[334].text,
-                    formattedTexts[334].size,
-                    formattedTexts[334].style,
-                    formattedTexts[334].color
-                )
-                strAdditionP4zM = createFormattedString(
-                    formattedTexts[335].text,
-                    formattedTexts[335].size,
-                    formattedTexts[335].style,
-                    formattedTexts[335].color
-                )
-                strAdditionP4zMB = createFormattedString(
-                    formattedTexts[336].text,
-                    formattedTexts[336].size,
-                    formattedTexts[336].style,
-                    formattedTexts[336].color
-                )
-                strAdditionP4zMC = createFormattedString(
-                    formattedTexts[337].text,
-                    formattedTexts[337].size,
-                    formattedTexts[337].style,
-                    formattedTexts[337].color
-                )
-                strAdditionP5zM = createFormattedString(
-                    formattedTexts[338].text,
-                    formattedTexts[338].size,
-                    formattedTexts[338].style,
-                    formattedTexts[338].color
-                )
-                strAdditionP5zMB = createFormattedString(
-                    formattedTexts[339].text,
-                    formattedTexts[339].size,
-                    formattedTexts[339].style,
-                    formattedTexts[339].color
-                )
-                strAdditionP5zMC = createFormattedString(
-                    formattedTexts[340].text,
-                    formattedTexts[340].size,
-                    formattedTexts[340].style,
-                    formattedTexts[340].color
-                )
+            val exExFlag = Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            val start: Int = 0
+            mHeading5P = createFormattedString(
+                formattedTexts[231].text,
+                formattedTexts[231].size,
+                formattedTexts[231].style,
+                formattedTexts[231].color
+            )
+            personHead = createFormattedString(
+                formattedTexts[232].text,
+                formattedTexts[232].size,
+                formattedTexts[232].style,
+                formattedTexts[232].color
+            )
+            strAdditionP1 = createFormattedString(
+                formattedTexts[233].text,
+                formattedTexts[233].size,
+                formattedTexts[233].style,
+                formattedTexts[233].color
+            )
+            strAdditionP1ab = createFormattedString(
+                formattedTexts[234].text,
+                formattedTexts[234].size,
+                formattedTexts[234].style,
+                formattedTexts[234].color
+            )
+            strAdditionP1ac = createFormattedString(
+                formattedTexts[235].text,
+                formattedTexts[235].size,
+                formattedTexts[235].style,
+                formattedTexts[235].color
+            )
+            strAdditionP2 = createFormattedString(
+                formattedTexts[236].text,
+                formattedTexts[236].size,
+                formattedTexts[236].style,
+                formattedTexts[236].color
+            )
+            strAdditionP2P = createFormattedString(
+                formattedTexts[237].text,
+                formattedTexts[237].size,
+                formattedTexts[237].style,
+                formattedTexts[237].color
+            )
+            strAdditionP2bb = createFormattedString(
+                formattedTexts[238].text,
+                formattedTexts[238].size,
+                formattedTexts[238].style,
+                formattedTexts[238].color
+            )
+            strAdditionP2bc = createFormattedString(
+                formattedTexts[239].text,
+                formattedTexts[239].size,
+                formattedTexts[239].style,
+                formattedTexts[239].color
+            )
+            strAdditionP3 = createFormattedString(
+                formattedTexts[240].text,
+                formattedTexts[240].size,
+                formattedTexts[240].style,
+                formattedTexts[240].color
+            )
+            strAdditionP3P = createFormattedString(
+                formattedTexts[241].text,
+                formattedTexts[241].size,
+                formattedTexts[241].style,
+                formattedTexts[241].color
+            )
+            strAdditionP3cb = createFormattedString(
+                formattedTexts[242].text,
+                formattedTexts[242].size,
+                formattedTexts[242].style,
+                formattedTexts[242].color
+            )
+            strAdditionP3cc = createFormattedString(
+                formattedTexts[243].text,
+                formattedTexts[243].size,
+                formattedTexts[243].style,
+                formattedTexts[243].color
+            )
+            strAdditionP4 = createFormattedString(
+                formattedTexts[244].text,
+                formattedTexts[244].size,
+                formattedTexts[244].style,
+                formattedTexts[244].color
+            )
+            strAdditionP4db = createFormattedString(
+                formattedTexts[245].text,
+                formattedTexts[245].size,
+                formattedTexts[245].style,
+                formattedTexts[245].color
+            )
+            strAdditionP4dc = createFormattedString(
+                formattedTexts[246].text,
+                formattedTexts[246].size,
+                formattedTexts[246].style,
+                formattedTexts[246].color
+            )
+            strAdditionP5 = createFormattedString(
+                formattedTexts[247].text,
+                formattedTexts[247].size,
+                formattedTexts[247].style,
+                formattedTexts[247].color
+            )
+            strAdditionP5eb = createFormattedString(
+                formattedTexts[248].text,
+                formattedTexts[248].size,
+                formattedTexts[248].style,
+                formattedTexts[248].color
+            )
+            strAdditionP5ec = createFormattedString(
+                formattedTexts[249].text,
+                formattedTexts[249].size,
+                formattedTexts[249].style,
+                formattedTexts[249].color
+            )
+            strAdditionP6 = createFormattedString(
+                formattedTexts[250].text,
+                formattedTexts[250].size,
+                formattedTexts[250].style,
+                formattedTexts[250].color
+            )
+            strAdditionP6fb = createFormattedString(
+                formattedTexts[251].text,
+                formattedTexts[251].size,
+                formattedTexts[251].style,
+                formattedTexts[251].color
+            )
+            strAdditionP6fc = createFormattedString(
+                formattedTexts[252].text,
+                formattedTexts[252].size,
+                formattedTexts[252].style,
+                formattedTexts[252].color
+            )
+            strAdditionP7 = createFormattedString(
+                formattedTexts[253].text,
+                formattedTexts[253].size,
+                formattedTexts[253].style,
+                formattedTexts[253].color
+            )
+            strAdditionP7gb = createFormattedString(
+                formattedTexts[254].text,
+                formattedTexts[254].size,
+                formattedTexts[254].style,
+                formattedTexts[254].color
+            )
+            strAdditionP7gc = createFormattedString(
+                formattedTexts[255].text,
+                formattedTexts[255].size,
+                formattedTexts[255].style,
+                formattedTexts[255].color
+            )
+            strAdditionP8 = createFormattedString(
+                formattedTexts[256].text,
+                formattedTexts[256].size,
+                formattedTexts[256].style,
+                formattedTexts[256].color
+            )
+            strAdditionP8hb = createFormattedString(
+                formattedTexts[257].text,
+                formattedTexts[257].size,
+                formattedTexts[257].style,
+                formattedTexts[257].color
+            )
+            strAdditionP8hc = createFormattedString(
+                formattedTexts[258].text,
+                formattedTexts[258].size,
+                formattedTexts[258].style,
+                formattedTexts[258].color
+            )
+            strAdditionP9 = createFormattedString(
+                formattedTexts[259].text,
+                formattedTexts[259].size,
+                formattedTexts[259].style,
+                formattedTexts[259].color
+            )
+            strAdditionP9ib = createFormattedString(
+                formattedTexts[260].text,
+                formattedTexts[260].size,
+                formattedTexts[260].style,
+                formattedTexts[260].color
+            )
+            strAdditionP9ic = createFormattedString(
+                formattedTexts[261].text,
+                formattedTexts[261].size,
+                formattedTexts[261].style,
+                formattedTexts[261].color
+            )
+            strAdditionP10 = createFormattedString(
+                formattedTexts[262].text,
+                formattedTexts[262].size,
+                formattedTexts[262].style,
+                formattedTexts[262].color
+            )
+            strAdditionP10jb = createFormattedString(
+                formattedTexts[263].text,
+                formattedTexts[263].size,
+                formattedTexts[263].style,
+                formattedTexts[263].color
+            )
+            strAdditionP10jc = createFormattedString(
+                formattedTexts[264].text,
+                formattedTexts[264].size,
+                formattedTexts[264].style,
+                formattedTexts[264].color
+            )
+            strAdditionP11 = createFormattedString(
+                formattedTexts[265].text,
+                formattedTexts[265].size,
+                formattedTexts[265].style,
+                formattedTexts[265].color
+            )
+            strAdditionP11kb = createFormattedString(
+                formattedTexts[266].text,
+                formattedTexts[266].size,
+                formattedTexts[266].style,
+                formattedTexts[266].color
+            )
+            strAdditionP11kc = createFormattedString(
+                formattedTexts[267].text,
+                formattedTexts[267].size,
+                formattedTexts[267].style,
+                formattedTexts[267].color
+            )
+            strAdditionP12 = createFormattedString(
+                formattedTexts[268].text,
+                formattedTexts[268].size,
+                formattedTexts[268].style,
+                formattedTexts[268].color
+            )
+            strAdditionP12lb = createFormattedString(
+                formattedTexts[269].text,
+                formattedTexts[269].size,
+                formattedTexts[269].style,
+                formattedTexts[269].color
+            )
+            strAdditionP12lc = createFormattedString(
+                formattedTexts[270].text,
+                formattedTexts[270].size,
+                formattedTexts[270].style,
+                formattedTexts[270].color
+            )
+            strAdditionP13 = createFormattedString(
+                formattedTexts[271].text,
+                formattedTexts[271].size,
+                formattedTexts[271].style,
+                formattedTexts[271].color
+            )
+            strAdditionP13mb = createFormattedString(
+                formattedTexts[272].text,
+                formattedTexts[272].size,
+                formattedTexts[272].style,
+                formattedTexts[272].color
+            )
+            strAdditionP13mc = createFormattedString(
+                formattedTexts[273].text,
+                formattedTexts[273].size,
+                formattedTexts[273].style,
+                formattedTexts[273].color
+            )
+            strAdditionP14 = createFormattedString(
+                formattedTexts[274].text,
+                formattedTexts[274].size,
+                formattedTexts[274].style,
+                formattedTexts[274].color
+            )
+            strAdditionP14nb = createFormattedString(
+                formattedTexts[275].text,
+                formattedTexts[275].size,
+                formattedTexts[275].style,
+                formattedTexts[275].color
+            )
+            strAdditionP14nc = createFormattedString(
+                formattedTexts[276].text,
+                formattedTexts[276].size,
+                formattedTexts[276].style,
+                formattedTexts[276].color
+            )
+            strAdditionP15 = createFormattedString(
+                formattedTexts[277].text,
+                formattedTexts[277].size,
+                formattedTexts[277].style,
+                formattedTexts[277].color
+            )
+            strAdditionP15ob = createFormattedString(
+                formattedTexts[278].text,
+                formattedTexts[278].size,
+                formattedTexts[278].style,
+                formattedTexts[278].color
+            )
+            strAdditionP15oc = createFormattedString(
+                formattedTexts[279].text,
+                formattedTexts[279].size,
+                formattedTexts[279].style,
+                formattedTexts[279].color
+            )
+            strAdditionP1P = createFormattedString(
+                formattedTexts[280].text,
+                formattedTexts[280].size,
+                formattedTexts[280].style,
+                formattedTexts[280].color
+            )
+            strAdditionNO1 = createFormattedString(
+                formattedTexts[281].text,
+                formattedTexts[281].size,
+                formattedTexts[281].style,
+                formattedTexts[281].color
+            )
+            strAdditionNO1B = createFormattedString(
+                formattedTexts[282].text,
+                formattedTexts[282].size,
+                formattedTexts[282].style,
+                formattedTexts[282].color
+            )
+            strAdditionNO1C = createFormattedString(
+                formattedTexts[283].text,
+                formattedTexts[283].size,
+                formattedTexts[283].style,
+                formattedTexts[283].color
+            )
+            strAdditionNO1D = createFormattedString(
+                formattedTexts[284].text,
+                formattedTexts[284].size,
+                formattedTexts[284].style,
+                formattedTexts[284].color
+            )
+            strAdditionNO1E = createFormattedString(
+                formattedTexts[285].text,
+                formattedTexts[285].size,
+                formattedTexts[285].style,
+                formattedTexts[285].color
+            )
+            strAdditionNO1F = createFormattedString(
+                formattedTexts[286].text,
+                formattedTexts[286].size,
+                formattedTexts[286].style,
+                formattedTexts[286].color
+            )
+            strAdditionNO1G = createFormattedString(
+                formattedTexts[287].text,
+                formattedTexts[287].size,
+                formattedTexts[287].style,
+                formattedTexts[287].color
+            )
+            strAdditionNO1H = createFormattedString(
+                formattedTexts[288].text,
+                formattedTexts[288].size,
+                formattedTexts[288].style,
+                formattedTexts[288].color
+            )
+            strAdditionNO1I = createFormattedString(
+                formattedTexts[289].text,
+                formattedTexts[289].size,
+                formattedTexts[289].style,
+                formattedTexts[289].color
+            )
+            strAdditionNO1J = createFormattedString(
+                formattedTexts[290].text,
+                formattedTexts[290].size,
+                formattedTexts[290].style,
+                formattedTexts[290].color
+            )
+            strAdditionNO1K = createFormattedString(
+                formattedTexts[291].text,
+                formattedTexts[291].size,
+                formattedTexts[291].style,
+                formattedTexts[291].color
+            )
+            strAdditionNO1L = createFormattedString(
+                formattedTexts[292].text,
+                formattedTexts[292].size,
+                formattedTexts[292].style,
+                formattedTexts[292].color
+            )
+            strAdditionNO1M = createFormattedString(
+                formattedTexts[293].text,
+                formattedTexts[293].size,
+                formattedTexts[293].style,
+                formattedTexts[293].color
+            )
+            strAdditionNO1N = createFormattedString(
+                formattedTexts[294].text,
+                formattedTexts[294].size,
+                formattedTexts[294].style,
+                formattedTexts[294].color
+            )
+            strAdditionNO1O = createFormattedString(
+                formattedTexts[295].text,
+                formattedTexts[295].size,
+                formattedTexts[295].style,
+                formattedTexts[295].color
+            )
+            strAdditionNO2 = createFormattedString(
+                formattedTexts[296].text,
+                formattedTexts[296].size,
+                formattedTexts[296].style,
+                formattedTexts[296].color
+            )
+            strAdditionNO2B = createFormattedString(
+                formattedTexts[297].text,
+                formattedTexts[297].size,
+                formattedTexts[297].style,
+                formattedTexts[297].color
+            )
+            strAdditionNO2C = createFormattedString(
+                formattedTexts[298].text,
+                formattedTexts[298].size,
+                formattedTexts[298].style,
+                formattedTexts[298].color
+            )
+            strAdditionNO2D = createFormattedString(
+                formattedTexts[299].text,
+                formattedTexts[299].size,
+                formattedTexts[299].style,
+                formattedTexts[299].color
+            )
+            strAdditionNO2E = createFormattedString(
+                formattedTexts[300].text,
+                formattedTexts[300].size,
+                formattedTexts[300].style,
+                formattedTexts[300].color
+            )
+            strAdditionNO2F = createFormattedString(
+                formattedTexts[301].text,
+                formattedTexts[301].size,
+                formattedTexts[301].style,
+                formattedTexts[301].color
+            )
+            strAdditionNO2G = createFormattedString(
+                formattedTexts[302].text,
+                formattedTexts[302].size,
+                formattedTexts[302].style,
+                formattedTexts[302].color
+            )
+            strAdditionNO2H = createFormattedString(
+                formattedTexts[303].text,
+                formattedTexts[303].size,
+                formattedTexts[303].style,
+                formattedTexts[303].color
+            )
+            strAdditionNO2I = createFormattedString(
+                formattedTexts[304].text,
+                formattedTexts[304].size,
+                formattedTexts[304].style,
+                formattedTexts[304].color
+            )
+            strAdditionNO2J = createFormattedString(
+                formattedTexts[305].text,
+                formattedTexts[305].size,
+                formattedTexts[305].style,
+                formattedTexts[305].color
+            )
+            strAdditionNO2K = createFormattedString(
+                formattedTexts[306].text,
+                formattedTexts[306].size,
+                formattedTexts[306].style,
+                formattedTexts[306].color
+            )
+            strAdditionNO2L = createFormattedString(
+                formattedTexts[307].text,
+                formattedTexts[307].size,
+                formattedTexts[307].style,
+                formattedTexts[307].color
+            )
+            strAdditionNO2M = createFormattedString(
+                formattedTexts[308].text,
+                formattedTexts[308].size,
+                formattedTexts[308].style,
+                formattedTexts[308].color
+            )
+            strAdditionNO2N = createFormattedString(
+                formattedTexts[309].text,
+                formattedTexts[309].size,
+                formattedTexts[309].style,
+                formattedTexts[309].color
+            )
+            strAdditionNO2O = createFormattedString(
+                formattedTexts[310].text,
+                formattedTexts[310].size,
+                formattedTexts[310].style,
+                formattedTexts[310].color
+            )
+            strAdditionNO3 = createFormattedString(
+                formattedTexts[311].text,
+                formattedTexts[311].size,
+                formattedTexts[311].style,
+                formattedTexts[311].color
+            )
+            strAdditionNO3B = createFormattedString(
+                formattedTexts[312].text,
+                formattedTexts[312].size,
+                formattedTexts[312].style,
+                formattedTexts[312].color
+            )
+            strAdditionNO3C = createFormattedString(
+                formattedTexts[313].text,
+                formattedTexts[313].size,
+                formattedTexts[313].style,
+                formattedTexts[313].color
+            )
+            strAdditionNO3D = createFormattedString(
+                formattedTexts[314].text,
+                formattedTexts[314].size,
+                formattedTexts[314].style,
+                formattedTexts[314].color
+            )
+            strAdditionNO3E = createFormattedString(
+                formattedTexts[315].text,
+                formattedTexts[315].size,
+                formattedTexts[315].style,
+                formattedTexts[315].color
+            )
+            strAdditionNO3F = createFormattedString(
+                formattedTexts[316].text,
+                formattedTexts[316].size,
+                formattedTexts[316].style,
+                formattedTexts[316].color
+            )
+            strAdditionNO3G = createFormattedString(
+                formattedTexts[317].text,
+                formattedTexts[317].size,
+                formattedTexts[317].style,
+                formattedTexts[317].color
+            )
+            strAdditionNO3H = createFormattedString(
+                formattedTexts[318].text,
+                formattedTexts[318].size,
+                formattedTexts[318].style,
+                formattedTexts[318].color
+            )
+            strAdditionNO3I = createFormattedString(
+                formattedTexts[319].text,
+                formattedTexts[319].size,
+                formattedTexts[319].style,
+                formattedTexts[319].color
+            )
+            strAdditionNO3J = createFormattedString(
+                formattedTexts[320].text,
+                formattedTexts[320].size,
+                formattedTexts[320].style,
+                formattedTexts[320].color
+            )
+            strAdditionNO3K = createFormattedString(
+                formattedTexts[321].text,
+                formattedTexts[321].size,
+                formattedTexts[321].style,
+                formattedTexts[321].color
+            )
+            strAdditionNO3L = createFormattedString(
+                formattedTexts[322].text,
+                formattedTexts[322].size,
+                formattedTexts[322].style,
+                formattedTexts[322].color
+            )
+            strAdditionNO3M = createFormattedString(
+                formattedTexts[323].text,
+                formattedTexts[323].size,
+                formattedTexts[323].style,
+                formattedTexts[323].color
+            )
+            strAdditionNO3N = createFormattedString(
+                formattedTexts[324].text,
+                formattedTexts[324].size,
+                formattedTexts[324].style,
+                formattedTexts[324].color
+            )
+            strAdditionNO3O = createFormattedString(
+                formattedTexts[325].text,
+                formattedTexts[325].size,
+                formattedTexts[325].style,
+                formattedTexts[325].color
+            )
+            strAdditionP1zM = createFormattedString(
+                formattedTexts[326].text,
+                formattedTexts[326].size,
+                formattedTexts[326].style,
+                formattedTexts[326].color
+            )
+            strAdditionP1zMB = createFormattedString(
+                formattedTexts[327].text,
+                formattedTexts[327].size,
+                formattedTexts[327].style,
+                formattedTexts[327].color
+            )
+            strAdditionP1zMC = createFormattedString(
+                formattedTexts[328].text,
+                formattedTexts[328].size,
+                formattedTexts[328].style,
+                formattedTexts[328].color
+            )
+            strAdditionP2zM = createFormattedString(
+                formattedTexts[329].text,
+                formattedTexts[329].size,
+                formattedTexts[329].style,
+                formattedTexts[329].color
+            )
+            strAdditionP2zMB = createFormattedString(
+                formattedTexts[330].text,
+                formattedTexts[330].size,
+                formattedTexts[330].style,
+                formattedTexts[330].color
+            )
+            strAdditionP2zMC = createFormattedString(
+                formattedTexts[331].text,
+                formattedTexts[331].size,
+                formattedTexts[331].style,
+                formattedTexts[331].color
+            )
+            strAdditionP3zM = createFormattedString(
+                formattedTexts[332].text,
+                formattedTexts[332].size,
+                formattedTexts[332].style,
+                formattedTexts[332].color
+            )
+            strAdditionP3zMB = createFormattedString(
+                formattedTexts[333].text,
+                formattedTexts[333].size,
+                formattedTexts[333].style,
+                formattedTexts[333].color
+            )
+            strAdditionP3zMC = createFormattedString(
+                formattedTexts[334].text,
+                formattedTexts[334].size,
+                formattedTexts[334].style,
+                formattedTexts[334].color
+            )
+            strAdditionP4zM = createFormattedString(
+                formattedTexts[335].text,
+                formattedTexts[335].size,
+                formattedTexts[335].style,
+                formattedTexts[335].color
+            )
+            strAdditionP4zMB = createFormattedString(
+                formattedTexts[336].text,
+                formattedTexts[336].size,
+                formattedTexts[336].style,
+                formattedTexts[336].color
+            )
+            strAdditionP4zMC = createFormattedString(
+                formattedTexts[337].text,
+                formattedTexts[337].size,
+                formattedTexts[337].style,
+                formattedTexts[337].color
+            )
+            strAdditionP5zM = createFormattedString(
+                formattedTexts[338].text,
+                formattedTexts[338].size,
+                formattedTexts[338].style,
+                formattedTexts[338].color
+            )
+            strAdditionP5zMB = createFormattedString(
+                formattedTexts[339].text,
+                formattedTexts[339].size,
+                formattedTexts[339].style,
+                formattedTexts[339].color
+            )
+            strAdditionP5zMC = createFormattedString(
+                formattedTexts[340].text,
+                formattedTexts[340].size,
+                formattedTexts[340].style,
+                formattedTexts[340].color
+            )
 
-                strAdditionP6zM = createFormattedString(
-                    formattedTexts[341].text,
-                    formattedTexts[341].size,
-                    formattedTexts[341].style,
-                    formattedTexts[341].color
-                )
-                strAdditionP6zMB = createFormattedString(
-                    formattedTexts[342].text,
-                    formattedTexts[342].size,
-                    formattedTexts[342].style,
-                    formattedTexts[342].color
-                )
-                strAdditionP6zMC = createFormattedString(
-                    formattedTexts[343].text,
-                    formattedTexts[343].size,
-                    formattedTexts[343].style,
-                    formattedTexts[343].color
-                )
-                strAdditionP7zM = createFormattedString(
-                    formattedTexts[344].text,
-                    formattedTexts[344].size,
-                    formattedTexts[344].style,
-                    formattedTexts[344].color
-                )
-                strAdditionP7zMB = createFormattedString(
-                    formattedTexts[345].text,
-                    formattedTexts[345].size,
-                    formattedTexts[345].style,
-                    formattedTexts[345].color
-                )
-                strAdditionP7zMC = createFormattedString(
-                    formattedTexts[346].text,
-                    formattedTexts[346].size,
-                    formattedTexts[346].style,
-                    formattedTexts[346].color
-                )
-                strAdditionP8zM = createFormattedString(
-                    formattedTexts[347].text,
-                    formattedTexts[347].size,
-                    formattedTexts[347].style,
-                    formattedTexts[347].color
-                )
-                strAdditionP8zMB = createFormattedString(
-                    formattedTexts[348].text,
-                    formattedTexts[348].size,
-                    formattedTexts[348].style,
-                    formattedTexts[348].color
-                )
-                strAdditionP8zMC = createFormattedString(
-                    formattedTexts[349].text,
-                    formattedTexts[349].size,
-                    formattedTexts[349].style,
-                    formattedTexts[349].color
-                )
-                strAdditionP9zM = createFormattedString(
-                    formattedTexts[350].text,
-                    formattedTexts[350].size,
-                    formattedTexts[350].style,
-                    formattedTexts[350].color
-                )
-                strAdditionP9zMB = createFormattedString(
-                    formattedTexts[351].text,
-                    formattedTexts[351].size,
-                    formattedTexts[351].style,
-                    formattedTexts[351].color
-                )
-                strAdditionP9zMC = createFormattedString(
-                    formattedTexts[352].text,
-                    formattedTexts[352].size,
-                    formattedTexts[352].style,
-                    formattedTexts[352].color
-                )
-                strAdditionP10zM = createFormattedString(
-                    formattedTexts[353].text,
-                    formattedTexts[353].size,
-                    formattedTexts[353].style,
-                    formattedTexts[353].color
-                )
-                strAdditionP10zMB = createFormattedString(
-                    formattedTexts[354].text,
-                    formattedTexts[354].size,
-                    formattedTexts[354].style,
-                    formattedTexts[354].color
-                )
-                strAdditionP10zMC = createFormattedString(
-                    formattedTexts[355].text,
-                    formattedTexts[355].size,
-                    formattedTexts[355].style,
-                    formattedTexts[355].color
-                )
-                strAdditionP11zM = createFormattedString(
-                    formattedTexts[356].text,
-                    formattedTexts[356].size,
-                    formattedTexts[356].style,
-                    formattedTexts[356].color
-                )
-                strAdditionP11zMB = createFormattedString(
-                    formattedTexts[357].text,
-                    formattedTexts[357].size,
-                    formattedTexts[357].style,
-                    formattedTexts[357].color
-                )
-                strAdditionP11zMC = createFormattedString(
-                    formattedTexts[358].text,
-                    formattedTexts[358].size,
-                    formattedTexts[358].style,
-                    formattedTexts[358].color
-                )
-                strAdditionP12zM = createFormattedString(
-                    formattedTexts[359].text,
-                    formattedTexts[359].size,
-                    formattedTexts[359].style,
-                    formattedTexts[359].color
-                )
-                strAdditionP12zMB = createFormattedString(
-                    formattedTexts[360].text,
-                    formattedTexts[360].size,
-                    formattedTexts[360].style,
-                    formattedTexts[360].color
-                )
-                strAdditionP12zMC = createFormattedString(
-                    formattedTexts[361].text,
-                    formattedTexts[361].size,
-                    formattedTexts[361].style,
-                    formattedTexts[361].color
-                )
-                strAdditionP13zM = createFormattedString(
-                    formattedTexts[362].text,
-                    formattedTexts[362].size,
-                    formattedTexts[362].style,
-                    formattedTexts[362].color
-                )
-                strAdditionP13zMB = createFormattedString(
-                    formattedTexts[363].text,
-                    formattedTexts[363].size,
-                    formattedTexts[363].style,
-                    formattedTexts[363].color
-                )
-                strAdditionP13zMC = createFormattedString(
-                    formattedTexts[364].text,
-                    formattedTexts[364].size,
-                    formattedTexts[364].style,
-                    formattedTexts[364].color
-                )
-                strAdditionP14zM = createFormattedString(
-                    formattedTexts[365].text,
-                    formattedTexts[365].size,
-                    formattedTexts[365].style,
-                    formattedTexts[365].color
-                )
-                strAdditionP14zMB = createFormattedString(
-                    formattedTexts[366].text,
-                    formattedTexts[366].size,
-                    formattedTexts[366].style,
-                    formattedTexts[366].color
-                )
-                strAdditionP14zMC = createFormattedString(
-                    formattedTexts[367].text,
-                    formattedTexts[367].size,
-                    formattedTexts[367].style,
-                    formattedTexts[367].color
-                )
-                strAdditionP15zM = createFormattedString(
-                    formattedTexts[368].text,
-                    formattedTexts[368].size,
-                    formattedTexts[368].style,
-                    formattedTexts[368].color
-                )
-                strAdditionP15zMB = createFormattedString(
-                    formattedTexts[369].text,
-                    formattedTexts[369].size,
-                    formattedTexts[369].style,
-                    formattedTexts[369].color
-                )
-                strAdditionP15zMC = createFormattedString(
-                    formattedTexts[370].text,
-                    formattedTexts[370].size,
-                    formattedTexts[370].style,
-                    formattedTexts[370].color
-                )
-                strAdditionP1aA1 = createFormattedString(
-                    formattedTexts[371].text,
-                    formattedTexts[371].size,
-                    formattedTexts[371].style,
-                    formattedTexts[371].color
-                )
-                strAdditionP1aA2 = createFormattedString(
-                    formattedTexts[372].text,
-                    formattedTexts[372].size,
-                    formattedTexts[372].style,
-                    formattedTexts[372].color
-                )
-                strAdditionP1aA3 = createFormattedString(
-                    formattedTexts[373].text,
-                    formattedTexts[373].size,
-                    formattedTexts[373].style,
-                    formattedTexts[373].color
-                )
-                strAdditionP1aB1 = createFormattedString(
-                    formattedTexts[374].text,
-                    formattedTexts[374].size,
-                    formattedTexts[374].style,
-                    formattedTexts[374].color
-                )
-                strAdditionP1aB2 = createFormattedString(
-                    formattedTexts[375].text,
-                    formattedTexts[375].size,
-                    formattedTexts[375].style,
-                    formattedTexts[375].color
-                )
-                strAdditionP1aC1 = createFormattedString(
-                    formattedTexts[376].text,
-                    formattedTexts[376].size,
-                    formattedTexts[376].style,
-                    formattedTexts[376].color
-                )
-                strAdditionP1aC2 = createFormattedString(
-                    formattedTexts[377].text,
-                    formattedTexts[377].size,
-                    formattedTexts[377].style,
-                    formattedTexts[377].color
-                )
-                strAdditionP1aC3 = createFormattedString(
-                    formattedTexts[378].text,
-                    formattedTexts[378].size,
-                    formattedTexts[378].style,
-                    formattedTexts[378].color
-                )
-                strAdditionP1aD1 = createFormattedString(
-                    formattedTexts[379].text,
-                    formattedTexts[379].size,
-                    formattedTexts[379].style,
-                    formattedTexts[379].color
-                )
-                strAdditionP1aD2 = createFormattedString(
-                    formattedTexts[380].text,
-                    formattedTexts[380].size,
-                    formattedTexts[380].style,
-                    formattedTexts[380].color
-                )
-                strAdditionP1aD3 = createFormattedString(
-                    formattedTexts[381].text,
-                    formattedTexts[381].size,
-                    formattedTexts[381].style,
-                    formattedTexts[381].color
-                )
-                strAdditionP1aE1 = createFormattedString(
-                    formattedTexts[382].text,
-                    formattedTexts[382].size,
-                    formattedTexts[382].style,
-                    formattedTexts[382].color
-                )
-                strAdditionP1aE2 = createFormattedString(
-                    formattedTexts[383].text,
-                    formattedTexts[383].size,
-                    formattedTexts[383].style,
-                    formattedTexts[383].color
-                )
-                strAdditionP1aE3 = createFormattedString(
-                    formattedTexts[384].text,
-                    formattedTexts[384].size,
-                    formattedTexts[384].style,
-                    formattedTexts[384].color
-                )
-                strAdditionP1aF1 = createFormattedString(
-                    formattedTexts[385].text,
-                    formattedTexts[385].size,
-                    formattedTexts[385].style,
-                    formattedTexts[385].color
-                )
-                strAdditionP1aF2 = createFormattedString(
-                    formattedTexts[386].text,
-                    formattedTexts[386].size,
-                    formattedTexts[386].style,
-                    formattedTexts[386].color
-                )
-                strAdditionP1aF3 = createFormattedString(
-                    formattedTexts[387].text,
-                    formattedTexts[387].size,
-                    formattedTexts[387].style,
-                    formattedTexts[387].color
-                )
-                strAdditionP1aG1 = createFormattedString(
-                    formattedTexts[388].text,
-                    formattedTexts[388].size,
-                    formattedTexts[388].style,
-                    formattedTexts[388].color
-                )
-                strAdditionP1aG2 = createFormattedString(
-                    formattedTexts[389].text,
-                    formattedTexts[389].size,
-                    formattedTexts[389].style,
-                    formattedTexts[389].color
-                )
-                strAdditionP1aG3 = createFormattedString(
-                    formattedTexts[390].text,
-                    formattedTexts[390].size,
-                    formattedTexts[390].style,
-                    formattedTexts[390].color
-                )
-                strAdditionP1aH1 = createFormattedString(
-                    formattedTexts[391].text,
-                    formattedTexts[391].size,
-                    formattedTexts[391].style,
-                    formattedTexts[391].color
-                )
-                strAdditionP1aH2 = createFormattedString(
-                    formattedTexts[392].text,
-                    formattedTexts[392].size,
-                    formattedTexts[392].style,
-                    formattedTexts[392].color
-                )
-                strAdditionP1aH3 = createFormattedString(
-                    formattedTexts[393].text,
-                    formattedTexts[393].size,
-                    formattedTexts[393].style,
-                    formattedTexts[393].color
-                )
-                strAdditionP1aI1 = createFormattedString(
-                    formattedTexts[394].text,
-                    formattedTexts[394].size,
-                    formattedTexts[394].style,
-                    formattedTexts[394].color
-                )
-                strAdditionP1aI2 = createFormattedString(
-                    formattedTexts[395].text,
-                    formattedTexts[395].size,
-                    formattedTexts[395].style,
-                    formattedTexts[395].color
-                )
-                strAdditionP1aI3 = createFormattedString(
-                    formattedTexts[396].text,
-                    formattedTexts[396].size,
-                    formattedTexts[396].style,
-                    formattedTexts[396].color
-                )
-                strAdditionP1aJ1 = createFormattedString(
-                    formattedTexts[397].text,
-                    formattedTexts[397].size,
-                    formattedTexts[397].style,
-                    formattedTexts[397].color
-                )
-                strAdditionP1aJ2 = createFormattedString(
-                    formattedTexts[398].text,
-                    formattedTexts[398].size,
-                    formattedTexts[398].style,
-                    formattedTexts[398].color
-                )
-                strAdditionP1aJ3 = createFormattedString(
-                    formattedTexts[399].text,
-                    formattedTexts[399].size,
-                    formattedTexts[399].style,
-                    formattedTexts[399].color
-                )
-                strAdditionP1aK1 = createFormattedString(
-                    formattedTexts[400].text,
-                    formattedTexts[400].size,
-                    formattedTexts[400].style,
-                    formattedTexts[400].color
-                )
-                strAdditionP1aK2 = createFormattedString(
-                    formattedTexts[401].text,
-                    formattedTexts[401].size,
-                    formattedTexts[401].style,
-                    formattedTexts[401].color
-                )
-                strAdditionP1aK3 = createFormattedString(
-                    formattedTexts[402].text,
-                    formattedTexts[402].size,
-                    formattedTexts[402].style,
-                    formattedTexts[402].color
-                )
-                strAdditionP1aL1 = createFormattedString(
-                    formattedTexts[403].text,
-                    formattedTexts[403].size,
-                    formattedTexts[403].style,
-                    formattedTexts[403].color
-                )
-                strAdditionP1aL2 = createFormattedString(
-                    formattedTexts[404].text,
-                    formattedTexts[404].size,
-                    formattedTexts[404].style,
-                    formattedTexts[404].color
-                )
-                strAdditionP1aL3 = createFormattedString(
-                    formattedTexts[405].text,
-                    formattedTexts[405].size,
-                    formattedTexts[405].style,
-                    formattedTexts[405].color
-                )
-                strAdditionP1aM1 = createFormattedString(
-                    formattedTexts[406].text,
-                    formattedTexts[406].size,
-                    formattedTexts[406].style,
-                    formattedTexts[406].color
-                )
-                strAdditionP1aM2 = createFormattedString(
-                    formattedTexts[407].text,
-                    formattedTexts[407].size,
-                    formattedTexts[407].style,
-                    formattedTexts[407].color
-                )
-                strAdditionP1aM3 = createFormattedString(
-                    formattedTexts[408].text,
-                    formattedTexts[408].size,
-                    formattedTexts[408].style,
-                    formattedTexts[408].color
-                )
-                strAdditionP1aN1 = createFormattedString(
-                    formattedTexts[409].text,
-                    formattedTexts[409].size,
-                    formattedTexts[409].style,
-                    formattedTexts[409].color
-                )
-                strAdditionP1aN2 = createFormattedString(
-                    formattedTexts[410].text,
-                    formattedTexts[410].size,
-                    formattedTexts[410].style,
-                    formattedTexts[410].color
-                )
-                strAdditionP1aN3 = createFormattedString(
-                    formattedTexts[411].text,
-                    formattedTexts[411].size,
-                    formattedTexts[411].style,
-                    formattedTexts[411].color
-                )
-                strAdditionP1aO1 = createFormattedString(
-                    formattedTexts[412].text,
-                    formattedTexts[412].size,
-                    formattedTexts[412].style,
-                    formattedTexts[412].color
-                )
-                strAdditionP1aO2 = createFormattedString(
-                    formattedTexts[413].text,
-                    formattedTexts[413].size,
-                    formattedTexts[413].style,
-                    formattedTexts[413].color
-                )
-                strAdditionP1aO3 = createFormattedString(
-                    formattedTexts[414].text,
-                    formattedTexts[414].size,
-                    formattedTexts[414].style,
-                    formattedTexts[414].color
-                )
-                strAdditionP1zA = createFormattedString(
-                    formattedTexts[415].text,
-                    formattedTexts[415].size,
-                    formattedTexts[415].style,
-                    formattedTexts[415].color
-                )
-                strAdditionP1zB = createFormattedString(
-                    formattedTexts[416].text,
-                    formattedTexts[416].size,
-                    formattedTexts[416].style,
-                    formattedTexts[416].color
-                )
-                strAdditionP1zC = createFormattedString(
-                    formattedTexts[417].text,
-                    formattedTexts[417].size,
-                    formattedTexts[417].style,
-                    formattedTexts[417].color
-                )
-                strAdditionP2zA = createFormattedString(
-                    formattedTexts[418].text,
-                    formattedTexts[418].size,
-                    formattedTexts[418].style,
-                    formattedTexts[418].color
-                )
-                strAdditionP2zB = createFormattedString(
-                    formattedTexts[419].text,
-                    formattedTexts[419].size,
-                    formattedTexts[419].style,
-                    formattedTexts[419].color
-                )
-                strAdditionP2zC = createFormattedString(
-                    formattedTexts[420].text,
-                    formattedTexts[420].size,
-                    formattedTexts[420].style,
-                    formattedTexts[420].color
-                )
-                strAdditionP3zA = createFormattedString(
-                    formattedTexts[421].text,
-                    formattedTexts[421].size,
-                    formattedTexts[421].style,
-                    formattedTexts[421].color
-                )
-                strAdditionP3zB = createFormattedString(
-                    formattedTexts[422].text,
-                    formattedTexts[422].size,
-                    formattedTexts[422].style,
-                    formattedTexts[422].color
-                )
-                strAdditionP3zC = createFormattedString(
-                    formattedTexts[423].text,
-                    formattedTexts[423].size,
-                    formattedTexts[423].style,
-                    formattedTexts[423].color
-                )
-                strAdditionP4zA = createFormattedString(
-                    formattedTexts[424].text,
-                    formattedTexts[424].size,
-                    formattedTexts[424].style,
-                    formattedTexts[424].color
-                )
-                strAdditionP4zB = createFormattedString(
-                    formattedTexts[425].text,
-                    formattedTexts[425].size,
-                    formattedTexts[425].style,
-                    formattedTexts[425].color
-                )
-                strAdditionP4zC = createFormattedString(
-                    formattedTexts[426].text,
-                    formattedTexts[426].size,
-                    formattedTexts[426].style,
-                    formattedTexts[426].color
-                )
-                strAdditionP5zA = createFormattedString(
-                    formattedTexts[427].text,
-                    formattedTexts[427].size,
-                    formattedTexts[427].style,
-                    formattedTexts[427].color
-                )
-                strAdditionP5zB = createFormattedString(
-                    formattedTexts[428].text,
-                    formattedTexts[428].size,
-                    formattedTexts[428].style,
-                    formattedTexts[428].color
-                )
-                strAdditionP5zC = createFormattedString(
-                    formattedTexts[429].text,
-                    formattedTexts[429].size,
-                    formattedTexts[429].style,
-                    formattedTexts[429].color
-                )
-                strAdditionP6zA = createFormattedString(
-                    formattedTexts[430].text,
-                    formattedTexts[430].size,
-                    formattedTexts[430].style,
-                    formattedTexts[430].color
-                )
-                strAdditionP6zB = createFormattedString(
-                    formattedTexts[431].text,
-                    formattedTexts[431].size,
-                    formattedTexts[431].style,
-                    formattedTexts[431].color
-                )
-                strAdditionP6zC = createFormattedString(
-                    formattedTexts[432].text,
-                    formattedTexts[432].size,
-                    formattedTexts[432].style,
-                    formattedTexts[432].color
-                )
-                strAdditionP7zA = createFormattedString(
-                    formattedTexts[433].text,
-                    formattedTexts[433].size,
-                    formattedTexts[433].style,
-                    formattedTexts[433].color
-                )
-                strAdditionP7zB = createFormattedString(
-                    formattedTexts[434].text,
-                    formattedTexts[434].size,
-                    formattedTexts[434].style,
-                    formattedTexts[434].color
-                )
-                strAdditionP7zC = createFormattedString(
-                    formattedTexts[435].text,
-                    formattedTexts[435].size,
-                    formattedTexts[435].style,
-                    formattedTexts[435].color
-                )
-                strAdditionP8zA = createFormattedString(
-                    formattedTexts[436].text,
-                    formattedTexts[436].size,
-                    formattedTexts[436].style,
-                    formattedTexts[436].color
-                )
-                strAdditionP8zB = createFormattedString(
-                    formattedTexts[437].text,
-                    formattedTexts[437].size,
-                    formattedTexts[437].style,
-                    formattedTexts[437].color
-                )
-                strAdditionP8zC = createFormattedString(
-                    formattedTexts[438].text,
-                    formattedTexts[438].size,
-                    formattedTexts[438].style,
-                    formattedTexts[438].color
-                )
-                strAdditionP9zA = createFormattedString(
-                    formattedTexts[439].text,
-                    formattedTexts[439].size,
-                    formattedTexts[439].style,
-                    formattedTexts[439].color
-                )
-                strAdditionP9zB = createFormattedString(
-                    formattedTexts[440].text,
-                    formattedTexts[440].size,
-                    formattedTexts[440].style,
-                    formattedTexts[440].color
-                )
-                strAdditionP9zC = createFormattedString(
-                    formattedTexts[441].text,
-                    formattedTexts[441].size,
-                    formattedTexts[441].style,
-                    formattedTexts[441].color
-                )
-                strAdditionP10zA = createFormattedString(
-                    formattedTexts[442].text,
-                    formattedTexts[442].size,
-                    formattedTexts[442].style,
-                    formattedTexts[442].color
-                )
-                strAdditionP10zB = createFormattedString(
-                    formattedTexts[443].text,
-                    formattedTexts[443].size,
-                    formattedTexts[443].style,
-                    formattedTexts[443].color
-                )
-                strAdditionP10zC = createFormattedString(
-                    formattedTexts[444].text,
-                    formattedTexts[444].size,
-                    formattedTexts[444].style,
-                    formattedTexts[444].color
-                )
-                strAdditionP11zA = createFormattedString(
-                    formattedTexts[445].text,
-                    formattedTexts[445].size,
-                    formattedTexts[445].style,
-                    formattedTexts[445].color
-                )
-                strAdditionP11zB = createFormattedString(
-                    formattedTexts[446].text,
-                    formattedTexts[446].size,
-                    formattedTexts[446].style,
-                    formattedTexts[446].color
-                )
-                strAdditionP11zC = createFormattedString(
-                    formattedTexts[447].text,
-                    formattedTexts[447].size,
-                    formattedTexts[447].style,
-                    formattedTexts[447].color
-                )
-                strAdditionP12zA = createFormattedString(
-                    formattedTexts[448].text,
-                    formattedTexts[448].size,
-                    formattedTexts[448].style,
-                    formattedTexts[448].color
-                )
-                strAdditionP12zB = createFormattedString(
-                    formattedTexts[449].text,
-                    formattedTexts[449].size,
-                    formattedTexts[449].style,
-                    formattedTexts[449].color
-                )
-                strAdditionP12zC = createFormattedString(
-                    formattedTexts[450].text,
-                    formattedTexts[450].size,
-                    formattedTexts[450].style,
-                    formattedTexts[450].color
-                )
-                strAdditionP13zA = createFormattedString(
-                    formattedTexts[451].text,
-                    formattedTexts[451].size,
-                    formattedTexts[451].style,
-                    formattedTexts[451].color
-                )
-                strAdditionP13zB = createFormattedString(
-                    formattedTexts[452].text,
-                    formattedTexts[452].size,
-                    formattedTexts[452].style,
-                    formattedTexts[452].color
-                )
-                strAdditionP13zC = createFormattedString(
-                    formattedTexts[453].text,
-                    formattedTexts[453].size,
-                    formattedTexts[453].style,
-                    formattedTexts[453].color
-                )
-                strAdditionP14zA = createFormattedString(
-                    formattedTexts[454].text,
-                    formattedTexts[454].size,
-                    formattedTexts[454].style,
-                    formattedTexts[454].color
-                )
-                strAdditionP14zB = createFormattedString(
-                    formattedTexts[455].text,
-                    formattedTexts[455].size,
-                    formattedTexts[455].style,
-                    formattedTexts[455].color
-                )
-                strAdditionP14zC = createFormattedString(
-                    formattedTexts[456].text,
-                    formattedTexts[456].size,
-                    formattedTexts[456].style,
-                    formattedTexts[456].color
-                )
-                strAdditionP15zA = createFormattedString(
-                    formattedTexts[457].text,
-                    formattedTexts[457].size,
-                    formattedTexts[457].style,
-                    formattedTexts[457].color
-                )
-                strAdditionP15zB = createFormattedString(
-                    formattedTexts[458].text,
-                    formattedTexts[458].size,
-                    formattedTexts[458].style,
-                    formattedTexts[458].color
-                )
-                strAdditionP15zC = createFormattedString(
-                    formattedTexts[459].text,
-                    formattedTexts[459].size,
-                    formattedTexts[459].style,
-                    formattedTexts[459].color
-                )
-                strAdditionP1bA1 = createFormattedString(
-                    formattedTexts[460].text,
-                    formattedTexts[460].size,
-                    formattedTexts[460].style,
-                    formattedTexts[460].color
-                )
-                strAdditionP1bA2 = createFormattedString(
-                    formattedTexts[461].text,
-                    formattedTexts[461].size,
-                    formattedTexts[461].style,
-                    formattedTexts[461].color
-                )
-                strAdditionP1bA3 = createFormattedString(
-                    formattedTexts[462].text,
-                    formattedTexts[462].size,
-                    formattedTexts[462].style,
-                    formattedTexts[462].color
-                )
-                strAdditionP1bB1 = createFormattedString(
-                    formattedTexts[463].text,
-                    formattedTexts[463].size,
-                    formattedTexts[463].style,
-                    formattedTexts[463].color
-                )
-                strAdditionP1bB2 = createFormattedString(
-                    formattedTexts[464].text,
-                    formattedTexts[464].size,
-                    formattedTexts[464].style,
-                    formattedTexts[464].color
-                )
-                strAdditionP1bB3 = createFormattedString(
-                    formattedTexts[465].text,
-                    formattedTexts[465].size,
-                    formattedTexts[465].style,
-                    formattedTexts[465].color
-                )
-                strAdditionP1bC1 = createFormattedString(
-                    formattedTexts[466].text,
-                    formattedTexts[466].size,
-                    formattedTexts[466].style,
-                    formattedTexts[466].color
-                )
-                strAdditionP1bC2 = createFormattedString(
-                    formattedTexts[467].text,
-                    formattedTexts[467].size,
-                    formattedTexts[467].style,
-                    formattedTexts[467].color
-                )
-                strAdditionP1bC3 = createFormattedString(
-                    formattedTexts[468].text,
-                    formattedTexts[468].size,
-                    formattedTexts[468].style,
-                    formattedTexts[468].color
-                )
-                strAdditionP1bD1 = createFormattedString(
-                    formattedTexts[469].text,
-                    formattedTexts[469].size,
-                    formattedTexts[469].style,
-                    formattedTexts[469].color
-                )
-                strAdditionP1bD2 = createFormattedString(
-                    formattedTexts[470].text,
-                    formattedTexts[470].size,
-                    formattedTexts[470].style,
-                    formattedTexts[470].color
-                )
-                strAdditionP1bD3 = createFormattedString(
-                    formattedTexts[471].text,
-                    formattedTexts[471].size,
-                    formattedTexts[471].style,
-                    formattedTexts[471].color
-                )
-                strAdditionP1bE1 = createFormattedString(
-                    formattedTexts[472].text,
-                    formattedTexts[472].size,
-                    formattedTexts[472].style,
-                    formattedTexts[472].color
-                )
-                strAdditionP1bE2 = createFormattedString(
-                    formattedTexts[473].text,
-                    formattedTexts[473].size,
-                    formattedTexts[473].style,
-                    formattedTexts[473].color
-                )
-                strAdditionP1bE3 = createFormattedString(
-                    formattedTexts[474].text,
-                    formattedTexts[474].size,
-                    formattedTexts[474].style,
-                    formattedTexts[474].color
-                )
-                strAdditionP1bF1 = createFormattedString(
-                    formattedTexts[475].text,
-                    formattedTexts[475].size,
-                    formattedTexts[475].style,
-                    formattedTexts[475].color
-                )
-                strAdditionP1bF2 = createFormattedString(
-                    formattedTexts[476].text,
-                    formattedTexts[476].size,
-                    formattedTexts[476].style,
-                    formattedTexts[476].color
-                )
-                strAdditionP1bF3 = createFormattedString(
-                    formattedTexts[477].text,
-                    formattedTexts[477].size,
-                    formattedTexts[477].style,
-                    formattedTexts[477].color
-                )
-                strAdditionP1bG1 = createFormattedString(
-                    formattedTexts[478].text,
-                    formattedTexts[478].size,
-                    formattedTexts[478].style,
-                    formattedTexts[478].color
-                )
-                strAdditionP1bG2 = createFormattedString(
-                    formattedTexts[479].text,
-                    formattedTexts[479].size,
-                    formattedTexts[479].style,
-                    formattedTexts[479].color
-                )
-                strAdditionP1bG3 = createFormattedString(
-                    formattedTexts[480].text,
-                    formattedTexts[480].size,
-                    formattedTexts[480].style,
-                    formattedTexts[480].color
-                )
-                strAdditionP1bH1 = createFormattedString(
-                    formattedTexts[481].text,
-                    formattedTexts[481].size,
-                    formattedTexts[481].style,
-                    formattedTexts[481].color
-                )
-                strAdditionP1bH2 = createFormattedString(
-                    formattedTexts[482].text,
-                    formattedTexts[482].size,
-                    formattedTexts[482].style,
-                    formattedTexts[482].color
-                )
-                strAdditionP1bH3 = createFormattedString(
-                    formattedTexts[483].text,
-                    formattedTexts[483].size,
-                    formattedTexts[483].style,
-                    formattedTexts[483].color
-                )
-                strAdditionP1bI1 = createFormattedString(
-                    formattedTexts[484].text,
-                    formattedTexts[484].size,
-                    formattedTexts[484].style,
-                    formattedTexts[484].color
-                )
-                strAdditionP1bI2 = createFormattedString(
-                    formattedTexts[485].text,
-                    formattedTexts[485].size,
-                    formattedTexts[485].style,
-                    formattedTexts[485].color
-                )
-                strAdditionP1bI3 = createFormattedString(
-                    formattedTexts[486].text,
-                    formattedTexts[486].size,
-                    formattedTexts[486].style,
-                    formattedTexts[486].color
-                )
-                strAdditionP1bJ1 = createFormattedString(
-                    formattedTexts[487].text,
-                    formattedTexts[487].size,
-                    formattedTexts[487].style,
-                    formattedTexts[487].color
-                )
-                strAdditionP1bJ2 = createFormattedString(
-                    formattedTexts[488].text,
-                    formattedTexts[488].size,
-                    formattedTexts[488].style,
-                    formattedTexts[488].color
-                )
-                strAdditionP1bJ3 = createFormattedString(
-                    formattedTexts[489].text,
-                    formattedTexts[489].size,
-                    formattedTexts[489].style,
-                    formattedTexts[489].color
-                )
-                strAdditionP1bK1 = createFormattedString(
-                    formattedTexts[490].text,
-                    formattedTexts[490].size,
-                    formattedTexts[490].style,
-                    formattedTexts[490].color
-                )
-                strAdditionP1bK2 = createFormattedString(
-                    formattedTexts[491].text,
-                    formattedTexts[491].size,
-                    formattedTexts[491].style,
-                    formattedTexts[491].color
-                )
-                strAdditionP1bK3 = createFormattedString(
-                    formattedTexts[492].text,
-                    formattedTexts[492].size,
-                    formattedTexts[492].style,
-                    formattedTexts[492].color
-                )
-                strAdditionP1bL1 = createFormattedString(
-                    formattedTexts[493].text,
-                    formattedTexts[493].size,
-                    formattedTexts[493].style,
-                    formattedTexts[493].color
-                )
-                strAdditionP1bL2 = createFormattedString(
-                    formattedTexts[494].text,
-                    formattedTexts[494].size,
-                    formattedTexts[494].style,
-                    formattedTexts[494].color
-                )
-                strAdditionP1bL3 = createFormattedString(
-                    formattedTexts[495].text,
-                    formattedTexts[495].size,
-                    formattedTexts[495].style,
-                    formattedTexts[495].color
-                )
-                strAdditionP1bM1 = createFormattedString(
-                    formattedTexts[496].text,
-                    formattedTexts[496].size,
-                    formattedTexts[496].style,
-                    formattedTexts[496].color
-                )
-                strAdditionP1bM2 = createFormattedString(
-                    formattedTexts[497].text,
-                    formattedTexts[497].size,
-                    formattedTexts[497].style,
-                    formattedTexts[497].color
-                )
-                strAdditionP1bM3 = createFormattedString(
-                    formattedTexts[498].text,
-                    formattedTexts[498].size,
-                    formattedTexts[498].style,
-                    formattedTexts[498].color
-                )
-                strAdditionP1bN1 = createFormattedString(
-                    formattedTexts[499].text,
-                    formattedTexts[499].size,
-                    formattedTexts[499].style,
-                    formattedTexts[499].color
-                )
-                strAdditionP1bN2 = createFormattedString(
-                    formattedTexts[500].text,
-                    formattedTexts[500].size,
-                    formattedTexts[500].style,
-                    formattedTexts[500].color
-                )
-                strAdditionP1bN3 = createFormattedString(
-                    formattedTexts[501].text,
-                    formattedTexts[501].size,
-                    formattedTexts[501].style,
-                    formattedTexts[501].color
-                )
-                strAdditionP1bO1 = createFormattedString(
-                    formattedTexts[502].text,
-                    formattedTexts[502].size,
-                    formattedTexts[502].style,
-                    formattedTexts[502].color
-                )
-                strAdditionP1bO2 = createFormattedString(
-                    formattedTexts[503].text,
-                    formattedTexts[503].size,
-                    formattedTexts[503].style,
-                    formattedTexts[503].color
-                )
-                strAdditionP1bO3 = createFormattedString(
-                    formattedTexts[504].text,
-                    formattedTexts[504].size,
-                    formattedTexts[504].style,
-                    formattedTexts[504].color
-                )
-                strAdditionP1cA1 = createFormattedString(
-                    formattedTexts[505].text,
-                    formattedTexts[505].size,
-                    formattedTexts[505].style,
-                    formattedTexts[505].color
-                )
-                strAdditionP1cA2 = createFormattedString(
-                    formattedTexts[506].text,
-                    formattedTexts[506].size,
-                    formattedTexts[506].style,
-                    formattedTexts[506].color
-                )
-                strAdditionP1cA3 = createFormattedString(
-                    formattedTexts[507].text,
-                    formattedTexts[507].size,
-                    formattedTexts[507].style,
-                    formattedTexts[507].color
-                )
-                strAdditionP1cB1 = createFormattedString(
-                    formattedTexts[508].text,
-                    formattedTexts[508].size,
-                    formattedTexts[508].style,
-                    formattedTexts[508].color
-                )
-                strAdditionP1cB2 = createFormattedString(
-                    formattedTexts[509].text,
-                    formattedTexts[509].size,
-                    formattedTexts[509].style,
-                    formattedTexts[509].color
-                )
-                strAdditionP1cB3 = createFormattedString(
-                    formattedTexts[510].text,
-                    formattedTexts[510].size,
-                    formattedTexts[510].style,
-                    formattedTexts[510].color
-                )
-                strAdditionP1cC1 = createFormattedString(
-                    formattedTexts[511].text,
-                    formattedTexts[511].size,
-                    formattedTexts[511].style,
-                    formattedTexts[511].color
-                )
-                strAdditionP1cC2 = createFormattedString(
-                    formattedTexts[512].text,
-                    formattedTexts[512].size,
-                    formattedTexts[512].style,
-                    formattedTexts[512].color
-                )
-                strAdditionP1cC3 = createFormattedString(
-                    formattedTexts[513].text,
-                    formattedTexts[513].size,
-                    formattedTexts[513].style,
-                    formattedTexts[513].color
-                )
-                strAdditionP1cD1 = createFormattedString(
-                    formattedTexts[514].text,
-                    formattedTexts[514].size,
-                    formattedTexts[514].style,
-                    formattedTexts[514].color
-                )
-                strAdditionP1cD2 = createFormattedString(
-                    formattedTexts[515].text,
-                    formattedTexts[515].size,
-                    formattedTexts[515].style,
-                    formattedTexts[515].color
-                )
-                strAdditionP1cD3 = createFormattedString(
-                    formattedTexts[516].text,
-                    formattedTexts[516].size,
-                    formattedTexts[516].style,
-                    formattedTexts[516].color
-                )
-                strAdditionP1cE1 = createFormattedString(
-                    formattedTexts[517].text,
-                    formattedTexts[517].size,
-                    formattedTexts[517].style,
-                    formattedTexts[517].color
-                )
-                strAdditionP1cE2 = createFormattedString(
-                    formattedTexts[518].text,
-                    formattedTexts[518].size,
-                    formattedTexts[518].style,
-                    formattedTexts[518].color
-                )
-                strAdditionP1cE3 = createFormattedString(
-                    formattedTexts[519].text,
-                    formattedTexts[519].size,
-                    formattedTexts[519].style,
-                    formattedTexts[519].color
-                )
-                strAdditionP1cF1 = createFormattedString(
-                    formattedTexts[520].text,
-                    formattedTexts[520].size,
-                    formattedTexts[520].style,
-                    formattedTexts[520].color
-                )
-                strAdditionP1cF2 = createFormattedString(
-                    formattedTexts[521].text,
-                    formattedTexts[521].size,
-                    formattedTexts[521].style,
-                    formattedTexts[521].color
-                )
-                strAdditionP1cF3 = createFormattedString(
-                    formattedTexts[522].text,
-                    formattedTexts[522].size,
-                    formattedTexts[522].style,
-                    formattedTexts[522].color
-                )
-                strAdditionP1cG1 = createFormattedString(
-                    formattedTexts[523].text,
-                    formattedTexts[523].size,
-                    formattedTexts[523].style,
-                    formattedTexts[523].color
-                )
-                strAdditionP1cG2 = createFormattedString(
-                    formattedTexts[524].text,
-                    formattedTexts[524].size,
-                    formattedTexts[524].style,
-                    formattedTexts[524].color
-                )
-                strAdditionP1cG3 = createFormattedString(
-                    formattedTexts[525].text,
-                    formattedTexts[525].size,
-                    formattedTexts[525].style,
-                    formattedTexts[525].color
-                )
-                strAdditionP1cH1 = createFormattedString(
-                    formattedTexts[526].text,
-                    formattedTexts[526].size,
-                    formattedTexts[526].style,
-                    formattedTexts[526].color
-                )
-                strAdditionP1cH2 = createFormattedString(
-                    formattedTexts[527].text,
-                    formattedTexts[527].size,
-                    formattedTexts[527].style,
-                    formattedTexts[527].color
-                )
-                strAdditionP1cH3 = createFormattedString(
-                    formattedTexts[528].text,
-                    formattedTexts[528].size,
-                    formattedTexts[528].style,
-                    formattedTexts[528].color
-                )
-                strAdditionP1cI1 = createFormattedString(
-                    formattedTexts[529].text,
-                    formattedTexts[529].size,
-                    formattedTexts[529].style,
-                    formattedTexts[529].color
-                )
-                strAdditionP1cI2 = createFormattedString(
-                    formattedTexts[530].text,
-                    formattedTexts[530].size,
-                    formattedTexts[530].style,
-                    formattedTexts[530].color
-                )
-                strAdditionP1cI3 = createFormattedString(
-                    formattedTexts[531].text,
-                    formattedTexts[531].size,
-                    formattedTexts[531].style,
-                    formattedTexts[531].color
-                )
-                strAdditionP1cJ1 = createFormattedString(
-                    formattedTexts[532].text,
-                    formattedTexts[532].size,
-                    formattedTexts[532].style,
-                    formattedTexts[532].color
-                )
-                strAdditionP1cJ2 = createFormattedString(
-                    formattedTexts[533].text,
-                    formattedTexts[533].size,
-                    formattedTexts[533].style,
-                    formattedTexts[533].color
-                )
-                strAdditionP1cJ3 = createFormattedString(
-                    formattedTexts[534].text,
-                    formattedTexts[534].size,
-                    formattedTexts[534].style,
-                    formattedTexts[534].color
-                )
-                strAdditionP1cK1 = createFormattedString(
-                    formattedTexts[535].text,
-                    formattedTexts[535].size,
-                    formattedTexts[535].style,
-                    formattedTexts[535].color
-                )
-                strAdditionP1cK2 = createFormattedString(
-                    formattedTexts[536].text,
-                    formattedTexts[536].size,
-                    formattedTexts[536].style,
-                    formattedTexts[536].color
-                )
-                strAdditionP1cK3 = createFormattedString(
-                    formattedTexts[537].text,
-                    formattedTexts[537].size,
-                    formattedTexts[537].style,
-                    formattedTexts[537].color
-                )
-                strAdditionP1cL1 = createFormattedString(
-                    formattedTexts[538].text,
-                    formattedTexts[538].size,
-                    formattedTexts[538].style,
-                    formattedTexts[538].color
-                )
-                strAdditionP1cL2 = createFormattedString(
-                    formattedTexts[539].text,
-                    formattedTexts[539].size,
-                    formattedTexts[539].style,
-                    formattedTexts[539].color
-                )
-                strAdditionP1cL3 = createFormattedString(
-                    formattedTexts[540].text,
-                    formattedTexts[540].size,
-                    formattedTexts[540].style,
-                    formattedTexts[540].color
-                )
-                strAdditionP1cM1 = createFormattedString(
-                    formattedTexts[541].text,
-                    formattedTexts[541].size,
-                    formattedTexts[541].style,
-                    formattedTexts[541].color
-                )
-                strAdditionP1cM2 = createFormattedString(
-                    formattedTexts[542].text,
-                    formattedTexts[542].size,
-                    formattedTexts[542].style,
-                    formattedTexts[542].color
-                )
-                strAdditionP1cM3 = createFormattedString(
-                    formattedTexts[543].text,
-                    formattedTexts[543].size,
-                    formattedTexts[543].style,
-                    formattedTexts[543].color
-                )
-                strAdditionP1cN1 = createFormattedString(
-                    formattedTexts[544].text,
-                    formattedTexts[544].size,
-                    formattedTexts[544].style,
-                    formattedTexts[544].color
-                )
-                strAdditionP1cN2 = createFormattedString(
-                    formattedTexts[545].text,
-                    formattedTexts[545].size,
-                    formattedTexts[545].style,
-                    formattedTexts[545].color
-                )
-                strAdditionP1cN3 = createFormattedString(
-                    formattedTexts[546].text,
-                    formattedTexts[546].size,
-                    formattedTexts[546].style,
-                    formattedTexts[546].color
-                )
-                strAdditionP1cO1 = createFormattedString(
-                    formattedTexts[547].text,
-                    formattedTexts[547].size,
-                    formattedTexts[547].style,
-                    formattedTexts[547].color
-                )
-                strAdditionP1cO2 = createFormattedString(
-                    formattedTexts[548].text,
-                    formattedTexts[548].size,
-                    formattedTexts[548].style,
-                    formattedTexts[548].color
-                )
-                strAdditionP1cO3 = createFormattedString(
-                    formattedTexts[549].text,
-                    formattedTexts[549].size,
-                    formattedTexts[549].style,
-                    formattedTexts[549].color
-                )
-                space = SpannableString("\n")
-                mBody87P1 = createFormattedString(
-                    formattedTexts[550].text,
-                    formattedTexts[550].size,
-                    formattedTexts[550].style,
-                    formattedTexts[550].color
-                )
-                mBody87P2 = createFormattedString(
-                    formattedTexts[551].text,
-                    formattedTexts[551].size,
-                    formattedTexts[551].style,
-                    formattedTexts[551].color
-                )
-                mBody87P3 = createFormattedString(
-                    formattedTexts[552].text,
-                    formattedTexts[552].size,
-                    formattedTexts[552].style,
-                    formattedTexts[552].color
-                )
-                mComment51 = createFormattedString(
-                    formattedTexts[553].text,
-                    formattedTexts[553].size,
-                    formattedTexts[553].style,
-                    formattedTexts[553].color
-                )
-                mBody88 = createFormattedString(
-                    formattedTexts[554].text,
-                    formattedTexts[554].size,
-                    formattedTexts[554].style,
-                    formattedTexts[554].color
-                )
-                mComment51a = createFormattedString(
-                    formattedTexts[555].text,
-                    formattedTexts[555].size,
-                    formattedTexts[555].style,
-                    formattedTexts[555].color
-                )
-                mGreenComment2 = createFormattedString(
-                    formattedTexts[556].text,
-                    formattedTexts[556].size,
-                    formattedTexts[556].style,
-                    formattedTexts[556].color
-                )
-                mComment52 = createFormattedString(
-                    formattedTexts[557].text,
-                    formattedTexts[557].size,
-                    formattedTexts[557].style,
-                    formattedTexts[557].color
-                )
-                mBody89 = createFormattedString(
-                    formattedTexts[558].text,
-                    formattedTexts[558].size,
-                    formattedTexts[558].style,
-                    formattedTexts[558].color
-                )
-                mRedComment4 = createFormattedString(
-                    formattedTexts[559].text,
-                    formattedTexts[559].size,
-                    formattedTexts[559].style,
-                    formattedTexts[559].color
-                )
-                mComment53 = createFormattedString(
-                    formattedTexts[560].text,
-                    formattedTexts[560].size,
-                    formattedTexts[560].style,
-                    formattedTexts[560].color
-                )
-                mComment54 = createFormattedString(
-                    formattedTexts[561].text,
-                    formattedTexts[561].size,
-                    formattedTexts[561].style,
-                    formattedTexts[561].color
-                )
-                mComment54a = createFormattedString(
-                    formattedTexts[562].text,
-                    formattedTexts[562].size,
-                    formattedTexts[562].style,
-                    formattedTexts[562].color
-                )
-                mComment55 = createFormattedString(
-                    formattedTexts[563].text,
-                    formattedTexts[563].size,
-                    formattedTexts[563].style,
-                    formattedTexts[563].color
-                )
-                mComment55A = createFormattedString(
-                    formattedTexts[564].text,
-                    formattedTexts[564].size,
-                    formattedTexts[564].style,
-                    formattedTexts[564].color
-                )
-                mBody90 = createFormattedString(
-                    formattedTexts[565].text,
-                    formattedTexts[565].size,
-                    formattedTexts[565].style,
-                    formattedTexts[565].color
-                )
-                mBody90P = createFormattedString(
-                    formattedTexts[566].text,
-                    formattedTexts[566].size,
-                    formattedTexts[566].style,
-                    formattedTexts[566].color
-                )
-                mComment55BP = createFormattedString(
-                    formattedTexts[567].text,
-                    formattedTexts[567].size,
-                    formattedTexts[567].style,
-                    formattedTexts[567].color
-                )
-                mComment55B = createFormattedString(
-                    formattedTexts[568].text,
-                    formattedTexts[568].size,
-                    formattedTexts[568].style,
-                    formattedTexts[568].color
-                )
-                mBody90P2 = createFormattedString(
-                    formattedTexts[569].text,
-                    formattedTexts[569].size,
-                    formattedTexts[569].style,
-                    formattedTexts[569].color
-                )
-                mComment55C = createFormattedString(
-                    formattedTexts[570].text,
-                    formattedTexts[570].size,
-                    formattedTexts[570].style,
-                    formattedTexts[570].color
-                )
-                mComment56 = createFormattedString(
-                    formattedTexts[571].text,
-                    formattedTexts[571].size,
-                    formattedTexts[571].style,
-                    formattedTexts[571].color
-                )
-                mComment57 = createFormattedString(
-                    formattedTexts[572].text,
-                    formattedTexts[572].size,
-                    formattedTexts[572].style,
-                    formattedTexts[572].color
-                )
-                mComment57A = createFormattedString(
-                    formattedTexts[573].text,
-                    formattedTexts[573].size,
-                    formattedTexts[573].style,
-                    formattedTexts[573].color
-                )
-                mComment58 = createFormattedString(
-                    formattedTexts[574].text,
-                    formattedTexts[574].size,
-                    formattedTexts[574].style,
-                    formattedTexts[574].color
-                )
-                mComment58A = createFormattedString(
-                    formattedTexts[575].text,
-                    formattedTexts[575].size,
-                    formattedTexts[575].style,
-                    formattedTexts[575].color
-                )
-                mBody91 = createFormattedString(
-                    formattedTexts[576].text,
-                    formattedTexts[576].size,
-                    formattedTexts[576].style,
-                    formattedTexts[576].color
-                )
-                mComment55DP = createFormattedString(
-                    formattedTexts[577].text,
-                    formattedTexts[577].size,
-                    formattedTexts[577].style,
-                    formattedTexts[577].color
-                )
-                mComment55D = createFormattedString(
-                    formattedTexts[578].text,
-                    formattedTexts[578].size,
-                    formattedTexts[578].style,
-                    formattedTexts[578].color
-                )
-                mMBody91P = createFormattedString(
-                    formattedTexts[579].text,
-                    formattedTexts[579].size,
-                    formattedTexts[579].style,
-                    formattedTexts[579].color
-                )
-                mMBody91 = createFormattedString(
-                    formattedTexts[580].text,
-                    formattedTexts[580].size,
-                    formattedTexts[580].style,
-                    formattedTexts[580].color
-                )
-                mComment55EP = createFormattedString(
-                    formattedTexts[581].text,
-                    formattedTexts[581].size,
-                    formattedTexts[581].style,
-                    formattedTexts[581].color
-                )
-                mComment55E = createFormattedString(
-                    formattedTexts[582].text,
-                    formattedTexts[582].size,
-                    formattedTexts[582].style,
-                    formattedTexts[582].color
-                )
-                mMBody91A = createFormattedString(
-                    formattedTexts[583].text,
-                    formattedTexts[583].size,
-                    formattedTexts[583].style,
-                    formattedTexts[583].color
-                )
-                mGreenComment3 = createFormattedString(
-                    formattedTexts[584].text,
-                    formattedTexts[584].size,
-                    formattedTexts[584].style,
-                    formattedTexts[584].color
-                )
-                mBody92 = createFormattedString(
-                    formattedTexts[585].text,
-                    formattedTexts[585].size,
-                    formattedTexts[585].style,
-                    formattedTexts[585].color
-                )
-                mVARGAI1A = createFormattedString(
-                    formattedTexts[586].text,
-                    formattedTexts[586].size,
-                    formattedTexts[586].style,
-                    formattedTexts[586].color
-                )
-                mVARGAI1B = createFormattedString(
-                    formattedTexts[587].text,
-                    formattedTexts[587].size,
-                    formattedTexts[587].style,
-                    formattedTexts[587].color
-                )
-                mBody93 = createFormattedString(
-                    formattedTexts[588].text,
-                    formattedTexts[588].size,
-                    formattedTexts[588].style,
-                    formattedTexts[588].color
-                )
-                mComment59 = createFormattedString(
-                    formattedTexts[589].text,
-                    formattedTexts[589].size,
-                    formattedTexts[589].style,
-                    formattedTexts[589].color
-                )
-                mBody94 = createFormattedString(
-                    formattedTexts[590].text,
-                    formattedTexts[590].size,
-                    formattedTexts[590].style,
-                    formattedTexts[590].color
-                )
-                mComment60 = createFormattedString(
-                    formattedTexts[591].text,
-                    formattedTexts[591].size,
-                    formattedTexts[591].style,
-                    formattedTexts[591].color
-                )
-                mBody95 = createFormattedString(
-                    formattedTexts[592].text,
-                    formattedTexts[592].size,
-                    formattedTexts[592].style,
-                    formattedTexts[592].color
-                )
-                mComment61 = createFormattedString(
-                    formattedTexts[593].text,
-                    formattedTexts[593].size,
-                    formattedTexts[593].style,
-                    formattedTexts[593].color
-                )
-                mBody96 = createFormattedString(
-                    formattedTexts[594].text,
-                    formattedTexts[594].size,
-                    formattedTexts[594].style,
-                    formattedTexts[594].color
-                )
-                mVARGAI2A = createFormattedString(
-                    formattedTexts[595].text,
-                    formattedTexts[595].size,
-                    formattedTexts[595].style,
-                    formattedTexts[595].color
-                )
-                mVARGAI1BP = createFormattedString(
-                    formattedTexts[596].text,
-                    formattedTexts[596].size,
-                    formattedTexts[596].style,
-                    formattedTexts[596].color
-                )
-                mBody97 = createFormattedString(
-                    formattedTexts[597].text,
-                    formattedTexts[597].size,
-                    formattedTexts[597].style,
-                    formattedTexts[597].color
-                )
-                mComment62 = createFormattedString(
-                    formattedTexts[598].text,
-                    formattedTexts[598].size,
-                    formattedTexts[598].style,
-                    formattedTexts[598].color
-                )
-                mHeading6 = createFormattedString(
-                    formattedTexts[599].text,
-                    formattedTexts[599].size,
-                    formattedTexts[599].style,
-                    formattedTexts[599].color
-                )
-                mRedComment5 = createFormattedString(
-                    formattedTexts[600].text,
-                    formattedTexts[600].size,
-                    formattedTexts[600].style,
-                    formattedTexts[600].color
-                )
-                mComment63 = createFormattedString(
-                    formattedTexts[601].text,
-                    formattedTexts[601].size,
-                    formattedTexts[601].style,
-                    formattedTexts[601].color
-                )
-                Comment64 = createFormattedString(
-                    formattedTexts[602].text,
-                    formattedTexts[602].size,
-                    formattedTexts[602].style,
-                    formattedTexts[602].color
-                )
-                MComment64 = createFormattedString(
-                    formattedTexts[603].text,
-                    formattedTexts[603].size,
-                    formattedTexts[603].style,
-                    formattedTexts[603].color
-                )
-                mComment65 = createFormattedString(
-                    formattedTexts[604].text,
-                    formattedTexts[604].size,
-                    formattedTexts[604].style,
-                    formattedTexts[604].color
-                )
-                mBody98 = createFormattedString(
-                    formattedTexts[605].text,
-                    formattedTexts[605].size,
-                    formattedTexts[605].style,
-                    formattedTexts[605].color
-                )
-                mBody98A = createFormattedString(
-                    formattedTexts[606].text,
-                    formattedTexts[606].size,
-                    formattedTexts[606].style,
-                    formattedTexts[606].color
-                )
-                mBody99A = createFormattedString(
-                    formattedTexts[607].text,
-                    formattedTexts[607].size,
-                    formattedTexts[607].style,
-                    formattedTexts[607].color
-                )
-                mBody99B = createFormattedString(
-                    formattedTexts[608].text,
-                    formattedTexts[608].size,
-                    formattedTexts[608].style,
-                    formattedTexts[608].color
-                )
-                mMComment64AP = createFormattedString(
-                    formattedTexts[609].text,
-                    formattedTexts[609].size,
-                    formattedTexts[609].style,
-                    formattedTexts[609].color
-                )
-                mBody98PA = createFormattedString(
-                    formattedTexts[610].text,
-                    formattedTexts[610].size,
-                    formattedTexts[610].style,
-                    formattedTexts[610].color
-                )
-                mBody98PMB = createFormattedString(
-                    formattedTexts[611].text,
-                    formattedTexts[611].size,
-                    formattedTexts[611].style,
-                    formattedTexts[611].color
-                )
-                mBody98PC = createFormattedString(
-                    formattedTexts[612].text,
-                    formattedTexts[612].size,
-                    formattedTexts[612].style,
-                    formattedTexts[612].color
-                )
-                mMComment64A = createFormattedString(
-                    formattedTexts[613].text,
-                    formattedTexts[613].size,
-                    formattedTexts[613].style,
-                    formattedTexts[613].color
-                )
-                mMBody98 = createFormattedString(
-                    formattedTexts[614].text,
-                    formattedTexts[614].size,
-                    formattedTexts[614].style,
-                    formattedTexts[614].color
-                )
-                mComment66 = createFormattedString(
-                    formattedTexts[615].text,
-                    formattedTexts[615].size,
-                    formattedTexts[615].style,
-                    formattedTexts[615].color
-                )
-                mBody100 = createFormattedString(
-                    formattedTexts[616].text,
-                    formattedTexts[616].size,
-                    formattedTexts[616].style,
-                    formattedTexts[616].color
-                )
-                mComment67 = createFormattedString(
-                    formattedTexts[617].text,
-                    formattedTexts[617].size,
-                    formattedTexts[617].style,
-                    formattedTexts[617].color
-                )
-                mGreenComment4 = createFormattedString(
-                    formattedTexts[618].text,
-                    formattedTexts[618].size,
-                    formattedTexts[618].style,
-                    formattedTexts[618].color
-                )
-                mComment68 = createFormattedString(
-                    formattedTexts[619].text,
-                    formattedTexts[619].size,
-                    formattedTexts[619].style,
-                    formattedTexts[619].color
-                )
-                mBody101 = createFormattedString(
-                    formattedTexts[620].text,
-                    formattedTexts[620].size,
-                    formattedTexts[620].style,
-                    formattedTexts[620].color
-                )
-                mComment69 = createFormattedString(
-                    formattedTexts[621].text,
-                    formattedTexts[621].size,
-                    formattedTexts[621].style,
-                    formattedTexts[621].color
-                )
-                mBody102 = createFormattedString(
-                    formattedTexts[622].text,
-                    formattedTexts[622].size,
-                    formattedTexts[622].style,
-                    formattedTexts[622].color
-                )
-                mComment70 = createFormattedString(
-                    formattedTexts[623].text,
-                    formattedTexts[623].size,
-                    formattedTexts[623].style,
-                    formattedTexts[623].color
-                )
-                mBody103 = createFormattedString(
-                    formattedTexts[624].text,
-                    formattedTexts[624].size,
-                    formattedTexts[624].style,
-                    formattedTexts[624].color
-                )
-                mBody103B = createFormattedString(
-                    formattedTexts[625].text,
-                    formattedTexts[625].size,
-                    formattedTexts[625].style,
-                    formattedTexts[625].color
-                )
-                mVARGAI3A = createFormattedString(
-                    formattedTexts[626].text,
-                    formattedTexts[626].size,
-                    formattedTexts[626].style,
-                    formattedTexts[626].color
-                )
-                mVARGAI1BP2 = createFormattedString(
-                    formattedTexts[627].text,
-                    formattedTexts[627].size,
-                    formattedTexts[627].style,
-                    formattedTexts[627].color
-                )
-                mBody104 = createFormattedString(
-                    formattedTexts[628].text,
-                    formattedTexts[628].size,
-                    formattedTexts[628].style,
-                    formattedTexts[628].color
-                )
-                mComment71 = createFormattedString(
-                    formattedTexts[629].text,
-                    formattedTexts[629].size,
-                    formattedTexts[629].style,
-                    formattedTexts[629].color
-                )
-                mBody105 = createFormattedString(
-                    formattedTexts[630].text,
-                    formattedTexts[630].size,
-                    formattedTexts[630].style,
-                    formattedTexts[630].color
-                )
-                mRedComment6 = createFormattedString(
-                    formattedTexts[631].text,
-                    formattedTexts[631].size,
-                    formattedTexts[631].style,
-                    formattedTexts[631].color
-                )
-                mComment72 = createFormattedString(
-                    formattedTexts[632].text,
-                    formattedTexts[632].size,
-                    formattedTexts[632].style,
-                    formattedTexts[632].color
-                )
-                mComment73 = createFormattedString(
-                    formattedTexts[633].text,
-                    formattedTexts[633].size,
-                    formattedTexts[633].style,
-                    formattedTexts[633].color
-                )
-                mComment74 = createFormattedString(
-                    formattedTexts[634].text,
-                    formattedTexts[634].size,
-                    formattedTexts[634].style,
-                    formattedTexts[634].color
-                )
-                mComment75 = createFormattedString(
-                    formattedTexts[635].text,
-                    formattedTexts[635].size,
-                    formattedTexts[635].style,
-                    formattedTexts[635].color
-                )
-                mComment76 = createFormattedString(
-                    formattedTexts[636].text,
-                    formattedTexts[636].size,
-                    formattedTexts[636].style,
-                    formattedTexts[636].color
-                )
-                mBody106 = createFormattedString(
-                    formattedTexts[637].text,
-                    formattedTexts[637].size,
-                    formattedTexts[637].style,
-                    formattedTexts[637].color
-                )
-                mBody107Big = createFormattedString(
-                    formattedTexts[638].text,
-                    formattedTexts[638].size,
-                    formattedTexts[638].style,
-                    formattedTexts[638].color
-                )
-                mBody108 = createFormattedString(
-                    formattedTexts[639].text,
-                    formattedTexts[639].size,
-                    formattedTexts[639].style,
-                    formattedTexts[639].color
-                )
-                mGreenComment5 = createFormattedString(
-                    formattedTexts[640].text,
-                    formattedTexts[640].size,
-                    formattedTexts[640].style,
-                    formattedTexts[640].color
-                )
-                mComment77 = createFormattedString(
-                    formattedTexts[641].text,
-                    formattedTexts[641].size,
-                    formattedTexts[641].style,
-                    formattedTexts[641].color
-                )
-                mHeading7 = createFormattedString(
-                    formattedTexts[642].text,
-                    formattedTexts[642].size,
-                    formattedTexts[642].style,
-                    formattedTexts[642].color
-                )
+            strAdditionP6zM = createFormattedString(
+                formattedTexts[341].text,
+                formattedTexts[341].size,
+                formattedTexts[341].style,
+                formattedTexts[341].color
+            )
+            strAdditionP6zMB = createFormattedString(
+                formattedTexts[342].text,
+                formattedTexts[342].size,
+                formattedTexts[342].style,
+                formattedTexts[342].color
+            )
+            strAdditionP6zMC = createFormattedString(
+                formattedTexts[343].text,
+                formattedTexts[343].size,
+                formattedTexts[343].style,
+                formattedTexts[343].color
+            )
+            strAdditionP7zM = createFormattedString(
+                formattedTexts[344].text,
+                formattedTexts[344].size,
+                formattedTexts[344].style,
+                formattedTexts[344].color
+            )
+            strAdditionP7zMB = createFormattedString(
+                formattedTexts[345].text,
+                formattedTexts[345].size,
+                formattedTexts[345].style,
+                formattedTexts[345].color
+            )
+            strAdditionP7zMC = createFormattedString(
+                formattedTexts[346].text,
+                formattedTexts[346].size,
+                formattedTexts[346].style,
+                formattedTexts[346].color
+            )
+            strAdditionP8zM = createFormattedString(
+                formattedTexts[347].text,
+                formattedTexts[347].size,
+                formattedTexts[347].style,
+                formattedTexts[347].color
+            )
+            strAdditionP8zMB = createFormattedString(
+                formattedTexts[348].text,
+                formattedTexts[348].size,
+                formattedTexts[348].style,
+                formattedTexts[348].color
+            )
+            strAdditionP8zMC = createFormattedString(
+                formattedTexts[349].text,
+                formattedTexts[349].size,
+                formattedTexts[349].style,
+                formattedTexts[349].color
+            )
+            strAdditionP9zM = createFormattedString(
+                formattedTexts[350].text,
+                formattedTexts[350].size,
+                formattedTexts[350].style,
+                formattedTexts[350].color
+            )
+            strAdditionP9zMB = createFormattedString(
+                formattedTexts[351].text,
+                formattedTexts[351].size,
+                formattedTexts[351].style,
+                formattedTexts[351].color
+            )
+            strAdditionP9zMC = createFormattedString(
+                formattedTexts[352].text,
+                formattedTexts[352].size,
+                formattedTexts[352].style,
+                formattedTexts[352].color
+            )
+            strAdditionP10zM = createFormattedString(
+                formattedTexts[353].text,
+                formattedTexts[353].size,
+                formattedTexts[353].style,
+                formattedTexts[353].color
+            )
+            strAdditionP10zMB = createFormattedString(
+                formattedTexts[354].text,
+                formattedTexts[354].size,
+                formattedTexts[354].style,
+                formattedTexts[354].color
+            )
+            strAdditionP10zMC = createFormattedString(
+                formattedTexts[355].text,
+                formattedTexts[355].size,
+                formattedTexts[355].style,
+                formattedTexts[355].color
+            )
+            strAdditionP11zM = createFormattedString(
+                formattedTexts[356].text,
+                formattedTexts[356].size,
+                formattedTexts[356].style,
+                formattedTexts[356].color
+            )
+            strAdditionP11zMB = createFormattedString(
+                formattedTexts[357].text,
+                formattedTexts[357].size,
+                formattedTexts[357].style,
+                formattedTexts[357].color
+            )
+            strAdditionP11zMC = createFormattedString(
+                formattedTexts[358].text,
+                formattedTexts[358].size,
+                formattedTexts[358].style,
+                formattedTexts[358].color
+            )
+            strAdditionP12zM = createFormattedString(
+                formattedTexts[359].text,
+                formattedTexts[359].size,
+                formattedTexts[359].style,
+                formattedTexts[359].color
+            )
+            strAdditionP12zMB = createFormattedString(
+                formattedTexts[360].text,
+                formattedTexts[360].size,
+                formattedTexts[360].style,
+                formattedTexts[360].color
+            )
+            strAdditionP12zMC = createFormattedString(
+                formattedTexts[361].text,
+                formattedTexts[361].size,
+                formattedTexts[361].style,
+                formattedTexts[361].color
+            )
+            strAdditionP13zM = createFormattedString(
+                formattedTexts[362].text,
+                formattedTexts[362].size,
+                formattedTexts[362].style,
+                formattedTexts[362].color
+            )
+            strAdditionP13zMB = createFormattedString(
+                formattedTexts[363].text,
+                formattedTexts[363].size,
+                formattedTexts[363].style,
+                formattedTexts[363].color
+            )
+            strAdditionP13zMC = createFormattedString(
+                formattedTexts[364].text,
+                formattedTexts[364].size,
+                formattedTexts[364].style,
+                formattedTexts[364].color
+            )
+            strAdditionP14zM = createFormattedString(
+                formattedTexts[365].text,
+                formattedTexts[365].size,
+                formattedTexts[365].style,
+                formattedTexts[365].color
+            )
+            strAdditionP14zMB = createFormattedString(
+                formattedTexts[366].text,
+                formattedTexts[366].size,
+                formattedTexts[366].style,
+                formattedTexts[366].color
+            )
+            strAdditionP14zMC = createFormattedString(
+                formattedTexts[367].text,
+                formattedTexts[367].size,
+                formattedTexts[367].style,
+                formattedTexts[367].color
+            )
+            strAdditionP15zM = createFormattedString(
+                formattedTexts[368].text,
+                formattedTexts[368].size,
+                formattedTexts[368].style,
+                formattedTexts[368].color
+            )
+            strAdditionP15zMB = createFormattedString(
+                formattedTexts[369].text,
+                formattedTexts[369].size,
+                formattedTexts[369].style,
+                formattedTexts[369].color
+            )
+            strAdditionP15zMC = createFormattedString(
+                formattedTexts[370].text,
+                formattedTexts[370].size,
+                formattedTexts[370].style,
+                formattedTexts[370].color
+            )
+            strAdditionP1aA1 = createFormattedString(
+                formattedTexts[371].text,
+                formattedTexts[371].size,
+                formattedTexts[371].style,
+                formattedTexts[371].color
+            )
+            strAdditionP1aA2 = createFormattedString(
+                formattedTexts[372].text,
+                formattedTexts[372].size,
+                formattedTexts[372].style,
+                formattedTexts[372].color
+            )
+            strAdditionP1aA3 = createFormattedString(
+                formattedTexts[373].text,
+                formattedTexts[373].size,
+                formattedTexts[373].style,
+                formattedTexts[373].color
+            )
+            strAdditionP1aB1 = createFormattedString(
+                formattedTexts[374].text,
+                formattedTexts[374].size,
+                formattedTexts[374].style,
+                formattedTexts[374].color
+            )
+            strAdditionP1aB2 = createFormattedString(
+                formattedTexts[375].text,
+                formattedTexts[375].size,
+                formattedTexts[375].style,
+                formattedTexts[375].color
+            )
+            strAdditionP1aC1 = createFormattedString(
+                formattedTexts[376].text,
+                formattedTexts[376].size,
+                formattedTexts[376].style,
+                formattedTexts[376].color
+            )
+            strAdditionP1aC2 = createFormattedString(
+                formattedTexts[377].text,
+                formattedTexts[377].size,
+                formattedTexts[377].style,
+                formattedTexts[377].color
+            )
+            strAdditionP1aC3 = createFormattedString(
+                formattedTexts[378].text,
+                formattedTexts[378].size,
+                formattedTexts[378].style,
+                formattedTexts[378].color
+            )
+            strAdditionP1aD1 = createFormattedString(
+                formattedTexts[379].text,
+                formattedTexts[379].size,
+                formattedTexts[379].style,
+                formattedTexts[379].color
+            )
+            strAdditionP1aD2 = createFormattedString(
+                formattedTexts[380].text,
+                formattedTexts[380].size,
+                formattedTexts[380].style,
+                formattedTexts[380].color
+            )
+            strAdditionP1aD3 = createFormattedString(
+                formattedTexts[381].text,
+                formattedTexts[381].size,
+                formattedTexts[381].style,
+                formattedTexts[381].color
+            )
+            strAdditionP1aE1 = createFormattedString(
+                formattedTexts[382].text,
+                formattedTexts[382].size,
+                formattedTexts[382].style,
+                formattedTexts[382].color
+            )
+            strAdditionP1aE2 = createFormattedString(
+                formattedTexts[383].text,
+                formattedTexts[383].size,
+                formattedTexts[383].style,
+                formattedTexts[383].color
+            )
+            strAdditionP1aE3 = createFormattedString(
+                formattedTexts[384].text,
+                formattedTexts[384].size,
+                formattedTexts[384].style,
+                formattedTexts[384].color
+            )
+            strAdditionP1aF1 = createFormattedString(
+                formattedTexts[385].text,
+                formattedTexts[385].size,
+                formattedTexts[385].style,
+                formattedTexts[385].color
+            )
+            strAdditionP1aF2 = createFormattedString(
+                formattedTexts[386].text,
+                formattedTexts[386].size,
+                formattedTexts[386].style,
+                formattedTexts[386].color
+            )
+            strAdditionP1aF3 = createFormattedString(
+                formattedTexts[387].text,
+                formattedTexts[387].size,
+                formattedTexts[387].style,
+                formattedTexts[387].color
+            )
+            strAdditionP1aG1 = createFormattedString(
+                formattedTexts[388].text,
+                formattedTexts[388].size,
+                formattedTexts[388].style,
+                formattedTexts[388].color
+            )
+            strAdditionP1aG2 = createFormattedString(
+                formattedTexts[389].text,
+                formattedTexts[389].size,
+                formattedTexts[389].style,
+                formattedTexts[389].color
+            )
+            strAdditionP1aG3 = createFormattedString(
+                formattedTexts[390].text,
+                formattedTexts[390].size,
+                formattedTexts[390].style,
+                formattedTexts[390].color
+            )
+            strAdditionP1aH1 = createFormattedString(
+                formattedTexts[391].text,
+                formattedTexts[391].size,
+                formattedTexts[391].style,
+                formattedTexts[391].color
+            )
+            strAdditionP1aH2 = createFormattedString(
+                formattedTexts[392].text,
+                formattedTexts[392].size,
+                formattedTexts[392].style,
+                formattedTexts[392].color
+            )
+            strAdditionP1aH3 = createFormattedString(
+                formattedTexts[393].text,
+                formattedTexts[393].size,
+                formattedTexts[393].style,
+                formattedTexts[393].color
+            )
+            strAdditionP1aI1 = createFormattedString(
+                formattedTexts[394].text,
+                formattedTexts[394].size,
+                formattedTexts[394].style,
+                formattedTexts[394].color
+            )
+            strAdditionP1aI2 = createFormattedString(
+                formattedTexts[395].text,
+                formattedTexts[395].size,
+                formattedTexts[395].style,
+                formattedTexts[395].color
+            )
+            strAdditionP1aI3 = createFormattedString(
+                formattedTexts[396].text,
+                formattedTexts[396].size,
+                formattedTexts[396].style,
+                formattedTexts[396].color
+            )
+            strAdditionP1aJ1 = createFormattedString(
+                formattedTexts[397].text,
+                formattedTexts[397].size,
+                formattedTexts[397].style,
+                formattedTexts[397].color
+            )
+            strAdditionP1aJ2 = createFormattedString(
+                formattedTexts[398].text,
+                formattedTexts[398].size,
+                formattedTexts[398].style,
+                formattedTexts[398].color
+            )
+            strAdditionP1aJ3 = createFormattedString(
+                formattedTexts[399].text,
+                formattedTexts[399].size,
+                formattedTexts[399].style,
+                formattedTexts[399].color
+            )
+            strAdditionP1aK1 = createFormattedString(
+                formattedTexts[400].text,
+                formattedTexts[400].size,
+                formattedTexts[400].style,
+                formattedTexts[400].color
+            )
+            strAdditionP1aK2 = createFormattedString(
+                formattedTexts[401].text,
+                formattedTexts[401].size,
+                formattedTexts[401].style,
+                formattedTexts[401].color
+            )
+            strAdditionP1aK3 = createFormattedString(
+                formattedTexts[402].text,
+                formattedTexts[402].size,
+                formattedTexts[402].style,
+                formattedTexts[402].color
+            )
+            strAdditionP1aL1 = createFormattedString(
+                formattedTexts[403].text,
+                formattedTexts[403].size,
+                formattedTexts[403].style,
+                formattedTexts[403].color
+            )
+            strAdditionP1aL2 = createFormattedString(
+                formattedTexts[404].text,
+                formattedTexts[404].size,
+                formattedTexts[404].style,
+                formattedTexts[404].color
+            )
+            strAdditionP1aL3 = createFormattedString(
+                formattedTexts[405].text,
+                formattedTexts[405].size,
+                formattedTexts[405].style,
+                formattedTexts[405].color
+            )
+            strAdditionP1aM1 = createFormattedString(
+                formattedTexts[406].text,
+                formattedTexts[406].size,
+                formattedTexts[406].style,
+                formattedTexts[406].color
+            )
+            strAdditionP1aM2 = createFormattedString(
+                formattedTexts[407].text,
+                formattedTexts[407].size,
+                formattedTexts[407].style,
+                formattedTexts[407].color
+            )
+            strAdditionP1aM3 = createFormattedString(
+                formattedTexts[408].text,
+                formattedTexts[408].size,
+                formattedTexts[408].style,
+                formattedTexts[408].color
+            )
+            strAdditionP1aN1 = createFormattedString(
+                formattedTexts[409].text,
+                formattedTexts[409].size,
+                formattedTexts[409].style,
+                formattedTexts[409].color
+            )
+            strAdditionP1aN2 = createFormattedString(
+                formattedTexts[410].text,
+                formattedTexts[410].size,
+                formattedTexts[410].style,
+                formattedTexts[410].color
+            )
+            strAdditionP1aN3 = createFormattedString(
+                formattedTexts[411].text,
+                formattedTexts[411].size,
+                formattedTexts[411].style,
+                formattedTexts[411].color
+            )
+            strAdditionP1aO1 = createFormattedString(
+                formattedTexts[412].text,
+                formattedTexts[412].size,
+                formattedTexts[412].style,
+                formattedTexts[412].color
+            )
+            strAdditionP1aO2 = createFormattedString(
+                formattedTexts[413].text,
+                formattedTexts[413].size,
+                formattedTexts[413].style,
+                formattedTexts[413].color
+            )
+            strAdditionP1aO3 = createFormattedString(
+                formattedTexts[414].text,
+                formattedTexts[414].size,
+                formattedTexts[414].style,
+                formattedTexts[414].color
+            )
+            strAdditionP1zA = createFormattedString(
+                formattedTexts[415].text,
+                formattedTexts[415].size,
+                formattedTexts[415].style,
+                formattedTexts[415].color
+            )
+            strAdditionP1zB = createFormattedString(
+                formattedTexts[416].text,
+                formattedTexts[416].size,
+                formattedTexts[416].style,
+                formattedTexts[416].color
+            )
+            strAdditionP1zC = createFormattedString(
+                formattedTexts[417].text,
+                formattedTexts[417].size,
+                formattedTexts[417].style,
+                formattedTexts[417].color
+            )
+            strAdditionP2zA = createFormattedString(
+                formattedTexts[418].text,
+                formattedTexts[418].size,
+                formattedTexts[418].style,
+                formattedTexts[418].color
+            )
+            strAdditionP2zB = createFormattedString(
+                formattedTexts[419].text,
+                formattedTexts[419].size,
+                formattedTexts[419].style,
+                formattedTexts[419].color
+            )
+            strAdditionP2zC = createFormattedString(
+                formattedTexts[420].text,
+                formattedTexts[420].size,
+                formattedTexts[420].style,
+                formattedTexts[420].color
+            )
+            strAdditionP3zA = createFormattedString(
+                formattedTexts[421].text,
+                formattedTexts[421].size,
+                formattedTexts[421].style,
+                formattedTexts[421].color
+            )
+            strAdditionP3zB = createFormattedString(
+                formattedTexts[422].text,
+                formattedTexts[422].size,
+                formattedTexts[422].style,
+                formattedTexts[422].color
+            )
+            strAdditionP3zC = createFormattedString(
+                formattedTexts[423].text,
+                formattedTexts[423].size,
+                formattedTexts[423].style,
+                formattedTexts[423].color
+            )
+            strAdditionP4zA = createFormattedString(
+                formattedTexts[424].text,
+                formattedTexts[424].size,
+                formattedTexts[424].style,
+                formattedTexts[424].color
+            )
+            strAdditionP4zB = createFormattedString(
+                formattedTexts[425].text,
+                formattedTexts[425].size,
+                formattedTexts[425].style,
+                formattedTexts[425].color
+            )
+            strAdditionP4zC = createFormattedString(
+                formattedTexts[426].text,
+                formattedTexts[426].size,
+                formattedTexts[426].style,
+                formattedTexts[426].color
+            )
+            strAdditionP5zA = createFormattedString(
+                formattedTexts[427].text,
+                formattedTexts[427].size,
+                formattedTexts[427].style,
+                formattedTexts[427].color
+            )
+            strAdditionP5zB = createFormattedString(
+                formattedTexts[428].text,
+                formattedTexts[428].size,
+                formattedTexts[428].style,
+                formattedTexts[428].color
+            )
+            strAdditionP5zC = createFormattedString(
+                formattedTexts[429].text,
+                formattedTexts[429].size,
+                formattedTexts[429].style,
+                formattedTexts[429].color
+            )
+            strAdditionP6zA = createFormattedString(
+                formattedTexts[430].text,
+                formattedTexts[430].size,
+                formattedTexts[430].style,
+                formattedTexts[430].color
+            )
+            strAdditionP6zB = createFormattedString(
+                formattedTexts[431].text,
+                formattedTexts[431].size,
+                formattedTexts[431].style,
+                formattedTexts[431].color
+            )
+            strAdditionP6zC = createFormattedString(
+                formattedTexts[432].text,
+                formattedTexts[432].size,
+                formattedTexts[432].style,
+                formattedTexts[432].color
+            )
+            strAdditionP7zA = createFormattedString(
+                formattedTexts[433].text,
+                formattedTexts[433].size,
+                formattedTexts[433].style,
+                formattedTexts[433].color
+            )
+            strAdditionP7zB = createFormattedString(
+                formattedTexts[434].text,
+                formattedTexts[434].size,
+                formattedTexts[434].style,
+                formattedTexts[434].color
+            )
+            strAdditionP7zC = createFormattedString(
+                formattedTexts[435].text,
+                formattedTexts[435].size,
+                formattedTexts[435].style,
+                formattedTexts[435].color
+            )
+            strAdditionP8zA = createFormattedString(
+                formattedTexts[436].text,
+                formattedTexts[436].size,
+                formattedTexts[436].style,
+                formattedTexts[436].color
+            )
+            strAdditionP8zB = createFormattedString(
+                formattedTexts[437].text,
+                formattedTexts[437].size,
+                formattedTexts[437].style,
+                formattedTexts[437].color
+            )
+            strAdditionP8zC = createFormattedString(
+                formattedTexts[438].text,
+                formattedTexts[438].size,
+                formattedTexts[438].style,
+                formattedTexts[438].color
+            )
+            strAdditionP9zA = createFormattedString(
+                formattedTexts[439].text,
+                formattedTexts[439].size,
+                formattedTexts[439].style,
+                formattedTexts[439].color
+            )
+            strAdditionP9zB = createFormattedString(
+                formattedTexts[440].text,
+                formattedTexts[440].size,
+                formattedTexts[440].style,
+                formattedTexts[440].color
+            )
+            strAdditionP9zC = createFormattedString(
+                formattedTexts[441].text,
+                formattedTexts[441].size,
+                formattedTexts[441].style,
+                formattedTexts[441].color
+            )
+            strAdditionP10zA = createFormattedString(
+                formattedTexts[442].text,
+                formattedTexts[442].size,
+                formattedTexts[442].style,
+                formattedTexts[442].color
+            )
+            strAdditionP10zB = createFormattedString(
+                formattedTexts[443].text,
+                formattedTexts[443].size,
+                formattedTexts[443].style,
+                formattedTexts[443].color
+            )
+            strAdditionP10zC = createFormattedString(
+                formattedTexts[444].text,
+                formattedTexts[444].size,
+                formattedTexts[444].style,
+                formattedTexts[444].color
+            )
+            strAdditionP11zA = createFormattedString(
+                formattedTexts[445].text,
+                formattedTexts[445].size,
+                formattedTexts[445].style,
+                formattedTexts[445].color
+            )
+            strAdditionP11zB = createFormattedString(
+                formattedTexts[446].text,
+                formattedTexts[446].size,
+                formattedTexts[446].style,
+                formattedTexts[446].color
+            )
+            strAdditionP11zC = createFormattedString(
+                formattedTexts[447].text,
+                formattedTexts[447].size,
+                formattedTexts[447].style,
+                formattedTexts[447].color
+            )
+            strAdditionP12zA = createFormattedString(
+                formattedTexts[448].text,
+                formattedTexts[448].size,
+                formattedTexts[448].style,
+                formattedTexts[448].color
+            )
+            strAdditionP12zB = createFormattedString(
+                formattedTexts[449].text,
+                formattedTexts[449].size,
+                formattedTexts[449].style,
+                formattedTexts[449].color
+            )
+            strAdditionP12zC = createFormattedString(
+                formattedTexts[450].text,
+                formattedTexts[450].size,
+                formattedTexts[450].style,
+                formattedTexts[450].color
+            )
+            strAdditionP13zA = createFormattedString(
+                formattedTexts[451].text,
+                formattedTexts[451].size,
+                formattedTexts[451].style,
+                formattedTexts[451].color
+            )
+            strAdditionP13zB = createFormattedString(
+                formattedTexts[452].text,
+                formattedTexts[452].size,
+                formattedTexts[452].style,
+                formattedTexts[452].color
+            )
+            strAdditionP13zC = createFormattedString(
+                formattedTexts[453].text,
+                formattedTexts[453].size,
+                formattedTexts[453].style,
+                formattedTexts[453].color
+            )
+            strAdditionP14zA = createFormattedString(
+                formattedTexts[454].text,
+                formattedTexts[454].size,
+                formattedTexts[454].style,
+                formattedTexts[454].color
+            )
+            strAdditionP14zB = createFormattedString(
+                formattedTexts[455].text,
+                formattedTexts[455].size,
+                formattedTexts[455].style,
+                formattedTexts[455].color
+            )
+            strAdditionP14zC = createFormattedString(
+                formattedTexts[456].text,
+                formattedTexts[456].size,
+                formattedTexts[456].style,
+                formattedTexts[456].color
+            )
+            strAdditionP15zA = createFormattedString(
+                formattedTexts[457].text,
+                formattedTexts[457].size,
+                formattedTexts[457].style,
+                formattedTexts[457].color
+            )
+            strAdditionP15zB = createFormattedString(
+                formattedTexts[458].text,
+                formattedTexts[458].size,
+                formattedTexts[458].style,
+                formattedTexts[458].color
+            )
+            strAdditionP15zC = createFormattedString(
+                formattedTexts[459].text,
+                formattedTexts[459].size,
+                formattedTexts[459].style,
+                formattedTexts[459].color
+            )
+            strAdditionP1bA1 = createFormattedString(
+                formattedTexts[460].text,
+                formattedTexts[460].size,
+                formattedTexts[460].style,
+                formattedTexts[460].color
+            )
+            strAdditionP1bA2 = createFormattedString(
+                formattedTexts[461].text,
+                formattedTexts[461].size,
+                formattedTexts[461].style,
+                formattedTexts[461].color
+            )
+            strAdditionP1bA3 = createFormattedString(
+                formattedTexts[462].text,
+                formattedTexts[462].size,
+                formattedTexts[462].style,
+                formattedTexts[462].color
+            )
+            strAdditionP1bB1 = createFormattedString(
+                formattedTexts[463].text,
+                formattedTexts[463].size,
+                formattedTexts[463].style,
+                formattedTexts[463].color
+            )
+            strAdditionP1bB2 = createFormattedString(
+                formattedTexts[464].text,
+                formattedTexts[464].size,
+                formattedTexts[464].style,
+                formattedTexts[464].color
+            )
+            strAdditionP1bB3 = createFormattedString(
+                formattedTexts[465].text,
+                formattedTexts[465].size,
+                formattedTexts[465].style,
+                formattedTexts[465].color
+            )
+            strAdditionP1bC1 = createFormattedString(
+                formattedTexts[466].text,
+                formattedTexts[466].size,
+                formattedTexts[466].style,
+                formattedTexts[466].color
+            )
+            strAdditionP1bC2 = createFormattedString(
+                formattedTexts[467].text,
+                formattedTexts[467].size,
+                formattedTexts[467].style,
+                formattedTexts[467].color
+            )
+            strAdditionP1bC3 = createFormattedString(
+                formattedTexts[468].text,
+                formattedTexts[468].size,
+                formattedTexts[468].style,
+                formattedTexts[468].color
+            )
+            strAdditionP1bD1 = createFormattedString(
+                formattedTexts[469].text,
+                formattedTexts[469].size,
+                formattedTexts[469].style,
+                formattedTexts[469].color
+            )
+            strAdditionP1bD2 = createFormattedString(
+                formattedTexts[470].text,
+                formattedTexts[470].size,
+                formattedTexts[470].style,
+                formattedTexts[470].color
+            )
+            strAdditionP1bD3 = createFormattedString(
+                formattedTexts[471].text,
+                formattedTexts[471].size,
+                formattedTexts[471].style,
+                formattedTexts[471].color
+            )
+            strAdditionP1bE1 = createFormattedString(
+                formattedTexts[472].text,
+                formattedTexts[472].size,
+                formattedTexts[472].style,
+                formattedTexts[472].color
+            )
+            strAdditionP1bE2 = createFormattedString(
+                formattedTexts[473].text,
+                formattedTexts[473].size,
+                formattedTexts[473].style,
+                formattedTexts[473].color
+            )
+            strAdditionP1bE3 = createFormattedString(
+                formattedTexts[474].text,
+                formattedTexts[474].size,
+                formattedTexts[474].style,
+                formattedTexts[474].color
+            )
+            strAdditionP1bF1 = createFormattedString(
+                formattedTexts[475].text,
+                formattedTexts[475].size,
+                formattedTexts[475].style,
+                formattedTexts[475].color
+            )
+            strAdditionP1bF2 = createFormattedString(
+                formattedTexts[476].text,
+                formattedTexts[476].size,
+                formattedTexts[476].style,
+                formattedTexts[476].color
+            )
+            strAdditionP1bF3 = createFormattedString(
+                formattedTexts[477].text,
+                formattedTexts[477].size,
+                formattedTexts[477].style,
+                formattedTexts[477].color
+            )
+            strAdditionP1bG1 = createFormattedString(
+                formattedTexts[478].text,
+                formattedTexts[478].size,
+                formattedTexts[478].style,
+                formattedTexts[478].color
+            )
+            strAdditionP1bG2 = createFormattedString(
+                formattedTexts[479].text,
+                formattedTexts[479].size,
+                formattedTexts[479].style,
+                formattedTexts[479].color
+            )
+            strAdditionP1bG3 = createFormattedString(
+                formattedTexts[480].text,
+                formattedTexts[480].size,
+                formattedTexts[480].style,
+                formattedTexts[480].color
+            )
+            strAdditionP1bH1 = createFormattedString(
+                formattedTexts[481].text,
+                formattedTexts[481].size,
+                formattedTexts[481].style,
+                formattedTexts[481].color
+            )
+            strAdditionP1bH2 = createFormattedString(
+                formattedTexts[482].text,
+                formattedTexts[482].size,
+                formattedTexts[482].style,
+                formattedTexts[482].color
+            )
+            strAdditionP1bH3 = createFormattedString(
+                formattedTexts[483].text,
+                formattedTexts[483].size,
+                formattedTexts[483].style,
+                formattedTexts[483].color
+            )
+            strAdditionP1bI1 = createFormattedString(
+                formattedTexts[484].text,
+                formattedTexts[484].size,
+                formattedTexts[484].style,
+                formattedTexts[484].color
+            )
+            strAdditionP1bI2 = createFormattedString(
+                formattedTexts[485].text,
+                formattedTexts[485].size,
+                formattedTexts[485].style,
+                formattedTexts[485].color
+            )
+            strAdditionP1bI3 = createFormattedString(
+                formattedTexts[486].text,
+                formattedTexts[486].size,
+                formattedTexts[486].style,
+                formattedTexts[486].color
+            )
+            strAdditionP1bJ1 = createFormattedString(
+                formattedTexts[487].text,
+                formattedTexts[487].size,
+                formattedTexts[487].style,
+                formattedTexts[487].color
+            )
+            strAdditionP1bJ2 = createFormattedString(
+                formattedTexts[488].text,
+                formattedTexts[488].size,
+                formattedTexts[488].style,
+                formattedTexts[488].color
+            )
+            strAdditionP1bJ3 = createFormattedString(
+                formattedTexts[489].text,
+                formattedTexts[489].size,
+                formattedTexts[489].style,
+                formattedTexts[489].color
+            )
+            strAdditionP1bK1 = createFormattedString(
+                formattedTexts[490].text,
+                formattedTexts[490].size,
+                formattedTexts[490].style,
+                formattedTexts[490].color
+            )
+            strAdditionP1bK2 = createFormattedString(
+                formattedTexts[491].text,
+                formattedTexts[491].size,
+                formattedTexts[491].style,
+                formattedTexts[491].color
+            )
+            strAdditionP1bK3 = createFormattedString(
+                formattedTexts[492].text,
+                formattedTexts[492].size,
+                formattedTexts[492].style,
+                formattedTexts[492].color
+            )
+            strAdditionP1bL1 = createFormattedString(
+                formattedTexts[493].text,
+                formattedTexts[493].size,
+                formattedTexts[493].style,
+                formattedTexts[493].color
+            )
+            strAdditionP1bL2 = createFormattedString(
+                formattedTexts[494].text,
+                formattedTexts[494].size,
+                formattedTexts[494].style,
+                formattedTexts[494].color
+            )
+            strAdditionP1bL3 = createFormattedString(
+                formattedTexts[495].text,
+                formattedTexts[495].size,
+                formattedTexts[495].style,
+                formattedTexts[495].color
+            )
+            strAdditionP1bM1 = createFormattedString(
+                formattedTexts[496].text,
+                formattedTexts[496].size,
+                formattedTexts[496].style,
+                formattedTexts[496].color
+            )
+            strAdditionP1bM2 = createFormattedString(
+                formattedTexts[497].text,
+                formattedTexts[497].size,
+                formattedTexts[497].style,
+                formattedTexts[497].color
+            )
+            strAdditionP1bM3 = createFormattedString(
+                formattedTexts[498].text,
+                formattedTexts[498].size,
+                formattedTexts[498].style,
+                formattedTexts[498].color
+            )
+            strAdditionP1bN1 = createFormattedString(
+                formattedTexts[499].text,
+                formattedTexts[499].size,
+                formattedTexts[499].style,
+                formattedTexts[499].color
+            )
+            strAdditionP1bN2 = createFormattedString(
+                formattedTexts[500].text,
+                formattedTexts[500].size,
+                formattedTexts[500].style,
+                formattedTexts[500].color
+            )
+            strAdditionP1bN3 = createFormattedString(
+                formattedTexts[501].text,
+                formattedTexts[501].size,
+                formattedTexts[501].style,
+                formattedTexts[501].color
+            )
+            strAdditionP1bO1 = createFormattedString(
+                formattedTexts[502].text,
+                formattedTexts[502].size,
+                formattedTexts[502].style,
+                formattedTexts[502].color
+            )
+            strAdditionP1bO2 = createFormattedString(
+                formattedTexts[503].text,
+                formattedTexts[503].size,
+                formattedTexts[503].style,
+                formattedTexts[503].color
+            )
+            strAdditionP1bO3 = createFormattedString(
+                formattedTexts[504].text,
+                formattedTexts[504].size,
+                formattedTexts[504].style,
+                formattedTexts[504].color
+            )
+            strAdditionP1cA1 = createFormattedString(
+                formattedTexts[505].text,
+                formattedTexts[505].size,
+                formattedTexts[505].style,
+                formattedTexts[505].color
+            )
+            strAdditionP1cA2 = createFormattedString(
+                formattedTexts[506].text,
+                formattedTexts[506].size,
+                formattedTexts[506].style,
+                formattedTexts[506].color
+            )
+            strAdditionP1cA3 = createFormattedString(
+                formattedTexts[507].text,
+                formattedTexts[507].size,
+                formattedTexts[507].style,
+                formattedTexts[507].color
+            )
+            strAdditionP1cB1 = createFormattedString(
+                formattedTexts[508].text,
+                formattedTexts[508].size,
+                formattedTexts[508].style,
+                formattedTexts[508].color
+            )
+            strAdditionP1cB2 = createFormattedString(
+                formattedTexts[509].text,
+                formattedTexts[509].size,
+                formattedTexts[509].style,
+                formattedTexts[509].color
+            )
+            strAdditionP1cB3 = createFormattedString(
+                formattedTexts[510].text,
+                formattedTexts[510].size,
+                formattedTexts[510].style,
+                formattedTexts[510].color
+            )
+            strAdditionP1cC1 = createFormattedString(
+                formattedTexts[511].text,
+                formattedTexts[511].size,
+                formattedTexts[511].style,
+                formattedTexts[511].color
+            )
+            strAdditionP1cC2 = createFormattedString(
+                formattedTexts[512].text,
+                formattedTexts[512].size,
+                formattedTexts[512].style,
+                formattedTexts[512].color
+            )
+            strAdditionP1cC3 = createFormattedString(
+                formattedTexts[513].text,
+                formattedTexts[513].size,
+                formattedTexts[513].style,
+                formattedTexts[513].color
+            )
+            strAdditionP1cD1 = createFormattedString(
+                formattedTexts[514].text,
+                formattedTexts[514].size,
+                formattedTexts[514].style,
+                formattedTexts[514].color
+            )
+            strAdditionP1cD2 = createFormattedString(
+                formattedTexts[515].text,
+                formattedTexts[515].size,
+                formattedTexts[515].style,
+                formattedTexts[515].color
+            )
+            strAdditionP1cD3 = createFormattedString(
+                formattedTexts[516].text,
+                formattedTexts[516].size,
+                formattedTexts[516].style,
+                formattedTexts[516].color
+            )
+            strAdditionP1cE1 = createFormattedString(
+                formattedTexts[517].text,
+                formattedTexts[517].size,
+                formattedTexts[517].style,
+                formattedTexts[517].color
+            )
+            strAdditionP1cE2 = createFormattedString(
+                formattedTexts[518].text,
+                formattedTexts[518].size,
+                formattedTexts[518].style,
+                formattedTexts[518].color
+            )
+            strAdditionP1cE3 = createFormattedString(
+                formattedTexts[519].text,
+                formattedTexts[519].size,
+                formattedTexts[519].style,
+                formattedTexts[519].color
+            )
+            strAdditionP1cF1 = createFormattedString(
+                formattedTexts[520].text,
+                formattedTexts[520].size,
+                formattedTexts[520].style,
+                formattedTexts[520].color
+            )
+            strAdditionP1cF2 = createFormattedString(
+                formattedTexts[521].text,
+                formattedTexts[521].size,
+                formattedTexts[521].style,
+                formattedTexts[521].color
+            )
+            strAdditionP1cF3 = createFormattedString(
+                formattedTexts[522].text,
+                formattedTexts[522].size,
+                formattedTexts[522].style,
+                formattedTexts[522].color
+            )
+            strAdditionP1cG1 = createFormattedString(
+                formattedTexts[523].text,
+                formattedTexts[523].size,
+                formattedTexts[523].style,
+                formattedTexts[523].color
+            )
+            strAdditionP1cG2 = createFormattedString(
+                formattedTexts[524].text,
+                formattedTexts[524].size,
+                formattedTexts[524].style,
+                formattedTexts[524].color
+            )
+            strAdditionP1cG3 = createFormattedString(
+                formattedTexts[525].text,
+                formattedTexts[525].size,
+                formattedTexts[525].style,
+                formattedTexts[525].color
+            )
+            strAdditionP1cH1 = createFormattedString(
+                formattedTexts[526].text,
+                formattedTexts[526].size,
+                formattedTexts[526].style,
+                formattedTexts[526].color
+            )
+            strAdditionP1cH2 = createFormattedString(
+                formattedTexts[527].text,
+                formattedTexts[527].size,
+                formattedTexts[527].style,
+                formattedTexts[527].color
+            )
+            strAdditionP1cH3 = createFormattedString(
+                formattedTexts[528].text,
+                formattedTexts[528].size,
+                formattedTexts[528].style,
+                formattedTexts[528].color
+            )
+            strAdditionP1cI1 = createFormattedString(
+                formattedTexts[529].text,
+                formattedTexts[529].size,
+                formattedTexts[529].style,
+                formattedTexts[529].color
+            )
+            strAdditionP1cI2 = createFormattedString(
+                formattedTexts[530].text,
+                formattedTexts[530].size,
+                formattedTexts[530].style,
+                formattedTexts[530].color
+            )
+            strAdditionP1cI3 = createFormattedString(
+                formattedTexts[531].text,
+                formattedTexts[531].size,
+                formattedTexts[531].style,
+                formattedTexts[531].color
+            )
+            strAdditionP1cJ1 = createFormattedString(
+                formattedTexts[532].text,
+                formattedTexts[532].size,
+                formattedTexts[532].style,
+                formattedTexts[532].color
+            )
+            strAdditionP1cJ2 = createFormattedString(
+                formattedTexts[533].text,
+                formattedTexts[533].size,
+                formattedTexts[533].style,
+                formattedTexts[533].color
+            )
+            strAdditionP1cJ3 = createFormattedString(
+                formattedTexts[534].text,
+                formattedTexts[534].size,
+                formattedTexts[534].style,
+                formattedTexts[534].color
+            )
+            strAdditionP1cK1 = createFormattedString(
+                formattedTexts[535].text,
+                formattedTexts[535].size,
+                formattedTexts[535].style,
+                formattedTexts[535].color
+            )
+            strAdditionP1cK2 = createFormattedString(
+                formattedTexts[536].text,
+                formattedTexts[536].size,
+                formattedTexts[536].style,
+                formattedTexts[536].color
+            )
+            strAdditionP1cK3 = createFormattedString(
+                formattedTexts[537].text,
+                formattedTexts[537].size,
+                formattedTexts[537].style,
+                formattedTexts[537].color
+            )
+            strAdditionP1cL1 = createFormattedString(
+                formattedTexts[538].text,
+                formattedTexts[538].size,
+                formattedTexts[538].style,
+                formattedTexts[538].color
+            )
+            strAdditionP1cL2 = createFormattedString(
+                formattedTexts[539].text,
+                formattedTexts[539].size,
+                formattedTexts[539].style,
+                formattedTexts[539].color
+            )
+            strAdditionP1cL3 = createFormattedString(
+                formattedTexts[540].text,
+                formattedTexts[540].size,
+                formattedTexts[540].style,
+                formattedTexts[540].color
+            )
+            strAdditionP1cM1 = createFormattedString(
+                formattedTexts[541].text,
+                formattedTexts[541].size,
+                formattedTexts[541].style,
+                formattedTexts[541].color
+            )
+            strAdditionP1cM2 = createFormattedString(
+                formattedTexts[542].text,
+                formattedTexts[542].size,
+                formattedTexts[542].style,
+                formattedTexts[542].color
+            )
+            strAdditionP1cM3 = createFormattedString(
+                formattedTexts[543].text,
+                formattedTexts[543].size,
+                formattedTexts[543].style,
+                formattedTexts[543].color
+            )
+            strAdditionP1cN1 = createFormattedString(
+                formattedTexts[544].text,
+                formattedTexts[544].size,
+                formattedTexts[544].style,
+                formattedTexts[544].color
+            )
+            strAdditionP1cN2 = createFormattedString(
+                formattedTexts[545].text,
+                formattedTexts[545].size,
+                formattedTexts[545].style,
+                formattedTexts[545].color
+            )
+            strAdditionP1cN3 = createFormattedString(
+                formattedTexts[546].text,
+                formattedTexts[546].size,
+                formattedTexts[546].style,
+                formattedTexts[546].color
+            )
+            strAdditionP1cO1 = createFormattedString(
+                formattedTexts[547].text,
+                formattedTexts[547].size,
+                formattedTexts[547].style,
+                formattedTexts[547].color
+            )
+            strAdditionP1cO2 = createFormattedString(
+                formattedTexts[548].text,
+                formattedTexts[548].size,
+                formattedTexts[548].style,
+                formattedTexts[548].color
+            )
+            strAdditionP1cO3 = createFormattedString(
+                formattedTexts[549].text,
+                formattedTexts[549].size,
+                formattedTexts[549].style,
+                formattedTexts[549].color
+            )
+            space = SpannableString("\n")
+            mBody87P1 = createFormattedString(
+                formattedTexts[550].text,
+                formattedTexts[550].size,
+                formattedTexts[550].style,
+                formattedTexts[550].color
+            )
+            mBody87P2 = createFormattedString(
+                formattedTexts[551].text,
+                formattedTexts[551].size,
+                formattedTexts[551].style,
+                formattedTexts[551].color
+            )
+            mBody87P3 = createFormattedString(
+                formattedTexts[552].text,
+                formattedTexts[552].size,
+                formattedTexts[552].style,
+                formattedTexts[552].color
+            )
+            mComment51 = createFormattedString(
+                formattedTexts[553].text,
+                formattedTexts[553].size,
+                formattedTexts[553].style,
+                formattedTexts[553].color
+            )
+            mBody88 = createFormattedString(
+                formattedTexts[554].text,
+                formattedTexts[554].size,
+                formattedTexts[554].style,
+                formattedTexts[554].color
+            )
+            mComment51a = createFormattedString(
+                formattedTexts[555].text,
+                formattedTexts[555].size,
+                formattedTexts[555].style,
+                formattedTexts[555].color
+            )
+            mGreenComment2 = createFormattedString(
+                formattedTexts[556].text,
+                formattedTexts[556].size,
+                formattedTexts[556].style,
+                formattedTexts[556].color
+            )
+            mComment52 = createFormattedString(
+                formattedTexts[557].text,
+                formattedTexts[557].size,
+                formattedTexts[557].style,
+                formattedTexts[557].color
+            )
+            mBody89 = createFormattedString(
+                formattedTexts[558].text,
+                formattedTexts[558].size,
+                formattedTexts[558].style,
+                formattedTexts[558].color
+            )
+            mRedComment4 = createFormattedString(
+                formattedTexts[559].text,
+                formattedTexts[559].size,
+                formattedTexts[559].style,
+                formattedTexts[559].color
+            )
+            mComment53 = createFormattedString(
+                formattedTexts[560].text,
+                formattedTexts[560].size,
+                formattedTexts[560].style,
+                formattedTexts[560].color
+            )
+            mComment54 = createFormattedString(
+                formattedTexts[561].text,
+                formattedTexts[561].size,
+                formattedTexts[561].style,
+                formattedTexts[561].color
+            )
+            mComment54a = createFormattedString(
+                formattedTexts[562].text,
+                formattedTexts[562].size,
+                formattedTexts[562].style,
+                formattedTexts[562].color
+            )
+            mComment55 = createFormattedString(
+                formattedTexts[563].text,
+                formattedTexts[563].size,
+                formattedTexts[563].style,
+                formattedTexts[563].color
+            )
+            mComment55A = createFormattedString(
+                formattedTexts[564].text,
+                formattedTexts[564].size,
+                formattedTexts[564].style,
+                formattedTexts[564].color
+            )
+            mBody90 = createFormattedString(
+                formattedTexts[565].text,
+                formattedTexts[565].size,
+                formattedTexts[565].style,
+                formattedTexts[565].color
+            )
+            mBody90P = createFormattedString(
+                formattedTexts[566].text,
+                formattedTexts[566].size,
+                formattedTexts[566].style,
+                formattedTexts[566].color
+            )
+            mComment55BP = createFormattedString(
+                formattedTexts[567].text,
+                formattedTexts[567].size,
+                formattedTexts[567].style,
+                formattedTexts[567].color
+            )
+            mComment55B = createFormattedString(
+                formattedTexts[568].text,
+                formattedTexts[568].size,
+                formattedTexts[568].style,
+                formattedTexts[568].color
+            )
+            mBody90P2 = createFormattedString(
+                formattedTexts[569].text,
+                formattedTexts[569].size,
+                formattedTexts[569].style,
+                formattedTexts[569].color
+            )
+            mComment55C = createFormattedString(
+                formattedTexts[570].text,
+                formattedTexts[570].size,
+                formattedTexts[570].style,
+                formattedTexts[570].color
+            )
+            mComment56 = createFormattedString(
+                formattedTexts[571].text,
+                formattedTexts[571].size,
+                formattedTexts[571].style,
+                formattedTexts[571].color
+            )
+            mComment57 = createFormattedString(
+                formattedTexts[572].text,
+                formattedTexts[572].size,
+                formattedTexts[572].style,
+                formattedTexts[572].color
+            )
+            mComment57A = createFormattedString(
+                formattedTexts[573].text,
+                formattedTexts[573].size,
+                formattedTexts[573].style,
+                formattedTexts[573].color
+            )
+            mComment58 = createFormattedString(
+                formattedTexts[574].text,
+                formattedTexts[574].size,
+                formattedTexts[574].style,
+                formattedTexts[574].color
+            )
+            mComment58A = createFormattedString(
+                formattedTexts[575].text,
+                formattedTexts[575].size,
+                formattedTexts[575].style,
+                formattedTexts[575].color
+            )
+            mBody91 = createFormattedString(
+                formattedTexts[576].text,
+                formattedTexts[576].size,
+                formattedTexts[576].style,
+                formattedTexts[576].color
+            )
+            mComment55DP = createFormattedString(
+                formattedTexts[577].text,
+                formattedTexts[577].size,
+                formattedTexts[577].style,
+                formattedTexts[577].color
+            )
+            mComment55D = createFormattedString(
+                formattedTexts[578].text,
+                formattedTexts[578].size,
+                formattedTexts[578].style,
+                formattedTexts[578].color
+            )
+            mMBody91P = createFormattedString(
+                formattedTexts[579].text,
+                formattedTexts[579].size,
+                formattedTexts[579].style,
+                formattedTexts[579].color
+            )
+            mMBody91 = createFormattedString(
+                formattedTexts[580].text,
+                formattedTexts[580].size,
+                formattedTexts[580].style,
+                formattedTexts[580].color
+            )
+            mComment55EP = createFormattedString(
+                formattedTexts[581].text,
+                formattedTexts[581].size,
+                formattedTexts[581].style,
+                formattedTexts[581].color
+            )
+            mComment55E = createFormattedString(
+                formattedTexts[582].text,
+                formattedTexts[582].size,
+                formattedTexts[582].style,
+                formattedTexts[582].color
+            )
+            mMBody91A = createFormattedString(
+                formattedTexts[583].text,
+                formattedTexts[583].size,
+                formattedTexts[583].style,
+                formattedTexts[583].color
+            )
+            mGreenComment3 = createFormattedString(
+                formattedTexts[584].text,
+                formattedTexts[584].size,
+                formattedTexts[584].style,
+                formattedTexts[584].color
+            )
+            mBody92 = createFormattedString(
+                formattedTexts[585].text,
+                formattedTexts[585].size,
+                formattedTexts[585].style,
+                formattedTexts[585].color
+            )
+            mVARGAI1A = createFormattedString(
+                formattedTexts[586].text,
+                formattedTexts[586].size,
+                formattedTexts[586].style,
+                formattedTexts[586].color
+            )
+            mVARGAI1B = createFormattedString(
+                formattedTexts[587].text,
+                formattedTexts[587].size,
+                formattedTexts[587].style,
+                formattedTexts[587].color
+            )
+            mBody93 = createFormattedString(
+                formattedTexts[588].text,
+                formattedTexts[588].size,
+                formattedTexts[588].style,
+                formattedTexts[588].color
+            )
+            mComment59 = createFormattedString(
+                formattedTexts[589].text,
+                formattedTexts[589].size,
+                formattedTexts[589].style,
+                formattedTexts[589].color
+            )
+            mBody94 = createFormattedString(
+                formattedTexts[590].text,
+                formattedTexts[590].size,
+                formattedTexts[590].style,
+                formattedTexts[590].color
+            )
+            mComment60 = createFormattedString(
+                formattedTexts[591].text,
+                formattedTexts[591].size,
+                formattedTexts[591].style,
+                formattedTexts[591].color
+            )
+            mBody95 = createFormattedString(
+                formattedTexts[592].text,
+                formattedTexts[592].size,
+                formattedTexts[592].style,
+                formattedTexts[592].color
+            )
+            mComment61 = createFormattedString(
+                formattedTexts[593].text,
+                formattedTexts[593].size,
+                formattedTexts[593].style,
+                formattedTexts[593].color
+            )
+            mBody96 = createFormattedString(
+                formattedTexts[594].text,
+                formattedTexts[594].size,
+                formattedTexts[594].style,
+                formattedTexts[594].color
+            )
+            mVARGAI2A = createFormattedString(
+                formattedTexts[595].text,
+                formattedTexts[595].size,
+                formattedTexts[595].style,
+                formattedTexts[595].color
+            )
+            mVARGAI1BP = createFormattedString(
+                formattedTexts[596].text,
+                formattedTexts[596].size,
+                formattedTexts[596].style,
+                formattedTexts[596].color
+            )
+            mBody97 = createFormattedString(
+                formattedTexts[597].text,
+                formattedTexts[597].size,
+                formattedTexts[597].style,
+                formattedTexts[597].color
+            )
+            mComment62 = createFormattedString(
+                formattedTexts[598].text,
+                formattedTexts[598].size,
+                formattedTexts[598].style,
+                formattedTexts[598].color
+            )
+            mHeading6 = createFormattedString(
+                formattedTexts[599].text,
+                formattedTexts[599].size,
+                formattedTexts[599].style,
+                formattedTexts[599].color
+            )
+            mRedComment5 = createFormattedString(
+                formattedTexts[600].text,
+                formattedTexts[600].size,
+                formattedTexts[600].style,
+                formattedTexts[600].color
+            )
+            mComment63 = createFormattedString(
+                formattedTexts[601].text,
+                formattedTexts[601].size,
+                formattedTexts[601].style,
+                formattedTexts[601].color
+            )
+            Comment64 = createFormattedString(
+                formattedTexts[602].text,
+                formattedTexts[602].size,
+                formattedTexts[602].style,
+                formattedTexts[602].color
+            )
+            MComment64 = createFormattedString(
+                formattedTexts[603].text,
+                formattedTexts[603].size,
+                formattedTexts[603].style,
+                formattedTexts[603].color
+            )
+            mComment65 = createFormattedString(
+                formattedTexts[604].text,
+                formattedTexts[604].size,
+                formattedTexts[604].style,
+                formattedTexts[604].color
+            )
+            mBody98 = createFormattedString(
+                formattedTexts[605].text,
+                formattedTexts[605].size,
+                formattedTexts[605].style,
+                formattedTexts[605].color
+            )
+            mBody98A = createFormattedString(
+                formattedTexts[606].text,
+                formattedTexts[606].size,
+                formattedTexts[606].style,
+                formattedTexts[606].color
+            )
+            mBody99A = createFormattedString(
+                formattedTexts[607].text,
+                formattedTexts[607].size,
+                formattedTexts[607].style,
+                formattedTexts[607].color
+            )
+            mBody99B = createFormattedString(
+                formattedTexts[608].text,
+                formattedTexts[608].size,
+                formattedTexts[608].style,
+                formattedTexts[608].color
+            )
+            mMComment64AP = createFormattedString(
+                formattedTexts[609].text,
+                formattedTexts[609].size,
+                formattedTexts[609].style,
+                formattedTexts[609].color
+            )
+            mBody98PA = createFormattedString(
+                formattedTexts[610].text,
+                formattedTexts[610].size,
+                formattedTexts[610].style,
+                formattedTexts[610].color
+            )
+            mBody98PMB = createFormattedString(
+                formattedTexts[611].text,
+                formattedTexts[611].size,
+                formattedTexts[611].style,
+                formattedTexts[611].color
+            )
+            mBody98PC = createFormattedString(
+                formattedTexts[612].text,
+                formattedTexts[612].size,
+                formattedTexts[612].style,
+                formattedTexts[612].color
+            )
+            mMComment64A = createFormattedString(
+                formattedTexts[613].text,
+                formattedTexts[613].size,
+                formattedTexts[613].style,
+                formattedTexts[613].color
+            )
+            mMBody98 = createFormattedString(
+                formattedTexts[614].text,
+                formattedTexts[614].size,
+                formattedTexts[614].style,
+                formattedTexts[614].color
+            )
+            mComment66 = createFormattedString(
+                formattedTexts[615].text,
+                formattedTexts[615].size,
+                formattedTexts[615].style,
+                formattedTexts[615].color
+            )
+            mBody100 = createFormattedString(
+                formattedTexts[616].text,
+                formattedTexts[616].size,
+                formattedTexts[616].style,
+                formattedTexts[616].color
+            )
+            mComment67 = createFormattedString(
+                formattedTexts[617].text,
+                formattedTexts[617].size,
+                formattedTexts[617].style,
+                formattedTexts[617].color
+            )
+            mGreenComment4 = createFormattedString(
+                formattedTexts[618].text,
+                formattedTexts[618].size,
+                formattedTexts[618].style,
+                formattedTexts[618].color
+            )
+            mComment68 = createFormattedString(
+                formattedTexts[619].text,
+                formattedTexts[619].size,
+                formattedTexts[619].style,
+                formattedTexts[619].color
+            )
+            mBody101 = createFormattedString(
+                formattedTexts[620].text,
+                formattedTexts[620].size,
+                formattedTexts[620].style,
+                formattedTexts[620].color
+            )
+            mComment69 = createFormattedString(
+                formattedTexts[621].text,
+                formattedTexts[621].size,
+                formattedTexts[621].style,
+                formattedTexts[621].color
+            )
+            mBody102 = createFormattedString(
+                formattedTexts[622].text,
+                formattedTexts[622].size,
+                formattedTexts[622].style,
+                formattedTexts[622].color
+            )
+            mComment70 = createFormattedString(
+                formattedTexts[623].text,
+                formattedTexts[623].size,
+                formattedTexts[623].style,
+                formattedTexts[623].color
+            )
+            mBody103 = createFormattedString(
+                formattedTexts[624].text,
+                formattedTexts[624].size,
+                formattedTexts[624].style,
+                formattedTexts[624].color
+            )
+            mBody103B = createFormattedString(
+                formattedTexts[625].text,
+                formattedTexts[625].size,
+                formattedTexts[625].style,
+                formattedTexts[625].color
+            )
+            mVARGAI3A = createFormattedString(
+                formattedTexts[626].text,
+                formattedTexts[626].size,
+                formattedTexts[626].style,
+                formattedTexts[626].color
+            )
+            mVARGAI1BP2 = createFormattedString(
+                formattedTexts[627].text,
+                formattedTexts[627].size,
+                formattedTexts[627].style,
+                formattedTexts[627].color
+            )
+            mBody104 = createFormattedString(
+                formattedTexts[628].text,
+                formattedTexts[628].size,
+                formattedTexts[628].style,
+                formattedTexts[628].color
+            )
+            mComment71 = createFormattedString(
+                formattedTexts[629].text,
+                formattedTexts[629].size,
+                formattedTexts[629].style,
+                formattedTexts[629].color
+            )
+            mBody105 = createFormattedString(
+                formattedTexts[630].text,
+                formattedTexts[630].size,
+                formattedTexts[630].style,
+                formattedTexts[630].color
+            )
+            mRedComment6 = createFormattedString(
+                formattedTexts[631].text,
+                formattedTexts[631].size,
+                formattedTexts[631].style,
+                formattedTexts[631].color
+            )
+            mComment72 = createFormattedString(
+                formattedTexts[632].text,
+                formattedTexts[632].size,
+                formattedTexts[632].style,
+                formattedTexts[632].color
+            )
+            mComment73 = createFormattedString(
+                formattedTexts[633].text,
+                formattedTexts[633].size,
+                formattedTexts[633].style,
+                formattedTexts[633].color
+            )
+            mComment74 = createFormattedString(
+                formattedTexts[634].text,
+                formattedTexts[634].size,
+                formattedTexts[634].style,
+                formattedTexts[634].color
+            )
+            mComment75 = createFormattedString(
+                formattedTexts[635].text,
+                formattedTexts[635].size,
+                formattedTexts[635].style,
+                formattedTexts[635].color
+            )
+            mComment76 = createFormattedString(
+                formattedTexts[636].text,
+                formattedTexts[636].size,
+                formattedTexts[636].style,
+                formattedTexts[636].color
+            )
+            mBody106 = createFormattedString(
+                formattedTexts[637].text,
+                formattedTexts[637].size,
+                formattedTexts[637].style,
+                formattedTexts[637].color
+            )
+            mBody107Big = createFormattedString(
+                formattedTexts[638].text,
+                formattedTexts[638].size,
+                formattedTexts[638].style,
+                formattedTexts[638].color
+            )
+            mBody108 = createFormattedString(
+                formattedTexts[639].text,
+                formattedTexts[639].size,
+                formattedTexts[639].style,
+                formattedTexts[639].color
+            )
+            mGreenComment5 = createFormattedString(
+                formattedTexts[640].text,
+                formattedTexts[640].size,
+                formattedTexts[640].style,
+                formattedTexts[640].color
+            )
+            mComment77 = createFormattedString(
+                formattedTexts[641].text,
+                formattedTexts[641].size,
+                formattedTexts[641].style,
+                formattedTexts[641].color
+            )
+            mHeading7 = createFormattedString(
+                formattedTexts[642].text,
+                formattedTexts[642].size,
+                formattedTexts[642].style,
+                formattedTexts[642].color
+            )
 
 
-                fun executeData() {
-                    maha_combination.append(mHeading1, mComment1, mBody1, mComment2, mBody2, mComment3, mBody3, mComment4, mBody4, mComment5, mBody5, mComment6, mBody6, mComment7, mBody7, mComment8, mBody8, mComment9, mBody9, mComment10, mBody10, mComment11, mBody11, mComment12, mBody12, mComment13, mBody13, mComment14, mBody14, mComment15A)
-                    if (MFatherLive == "Living") {
-                        maha_combination.append(mComment15B)
-                    } else maha_combination.append(mComment15C)
-                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                        maha_combination.append(mComment15E)
-                    } else maha_combination.append(mComment15D)
-                    maha_combination.append(mComment15F, mBody15, mComment16, mBody16, mComment17)
-                    maha_combination.append(mHeading2, mBody17, mComment18, mBody18, mComment19, mBody19, mComment20, mBody20, mComment21, mBody21)
-                    maha_combination.append(mComment22, mBody22, mComment23, mBody23, mComment24, mBody24, mComment25, mBody25, mComment26, mBody26, mComment27, mBody27, mComment28, mBody28, mComment29, mBody29, mComment30, mBody30, mComment31, mBody31, mComment32, mBody32, mComment33, mBody33, mComment34, mBody34, mComment35, mBody35, mComment36, mBody36, mComment37, mBody37, mComment38A, mRedComment1, mComment38B, mBody38, mBody39)
-                    if (yrGFatherLive == "Deceased") {
-                        maha_combination.append(mBody39B, mBody40, mBody41)
-                    } else {
-                        maha_combination.append(mBody39A, mBody40, mBody41B)
-                    }
-                    maha_combination.append(mBody42)
-                    if (yrGFatherLive == "Deceased" && motherLive == "Deceased" && fatherMotherLive == "Deceased") {
-                        maha_combination.append(mBody39FM)
-                    }
-                    if (MFatherLive == "Living") {
-                        maha_combination.append(mBody42Z)
-                        if (noOfDaysTpnm == "15days") {
-                            maha_combination.append(mBody42ZA)
-                        } else {
-                            maha_combination.append(mBody42ZB)
-                        }
-                        maha_combination.append(mComment39, mGreenComment1, mComment40, mComment40Two, mComment41, mRedComment2)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment41C)
-                        } else maha_combination.append(mComment41A)
-                        maha_combination.append(mComment41D, mHeading3, mComment42, mRedComment3, mComment42A, mBody46)
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody48B)
-                        } else {
-                            maha_combination.append(mBody48A)
-                        }
-                        maha_combination.append(mBody49)
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody50)
-                        } else {
-                            maha_combination.append(mBody51B)
-                        }
-                        maha_combination.append(mBody52)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment44)
-                        } else maha_combination.append(mComment43)
-                        maha_combination.append(mComment45, mHeading4, mComment46, mBody53)
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody56)
-                        } else {
-                            maha_combination.append(mBody55)
-                        }
-                        maha_combination.append(mBody57)
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody58)
-                        } else {
-                            maha_combination.append(mBody59B)
-                        }
-                        maha_combination.append(mBody60, mComment47, mBody61)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment49)
-                        } else maha_combination.append(mComment48)
-                        maha_combination.append(mComment50, mComment42AP, mBody46P)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment49A)
-                        } else maha_combination.append(mComment48A)
-                        maha_combination.append(mComment50, mHeading4P, mComment46, mBody46PAS, mComment47, mBody61)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment49B)
-                        } else maha_combination.append(mComment48B)
-                        maha_combination.append(mComment50, mComment42AP1, mHeading4P1, mComment42AP2A, mComment42AP2B, mHeading5)
-                        maha_combination.append(mBody62, mBody64, mBody66, mBody68, mBody69)
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody70A, mBody71, mBody73A, mBody74, mBody76A, mBody77, mBody79A, mBody80, mBody82A, mBody83, mBody85A, mBody86)
-                        } else {
-                            maha_combination.append(mBody70B, mBody72, mBody73B, mBody75, mBody76B, mBody78, mBody79B, mBody81, mBody82B, mBody84, mBody85B, mBody87)
-                        }
-                        if ((yrGFatherLive == "Deceased") && (motherLive == "Deceased") && (fatherMotherLive == "Deceased")) {
-                            maha_combination.append(mBody62P, mBody62P2, mBody62P3)
-                        }
-                        maha_combination.append(mHeading5P, personHead)
-                        if (nOne != "") {
-                            maha_combination.append(strAdditionP1, strAdditionNO1)
-                            if (Gndr1 == "ஆண்") {
-                                maha_combination.append(strAdditionP1zM, strAdditionP1aA1)
-                            } else {
-                                maha_combination.append(strAdditionP1zA, strAdditionP1bA1)
-                            }
-                            maha_combination.append(strAdditionP1cA1, strAdditionP1ab, strAdditionNO2)
-                            if (Gndr1 == "ஆண்") {
-                                maha_combination.append(strAdditionP1zMB, strAdditionP1aA2)
-                            } else {
-                                maha_combination.append(strAdditionP1zB, strAdditionP1bA2)
-                            }
-                            maha_combination.append(strAdditionP1cA2, strAdditionP1ac, strAdditionNO3)
-                            if (Gndr1 == "ஆண்") {
-                                maha_combination.append(strAdditionP1zMC, strAdditionP1aA3)
-                            } else {
-                                maha_combination.append(strAdditionP1zC, strAdditionP1bA3)
-                            }
-                            maha_combination.append(strAdditionP1cA3, space)
-                        }
-                        if (nTwo != "") {
-                            maha_combination.append(strAdditionP2, strAdditionNO1B)
-                            if (Gndr2 == "ஆண்") {
-                                maha_combination.append(strAdditionP2zM, strAdditionP1aB1)
-                            } else {
-                                maha_combination.append(strAdditionP2zA, strAdditionP1bB1)
-                            }
-                            maha_combination.append(strAdditionP1cB1, strAdditionP2bb, strAdditionNO2B)
-                            if (Gndr2 == "ஆண்") {
-                                maha_combination.append(strAdditionP2zMB, strAdditionP1aB2)
-                            } else {
-                                maha_combination.append(strAdditionP2zB, strAdditionP1bB2)
-                            }
-                            maha_combination.append(strAdditionP1cB2, strAdditionP2bc, strAdditionNO3B)
-                            if (Gndr2 == "ஆண்") {
-                                maha_combination.append(strAdditionP2zMC, strAdditionP1aB3)
-                            } else {
-                                maha_combination.append(strAdditionP2zC, strAdditionP1bB3)
-                            }
-                            maha_combination.append(strAdditionP1cB3, space)
-                        }
-                        if (nThree != "") {
-                            maha_combination.append(strAdditionP3, strAdditionNO1C)
-                            if (Gndr3 == "ஆண்") {
-                                maha_combination.append(strAdditionP3zM, strAdditionP1aC1)
-                            } else {
-                                maha_combination.append(strAdditionP3zA, strAdditionP1bC1)
-                            }
-                            maha_combination.append(strAdditionP1cC1, strAdditionP3cb, strAdditionNO2C)
-                            if (Gndr3 == "ஆண்") {
-                                maha_combination.append(strAdditionP3zMB, strAdditionP1aC2)
-                            } else {
-                                maha_combination.append(strAdditionP3zB, strAdditionP1bC2)
-                            }
-                            maha_combination.append(strAdditionP1cC2, strAdditionP3cc, strAdditionNO3C)
-                            if (Gndr3 == "ஆண்") {
-                                maha_combination.append(strAdditionP3zMC, strAdditionP1aC3)
-                            } else {
-                                maha_combination.append(strAdditionP3zC, strAdditionP1bC3)
-                            }
-                            maha_combination.append(strAdditionP1cC3, space)
-                        }
-                        if (nFour != "") {
-                            maha_combination.append(strAdditionP4, strAdditionNO1D)
-                            if (Gndr4 == "ஆண்") {
-                                maha_combination.append(strAdditionP4zM, strAdditionP1aD1)
-                            } else {
-                                maha_combination.append(strAdditionP4zA, strAdditionP1bD1)
-                            }
-                            maha_combination.append(strAdditionP1cD1, strAdditionP4db, strAdditionNO2D)
-                            if (Gndr4 == "ஆண்") {
-                                maha_combination.append(strAdditionP4zMB, strAdditionP1aD2)
-                            } else {
-                                maha_combination.append(strAdditionP4zB, strAdditionP1bD2)
-                            }
-                            maha_combination.append(strAdditionP1cD2, strAdditionP4dc, strAdditionNO3D)
-                            if (Gndr4 == "ஆண்") {
-                                maha_combination.append(strAdditionP4zMC, strAdditionP1aD3)
-                            } else {
-                                maha_combination.append(strAdditionP4zC, strAdditionP1bD3)
-                            }
-                            maha_combination.append(strAdditionP1cD3, space)
-                        }
-                        if (nFive != "") {
-                            maha_combination.append(strAdditionP5, strAdditionNO1E)
-                            if (Gndr5 == "ஆண்") {
-                                maha_combination.append(strAdditionP5zM, strAdditionP1aE1)
-                            } else {
-                                maha_combination.append(strAdditionP5zA, strAdditionP1bE1)
-                            }
-                            maha_combination.append(strAdditionP1cE1, strAdditionP5eb, strAdditionNO2E)
-                            if (Gndr5 == "ஆண்") {
-                                maha_combination.append(strAdditionP5zMB, strAdditionP1aE2)
-                            } else {
-                                maha_combination.append(strAdditionP5zB, strAdditionP1bE2)
-                            }
-                            maha_combination.append(strAdditionP1cE2, strAdditionP5ec, strAdditionNO3E)
-                            if (Gndr5 == "ஆண்") {
-                                maha_combination.append(strAdditionP5zMC, strAdditionP1aE3)
-                            } else {
-                                maha_combination.append(strAdditionP5zC, strAdditionP1bE3)
-                            }
-                            maha_combination.append(strAdditionP1cE3, space)
-                        }
-                        if (nSix != "") {
-                            maha_combination.append(strAdditionP6, strAdditionNO1F)
-                            if (Gndr6 == "ஆண்") {
-                                maha_combination.append(strAdditionP6zM, strAdditionP1aF1)
-                            } else {
-                                maha_combination.append(strAdditionP6zA, strAdditionP1bF1)
-                            }
-                            maha_combination.append(strAdditionP1cF1, strAdditionP6fb, strAdditionNO2F)
-                            if (Gndr6 == "ஆண்") {
-                                maha_combination.append(strAdditionP6zMB, strAdditionP1aF2)
-                            } else {
-                                maha_combination.append(strAdditionP6zB, strAdditionP1bF2)
-                            }
-                            maha_combination.append(strAdditionP1cF2, strAdditionP6fc, strAdditionNO3F)
-                            if (Gndr6 == "ஆண்") {
-                                maha_combination.append(strAdditionP6zMC, strAdditionP1aF3)
-                            } else {
-                                maha_combination.append(strAdditionP6zC, strAdditionP1bF3)
-                            }
-                            maha_combination.append(strAdditionP1cF3, space)
-                        }
-                        if (nSeven != "") {
-                            maha_combination.append(strAdditionP7, strAdditionNO1G)
-                            if (Gndr7 == "ஆண்") {
-                                maha_combination.append(strAdditionP7zM, strAdditionP1aG1)
-                            } else {
-                                maha_combination.append(strAdditionP7zA, strAdditionP1bG1)
-                            }
-                            maha_combination.append(strAdditionP1cG1, strAdditionP7gb, strAdditionNO2G)
-                            if (Gndr7 == "ஆண்") {
-                                maha_combination.append(strAdditionP7zMB, strAdditionP1aG2)
-                            } else {
-                                maha_combination.append(strAdditionP7zB, strAdditionP1bG2)
-                            }
-                            maha_combination.append(strAdditionP1cG2, strAdditionP7gc, strAdditionNO3G)
-                            if (Gndr7 == "ஆண்") {
-                                maha_combination.append(strAdditionP7zMC, strAdditionP1aG3)
-                            } else {
-                                maha_combination.append(strAdditionP7zC, strAdditionP1bG3)
-                            }
-                            maha_combination.append(strAdditionP1cG3, space)
-                        }
-                        if (nEight != "") {
-                            maha_combination.append(strAdditionP8, strAdditionNO1H)
-                            if (Gndr8 == "ஆண்") {
-                                maha_combination.append(strAdditionP8zM, strAdditionP1aH1)
-                            } else {
-                                maha_combination.append(strAdditionP8zA, strAdditionP1bH1)
-                            }
-                            maha_combination.append(strAdditionP1cH1, strAdditionP8hb, strAdditionNO2H)
-                            if (Gndr8 == "ஆண்") {
-                                maha_combination.append(strAdditionP8zMB, strAdditionP1aH2)
-                            } else {
-                                maha_combination.append(strAdditionP8zB, strAdditionP1bH2)
-                            }
-                            maha_combination.append(strAdditionP1cH2, strAdditionP8hc, strAdditionNO3H)
-                            if (Gndr8 == "ஆண்") {
-                                maha_combination.append(strAdditionP8zMC, strAdditionP1aH3)
-                            } else {
-                                maha_combination.append(strAdditionP8zC, strAdditionP1bH3)
-                            }
-                            maha_combination.append(strAdditionP1cH3, space)
-                        }
-                        if (nNine != "") {
-                            maha_combination.append(strAdditionP9, strAdditionNO1I)
-                            if (Gndr9 == "ஆண்") {
-                                maha_combination.append(strAdditionP9zM, strAdditionP1aI1)
-                            } else {
-                                maha_combination.append(strAdditionP9zA, strAdditionP1bI1)
-                            }
-                            maha_combination.append(strAdditionP1cI1, strAdditionP9ib, strAdditionNO2I)
-                            if (Gndr9 == "ஆண்") {
-                                maha_combination.append(strAdditionP9zMB, strAdditionP1aI2)
-                            } else {
-                                maha_combination.append(strAdditionP9zB, strAdditionP1bI2)
-                            }
-                            maha_combination.append(strAdditionP1cI2, strAdditionP9ic, strAdditionNO3I)
-                            if (Gndr9 == "ஆண்") {
-                                maha_combination.append(strAdditionP9zMC, strAdditionP1aI3)
-                            } else {
-                                maha_combination.append(strAdditionP9zC, strAdditionP1bI3)
-                            }
-                            maha_combination.append(strAdditionP1cI3, space)
-                        }
-                        if (nTen != "") {
-                            maha_combination.append(strAdditionP10, strAdditionNO1J)
-                            if (Gndr10 == "ஆண்") {
-                                maha_combination.append(strAdditionP10zM, strAdditionP1aJ1)
-                            } else {
-                                maha_combination.append(strAdditionP10zA, strAdditionP1bJ1)
-                            }
-                            maha_combination.append(strAdditionP1cJ1, strAdditionP10jb, strAdditionNO2J)
-                            if (Gndr10 == "ஆண்") {
-                                maha_combination.append(strAdditionP10zMB, strAdditionP1aJ2)
-                            } else {
-                                maha_combination.append(strAdditionP10zB, strAdditionP1bJ2)
-                            }
-                            maha_combination.append(strAdditionP1cJ2, strAdditionP10jc, strAdditionNO3J)
-                            if (Gndr10 == "ஆண்") {
-                                maha_combination.append(strAdditionP10zMC, strAdditionP1aJ3)
-                            } else {
-                                maha_combination.append(strAdditionP10zC, strAdditionP1bJ3)
-                            }
-                            maha_combination.append(strAdditionP1cJ3, space)
-                        }
-                        if (nEleven != "") {
-                            maha_combination.append(strAdditionP11, strAdditionNO1K)
-                            if (Gndr11 == "ஆண்") {
-                                maha_combination.append(strAdditionP11zM, strAdditionP1aK1)
-                            } else {
-                                maha_combination.append(strAdditionP11zA, strAdditionP1bK1)
-                            }
-                            maha_combination.append(strAdditionP1cK1, strAdditionP11kb, strAdditionNO2K)
-                            if (Gndr11 == "ஆண்") {
-                                maha_combination.append(strAdditionP11zMB, strAdditionP1aK2)
-                            } else {
-                                maha_combination.append(strAdditionP11zB, strAdditionP1bK2)
-                            }
-                            maha_combination.append(strAdditionP1cK2, strAdditionP11kc, strAdditionNO3K)
-                            if (Gndr11 == "ஆண்") {
-                                maha_combination.append(strAdditionP11zMC, strAdditionP1aK3)
-                            } else {
-                                maha_combination.append(strAdditionP11zC, strAdditionP1bK3)
-                            }
-                            maha_combination.append(strAdditionP1cK3, space)
-                        }
-                        if (nTwelve != "") {
-                            maha_combination.append(strAdditionP12, strAdditionNO1L)
-                            if (Gndr12 == "ஆண்") {
-                                maha_combination.append(strAdditionP12zM, strAdditionP1aL1)
-                            } else {
-                                maha_combination.append(strAdditionP12zA, strAdditionP1bL1)
-                            }
-                            maha_combination.append(strAdditionP1cL1, strAdditionP12lb, strAdditionNO2L)
-                            if (Gndr12 == "ஆண்") {
-                                maha_combination.append(strAdditionP12zMB, strAdditionP1aL2)
-                            } else {
-                                maha_combination.append(strAdditionP12zB, strAdditionP1bL2)
-                            }
-                            maha_combination.append(strAdditionP1cL2, strAdditionP12lc, strAdditionNO3L)
-                            if (Gndr12 == "ஆண்") {
-                                maha_combination.append(strAdditionP12zMC, strAdditionP1aL3)
-                            } else {
-                                maha_combination.append(strAdditionP12zC, strAdditionP1bL3)
-                            }
-                            maha_combination.append(strAdditionP1cL3, space)
-                        }
-                        if (nThirteen != "") {
-                            maha_combination.append(strAdditionP13, strAdditionNO1M)
-                            if (Gndr13 == "ஆண்") {
-                                maha_combination.append(strAdditionP13zM, strAdditionP1aM1)
-                            } else {
-                                maha_combination.append(strAdditionP13zA, strAdditionP1bM1)
-                            }
-                            maha_combination.append(strAdditionP1cM1, strAdditionP13mb, strAdditionNO2M)
-                            if (Gndr13 == "ஆண்") {
-                                maha_combination.append(strAdditionP13zMB, strAdditionP1aM2)
-                            } else {
-                                maha_combination.append(strAdditionP13zB, strAdditionP1bM2)
-                            }
-                            maha_combination.append(strAdditionP1cM2, strAdditionP13mc, strAdditionNO3M)
-                            if (Gndr13 == "ஆண்") {
-                                maha_combination.append(strAdditionP13zMC, strAdditionP1aM3)
-                            } else {
-                                maha_combination.append(strAdditionP13zC, strAdditionP1bM3)
-                            }
-                            maha_combination.append(strAdditionP1cM3, space)
-                        }
-                        if (nFourteen != "") {
-                            maha_combination.append(strAdditionP14, strAdditionNO1N)
-                            if (Gndr14 == "ஆண்") {
-                                maha_combination.append(strAdditionP14zM, strAdditionP1aN1)
-                            } else {
-                                maha_combination.append(strAdditionP14zA, strAdditionP1bN1)
-                            }
-                            maha_combination.append(strAdditionP1cN1, strAdditionP14nb, strAdditionNO2N)
-                            if (Gndr14 == "ஆண்") {
-                                maha_combination.append(strAdditionP14zMB, strAdditionP1aN2)
-                            } else {
-                                maha_combination.append(strAdditionP14zB, strAdditionP1bN2)
-                            }
-                            maha_combination.append(strAdditionP1cN2, strAdditionP14nc, strAdditionNO3N)
-                            if (Gndr14 == "ஆண்") {
-                                maha_combination.append(strAdditionP14zMC, strAdditionP1aN3)
-                            } else {
-                                maha_combination.append(strAdditionP14zC, strAdditionP1bN3)
-                            }
-                            maha_combination.append(strAdditionP1cN3, space)
-                        }
-                        if (nFifteen != "") {
-                            maha_combination.append(strAdditionP15, strAdditionNO1O)
-                            if (Gndr15 == "ஆண்") {
-                                maha_combination.append(strAdditionP15zM, strAdditionP1aO1)
-                            } else {
-                                maha_combination.append(strAdditionP15zA, strAdditionP1bO1)
-                            }
-                            maha_combination.append(strAdditionP1cO1, strAdditionP15ob, strAdditionNO2O)
-                            if (Gndr15 == "ஆண்") {
-                                maha_combination.append(strAdditionP15zMB, strAdditionP1aO2)
-                            } else {
-                                maha_combination.append(strAdditionP15zB, strAdditionP1bO2)
-                            }
-                            maha_combination.append(strAdditionP1cO2, strAdditionP15oc, strAdditionNO3O)
-                            if (Gndr15 == "ஆண்") {
-                                maha_combination.append(strAdditionP15zMC, strAdditionP1aO3)
-                            } else {
-                                maha_combination.append(strAdditionP15zC, strAdditionP1bO3)
-                            }
-                            maha_combination.append(strAdditionP1cO3, space)
-                        }
-                        maha_combination.append(
-                            strAdditionP1,
-                            mBody87P1,
-                            strAdditionP2,
-                            mBody87P2,
-                            strAdditionP3,
-                            mBody87P3,
-                            mComment51,
-                            mBody88,
-                            mComment51a,
-                            mGreenComment2,
-                            mComment52,
-                            mBody89,
-                            mRedComment4,
-                            mComment53
-                        )
-                        if (MFatherLive == "Deceased") {
-                            maha_combination.append(mComment54a)
-                        } else {
-                            maha_combination.append(mComment54)
-                        }
-                        maha_combination.append(
-                            mComment55,
-                            mComment55A,
-                            mBody90,
-                            mComment55B,
-                            mBody90P,
-                            mComment55C,
-                            mComment56
-                        )
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment57)
-                        } else maha_combination.append(mComment56)
-                        maha_combination.append(mComment58, mBody91, mComment55D, mMBody91)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment57A)
-                        } else maha_combination.append(mComment55E)
-                        maha_combination.append(mComment58, mMBody91A, mGreenComment3, mBody92, mVARGAI1A, mBody93, mComment59, mBody94, mComment60, mBody95, mComment61, mBody96, mVARGAI2A, mBody97, mComment62, mHeading6, mRedComment5)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(Comment64)
-                        } else maha_combination.append(mComment63)
-                        maha_combination.append(MComment64, mComment65, mBody98)
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody99A)
-                        } else {
-                            maha_combination.append(mBody99B)
-                        }
-                        maha_combination.append(mMComment64A, mMBody98, mComment66, mBody100, mComment67, mGreenComment4, mComment68, mBody101, mComment69, mBody102, mComment70, mBody103)
-                        maha_combination.append(mBody103B, mVARGAI3A, mBody104, mComment71, mBody105, mRedComment6, mComment72, mComment73)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment75)
-                        } else maha_combination.append(mComment74)
-                        maha_combination.append(mComment76, mBody106, mBody107Big, mBody108, mGreenComment5, mComment77, mHeading7)
-                    } else {
-                        /*Motherside Gents SANGALPAM*/
-                        maha_combination.append(mMBody38, mMBody41B)
-                        /*Motherside Ladies SANGALPAM*/
-                        if (motherMotherLive == "Deceased") {
-                            maha_combination.append(mMBody38b, mMBody41Bc)
-                        }
-                        /*Pithru - SANGALPAM*/
-                        maha_combination.append(mBody42Z)
-                        if (noOfDaysTpnm == "15days") {
-                            maha_combination.append(mBody42ZA)
-                        } else {
-                            maha_combination.append(mBody42ZB)
-                        }
-                        maha_combination.append(mComment39, mGreenComment1, mComment40, mComment40Three, mComment41, mRedComment2)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment41C)
-                        } else maha_combination.append(mComment41A)
-                        maha_combination.append(mComment41D, mHeading3, mComment42, mRedComment3)
-/*Fatherside Gents - ஆவாஹனம்-ஆஸனம்*/
-                        maha_combination.append(mComment42A, mBody46)
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody48B)
-                        } else {
-                            if (motherLive == "Deceased" && fatherMotherLive == "Deceased") {
-                                maha_combination.append(mBody98PMB)
-                            }
-                            maha_combination.append(mBody48A)
-                        }
-                        maha_combination.append(mBody49)
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody50)
-                        } else {
-                            maha_combination.append(mBody51B)
-                        }
-                        maha_combination.append(mBody52)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment44A)
-                        } else maha_combination.append(mComment43A)
-                        maha_combination.append(mComment45A, mHeading4, mComment46, mBody53)
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody56)
-                        } else {
-                            maha_combination.append(mBody55)
-                        }
-                        maha_combination.append(mBody57)
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody58)
-                        } else {
-                            maha_combination.append(mBody59B)
-                        }
-                        maha_combination.append(mBody60, mComment47, mBody61)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment49A)
-                        } else maha_combination.append(mComment48A)
-                        maha_combination.append(mComment50A)
-/*Motherside Gents - ஆவாஹனம்-ஆஸனம்*/
-                        maha_combination.append(mComment42Middle, mMBody46, mMBody51B)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment49)
-                        } else maha_combination.append(mComment48)
-                        maha_combination.append(mComment50, mMHeading4, mMComment46, mMBody53, mMBody51C1, mComment47B, mMBody61)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment49B)
-                        } else maha_combination.append(mComment48B)
-                        maha_combination.append(mComment50B)
-                        maha_combination.append(mComment42AP, mBody46P)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment49C)
-                        } else maha_combination.append(mComment48C)
-                        maha_combination.append(mComment50C)
-                        maha_combination.append(mHeading4P, mComment46A, mBody46PAS, mComment47A, mBody61P)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment49E)
-                        } else maha_combination.append(mComment48E)
-                        maha_combination.append(mComment50E, mComment42AP1, mHeading4P1)
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment49D)
-                        } else maha_combination.append(mComment42AP2A)
-                        maha_combination.append(mComment42AP2B)
-/*Tharpanam- Father - 1,2,3.a.b.c*/
-                        maha_combination.append(mHeading5, mBody62, mBody64, mBody66, mBody68, mBody69)
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody70A, mBody71, mBody73A, mBody74, mBody76A, mBody77, mBody79A, mBody80, mBody82A, mBody83, mBody85A, mBody86)
-                        } else {
-                            maha_combination.append(mBody70B, mBody72, mBody73B, mBody75, mBody79B, mBody81, mBody82B, mBody76B, mBody78, mBody79B, mBody81, mBody82B, mBody84, mBody85B, mBody87)
-                        }
-
-                        if (yrGFatherLive == "Deceased" && motherLive == "Deceased" && fatherMotherLive == "Deceased") {
-                            maha_combination.append(mBody62P, mBody62P2, mBody62P3)
-                        }
-/*Tharpanam- MotherFather - I, II & III.a.b.c*/
-                        maha_combination.append(mMHeading5mG, mMBody62, mMBody63, mMBody64, mMBody66, mMBody68, mMBody69, mMBody71, mMBody72, mMBody74, mMBody75)
-/*Tharpanam- MotherMother - IV.a.b.c*/
-                        if (motherMotherLive == "Deceased") {
-                            maha_combination.append(mMBody62M, mMBody63M, mMBody64M, mMBody66M, mMBody68M, mMBody69M, mMBody71M, mMBody72M, mMBody74M, mMBody75M)
-                        }
-                        maha_combination.append(mHeading5P, personHead)
-                        if (nOne != "") {
-                            maha_combination.append(strAdditionP1, strAdditionNO1)
-                            if (Gndr1 == "ஆண்") {
-                                maha_combination.append(strAdditionP1zM, strAdditionP1aA1)
-                            } else {
-                                maha_combination.append(strAdditionP1zA, strAdditionP1bA1)
-                            }
-                            maha_combination.append(strAdditionP1cA1, strAdditionP1ab, strAdditionNO2)
-                            if (Gndr1 == "ஆண்") {
-                                maha_combination.append(strAdditionP1zMB, strAdditionP1aA2)
-                            } else {
-                                maha_combination.append(strAdditionP1zB, strAdditionP1bA2)
-                            }
-                            maha_combination.append(strAdditionP1cA2, strAdditionP1ac, strAdditionNO3)
-                            if (Gndr1 == "ஆண்") {
-                                maha_combination.append(strAdditionP1zMC, strAdditionP1aA3)
-                            } else {
-                                maha_combination.append(strAdditionP1zC, strAdditionP1bA3)
-                            }
-                            maha_combination.append(strAdditionP1cA3, space)
-                        }
-                        if (nTwo != "") {
-                            maha_combination.append(strAdditionP2, strAdditionNO1B)
-                            if (Gndr2 == "ஆண்") {
-                                maha_combination.append(strAdditionP2zM, strAdditionP1aB1)
-                            } else {
-                                maha_combination.append(strAdditionP2zA, strAdditionP1bB1)
-                            }
-                            maha_combination.append(strAdditionP1cB1, strAdditionP2bb, strAdditionNO2B)
-                            if (Gndr2 == "ஆண்") {
-                                maha_combination.append(strAdditionP2zMB, strAdditionP1aB2)
-                            } else {
-                                maha_combination.append(strAdditionP2zB, strAdditionP1bB2)
-                            }
-                            maha_combination.append(strAdditionP1cB2, strAdditionP2bc, strAdditionNO3B)
-                            if (Gndr2 == "ஆண்") {
-                                maha_combination.append(strAdditionP2zMC, strAdditionP1aB3)
-                            } else {
-                                maha_combination.append(strAdditionP2zC, strAdditionP1bB3)
-                            }
-                            maha_combination.append(strAdditionP1cB3, space)
-                        }
-                        if (nThree != "") {
-                            maha_combination.append(strAdditionP3, strAdditionNO1C)
-                            if (Gndr3 == "ஆண்") {
-                                maha_combination.append(strAdditionP3zM, strAdditionP1aC1)
-                            } else {
-                                maha_combination.append(strAdditionP3zA, strAdditionP1bC1)
-                            }
-                            maha_combination.append(strAdditionP1cC1, strAdditionP3cb, strAdditionNO2C)
-                            if (Gndr3 == "ஆண்") {
-                                maha_combination.append(strAdditionP3zMB, strAdditionP1aC2)
-                            } else {
-                                maha_combination.append(strAdditionP3zB, strAdditionP1bC2)
-                            }
-                            maha_combination.append(strAdditionP1cC2, strAdditionP3cc, strAdditionNO3C)
-                            if (Gndr3 == "ஆண்") {
-                                maha_combination.append(strAdditionP3zMC, strAdditionP1aC3)
-                            } else {
-                                maha_combination.append(strAdditionP3zC, strAdditionP1bC3)
-                            }
-                            maha_combination.append(strAdditionP1cC3, space)
-                        }
-                        if (nFour != "") {
-                            maha_combination.append(strAdditionP4, strAdditionNO1D)
-                            if (Gndr4 == "ஆண்") {
-                                maha_combination.append(strAdditionP4zM, strAdditionP1aD1)
-                            } else {
-                                maha_combination.append(strAdditionP4zA, strAdditionP1bD1)
-                            }
-                            maha_combination.append(strAdditionP1cD1, strAdditionP4db, strAdditionNO2D)
-                            if (Gndr4 == "ஆண்") {
-                                maha_combination.append(strAdditionP4zMB, strAdditionP1aD2)
-                            } else {
-                                maha_combination.append(strAdditionP4zB, strAdditionP1bD2)
-                            }
-                            maha_combination.append(strAdditionP1cD2, strAdditionP4dc, strAdditionNO3D)
-                            if (Gndr4 == "ஆண்") {
-                                maha_combination.append(strAdditionP4zMC, strAdditionP1aD3)
-                            } else {
-                                maha_combination.append(strAdditionP4zC, strAdditionP1bD3)
-                            }
-                            maha_combination.append(strAdditionP1cD3, space)
-                        }
-                        if (nFive != "") {
-                            maha_combination.append(strAdditionP5, strAdditionNO1E)
-                            if (Gndr5 == "ஆண்") {
-                                maha_combination.append(strAdditionP5zM, strAdditionP1aE1)
-                            } else {
-                                maha_combination.append(strAdditionP5zA, strAdditionP1bE1)
-                            }
-                            maha_combination.append(strAdditionP1cE1, strAdditionP5eb, strAdditionNO2E)
-                            if (Gndr5 == "ஆண்") {
-                                maha_combination.append(strAdditionP5zMB, strAdditionP1aE2)
-                            } else {
-                                maha_combination.append(strAdditionP5zB, strAdditionP1bE2)
-                            }
-                            maha_combination.append(strAdditionP1cE2, strAdditionP5ec, strAdditionNO3E)
-                            if (Gndr5 == "ஆண்") {
-                                maha_combination.append(strAdditionP5zMC, strAdditionP1aE3)
-                            } else {
-                                maha_combination.append(strAdditionP5zC, strAdditionP1bE3)
-                            }
-                            maha_combination.append(strAdditionP1cE3, space)
-                        }
-                        if (nSix != "") {
-                            maha_combination.append(strAdditionP6, strAdditionNO1F)
-                            if (Gndr6 == "ஆண்") {
-                                maha_combination.append(strAdditionP6zM, strAdditionP1aF1)
-                            } else {
-                                maha_combination.append(strAdditionP6zA, strAdditionP1bF1)
-                            }
-                            maha_combination.append(strAdditionP1cF1, strAdditionP6fb, strAdditionNO2F)
-                            if (Gndr6 == "ஆண்") {
-                                maha_combination.append(strAdditionP6zMB, strAdditionP1aF2)
-                            } else {
-                                maha_combination.append(strAdditionP6zB, strAdditionP1bF2)
-                            }
-                            maha_combination.append(strAdditionP1cF2, strAdditionP6fc, strAdditionNO3F)
-                            if (Gndr6 == "ஆண்") {
-                                maha_combination.append(strAdditionP6zMC, strAdditionP1aF3)
-                            } else {
-                                maha_combination.append(strAdditionP6zC, strAdditionP1bF3)
-                            }
-                            maha_combination.append(strAdditionP1cF3, space)
-                        }
-                        if (nSeven != "") {
-                            maha_combination.append(strAdditionP7, strAdditionNO1G)
-                            if (Gndr7 == "ஆண்") {
-                                maha_combination.append(strAdditionP7zM, strAdditionP1aG1)
-                            } else {
-                                maha_combination.append(strAdditionP7zA, strAdditionP1bG1)
-                            }
-                            maha_combination.append(strAdditionP1cG1, strAdditionP7gb, strAdditionNO2G)
-                            if (Gndr7 == "ஆண்") {
-                                maha_combination.append(strAdditionP7zMB, strAdditionP1aG2)
-                            } else {
-                                maha_combination.append(strAdditionP7zB, strAdditionP1bG2)
-                            }
-                            maha_combination.append(strAdditionP1cG2, strAdditionP7gc, strAdditionNO3G)
-                            if (Gndr7 == "ஆண்") {
-                                maha_combination.append(strAdditionP7zMC, strAdditionP1aG3)
-                            } else {
-                                maha_combination.append(strAdditionP7zC, strAdditionP1bG3)
-                            }
-                            maha_combination.append(strAdditionP1cG3, space)
-                        }
-                        if (nEight != "") {
-                            maha_combination.append(strAdditionP8, strAdditionNO1H)
-                            if (Gndr8 == "ஆண்") {
-                                maha_combination.append(strAdditionP8zM, strAdditionP1aH1)
-                            } else {
-                                maha_combination.append(strAdditionP8zA, strAdditionP1bH1)
-                            }
-                            maha_combination.append(strAdditionP1cH1, strAdditionP8hb, strAdditionNO2H)
-                            if (Gndr8 == "ஆண்") {
-                                maha_combination.append(strAdditionP8zMB, strAdditionP1aH2)
-                            } else {
-                                maha_combination.append(strAdditionP8zB, strAdditionP1bH2)
-                            }
-                            maha_combination.append(strAdditionP1cH2, strAdditionP8hc, strAdditionNO3H)
-                            if (Gndr8 == "ஆண்") {
-                                maha_combination.append(strAdditionP8zMC, strAdditionP1aH3)
-                            } else {
-                                maha_combination.append(strAdditionP8zC, strAdditionP1bH3)
-                            }
-                            maha_combination.append(strAdditionP1cH3, space)
-                        }
-                        if (nNine != "") {
-                            maha_combination.append(strAdditionP9, strAdditionNO1I)
-                            if (Gndr9 == "ஆண்") {
-                                maha_combination.append(strAdditionP9zM, strAdditionP1aI1)
-                            } else {
-                                maha_combination.append(strAdditionP9zA, strAdditionP1bI1)
-                            }
-                            maha_combination.append(strAdditionP1cI1, strAdditionP9ib, strAdditionNO2I)
-                            if (Gndr9 == "ஆண்") {
-                                maha_combination.append(strAdditionP9zMB, strAdditionP1aI2)
-                            } else {
-                                maha_combination.append(strAdditionP9zB, strAdditionP1bI2)
-                            }
-                            maha_combination.append(strAdditionP1cI2, strAdditionP9ic, strAdditionNO3I)
-                            if (Gndr9 == "ஆண்") {
-                                maha_combination.append(strAdditionP9zMC, strAdditionP1aI3)
-                            } else {
-                                maha_combination.append(strAdditionP9zC, strAdditionP1bI3)
-                            }
-                            maha_combination.append(strAdditionP1cI3, space)
-                        }
-                        if (nTen != "") {
-                            maha_combination.append(strAdditionP10, strAdditionNO1J)
-                            if (Gndr10 == "ஆண்") {
-                                maha_combination.append(strAdditionP10zM, strAdditionP1aJ1)
-                            } else {
-                                maha_combination.append(strAdditionP10zA, strAdditionP1bJ1)
-                            }
-                            maha_combination.append(strAdditionP1cJ1, strAdditionP10jb, strAdditionNO2J)
-                            if (Gndr10 == "ஆண்") {
-                                maha_combination.append(strAdditionP10zMB, strAdditionP1aJ2)
-                            } else {
-                                maha_combination.append(strAdditionP10zB, strAdditionP1bJ2)
-                            }
-                            maha_combination.append(strAdditionP1cJ2, strAdditionP10jc, strAdditionNO3J)
-                            if (Gndr10 == "ஆண்") {
-                                maha_combination.append(strAdditionP10zMC, strAdditionP1aJ3)
-                            } else {
-                                maha_combination.append(strAdditionP10zC, strAdditionP1bJ3)
-                            }
-                            maha_combination.append(strAdditionP1cJ3, space)
-                        }
-                        if (nEleven != "") {
-                            maha_combination.append(strAdditionP11, strAdditionNO1K)
-                            if (Gndr11 == "ஆண்") {
-                                maha_combination.append(strAdditionP11zM, strAdditionP1aK1)
-                            } else {
-                                maha_combination.append(strAdditionP11zA, strAdditionP1bK1)
-                            }
-                            maha_combination.append(strAdditionP1cK1, strAdditionP11kb, strAdditionNO2K)
-                            if (Gndr11 == "ஆண்") {
-                                maha_combination.append(strAdditionP11zMB, strAdditionP1aK2)
-                            } else {
-                                maha_combination.append(strAdditionP11zB, strAdditionP1bK2)
-                            }
-                            maha_combination.append(strAdditionP1cK2, strAdditionP11kc, strAdditionNO3K)
-                            if (Gndr11 == "ஆண்") {
-                                maha_combination.append(strAdditionP11zMC, strAdditionP1aK3)
-                            } else {
-                                maha_combination.append(strAdditionP11zC, strAdditionP1bK3)
-                            }
-                            maha_combination.append(strAdditionP1cK3, space)
-                        }
-                        if (nTwelve != "") {
-                            maha_combination.append(strAdditionP12, strAdditionNO1L)
-                            if (Gndr12 == "ஆண்") {
-                                maha_combination.append(strAdditionP12zM, strAdditionP1aL1)
-                            } else {
-                                maha_combination.append(strAdditionP12zA, strAdditionP1bL1)
-                            }
-                            maha_combination.append(strAdditionP1cL1, strAdditionP12lb, strAdditionNO2L)
-                            if (Gndr12 == "ஆண்") {
-                                maha_combination.append(strAdditionP12zMB, strAdditionP1aL2)
-                            } else {
-                                maha_combination.append(strAdditionP12zB, strAdditionP1bL2)
-                            }
-                            maha_combination.append(strAdditionP1cL2, strAdditionP12lc, strAdditionNO3L)
-                            if (Gndr12 == "ஆண்") {
-                                maha_combination.append(strAdditionP12zMC, strAdditionP1aL3)
-                            } else {
-                                maha_combination.append(strAdditionP12zC, strAdditionP1bL3)
-                            }
-                            maha_combination.append(strAdditionP1cL3, space)
-                        }
-                        if (nThirteen != "") {
-                            maha_combination.append(strAdditionP13, strAdditionNO1M)
-                            if (Gndr13 == "ஆண்") {
-                                maha_combination.append(strAdditionP13zM, strAdditionP1aM1)
-                            } else {
-                                maha_combination.append(strAdditionP13zA, strAdditionP1bM1)
-                            }
-                            maha_combination.append(strAdditionP1cM1, strAdditionP13mb, strAdditionNO2M)
-                            if (Gndr13 == "ஆண்") {
-                                maha_combination.append(strAdditionP13zMB, strAdditionP1aM2)
-                            } else {
-                                maha_combination.append(strAdditionP13zB, strAdditionP1bM2)
-                            }
-                            maha_combination.append(strAdditionP1cM2, strAdditionP13mc, strAdditionNO3M)
-                            if (Gndr13 == "ஆண்") {
-                                maha_combination.append(strAdditionP13zMC, strAdditionP1aM3)
-                            } else {
-                                maha_combination.append(strAdditionP13zC, strAdditionP1bM3)
-                            }
-                            maha_combination.append(strAdditionP1cM3, space)
-                        }
-                        if (nFourteen != "") {
-                            maha_combination.append(strAdditionP14, strAdditionNO1N)
-                            if (Gndr14 == "ஆண்") {
-                                maha_combination.append(strAdditionP14zM, strAdditionP1aN1)
-                            } else {
-                                maha_combination.append(strAdditionP14zA, strAdditionP1bN1)
-                            }
-                            maha_combination.append(strAdditionP1cN1, strAdditionP14nb, strAdditionNO2N)
-                            if (Gndr14 == "ஆண்") {
-                                maha_combination.append(strAdditionP14zMB, strAdditionP1aN2)
-                            } else {
-                                maha_combination.append(strAdditionP14zB, strAdditionP1bN2)
-                            }
-                            maha_combination.append(strAdditionP1cN2, strAdditionP14nc, strAdditionNO3N)
-                            if (Gndr14 == "ஆண்") {
-                                maha_combination.append(strAdditionP14zMC, strAdditionP1aN3)
-                            } else {
-                                maha_combination.append(strAdditionP14zC, strAdditionP1bN3)
-                            }
-                            maha_combination.append(strAdditionP1cN3, space)
-                        }
-                        if (nFifteen != "") {
-                            maha_combination.append(strAdditionP15, strAdditionNO1O)
-                            if (Gndr15 == "ஆண்") {
-                                maha_combination.append(strAdditionP15zM, strAdditionP1aO1)
-                            } else {
-                                maha_combination.append(strAdditionP15zA, strAdditionP1bO1)
-                            }
-                            maha_combination.append(strAdditionP1cO1, strAdditionP15ob, strAdditionNO2O)
-                            if (Gndr15 == "ஆண்") {
-                                maha_combination.append(strAdditionP15zMB, strAdditionP1aO2)
-                            } else {
-                                maha_combination.append(strAdditionP15zB, strAdditionP1bO2)
-                            }
-                            maha_combination.append(strAdditionP1cO2, strAdditionP15oc, strAdditionNO3O)
-                            if (Gndr15 == "ஆண்") {
-                                maha_combination.append(strAdditionP15zMC, strAdditionP1aO3)
-                            } else {
-                                maha_combination.append(strAdditionP15zC, strAdditionP1bO3)
-                            }
-                            maha_combination.append(strAdditionP1cO3, space)
-                        }
-                        maha_combination.append(
-                            strAdditionP1P,
-                            mBody87P1,
-                            strAdditionP2P,
-                            mBody87P2,
-                            strAdditionP3P,
-                            mBody87P3,
-                            mComment51,
-                            mBody88,
-                            mComment51a,
-                            mGreenComment2,
-                            mComment52,
-                            mBody89,
-                            mRedComment4,
-                            mComment53
-                        )
-                        if (MFatherLive == "Deceased") {
-                            maha_combination.append(mComment54a)
-                        } else {
-                            maha_combination.append(mComment54)
-                        }
-                        maha_combination.append(
-                            mComment55,
-                            mComment55A,
-                            mBody90,
-                            mComment55BP,
-                            mBody90P,
-                            mComment55B,
-                            mBody90P2,
-                            mComment55C
-                        )
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment57)
-                        } else maha_combination.append(mComment56)
-                        maha_combination.append(
-                            mComment58,
-                            mBody91,
-                            mComment55DP,
-                            mMBody91P,
-                            mComment55D,
-                            mMBody91
-                        )
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment57A)
-                        } else maha_combination.append(mComment55EP)
-                        maha_combination.append(
-                            mComment58A,
-                            mMBody91A,
-                            mGreenComment3,
-                            mBody92,
-                            mVARGAI1B,
-                            mBody93,
-                            mComment59,
-                            mBody94,
-                            mComment60,
-                            mBody95,
-                            mComment61,
-                            mBody96,
-                            mVARGAI1BP,
-                            mBody97,
-                            mComment62,
-                            mHeading6,
-                            mRedComment5
-                        )
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(Comment64)
-                        } else maha_combination.append(mComment63)
-                        maha_combination.append(MComment64, mComment65, mBody98)
-                        if (motherLive == "Deceased" && fatherMotherLive == "Deceased") {
-                            maha_combination.append(mBody98A)
-                        }
-                        if (yrGFatherLive == "Deceased") {
-                            maha_combination.append(mBody99A)
-                        } else {
-                            maha_combination.append(mBody99B)
-                        }
-                        maha_combination.append(mMComment64AP, mBody98PA)
-                        if (motherMotherLive == "Deceased") {
-                            maha_combination.append(mBody98PB)
-                        }
-                        maha_combination.append(
-                            mBody98PC,
-                            mMComment64A,
-                            mMBody98,
-                            mComment66,
-                            mBody100,
-                            mComment67,
-                            mGreenComment4,
-                            mComment68,
-                            mBody101,
-                            mComment69,
-                            mBody102,
-                            mComment70,
-                            mBody103
-                        )
-                        if (noOfDaysTpnm == "15days") {
-                            maha_combination.append(mBody103B)
-                        } else {
-                            maha_combination.append(mBody103A)
-                        }
-                        maha_combination.append(
-                            mVARGAI1BP2,
-                            mBody104,
-                            mComment71,
-                            mBody105,
-                            mRedComment6,
-                            mComment72,
-                            mComment73
-                        )
-                        if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
-                            maha_combination.append(mComment75)
-                        } else maha_combination.append(mComment74)
-                        maha_combination.append(
-                            mComment76,
-                            mBody106,
-                            mBody107Big,
-                            mBody108,
-                            mGreenComment5,
-                            mComment77,
-                            mHeading7
-                        )
-                    }
-                    maha_combination.append("\n\n")
+            fun executeData() {
+                maha_combination.append(
+                    mHeading1,
+                    mComment1,
+                    mBody1,
+                    mComment2,
+                    mBody2,
+                    mComment3,
+                    mBody3,
+                    mComment4,
+                    mBody4,
+                    mComment5,
+                    mBody5,
+                    mComment6,
+                    mBody6,
+                    mComment7,
+                    mBody7,
+                    mComment8,
+                    mBody8,
+                    mComment9,
+                    mBody9,
+                    mComment10,
+                    mBody10,
+                    mComment11,
+                    mBody11,
+                    mComment12,
+                    mBody12,
+                    mComment13,
+                    mBody13,
+                    mComment14,
+                    mBody14,
+                    mComment15A
+                )
+                if (MFatherLive == "Living") {
+                    maha_combination.append(mComment15B)
+                } else maha_combination.append(mComment15C)
+                if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                    maha_combination.append(mComment15E)
+                } else maha_combination.append(mComment15D)
+                maha_combination.append(mComment15F, mBody15, mComment16, mBody16, mComment17)
+                maha_combination.append(
+                    mHeading2,
+                    mBody17,
+                    mComment18,
+                    mBody18,
+                    mComment19,
+                    mBody19,
+                    mComment20,
+                    mBody20,
+                    mComment21,
+                    mBody21
+                )
+                maha_combination.append(
+                    mComment22,
+                    mBody22,
+                    mComment23,
+                    mBody23,
+                    mComment24,
+                    mBody24,
+                    mComment25,
+                    mBody25,
+                    mComment26,
+                    mBody26,
+                    mComment27,
+                    mBody27,
+                    mComment28,
+                    mBody28,
+                    mComment29,
+                    mBody29,
+                    mComment30,
+                    mBody30,
+                    mComment31,
+                    mBody31,
+                    mComment32,
+                    mBody32,
+                    mComment33,
+                    mBody33,
+                    mComment34,
+                    mBody34,
+                    mComment35,
+                    mBody35,
+                    mComment36,
+                    mBody36,
+                    mComment37,
+                    mBody37,
+                    mComment38A,
+                    mRedComment1,
+                    mComment38B,
+                    mBody38,
+                    mBody39
+                )
+                if (yrGFatherLive == "Deceased") {
+                    maha_combination.append(mBody39B, mBody40, mBody41)
+                } else {
+                    maha_combination.append(mBody39A, mBody40, mBody41B)
                 }
+                maha_combination.append(mBody42)
+                if (yrGFatherLive == "Deceased" && motherLive == "Deceased" && fatherMotherLive == "Deceased") {
+                    maha_combination.append(mBody39FM)
+                }
+                if (MFatherLive == "Living") {
+                    maha_combination.append(mBody42Z)
+                    if (noOfDaysTpnm == "15days") {
+                        maha_combination.append(mBody42ZA)
+                    } else {
+                        maha_combination.append(mBody42ZB)
+                    }
+                    maha_combination.append(
+                        mComment39,
+                        mGreenComment1,
+                        mComment40,
+                        mComment40Two,
+                        mComment41,
+                        mRedComment2
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment41C)
+                    } else maha_combination.append(mComment41A)
+                    maha_combination.append(
+                        mComment41D,
+                        mHeading3,
+                        mComment42,
+                        mRedComment3,
+                        mComment42A,
+                        mBody46
+                    )
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(mBody48B)
+                    } else {
+                        maha_combination.append(mBody48A)
+                    }
+                    maha_combination.append(mBody49)
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(mBody50)
+                    } else {
+                        maha_combination.append(mBody51B)
+                    }
+                    maha_combination.append(mBody52)
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment44)
+                    } else maha_combination.append(mComment43)
+                    maha_combination.append(mComment45, mHeading4, mComment46, mBody53)
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(mBody56)
+                    } else {
+                        maha_combination.append(mBody55)
+                    }
+                    maha_combination.append(mBody57)
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(mBody58)
+                    } else {
+                        maha_combination.append(mBody59B)
+                    }
+                    maha_combination.append(mBody60, mComment47, mBody61)
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment49)
+                    } else maha_combination.append(mComment48)
+                    maha_combination.append(mComment50, mComment42AP, mBody46P)
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment49A)
+                    } else maha_combination.append(mComment48A)
+                    maha_combination.append(
+                        mComment50,
+                        mHeading4P,
+                        mComment46,
+                        mBody46PAS,
+                        mComment47,
+                        mBody61
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment49B)
+                    } else maha_combination.append(mComment48B)
+                    maha_combination.append(
+                        mComment50,
+                        mComment42AP1,
+                        mHeading4P1,
+                        mComment42AP2A,
+                        mComment42AP2B,
+                        mHeading5
+                    )
+                    maha_combination.append(mBody62, mBody64, mBody66, mBody68, mBody69)
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(
+                            mBody70A,
+                            mBody71,
+                            mBody73A,
+                            mBody74,
+                            mBody76A,
+                            mBody77,
+                            mBody79A,
+                            mBody80,
+                            mBody82A,
+                            mBody83,
+                            mBody85A,
+                            mBody86
+                        )
+                    } else {
+                        maha_combination.append(
+                            mBody70B,
+                            mBody72,
+                            mBody73B,
+                            mBody75,
+                            mBody76B,
+                            mBody78,
+                            mBody79B,
+                            mBody81,
+                            mBody82B,
+                            mBody84,
+                            mBody85B,
+                            mBody87
+                        )
+                    }
+                    if ((yrGFatherLive == "Deceased") && (motherLive == "Deceased") && (fatherMotherLive == "Deceased")) {
+                        maha_combination.append(mBody62P, mBody62P2, mBody62P3)
+                    }
+                    maha_combination.append(mHeading5P, personHead)
+                    if (nOne != "") {
+                        maha_combination.append(strAdditionP1, strAdditionNO1)
+                        if (Gndr1 == "ஆண்") {
+                            maha_combination.append(strAdditionP1zM, strAdditionP1aA1)
+                        } else {
+                            maha_combination.append(strAdditionP1zA, strAdditionP1bA1)
+                        }
+                        maha_combination.append(strAdditionP1cA1, strAdditionP1ab, strAdditionNO2)
+                        if (Gndr1 == "ஆண்") {
+                            maha_combination.append(strAdditionP1zMB, strAdditionP1aA2)
+                        } else {
+                            maha_combination.append(strAdditionP1zB, strAdditionP1bA2)
+                        }
+                        maha_combination.append(strAdditionP1cA2, strAdditionP1ac, strAdditionNO3)
+                        if (Gndr1 == "ஆண்") {
+                            maha_combination.append(strAdditionP1zMC, strAdditionP1aA3)
+                        } else {
+                            maha_combination.append(strAdditionP1zC, strAdditionP1bA3)
+                        }
+                        maha_combination.append(strAdditionP1cA3, space)
+                    }
+                    if (nTwo != "") {
+                        maha_combination.append(strAdditionP2, strAdditionNO1B)
+                        if (Gndr2 == "ஆண்") {
+                            maha_combination.append(strAdditionP2zM, strAdditionP1aB1)
+                        } else {
+                            maha_combination.append(strAdditionP2zA, strAdditionP1bB1)
+                        }
+                        maha_combination.append(strAdditionP1cB1, strAdditionP2bb, strAdditionNO2B)
+                        if (Gndr2 == "ஆண்") {
+                            maha_combination.append(strAdditionP2zMB, strAdditionP1aB2)
+                        } else {
+                            maha_combination.append(strAdditionP2zB, strAdditionP1bB2)
+                        }
+                        maha_combination.append(strAdditionP1cB2, strAdditionP2bc, strAdditionNO3B)
+                        if (Gndr2 == "ஆண்") {
+                            maha_combination.append(strAdditionP2zMC, strAdditionP1aB3)
+                        } else {
+                            maha_combination.append(strAdditionP2zC, strAdditionP1bB3)
+                        }
+                        maha_combination.append(strAdditionP1cB3, space)
+                    }
+                    if (nThree != "") {
+                        maha_combination.append(strAdditionP3, strAdditionNO1C)
+                        if (Gndr3 == "ஆண்") {
+                            maha_combination.append(strAdditionP3zM, strAdditionP1aC1)
+                        } else {
+                            maha_combination.append(strAdditionP3zA, strAdditionP1bC1)
+                        }
+                        maha_combination.append(strAdditionP1cC1, strAdditionP3cb, strAdditionNO2C)
+                        if (Gndr3 == "ஆண்") {
+                            maha_combination.append(strAdditionP3zMB, strAdditionP1aC2)
+                        } else {
+                            maha_combination.append(strAdditionP3zB, strAdditionP1bC2)
+                        }
+                        maha_combination.append(strAdditionP1cC2, strAdditionP3cc, strAdditionNO3C)
+                        if (Gndr3 == "ஆண்") {
+                            maha_combination.append(strAdditionP3zMC, strAdditionP1aC3)
+                        } else {
+                            maha_combination.append(strAdditionP3zC, strAdditionP1bC3)
+                        }
+                        maha_combination.append(strAdditionP1cC3, space)
+                    }
+                    if (nFour != "") {
+                        maha_combination.append(strAdditionP4, strAdditionNO1D)
+                        if (Gndr4 == "ஆண்") {
+                            maha_combination.append(strAdditionP4zM, strAdditionP1aD1)
+                        } else {
+                            maha_combination.append(strAdditionP4zA, strAdditionP1bD1)
+                        }
+                        maha_combination.append(strAdditionP1cD1, strAdditionP4db, strAdditionNO2D)
+                        if (Gndr4 == "ஆண்") {
+                            maha_combination.append(strAdditionP4zMB, strAdditionP1aD2)
+                        } else {
+                            maha_combination.append(strAdditionP4zB, strAdditionP1bD2)
+                        }
+                        maha_combination.append(strAdditionP1cD2, strAdditionP4dc, strAdditionNO3D)
+                        if (Gndr4 == "ஆண்") {
+                            maha_combination.append(strAdditionP4zMC, strAdditionP1aD3)
+                        } else {
+                            maha_combination.append(strAdditionP4zC, strAdditionP1bD3)
+                        }
+                        maha_combination.append(strAdditionP1cD3, space)
+                    }
+                    if (nFive != "") {
+                        maha_combination.append(strAdditionP5, strAdditionNO1E)
+                        if (Gndr5 == "ஆண்") {
+                            maha_combination.append(strAdditionP5zM, strAdditionP1aE1)
+                        } else {
+                            maha_combination.append(strAdditionP5zA, strAdditionP1bE1)
+                        }
+                        maha_combination.append(strAdditionP1cE1, strAdditionP5eb, strAdditionNO2E)
+                        if (Gndr5 == "ஆண்") {
+                            maha_combination.append(strAdditionP5zMB, strAdditionP1aE2)
+                        } else {
+                            maha_combination.append(strAdditionP5zB, strAdditionP1bE2)
+                        }
+                        maha_combination.append(strAdditionP1cE2, strAdditionP5ec, strAdditionNO3E)
+                        if (Gndr5 == "ஆண்") {
+                            maha_combination.append(strAdditionP5zMC, strAdditionP1aE3)
+                        } else {
+                            maha_combination.append(strAdditionP5zC, strAdditionP1bE3)
+                        }
+                        maha_combination.append(strAdditionP1cE3, space)
+                    }
+                    if (nSix != "") {
+                        maha_combination.append(strAdditionP6, strAdditionNO1F)
+                        if (Gndr6 == "ஆண்") {
+                            maha_combination.append(strAdditionP6zM, strAdditionP1aF1)
+                        } else {
+                            maha_combination.append(strAdditionP6zA, strAdditionP1bF1)
+                        }
+                        maha_combination.append(strAdditionP1cF1, strAdditionP6fb, strAdditionNO2F)
+                        if (Gndr6 == "ஆண்") {
+                            maha_combination.append(strAdditionP6zMB, strAdditionP1aF2)
+                        } else {
+                            maha_combination.append(strAdditionP6zB, strAdditionP1bF2)
+                        }
+                        maha_combination.append(strAdditionP1cF2, strAdditionP6fc, strAdditionNO3F)
+                        if (Gndr6 == "ஆண்") {
+                            maha_combination.append(strAdditionP6zMC, strAdditionP1aF3)
+                        } else {
+                            maha_combination.append(strAdditionP6zC, strAdditionP1bF3)
+                        }
+                        maha_combination.append(strAdditionP1cF3, space)
+                    }
+                    if (nSeven != "") {
+                        maha_combination.append(strAdditionP7, strAdditionNO1G)
+                        if (Gndr7 == "ஆண்") {
+                            maha_combination.append(strAdditionP7zM, strAdditionP1aG1)
+                        } else {
+                            maha_combination.append(strAdditionP7zA, strAdditionP1bG1)
+                        }
+                        maha_combination.append(strAdditionP1cG1, strAdditionP7gb, strAdditionNO2G)
+                        if (Gndr7 == "ஆண்") {
+                            maha_combination.append(strAdditionP7zMB, strAdditionP1aG2)
+                        } else {
+                            maha_combination.append(strAdditionP7zB, strAdditionP1bG2)
+                        }
+                        maha_combination.append(strAdditionP1cG2, strAdditionP7gc, strAdditionNO3G)
+                        if (Gndr7 == "ஆண்") {
+                            maha_combination.append(strAdditionP7zMC, strAdditionP1aG3)
+                        } else {
+                            maha_combination.append(strAdditionP7zC, strAdditionP1bG3)
+                        }
+                        maha_combination.append(strAdditionP1cG3, space)
+                    }
+                    if (nEight != "") {
+                        maha_combination.append(strAdditionP8, strAdditionNO1H)
+                        if (Gndr8 == "ஆண்") {
+                            maha_combination.append(strAdditionP8zM, strAdditionP1aH1)
+                        } else {
+                            maha_combination.append(strAdditionP8zA, strAdditionP1bH1)
+                        }
+                        maha_combination.append(strAdditionP1cH1, strAdditionP8hb, strAdditionNO2H)
+                        if (Gndr8 == "ஆண்") {
+                            maha_combination.append(strAdditionP8zMB, strAdditionP1aH2)
+                        } else {
+                            maha_combination.append(strAdditionP8zB, strAdditionP1bH2)
+                        }
+                        maha_combination.append(strAdditionP1cH2, strAdditionP8hc, strAdditionNO3H)
+                        if (Gndr8 == "ஆண்") {
+                            maha_combination.append(strAdditionP8zMC, strAdditionP1aH3)
+                        } else {
+                            maha_combination.append(strAdditionP8zC, strAdditionP1bH3)
+                        }
+                        maha_combination.append(strAdditionP1cH3, space)
+                    }
+                    if (nNine != "") {
+                        maha_combination.append(strAdditionP9, strAdditionNO1I)
+                        if (Gndr9 == "ஆண்") {
+                            maha_combination.append(strAdditionP9zM, strAdditionP1aI1)
+                        } else {
+                            maha_combination.append(strAdditionP9zA, strAdditionP1bI1)
+                        }
+                        maha_combination.append(strAdditionP1cI1, strAdditionP9ib, strAdditionNO2I)
+                        if (Gndr9 == "ஆண்") {
+                            maha_combination.append(strAdditionP9zMB, strAdditionP1aI2)
+                        } else {
+                            maha_combination.append(strAdditionP9zB, strAdditionP1bI2)
+                        }
+                        maha_combination.append(strAdditionP1cI2, strAdditionP9ic, strAdditionNO3I)
+                        if (Gndr9 == "ஆண்") {
+                            maha_combination.append(strAdditionP9zMC, strAdditionP1aI3)
+                        } else {
+                            maha_combination.append(strAdditionP9zC, strAdditionP1bI3)
+                        }
+                        maha_combination.append(strAdditionP1cI3, space)
+                    }
+                    if (nTen != "") {
+                        maha_combination.append(strAdditionP10, strAdditionNO1J)
+                        if (Gndr10 == "ஆண்") {
+                            maha_combination.append(strAdditionP10zM, strAdditionP1aJ1)
+                        } else {
+                            maha_combination.append(strAdditionP10zA, strAdditionP1bJ1)
+                        }
+                        maha_combination.append(strAdditionP1cJ1, strAdditionP10jb, strAdditionNO2J)
+                        if (Gndr10 == "ஆண்") {
+                            maha_combination.append(strAdditionP10zMB, strAdditionP1aJ2)
+                        } else {
+                            maha_combination.append(strAdditionP10zB, strAdditionP1bJ2)
+                        }
+                        maha_combination.append(strAdditionP1cJ2, strAdditionP10jc, strAdditionNO3J)
+                        if (Gndr10 == "ஆண்") {
+                            maha_combination.append(strAdditionP10zMC, strAdditionP1aJ3)
+                        } else {
+                            maha_combination.append(strAdditionP10zC, strAdditionP1bJ3)
+                        }
+                        maha_combination.append(strAdditionP1cJ3, space)
+                    }
+                    if (nEleven != "") {
+                        maha_combination.append(strAdditionP11, strAdditionNO1K)
+                        if (Gndr11 == "ஆண்") {
+                            maha_combination.append(strAdditionP11zM, strAdditionP1aK1)
+                        } else {
+                            maha_combination.append(strAdditionP11zA, strAdditionP1bK1)
+                        }
+                        maha_combination.append(strAdditionP1cK1, strAdditionP11kb, strAdditionNO2K)
+                        if (Gndr11 == "ஆண்") {
+                            maha_combination.append(strAdditionP11zMB, strAdditionP1aK2)
+                        } else {
+                            maha_combination.append(strAdditionP11zB, strAdditionP1bK2)
+                        }
+                        maha_combination.append(strAdditionP1cK2, strAdditionP11kc, strAdditionNO3K)
+                        if (Gndr11 == "ஆண்") {
+                            maha_combination.append(strAdditionP11zMC, strAdditionP1aK3)
+                        } else {
+                            maha_combination.append(strAdditionP11zC, strAdditionP1bK3)
+                        }
+                        maha_combination.append(strAdditionP1cK3, space)
+                    }
+                    if (nTwelve != "") {
+                        maha_combination.append(strAdditionP12, strAdditionNO1L)
+                        if (Gndr12 == "ஆண்") {
+                            maha_combination.append(strAdditionP12zM, strAdditionP1aL1)
+                        } else {
+                            maha_combination.append(strAdditionP12zA, strAdditionP1bL1)
+                        }
+                        maha_combination.append(strAdditionP1cL1, strAdditionP12lb, strAdditionNO2L)
+                        if (Gndr12 == "ஆண்") {
+                            maha_combination.append(strAdditionP12zMB, strAdditionP1aL2)
+                        } else {
+                            maha_combination.append(strAdditionP12zB, strAdditionP1bL2)
+                        }
+                        maha_combination.append(strAdditionP1cL2, strAdditionP12lc, strAdditionNO3L)
+                        if (Gndr12 == "ஆண்") {
+                            maha_combination.append(strAdditionP12zMC, strAdditionP1aL3)
+                        } else {
+                            maha_combination.append(strAdditionP12zC, strAdditionP1bL3)
+                        }
+                        maha_combination.append(strAdditionP1cL3, space)
+                    }
+                    if (nThirteen != "") {
+                        maha_combination.append(strAdditionP13, strAdditionNO1M)
+                        if (Gndr13 == "ஆண்") {
+                            maha_combination.append(strAdditionP13zM, strAdditionP1aM1)
+                        } else {
+                            maha_combination.append(strAdditionP13zA, strAdditionP1bM1)
+                        }
+                        maha_combination.append(strAdditionP1cM1, strAdditionP13mb, strAdditionNO2M)
+                        if (Gndr13 == "ஆண்") {
+                            maha_combination.append(strAdditionP13zMB, strAdditionP1aM2)
+                        } else {
+                            maha_combination.append(strAdditionP13zB, strAdditionP1bM2)
+                        }
+                        maha_combination.append(strAdditionP1cM2, strAdditionP13mc, strAdditionNO3M)
+                        if (Gndr13 == "ஆண்") {
+                            maha_combination.append(strAdditionP13zMC, strAdditionP1aM3)
+                        } else {
+                            maha_combination.append(strAdditionP13zC, strAdditionP1bM3)
+                        }
+                        maha_combination.append(strAdditionP1cM3, space)
+                    }
+                    if (nFourteen != "") {
+                        maha_combination.append(strAdditionP14, strAdditionNO1N)
+                        if (Gndr14 == "ஆண்") {
+                            maha_combination.append(strAdditionP14zM, strAdditionP1aN1)
+                        } else {
+                            maha_combination.append(strAdditionP14zA, strAdditionP1bN1)
+                        }
+                        maha_combination.append(strAdditionP1cN1, strAdditionP14nb, strAdditionNO2N)
+                        if (Gndr14 == "ஆண்") {
+                            maha_combination.append(strAdditionP14zMB, strAdditionP1aN2)
+                        } else {
+                            maha_combination.append(strAdditionP14zB, strAdditionP1bN2)
+                        }
+                        maha_combination.append(strAdditionP1cN2, strAdditionP14nc, strAdditionNO3N)
+                        if (Gndr14 == "ஆண்") {
+                            maha_combination.append(strAdditionP14zMC, strAdditionP1aN3)
+                        } else {
+                            maha_combination.append(strAdditionP14zC, strAdditionP1bN3)
+                        }
+                        maha_combination.append(strAdditionP1cN3, space)
+                    }
+                    if (nFifteen != "") {
+                        maha_combination.append(strAdditionP15, strAdditionNO1O)
+                        if (Gndr15 == "ஆண்") {
+                            maha_combination.append(strAdditionP15zM, strAdditionP1aO1)
+                        } else {
+                            maha_combination.append(strAdditionP15zA, strAdditionP1bO1)
+                        }
+                        maha_combination.append(strAdditionP1cO1, strAdditionP15ob, strAdditionNO2O)
+                        if (Gndr15 == "ஆண்") {
+                            maha_combination.append(strAdditionP15zMB, strAdditionP1aO2)
+                        } else {
+                            maha_combination.append(strAdditionP15zB, strAdditionP1bO2)
+                        }
+                        maha_combination.append(strAdditionP1cO2, strAdditionP15oc, strAdditionNO3O)
+                        if (Gndr15 == "ஆண்") {
+                            maha_combination.append(strAdditionP15zMC, strAdditionP1aO3)
+                        } else {
+                            maha_combination.append(strAdditionP15zC, strAdditionP1bO3)
+                        }
+                        maha_combination.append(strAdditionP1cO3, space)
+                    }
+                    maha_combination.append(
+                        strAdditionP1,
+                        mBody87P1,
+                        strAdditionP2,
+                        mBody87P2,
+                        strAdditionP3,
+                        mBody87P3,
+                        mComment51,
+                        mBody88,
+                        mComment51a,
+                        mGreenComment2,
+                        mComment52,
+                        mBody89,
+                        mRedComment4,
+                        mComment53
+                    )
+                    if (MFatherLive == "Deceased") {
+                        maha_combination.append(mComment54a)
+                    } else {
+                        maha_combination.append(mComment54)
+                    }
+                    maha_combination.append(
+                        mComment55,
+                        mComment55A,
+                        mBody90,
+                        mComment55B,
+                        mBody90P,
+                        mComment55C,
+                        mComment56
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment57)
+                    } else maha_combination.append(mComment56)
+                    maha_combination.append(mComment58, mBody91, mComment55D, mMBody91)
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment57A)
+                    } else maha_combination.append(mComment55E)
+                    maha_combination.append(
+                        mComment58,
+                        mMBody91A,
+                        mGreenComment3,
+                        mBody92,
+                        mVARGAI1A,
+                        mBody93,
+                        mComment59,
+                        mBody94,
+                        mComment60,
+                        mBody95,
+                        mComment61,
+                        mBody96,
+                        mVARGAI2A,
+                        mBody97,
+                        mComment62,
+                        mHeading6,
+                        mRedComment5
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(Comment64)
+                    } else maha_combination.append(mComment63)
+                    maha_combination.append(MComment64, mComment65, mBody98)
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(mBody99A)
+                    } else {
+                        maha_combination.append(mBody99B)
+                    }
+                    maha_combination.append(
+                        mMComment64A,
+                        mMBody98,
+                        mComment66,
+                        mBody100,
+                        mComment67,
+                        mGreenComment4,
+                        mComment68,
+                        mBody101,
+                        mComment69,
+                        mBody102,
+                        mComment70,
+                        mBody103
+                    )
+                    maha_combination.append(
+                        mBody103B,
+                        mVARGAI3A,
+                        mBody104,
+                        mComment71,
+                        mBody105,
+                        mRedComment6,
+                        mComment72,
+                        mComment73
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment75)
+                    } else maha_combination.append(mComment74)
+                    maha_combination.append(
+                        mComment76,
+                        mBody106,
+                        mBody107Big,
+                        mBody108,
+                        mGreenComment5,
+                        mComment77,
+                        mHeading7
+                    )
+                } else {
+                    /*Motherside Gents SANGALPAM*/
+                    maha_combination.append(mMBody38, mMBody41B)
+                    /*Motherside Ladies SANGALPAM*/
+                    if (motherMotherLive == "Deceased") {
+                        maha_combination.append(mMBody38b, mMBody41Bc)
+                    }
+                    /*Pithru - SANGALPAM*/
+                    maha_combination.append(mBody42Z)
+                    if (noOfDaysTpnm == "15days") {
+                        maha_combination.append(mBody42ZA)
+                    } else {
+                        maha_combination.append(mBody42ZB)
+                    }
+                    maha_combination.append(
+                        mComment39,
+                        mGreenComment1,
+                        mComment40,
+                        mComment40Three,
+                        mComment41,
+                        mRedComment2
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment41C)
+                    } else maha_combination.append(mComment41A)
+                    maha_combination.append(mComment41D, mHeading3, mComment42, mRedComment3)
+                    /*Fatherside Gents - ஆவாஹனம்-ஆஸனம்*/
+                    maha_combination.append(mComment42A, mBody46)
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(mBody48B)
+                    } else {
+                        if (motherLive == "Deceased" && fatherMotherLive == "Deceased") {
+                            maha_combination.append(mBody98PMB)
+                        }
+                        maha_combination.append(mBody48A)
+                    }
+                    maha_combination.append(mBody49)
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(mBody50)
+                    } else {
+                        maha_combination.append(mBody51B)
+                    }
+                    maha_combination.append(mBody52)
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment44A)
+                    } else maha_combination.append(mComment43A)
+                    maha_combination.append(mComment45A, mHeading4, mComment46, mBody53)
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(mBody56)
+                    } else {
+                        maha_combination.append(mBody55)
+                    }
+                    maha_combination.append(mBody57)
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(mBody58)
+                    } else {
+                        maha_combination.append(mBody59B)
+                    }
+                    maha_combination.append(mBody60, mComment47, mBody61)
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment49A)
+                    } else maha_combination.append(mComment48A)
+                    maha_combination.append(mComment50A)
+                    /*Motherside Gents - ஆவாஹனம்-ஆஸனம்*/
+                    maha_combination.append(mComment42Middle, mMBody46, mMBody51B)
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment49)
+                    } else maha_combination.append(mComment48)
+                    maha_combination.append(
+                        mComment50,
+                        mMHeading4,
+                        mMComment46,
+                        mMBody53,
+                        mMBody51C1,
+                        mComment47B,
+                        mMBody61
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment49B)
+                    } else maha_combination.append(mComment48B)
+                    maha_combination.append(mComment50B)
+                    maha_combination.append(mComment42AP, mBody46P)
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment49C)
+                    } else maha_combination.append(mComment48C)
+                    maha_combination.append(mComment50C)
+                    maha_combination.append(
+                        mHeading4P,
+                        mComment46A,
+                        mBody46PAS,
+                        mComment47A,
+                        mBody61P
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment49E)
+                    } else maha_combination.append(mComment48E)
+                    maha_combination.append(mComment50E, mComment42AP1, mHeading4P1)
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment49D)
+                    } else maha_combination.append(mComment42AP2A)
+                    maha_combination.append(mComment42AP2B)
+                    /*Tharpanam- Father - 1,2,3.a.b.c*/
+                    maha_combination.append(mHeading5, mBody62, mBody64, mBody66, mBody68, mBody69)
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(
+                            mBody70A,
+                            mBody71,
+                            mBody73A,
+                            mBody74,
+                            mBody76A,
+                            mBody77,
+                            mBody79A,
+                            mBody80,
+                            mBody82A,
+                            mBody83,
+                            mBody85A,
+                            mBody86
+                        )
+                    } else {
+                        maha_combination.append(
+                            mBody70B,
+                            mBody72,
+                            mBody73B,
+                            mBody75,
+                            mBody79B,
+                            mBody81,
+                            mBody82B,
+                            mBody76B,
+                            mBody78,
+                            mBody79B,
+                            mBody81,
+                            mBody82B,
+                            mBody84,
+                            mBody85B,
+                            mBody87
+                        )
+                    }
+
+                    if (yrGFatherLive == "Deceased" && motherLive == "Deceased" && fatherMotherLive == "Deceased") {
+                        maha_combination.append(mBody62P, mBody62P2, mBody62P3)
+                    }
+                    /*Tharpanam- MotherFather - I, II & III.a.b.c*/
+                    maha_combination.append(
+                        mMHeading5mG,
+                        mMBody62,
+                        mMBody63,
+                        mMBody64,
+                        mMBody66,
+                        mMBody68,
+                        mMBody69,
+                        mMBody71,
+                        mMBody72,
+                        mMBody74,
+                        mMBody75
+                    )
+                    /*Tharpanam- MotherMother - IV.a.b.c*/
+                    if (motherMotherLive == "Deceased") {
+                        maha_combination.append(
+                            mMBody62M,
+                            mMBody63M,
+                            mMBody64M,
+                            mMBody66M,
+                            mMBody68M,
+                            mMBody69M,
+                            mMBody71M,
+                            mMBody72M,
+                            mMBody74M,
+                            mMBody75M
+                        )
+                    }
+                    maha_combination.append(mHeading5P, personHead)
+                    if (nOne != "") {
+                        maha_combination.append(strAdditionP1, strAdditionNO1)
+                        if (Gndr1 == "ஆண்") {
+                            maha_combination.append(strAdditionP1zM, strAdditionP1aA1)
+                        } else {
+                            maha_combination.append(strAdditionP1zA, strAdditionP1bA1)
+                        }
+                        maha_combination.append(strAdditionP1cA1, strAdditionP1ab, strAdditionNO2)
+                        if (Gndr1 == "ஆண்") {
+                            maha_combination.append(strAdditionP1zMB, strAdditionP1aA2)
+                        } else {
+                            maha_combination.append(strAdditionP1zB, strAdditionP1bA2)
+                        }
+                        maha_combination.append(strAdditionP1cA2, strAdditionP1ac, strAdditionNO3)
+                        if (Gndr1 == "ஆண்") {
+                            maha_combination.append(strAdditionP1zMC, strAdditionP1aA3)
+                        } else {
+                            maha_combination.append(strAdditionP1zC, strAdditionP1bA3)
+                        }
+                        maha_combination.append(strAdditionP1cA3, space)
+                    }
+                    if (nTwo != "") {
+                        maha_combination.append(strAdditionP2, strAdditionNO1B)
+                        if (Gndr2 == "ஆண்") {
+                            maha_combination.append(strAdditionP2zM, strAdditionP1aB1)
+                        } else {
+                            maha_combination.append(strAdditionP2zA, strAdditionP1bB1)
+                        }
+                        maha_combination.append(strAdditionP1cB1, strAdditionP2bb, strAdditionNO2B)
+                        if (Gndr2 == "ஆண்") {
+                            maha_combination.append(strAdditionP2zMB, strAdditionP1aB2)
+                        } else {
+                            maha_combination.append(strAdditionP2zB, strAdditionP1bB2)
+                        }
+                        maha_combination.append(strAdditionP1cB2, strAdditionP2bc, strAdditionNO3B)
+                        if (Gndr2 == "ஆண்") {
+                            maha_combination.append(strAdditionP2zMC, strAdditionP1aB3)
+                        } else {
+                            maha_combination.append(strAdditionP2zC, strAdditionP1bB3)
+                        }
+                        maha_combination.append(strAdditionP1cB3, space)
+                    }
+                    if (nThree != "") {
+                        maha_combination.append(strAdditionP3, strAdditionNO1C)
+                        if (Gndr3 == "ஆண்") {
+                            maha_combination.append(strAdditionP3zM, strAdditionP1aC1)
+                        } else {
+                            maha_combination.append(strAdditionP3zA, strAdditionP1bC1)
+                        }
+                        maha_combination.append(strAdditionP1cC1, strAdditionP3cb, strAdditionNO2C)
+                        if (Gndr3 == "ஆண்") {
+                            maha_combination.append(strAdditionP3zMB, strAdditionP1aC2)
+                        } else {
+                            maha_combination.append(strAdditionP3zB, strAdditionP1bC2)
+                        }
+                        maha_combination.append(strAdditionP1cC2, strAdditionP3cc, strAdditionNO3C)
+                        if (Gndr3 == "ஆண்") {
+                            maha_combination.append(strAdditionP3zMC, strAdditionP1aC3)
+                        } else {
+                            maha_combination.append(strAdditionP3zC, strAdditionP1bC3)
+                        }
+                        maha_combination.append(strAdditionP1cC3, space)
+                    }
+                    if (nFour != "") {
+                        maha_combination.append(strAdditionP4, strAdditionNO1D)
+                        if (Gndr4 == "ஆண்") {
+                            maha_combination.append(strAdditionP4zM, strAdditionP1aD1)
+                        } else {
+                            maha_combination.append(strAdditionP4zA, strAdditionP1bD1)
+                        }
+                        maha_combination.append(strAdditionP1cD1, strAdditionP4db, strAdditionNO2D)
+                        if (Gndr4 == "ஆண்") {
+                            maha_combination.append(strAdditionP4zMB, strAdditionP1aD2)
+                        } else {
+                            maha_combination.append(strAdditionP4zB, strAdditionP1bD2)
+                        }
+                        maha_combination.append(strAdditionP1cD2, strAdditionP4dc, strAdditionNO3D)
+                        if (Gndr4 == "ஆண்") {
+                            maha_combination.append(strAdditionP4zMC, strAdditionP1aD3)
+                        } else {
+                            maha_combination.append(strAdditionP4zC, strAdditionP1bD3)
+                        }
+                        maha_combination.append(strAdditionP1cD3, space)
+                    }
+                    if (nFive != "") {
+                        maha_combination.append(strAdditionP5, strAdditionNO1E)
+                        if (Gndr5 == "ஆண்") {
+                            maha_combination.append(strAdditionP5zM, strAdditionP1aE1)
+                        } else {
+                            maha_combination.append(strAdditionP5zA, strAdditionP1bE1)
+                        }
+                        maha_combination.append(strAdditionP1cE1, strAdditionP5eb, strAdditionNO2E)
+                        if (Gndr5 == "ஆண்") {
+                            maha_combination.append(strAdditionP5zMB, strAdditionP1aE2)
+                        } else {
+                            maha_combination.append(strAdditionP5zB, strAdditionP1bE2)
+                        }
+                        maha_combination.append(strAdditionP1cE2, strAdditionP5ec, strAdditionNO3E)
+                        if (Gndr5 == "ஆண்") {
+                            maha_combination.append(strAdditionP5zMC, strAdditionP1aE3)
+                        } else {
+                            maha_combination.append(strAdditionP5zC, strAdditionP1bE3)
+                        }
+                        maha_combination.append(strAdditionP1cE3, space)
+                    }
+                    if (nSix != "") {
+                        maha_combination.append(strAdditionP6, strAdditionNO1F)
+                        if (Gndr6 == "ஆண்") {
+                            maha_combination.append(strAdditionP6zM, strAdditionP1aF1)
+                        } else {
+                            maha_combination.append(strAdditionP6zA, strAdditionP1bF1)
+                        }
+                        maha_combination.append(strAdditionP1cF1, strAdditionP6fb, strAdditionNO2F)
+                        if (Gndr6 == "ஆண்") {
+                            maha_combination.append(strAdditionP6zMB, strAdditionP1aF2)
+                        } else {
+                            maha_combination.append(strAdditionP6zB, strAdditionP1bF2)
+                        }
+                        maha_combination.append(strAdditionP1cF2, strAdditionP6fc, strAdditionNO3F)
+                        if (Gndr6 == "ஆண்") {
+                            maha_combination.append(strAdditionP6zMC, strAdditionP1aF3)
+                        } else {
+                            maha_combination.append(strAdditionP6zC, strAdditionP1bF3)
+                        }
+                        maha_combination.append(strAdditionP1cF3, space)
+                    }
+                    if (nSeven != "") {
+                        maha_combination.append(strAdditionP7, strAdditionNO1G)
+                        if (Gndr7 == "ஆண்") {
+                            maha_combination.append(strAdditionP7zM, strAdditionP1aG1)
+                        } else {
+                            maha_combination.append(strAdditionP7zA, strAdditionP1bG1)
+                        }
+                        maha_combination.append(strAdditionP1cG1, strAdditionP7gb, strAdditionNO2G)
+                        if (Gndr7 == "ஆண்") {
+                            maha_combination.append(strAdditionP7zMB, strAdditionP1aG2)
+                        } else {
+                            maha_combination.append(strAdditionP7zB, strAdditionP1bG2)
+                        }
+                        maha_combination.append(strAdditionP1cG2, strAdditionP7gc, strAdditionNO3G)
+                        if (Gndr7 == "ஆண்") {
+                            maha_combination.append(strAdditionP7zMC, strAdditionP1aG3)
+                        } else {
+                            maha_combination.append(strAdditionP7zC, strAdditionP1bG3)
+                        }
+                        maha_combination.append(strAdditionP1cG3, space)
+                    }
+                    if (nEight != "") {
+                        maha_combination.append(strAdditionP8, strAdditionNO1H)
+                        if (Gndr8 == "ஆண்") {
+                            maha_combination.append(strAdditionP8zM, strAdditionP1aH1)
+                        } else {
+                            maha_combination.append(strAdditionP8zA, strAdditionP1bH1)
+                        }
+                        maha_combination.append(strAdditionP1cH1, strAdditionP8hb, strAdditionNO2H)
+                        if (Gndr8 == "ஆண்") {
+                            maha_combination.append(strAdditionP8zMB, strAdditionP1aH2)
+                        } else {
+                            maha_combination.append(strAdditionP8zB, strAdditionP1bH2)
+                        }
+                        maha_combination.append(strAdditionP1cH2, strAdditionP8hc, strAdditionNO3H)
+                        if (Gndr8 == "ஆண்") {
+                            maha_combination.append(strAdditionP8zMC, strAdditionP1aH3)
+                        } else {
+                            maha_combination.append(strAdditionP8zC, strAdditionP1bH3)
+                        }
+                        maha_combination.append(strAdditionP1cH3, space)
+                    }
+                    if (nNine != "") {
+                        maha_combination.append(strAdditionP9, strAdditionNO1I)
+                        if (Gndr9 == "ஆண்") {
+                            maha_combination.append(strAdditionP9zM, strAdditionP1aI1)
+                        } else {
+                            maha_combination.append(strAdditionP9zA, strAdditionP1bI1)
+                        }
+                        maha_combination.append(strAdditionP1cI1, strAdditionP9ib, strAdditionNO2I)
+                        if (Gndr9 == "ஆண்") {
+                            maha_combination.append(strAdditionP9zMB, strAdditionP1aI2)
+                        } else {
+                            maha_combination.append(strAdditionP9zB, strAdditionP1bI2)
+                        }
+                        maha_combination.append(strAdditionP1cI2, strAdditionP9ic, strAdditionNO3I)
+                        if (Gndr9 == "ஆண்") {
+                            maha_combination.append(strAdditionP9zMC, strAdditionP1aI3)
+                        } else {
+                            maha_combination.append(strAdditionP9zC, strAdditionP1bI3)
+                        }
+                        maha_combination.append(strAdditionP1cI3, space)
+                    }
+                    if (nTen != "") {
+                        maha_combination.append(strAdditionP10, strAdditionNO1J)
+                        if (Gndr10 == "ஆண்") {
+                            maha_combination.append(strAdditionP10zM, strAdditionP1aJ1)
+                        } else {
+                            maha_combination.append(strAdditionP10zA, strAdditionP1bJ1)
+                        }
+                        maha_combination.append(strAdditionP1cJ1, strAdditionP10jb, strAdditionNO2J)
+                        if (Gndr10 == "ஆண்") {
+                            maha_combination.append(strAdditionP10zMB, strAdditionP1aJ2)
+                        } else {
+                            maha_combination.append(strAdditionP10zB, strAdditionP1bJ2)
+                        }
+                        maha_combination.append(strAdditionP1cJ2, strAdditionP10jc, strAdditionNO3J)
+                        if (Gndr10 == "ஆண்") {
+                            maha_combination.append(strAdditionP10zMC, strAdditionP1aJ3)
+                        } else {
+                            maha_combination.append(strAdditionP10zC, strAdditionP1bJ3)
+                        }
+                        maha_combination.append(strAdditionP1cJ3, space)
+                    }
+                    if (nEleven != "") {
+                        maha_combination.append(strAdditionP11, strAdditionNO1K)
+                        if (Gndr11 == "ஆண்") {
+                            maha_combination.append(strAdditionP11zM, strAdditionP1aK1)
+                        } else {
+                            maha_combination.append(strAdditionP11zA, strAdditionP1bK1)
+                        }
+                        maha_combination.append(strAdditionP1cK1, strAdditionP11kb, strAdditionNO2K)
+                        if (Gndr11 == "ஆண்") {
+                            maha_combination.append(strAdditionP11zMB, strAdditionP1aK2)
+                        } else {
+                            maha_combination.append(strAdditionP11zB, strAdditionP1bK2)
+                        }
+                        maha_combination.append(strAdditionP1cK2, strAdditionP11kc, strAdditionNO3K)
+                        if (Gndr11 == "ஆண்") {
+                            maha_combination.append(strAdditionP11zMC, strAdditionP1aK3)
+                        } else {
+                            maha_combination.append(strAdditionP11zC, strAdditionP1bK3)
+                        }
+                        maha_combination.append(strAdditionP1cK3, space)
+                    }
+                    if (nTwelve != "") {
+                        maha_combination.append(strAdditionP12, strAdditionNO1L)
+                        if (Gndr12 == "ஆண்") {
+                            maha_combination.append(strAdditionP12zM, strAdditionP1aL1)
+                        } else {
+                            maha_combination.append(strAdditionP12zA, strAdditionP1bL1)
+                        }
+                        maha_combination.append(strAdditionP1cL1, strAdditionP12lb, strAdditionNO2L)
+                        if (Gndr12 == "ஆண்") {
+                            maha_combination.append(strAdditionP12zMB, strAdditionP1aL2)
+                        } else {
+                            maha_combination.append(strAdditionP12zB, strAdditionP1bL2)
+                        }
+                        maha_combination.append(strAdditionP1cL2, strAdditionP12lc, strAdditionNO3L)
+                        if (Gndr12 == "ஆண்") {
+                            maha_combination.append(strAdditionP12zMC, strAdditionP1aL3)
+                        } else {
+                            maha_combination.append(strAdditionP12zC, strAdditionP1bL3)
+                        }
+                        maha_combination.append(strAdditionP1cL3, space)
+                    }
+                    if (nThirteen != "") {
+                        maha_combination.append(strAdditionP13, strAdditionNO1M)
+                        if (Gndr13 == "ஆண்") {
+                            maha_combination.append(strAdditionP13zM, strAdditionP1aM1)
+                        } else {
+                            maha_combination.append(strAdditionP13zA, strAdditionP1bM1)
+                        }
+                        maha_combination.append(strAdditionP1cM1, strAdditionP13mb, strAdditionNO2M)
+                        if (Gndr13 == "ஆண்") {
+                            maha_combination.append(strAdditionP13zMB, strAdditionP1aM2)
+                        } else {
+                            maha_combination.append(strAdditionP13zB, strAdditionP1bM2)
+                        }
+                        maha_combination.append(strAdditionP1cM2, strAdditionP13mc, strAdditionNO3M)
+                        if (Gndr13 == "ஆண்") {
+                            maha_combination.append(strAdditionP13zMC, strAdditionP1aM3)
+                        } else {
+                            maha_combination.append(strAdditionP13zC, strAdditionP1bM3)
+                        }
+                        maha_combination.append(strAdditionP1cM3, space)
+                    }
+                    if (nFourteen != "") {
+                        maha_combination.append(strAdditionP14, strAdditionNO1N)
+                        if (Gndr14 == "ஆண்") {
+                            maha_combination.append(strAdditionP14zM, strAdditionP1aN1)
+                        } else {
+                            maha_combination.append(strAdditionP14zA, strAdditionP1bN1)
+                        }
+                        maha_combination.append(strAdditionP1cN1, strAdditionP14nb, strAdditionNO2N)
+                        if (Gndr14 == "ஆண்") {
+                            maha_combination.append(strAdditionP14zMB, strAdditionP1aN2)
+                        } else {
+                            maha_combination.append(strAdditionP14zB, strAdditionP1bN2)
+                        }
+                        maha_combination.append(strAdditionP1cN2, strAdditionP14nc, strAdditionNO3N)
+                        if (Gndr14 == "ஆண்") {
+                            maha_combination.append(strAdditionP14zMC, strAdditionP1aN3)
+                        } else {
+                            maha_combination.append(strAdditionP14zC, strAdditionP1bN3)
+                        }
+                        maha_combination.append(strAdditionP1cN3, space)
+                    }
+                    if (nFifteen != "") {
+                        maha_combination.append(strAdditionP15, strAdditionNO1O)
+                        if (Gndr15 == "ஆண்") {
+                            maha_combination.append(strAdditionP15zM, strAdditionP1aO1)
+                        } else {
+                            maha_combination.append(strAdditionP15zA, strAdditionP1bO1)
+                        }
+                        maha_combination.append(strAdditionP1cO1, strAdditionP15ob, strAdditionNO2O)
+                        if (Gndr15 == "ஆண்") {
+                            maha_combination.append(strAdditionP15zMB, strAdditionP1aO2)
+                        } else {
+                            maha_combination.append(strAdditionP15zB, strAdditionP1bO2)
+                        }
+                        maha_combination.append(strAdditionP1cO2, strAdditionP15oc, strAdditionNO3O)
+                        if (Gndr15 == "ஆண்") {
+                            maha_combination.append(strAdditionP15zMC, strAdditionP1aO3)
+                        } else {
+                            maha_combination.append(strAdditionP15zC, strAdditionP1bO3)
+                        }
+                        maha_combination.append(strAdditionP1cO3, space)
+                    }
+                    maha_combination.append(
+                        strAdditionP1P,
+                        mBody87P1,
+                        strAdditionP2P,
+                        mBody87P2,
+                        strAdditionP3P,
+                        mBody87P3,
+                        mComment51,
+                        mBody88,
+                        mComment51a,
+                        mGreenComment2,
+                        mComment52,
+                        mBody89,
+                        mRedComment4,
+                        mComment53
+                    )
+                    if (MFatherLive == "Deceased") {
+                        maha_combination.append(mComment54a)
+                    } else {
+                        maha_combination.append(mComment54)
+                    }
+                    maha_combination.append(
+                        mComment55,
+                        mComment55A,
+                        mBody90,
+                        mComment55BP,
+                        mBody90P,
+                        mComment55B,
+                        mBody90P2,
+                        mComment55C
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment57)
+                    } else maha_combination.append(mComment56)
+                    maha_combination.append(
+                        mComment58,
+                        mBody91,
+                        mComment55DP,
+                        mMBody91P,
+                        mComment55D,
+                        mMBody91
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment57A)
+                    } else maha_combination.append(mComment55EP)
+                    maha_combination.append(
+                        mComment58A,
+                        mMBody91A,
+                        mGreenComment3,
+                        mBody92,
+                        mVARGAI1B,
+                        mBody93,
+                        mComment59,
+                        mBody94,
+                        mComment60,
+                        mBody95,
+                        mComment61,
+                        mBody96,
+                        mVARGAI1BP,
+                        mBody97,
+                        mComment62,
+                        mHeading6,
+                        mRedComment5
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(Comment64)
+                    } else maha_combination.append(mComment63)
+                    maha_combination.append(MComment64, mComment65, mBody98)
+                    if (motherLive == "Deceased" && fatherMotherLive == "Deceased") {
+                        maha_combination.append(mBody98A)
+                    }
+                    if (yrGFatherLive == "Deceased") {
+                        maha_combination.append(mBody99A)
+                    } else {
+                        maha_combination.append(mBody99B)
+                    }
+                    maha_combination.append(mMComment64AP, mBody98PA)
+                    if (motherMotherLive == "Deceased") {
+                        maha_combination.append(mBody98PB)
+                    }
+                    maha_combination.append(
+                        mBody98PC,
+                        mMComment64A,
+                        mMBody98,
+                        mComment66,
+                        mBody100,
+                        mComment67,
+                        mGreenComment4,
+                        mComment68,
+                        mBody101,
+                        mComment69,
+                        mBody102,
+                        mComment70,
+                        mBody103
+                    )
+                    if (noOfDaysTpnm == "15days") {
+                        maha_combination.append(mBody103B)
+                    } else {
+                        maha_combination.append(mBody103A)
+                    }
+                    maha_combination.append(
+                        mVARGAI1BP2,
+                        mBody104,
+                        mComment71,
+                        mBody105,
+                        mRedComment6,
+                        mComment72,
+                        mComment73
+                    )
+                    if (kizhamai == "பௌம" || kizhamai == "ப்ருகு") {
+                        maha_combination.append(mComment75)
+                    } else maha_combination.append(mComment74)
+                    maha_combination.append(
+                        mComment76,
+                        mBody106,
+                        mBody107Big,
+                        mBody108,
+                        mGreenComment5,
+                        mComment77,
+                        mHeading7
+                    )
+                }
+                maha_combination.append("\n\n")
+            }
 
         }
 
         /* Create SpannableStrings using the helper function and data list */
-        mheading = createFormattedString(formattedTexts[0].text, formattedTexts[0].size, formattedTexts[0].style, formattedTexts[0].color)
-        mHeading1 = createFormattedString(formattedTexts[1].text, formattedTexts[1].size, formattedTexts[1].style, formattedTexts[1].color)
-        mComment1 = createFormattedString(formattedTexts[2].text, formattedTexts[2].size, formattedTexts[2].style, formattedTexts[2].color)
-        mBody1 = createFormattedString(formattedTexts[3].text, formattedTexts[3].size, formattedTexts[3].style, formattedTexts[3].color)
-        mComment2 = createFormattedString(formattedTexts[4].text, formattedTexts[4].size, formattedTexts[4].style, formattedTexts[4].color)
-        mBody2 = createFormattedString(formattedTexts[5].text, formattedTexts[5].size, formattedTexts[5].style, formattedTexts[5].color)
-        mComment3 = createFormattedString(formattedTexts[6].text, formattedTexts[6].size, formattedTexts[6].style, formattedTexts[6].color)
-        mBody3 = createFormattedString(formattedTexts[7].text, formattedTexts[7].size, formattedTexts[7].style, formattedTexts[7].color)
-        mComment4 = createFormattedString(formattedTexts[8].text, formattedTexts[8].size, formattedTexts[8].style, formattedTexts[8].color)
-        mBody4 = createFormattedString(formattedTexts[9].text, formattedTexts[9].size, formattedTexts[9].style, formattedTexts[9].color)
-        mComment5 = createFormattedString(formattedTexts[10].text, formattedTexts[10].size, formattedTexts[10].style, formattedTexts[10].color)
-        mBody5 = createFormattedString(formattedTexts[11].text, formattedTexts[11].size, formattedTexts[11].style, formattedTexts[11].color)
-        mComment6 = createFormattedString(formattedTexts[12].text, formattedTexts[12].size, formattedTexts[12].style, formattedTexts[12].color)
-        mBody6 = createFormattedString(formattedTexts[13].text, formattedTexts[13].size, formattedTexts[13].style, formattedTexts[13].color)
-        mComment7 = createFormattedString(formattedTexts[14].text, formattedTexts[14].size, formattedTexts[14].style, formattedTexts[14].color)
-        mBody7 = createFormattedString(formattedTexts[15].text, formattedTexts[15].size, formattedTexts[15].style, formattedTexts[15].color)
-        mComment8 = createFormattedString(formattedTexts[16].text, formattedTexts[16].size, formattedTexts[16].style, formattedTexts[16].color
+        mheading = createFormattedString(
+            formattedTexts[0].text,
+            formattedTexts[0].size,
+            formattedTexts[0].style,
+            formattedTexts[0].color
         )
-        mBody8 = createFormattedString(formattedTexts[17].text, formattedTexts[17].size, formattedTexts[17].style, formattedTexts[17].color)
+        mHeading1 = createFormattedString(
+            formattedTexts[1].text,
+            formattedTexts[1].size,
+            formattedTexts[1].style,
+            formattedTexts[1].color
+        )
+        mComment1 = createFormattedString(
+            formattedTexts[2].text,
+            formattedTexts[2].size,
+            formattedTexts[2].style,
+            formattedTexts[2].color
+        )
+        mBody1 = createFormattedString(
+            formattedTexts[3].text,
+            formattedTexts[3].size,
+            formattedTexts[3].style,
+            formattedTexts[3].color
+        )
+        mComment2 = createFormattedString(
+            formattedTexts[4].text,
+            formattedTexts[4].size,
+            formattedTexts[4].style,
+            formattedTexts[4].color
+        )
+        mBody2 = createFormattedString(
+            formattedTexts[5].text,
+            formattedTexts[5].size,
+            formattedTexts[5].style,
+            formattedTexts[5].color
+        )
+        mComment3 = createFormattedString(
+            formattedTexts[6].text,
+            formattedTexts[6].size,
+            formattedTexts[6].style,
+            formattedTexts[6].color
+        )
+        mBody3 = createFormattedString(
+            formattedTexts[7].text,
+            formattedTexts[7].size,
+            formattedTexts[7].style,
+            formattedTexts[7].color
+        )
+        mComment4 = createFormattedString(
+            formattedTexts[8].text,
+            formattedTexts[8].size,
+            formattedTexts[8].style,
+            formattedTexts[8].color
+        )
+        mBody4 = createFormattedString(
+            formattedTexts[9].text,
+            formattedTexts[9].size,
+            formattedTexts[9].style,
+            formattedTexts[9].color
+        )
+        mComment5 = createFormattedString(
+            formattedTexts[10].text,
+            formattedTexts[10].size,
+            formattedTexts[10].style,
+            formattedTexts[10].color
+        )
+        mBody5 = createFormattedString(
+            formattedTexts[11].text,
+            formattedTexts[11].size,
+            formattedTexts[11].style,
+            formattedTexts[11].color
+        )
+        mComment6 = createFormattedString(
+            formattedTexts[12].text,
+            formattedTexts[12].size,
+            formattedTexts[12].style,
+            formattedTexts[12].color
+        )
+        mBody6 = createFormattedString(
+            formattedTexts[13].text,
+            formattedTexts[13].size,
+            formattedTexts[13].style,
+            formattedTexts[13].color
+        )
+        mComment7 = createFormattedString(
+            formattedTexts[14].text,
+            formattedTexts[14].size,
+            formattedTexts[14].style,
+            formattedTexts[14].color
+        )
+        mBody7 = createFormattedString(
+            formattedTexts[15].text,
+            formattedTexts[15].size,
+            formattedTexts[15].style,
+            formattedTexts[15].color
+        )
+        mComment8 = createFormattedString(
+            formattedTexts[16].text,
+            formattedTexts[16].size,
+            formattedTexts[16].style,
+            formattedTexts[16].color
+        )
+        mBody8 = createFormattedString(
+            formattedTexts[17].text,
+            formattedTexts[17].size,
+            formattedTexts[17].style,
+            formattedTexts[17].color
+        )
         mBody9 = createFormattedString(
             formattedTexts[19].text,
             formattedTexts[19].size,
@@ -7749,3 +9765,4 @@ endPositions.add(binding.MahalayaTPNMTextView.layout.getLineEnd(endLine))
         )
 
     }
+}

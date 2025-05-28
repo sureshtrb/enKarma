@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 //import androidx.privacysandbox.tools.core.generator.build
 import android.app.Application

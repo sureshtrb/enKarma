@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 //import android.app.ProgressDialog
 import android.content.Intent
@@ -8,7 +8,7 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.karma.sureshtrb.enKarma.databinding.ActivitySkipSelectionBinding
+import com.sureshtrb.enKarma.databinding.ActivitySkipSelectionBinding
 
 class SkipSelectionActivity : AppCompatActivity() {
 

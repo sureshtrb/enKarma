@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 import android.app.ProgressDialog
 import android.content.DialogInterface
@@ -9,7 +9,7 @@ import android.util.Patterns
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.karma.sureshtrb.enKarma.databinding.ActivityLoginBinding
+import com.sureshtrb.enKarma.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private var binding: ActivityLoginBinding? = null
@@ -86,7 +86,8 @@ class LoginActivity : AppCompatActivity() {
                     finish()
                 } else {
                     Log.w("LoginActivity", "signInWithEmail:failure", task.exception)
-                    alertDisplayer("Login failed", "Please check your credentials.")
+                    alertDisplayer("Login failed. Please check your credentials.")
+
                 }
             }
     }

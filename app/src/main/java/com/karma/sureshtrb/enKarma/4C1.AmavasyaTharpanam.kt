@@ -1,6 +1,6 @@
-@file:Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 
-package com.karma.sureshtrb.enKarma
+
+package com.sureshtrb.enKarma
 
 //import kotlinx.android.synthetic.main.activity_amavasya_tharpanam.*
 //import android.os.Build
@@ -21,7 +21,7 @@ import android.text.*
 import android.text.style.*
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.karma.sureshtrb.enKarma.databinding.ActivityAmavasyaTharpanamBinding
+import com.sureshtrb.enKarma.databinding.ActivityAmavasyaTharpanamBinding
 import java.io.FileOutputStream
 import java.io.IOException
 import kotlin.toString

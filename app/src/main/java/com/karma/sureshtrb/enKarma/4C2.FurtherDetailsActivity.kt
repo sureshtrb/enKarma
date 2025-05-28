@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 //import kotlinx.android.synthetic.main.activity_further_details.*
 import android.content.Context
@@ -15,7 +15,7 @@ import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.karma.sureshtrb.enKarma.databinding.ActivityFurtherDetailsBinding
+import com.sureshtrb.enKarma.databinding.ActivityFurtherDetailsBinding
 
 var noOfDaysTpnm: String = ""
 var ammaName:String = ""
@@ -248,7 +248,7 @@ if (MFatherLive != "Living"){
             }
         }
     }
-    fun getDefaults(key: String, context: Context): Editable {
+/*    fun getDefaults(key: String, context: Context): Editable {
         val preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
         val storedString = preferences.getString(key, null)
         return if (storedString != null) {
@@ -260,7 +260,7 @@ if (MFatherLive != "Living"){
     fun View.hideKeyboard() {
         val imm = context.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
-    }
+    }*/
     fun saveData() {
         val sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
         val editor = sharedPreferences.edit()

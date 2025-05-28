@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/yagyavalkyar"
         android:requiresFadingEdge="horizontal|vertical"
-        tools:context=".SkipScreenActivity">
+        tools:context="com.sureshtrb.enKarma.SkipScreenActivity">
 
     <TextView
             android:id="@+id/skipTextView"

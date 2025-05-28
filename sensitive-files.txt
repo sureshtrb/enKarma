@@ -1,0 +1,6 @@
+upload-keystore.jks.vold
+upload-keystore.jks.old
+upload.certificate.pem
+new-upload.key.jks
+keystore.properties
+local.properties

@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.karma.sureshtrb.enKarma.databinding.ActivitySkipScreenBinding
+import com.sureshtrb.enKarma.databinding.ActivitySkipScreenBinding
 
 class SkipScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySkipScreenBinding

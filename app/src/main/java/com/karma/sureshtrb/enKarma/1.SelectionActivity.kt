@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,8 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.karma.sureshtrb.enKarma.databinding.ActivitySelectionBinding
+import com.google.firebase.*
+import com.sureshtrb.enKarma.databinding.ActivitySelectionBinding
 
 class SelectionActivity : AppCompatActivity() {
 

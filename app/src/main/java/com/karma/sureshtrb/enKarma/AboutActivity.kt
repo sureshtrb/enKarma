@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 //import kotlinx.android.synthetic.main.activity_about.*
 import android.graphics.Color
@@ -12,7 +12,7 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import androidx.appcompat.app.AppCompatActivity
-import com.karma.sureshtrb.enKarma.databinding.ActivityAboutBinding
+import com.sureshtrb.enKarma.databinding.ActivityAboutBinding
 
 class AboutActivity : AppCompatActivity() {
 

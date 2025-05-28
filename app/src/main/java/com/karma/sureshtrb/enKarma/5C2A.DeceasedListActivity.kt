@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 //import kotlinx.android.synthetic.main.activity_deceased_list.*
 //import android.content.Context
@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 //import androidx.preference.PreferenceManager
-import com.karma.sureshtrb.enKarma.databinding.ActivityDeceasedListBinding
+import com.sureshtrb.enKarma.databinding.ActivityDeceasedListBinding
 
 //import kotlin.text.get
 //import android.widget.TextView

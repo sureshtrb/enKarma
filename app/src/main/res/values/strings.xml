@@ -5,7 +5,7 @@
     <!-- Change the following strings as required -->
     <string name="back4app_app_id">btCMD79AhKDVa8NlUgbfvKPXek3EpAp8QXRbV5rE</string>
     <string name="back4app_client_key">fpCBGVMAfZ8eBLgyROWq3ce6k9LxAAc50XbQqhNo</string>
-    <color name="Black">#000000</color>
+
 
     <!-- Change the following strings as required -->
     <string name="twitter_consumer_key">JC0QIlQseo9NPaqkYuD0biO9J</string>
@@ -58,9 +58,8 @@
     <string name="Your_Grand_Father_Name">Your GrandFather Name</string>
     <string name="Your_Great_Grand_Father_Name">Your GreatGrandFather Name</string>
     <string name="Your_Great_Great_Grand_Father_Name">Your GreatGreatGrandFather Name</string>
-    <string name="Mother_Side">
-        <u>Mother Side</u>
-    </string>
+    <string name="Mother_Side">Mother Side</string>
+
     <string name="Mother_Father_Name">Mother-Father Name</string>
     <string name="Mother_Grand_Father_Name">Mother-GrandFather Name</string>
     <string name="Mother_Father">Mother-Father</string>
@@ -179,10 +178,12 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
+    <string name="welcome">Welcome!</string>
+
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >2 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="login_failed">Login failed</string>
+
     <string name="passwordd">Password</string>
     <string name="usernamee">Username</string>
     <string name="login">Login</string>
@@ -200,7 +201,8 @@
     <string name="password_again">Password Again</string>
     <string name="sign_up">Sign Up</string>
     <string name="username">Username</string>
-    <string name="forget_password">>>Forget Password>></string>
+    <string name="forget_password">Forget Password</string>
+
     <string name="enter_your_registered_email">Enter Your Registered Email</string>
     <string name="recoverPassword">Recover Password</string>
     <string name="tv_forgot_pass">Forgot Password?</string>
@@ -216,7 +218,7 @@
     <string name="text_view_signup">SIGNUP</string>
     <string name="Register">Register</string>
     <string name="click_to_login">Click to Login</string>
-    <string name="skip_login_button">skip Login>>>></string>
+    <string name="skip_login_button">Skip Login</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_email">This email address is invalid</string>
@@ -276,5 +278,6 @@
     <string name="error_username_taken">Username already taken</string>
     <string name="error_email_taken">email taken</string>
     <string name="error_register_generic">register generic</string>
-    <string name="birth_order_hyphen">hypen</string>
+    <string name="birth_order_hyphen">hyphen</string>
+
 </resources>

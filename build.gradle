@@ -1,16 +1,17 @@
 buildscript {
     ext {
         compose_ui_version = '1.5.4'
-        kotlin_version = '1.9.10'
+        kotlin_version = '2.0.21'
     }
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' } // ✅ Add here
+        gradlePluginPortal() // ✅ Ensures Gradle plugin compatibility
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.6.1' // latest available (unstable)
-
+        classpath 'com.android.tools.build:gradle:8.6.0' // ✅ Upgrade to AGP 8.6.0
+        classpath 'com.google.gms:google-services:4.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -19,6 +20,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' } // ✅ And here
+        maven { url 'https://jitpack.io' }
     }
 }

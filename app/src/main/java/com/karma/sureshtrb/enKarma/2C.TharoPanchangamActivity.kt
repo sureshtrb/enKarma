@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 //import kotlinx.android.synthetic.main.activity_tharo_panchangam.*
 //import android.content.Context
@@ -21,8 +21,9 @@ import android.widget.RadioButton
 //import android.widget.RadioGroup
 //import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.HtmlCompat
 import androidx.core.widget.addTextChangedListener
-import com.karma.sureshtrb.enKarma.databinding.ActivityTharoPanchangamBinding
+import com.sureshtrb.enKarma.databinding.ActivityTharoPanchangamBinding
 import org.jsoup.Jsoup
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -1997,27 +1998,27 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             println("sayamSandya : $sayamSandya")
 
             val titiText = "<font color=#000080>திதி (Thithi):-    </font> <font color=#800000>$ThithiGlobal</font>"
-            todThithi = Html.fromHtml(titiText, Html.FROM_HTML_MODE_LEGACY).toString()
+            todThithi = HtmlCompat.fromHtml(titiText, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
             val paktext = "<font color=#000080>பக்ஷ்ம் (Paksha):-    </font> <font color=#800000>$paksha</font>"
-            baksham = Html.fromHtml(paktext, Html.FROM_HTML_MODE_LEGACY).toString()
+            baksham = HtmlCompat.fromHtml(paktext, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
             val rasitext = "<font color=#000080>ராசி (Rasi):-    </font> <font color=#800000>$suryaRasi</font>"
-            rasee = Html.fromHtml(rasitext, Html.FROM_HTML_MODE_LEGACY).toString()
+            rasee = HtmlCompat.fromHtml(rasitext, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
             val placeText = "<font color=#000080>இடம் (GeoLocation):-    </font> <font color=#800000>$place</font>"
-            place = Html.fromHtml(placeText, Html.FROM_HTML_MODE_LEGACY).toString()
+            place = HtmlCompat.fromHtml(placeText, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
             val yearText = "<font color=#000080>வருடம் (Year):-    </font> <font color=#800000>$shakaSamvat</font>"
-            Varusham = Html.fromHtml(yearText, Html.FROM_HTML_MODE_LEGACY).toString()
+            Varusham = HtmlCompat.fromHtml(yearText, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
             val yogaText = "<font color=#000080>யோகம் (Yogam):-    </font> <font color=#800000>$yoga</font>"
-            yog = Html.fromHtml(yogaText, Html.FROM_HTML_MODE_LEGACY).toString()
+            yog = HtmlCompat.fromHtml(yogaText, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
             val ruthuText = "<font color=#000080>ருது (Season-காலம்):-    </font> <font color=#800000>$vedicRithu</font>"
-            kalam = Html.fromHtml(ruthuText, Html.FROM_HTML_MODE_LEGACY).toString()
+            kalam = HtmlCompat.fromHtml(ruthuText, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
             val ayanaText = "<font color=#000080>அயனம் (Ayana):-    </font> <font color=#800000>$vedicAyana</font>"
-            ayyanamm = Html.fromHtml(ayanaText, Html.FROM_HTML_MODE_LEGACY).toString()
+            ayyanamm = HtmlCompat.fromHtml(ayanaText, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
             val wDayText = "<font color=#000080>கிழமை (Day):-    </font> <font color=#800000>$weekDay</font>"
-            kizhamai = Html.fromHtml(wDayText, Html.FROM_HTML_MODE_LEGACY).toString()
+            kizhamai = HtmlCompat.fromHtml(wDayText, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
             val nakshText = "<font color=#000080>நட்ஷத்ரம் (Natchatram):-    </font> <font color=#800000>$naksha</font>"
-            nachathirm = Html.fromHtml(nakshText, Html.FROM_HTML_MODE_LEGACY).toString()
+            nachathirm = HtmlCompat.fromHtml(nakshText, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
             val karanaText = "<font color=#000080>கரணம் (Karanam):-    </font> <font color=#800000>$karana</font>"
-            kar = Html.fromHtml(karanaText, Html.FROM_HTML_MODE_LEGACY).toString()
+            kar = HtmlCompat.fromHtml(karanaText, HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
         }
         // println("Finished")
     } catch (e: Exception) {

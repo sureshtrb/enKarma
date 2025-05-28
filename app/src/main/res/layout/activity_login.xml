@@ -9,7 +9,7 @@
     android:layout_marginTop="@dimen/eight_padding"
     android:layout_marginRight="@dimen/eight_padding"
     android:layout_marginBottom="@dimen/eight_padding"
-    tools:context=".LoginActivity"
+    tools:context="com.sureshtrb.enKarma.LoginActivity"
     android:background = "@drawable/yagyavalkyar">
 
     <androidx.core.widget.NestedScrollView

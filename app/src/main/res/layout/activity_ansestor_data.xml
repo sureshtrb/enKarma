@@ -188,7 +188,7 @@ android:background = "@drawable/yagyavalkyar">
             android:layout_marginRight="8dp" tools:targetApi="o" android:hint="@string/Mother_Great_GrandFather_Name"
             android:textSize="16sp"/>
     <Spinner
-            android:id="@+id/MspinnerGothram" android:layout_width="match_parent" style="@style/MmySpinnerItemStyle"
+            android:id="@+id/MspinnerGothram" android:layout_width="match_parent" style="@style/MySpinnerItemStyle"
             android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@+id/MGGFather_name" android:theme="@style/spinnerTheme"
             android:layout_gravity="center" android:gravity="center" android:baselineAligned="false" android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:layout_marginLeft="8dp"
@@ -200,7 +200,7 @@ android:background = "@drawable/yagyavalkyar">
     <Spinner
             android:id="@+id/MspinnerPravaras" android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_marginTop="10dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:theme="@style/spinnerTheme"
-            android:layout_gravity="center" style="@style/MmySpinnerItemStyle" app:layout_constraintTop_toBottomOf="@+id/MspinnerGothram"
+            android:layout_gravity="center" style="@style/MySpinnerItemStyle" app:layout_constraintTop_toBottomOf="@+id/MspinnerGothram"
             android:background="@drawable/mybutton" android:textStyle="bold"  android:textColor="@android:color/background_light"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title" android:textSize="24sp"
             android:textColorHint="@android:color/background_light" android:clickable="true" android:focusable="true"/>

@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 //import kotlinx.android.synthetic.main.activity_sandya_vandanam.*
 //import kotlin.div
@@ -33,7 +33,7 @@ import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.karma.sureshtrb.enKarma.databinding.ActivitySandyaVandanamBinding
+import com.sureshtrb.enKarma.databinding.ActivitySandyaVandanamBinding
 import java.io.FileOutputStream
 import java.io.IOException
 import kotlin.math.ceil
@@ -119,14 +119,14 @@ class SandyaVandanamActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayUseLogoEnabled(true)
 
         val intent = intent
-            sandyaType = intent.getStringExtra("sandhi").toString()
-            println("sandyaType : $sandyaType")
-            pravarasYour = intent.getStringExtra("pravaras").toString()
-            println("pravarasYour : $pravarasYour")
-            gothramYour = intent.getStringExtra("gothram").toString()
-            println("gothramYour : $gothramYour")
-            nameYour = intent.getStringExtra("name").toString()
-            println("nameYour : $nameYour")
+        sandyaType = intent.getStringExtra("sandhi").toString()
+        println("sandyaType : $sandyaType")
+        pravarasYour = intent.getStringExtra("pravaras").toString()
+        println("pravarasYour : $pravarasYour")
+        gothramYour = intent.getStringExtra("gothram").toString()
+        println("gothramYour : $gothramYour")
+        nameYour = intent.getStringExtra("name").toString()
+        println("nameYour : $nameYour")
 
         val heading = SpannableString("$sandyaType - $nameYour\n")
 
@@ -1978,10 +1978,10 @@ class SandyaVandanamActivity : AppCompatActivity() {
 
 
             private fun drawPage(page: PdfDocument.Page, pagnumber: Int) {
-              //  var pagnumber = pagnumber
+                //  var pagnumber = pagnumber
                 val canvas = page.canvas
 
-              //  pagnumber++ // Make sure page numbers start at 1
+                //  pagnumber++ // Make sure page numbers start at 1
 
                 //  val titleBaseLine = 72
                 //  val leftMargin = 54
@@ -1999,7 +1999,7 @@ class SandyaVandanamActivity : AppCompatActivity() {
                 //   val toScale = (bm!!.width / pageWidth).toDouble()
                 val mTextPaint = TextPaint()
 
-                                // Store page texts in an array
+                // Store page texts in an array
                 val pageTexts = arrayOf(
                     sandyaCombination.subSequence(startPos1, endPos1),
                     sandyaCombination.subSequence(startPos2, endPos2),
@@ -2019,25 +2019,25 @@ class SandyaVandanamActivity : AppCompatActivity() {
                     sandyaCombination.subSequence(startPos16, endPos16),
                     sandyaCombination.subSequence(startPos17, endPos17)
                 )
-/*
-                pageOneText = sandyaCombination.subSequence(startPos1, endPos1)
-                pageTwoText = sandyaCombination.subSequence(startPos2, endPos2)
-                pageThreeText = ssandyaCombinationsubSequence(startPos3, endPos3)
-                pageFourText = sandyaCombination.subSequence(startPos4, endPos4)
-                pageFiveText = ssandyaCombinationsubSequence(startPos5, endPos5)
-                pageSixText = sasandyaCombinationubSequence(startPos6, endPos6)
-                pageSevenText = ssandyaCombinationsubSequence(startPos7, endPos7)
-                pageEightText = ssandyaCombinationsubSequence(startPos8, endPos8)
-                pageNineText = sasandyaCombinationubSequence(startPos9, endPos9)
-                pageTenText = sandyaCombination.subSequence(startPos10, endPos10)
-                pageElevenText = sandyaCombination.subSequence(startPos11, endPos11)
-                pageTwelveText = ssandyaCombinationsubSequence(startPos12, endPos12)
-                pageThirteenText = sandyaCombination.subSequence(startPos13, endPos13)
-                pageFourteenText = sandyaCombination.subSequence(startPos14, endPos14)
-                pageFifteenText = sandyaCombination.subSequence(startPos15, endPos15)
-                pageSixteenText = sandyaCombination.subSequence(startPos16, endPos16)
-                pageSeventeenText = ssandyaCombinationsubSequence(startPos17, endPos17)
-*/
+                /*
+                                pageOneText = sandyaCombination.subSequence(startPos1, endPos1)
+                                pageTwoText = sandyaCombination.subSequence(startPos2, endPos2)
+                                pageThreeText = ssandyaCombinationsubSequence(startPos3, endPos3)
+                                pageFourText = sandyaCombination.subSequence(startPos4, endPos4)
+                                pageFiveText = ssandyaCombinationsubSequence(startPos5, endPos5)
+                                pageSixText = sasandyaCombinationubSequence(startPos6, endPos6)
+                                pageSevenText = ssandyaCombinationsubSequence(startPos7, endPos7)
+                                pageEightText = ssandyaCombinationsubSequence(startPos8, endPos8)
+                                pageNineText = sasandyaCombinationubSequence(startPos9, endPos9)
+                                pageTenText = sandyaCombination.subSequence(startPos10, endPos10)
+                                pageElevenText = sandyaCombination.subSequence(startPos11, endPos11)
+                                pageTwelveText = ssandyaCombinationsubSequence(startPos12, endPos12)
+                                pageThirteenText = sandyaCombination.subSequence(startPos13, endPos13)
+                                pageFourteenText = sandyaCombination.subSequence(startPos14, endPos14)
+                                pageFifteenText = sandyaCombination.subSequence(startPos15, endPos15)
+                                pageSixteenText = sandyaCombination.subSequence(startPos16, endPos16)
+                                pageSeventeenText = ssandyaCombinationsubSequence(startPos17, endPos17)
+                */
                 val footerText1 = SpannableString(
                     "$heading (Page No. ${pagnumber + 1} of $totalpages)" // pagenumber + 1 is used here
                 )
@@ -2068,7 +2068,7 @@ class SandyaVandanamActivity : AppCompatActivity() {
                         canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
                     }
                 }
-                                // Draw page content if page number is within range and text is not null
+                // Draw page content if page number is within range and text is not null
                 if (pagnumber in 1..totalpages && pagnumber <= pageTexts.size) {
                     pageTexts[pagnumber - 1].let { text ->
                         val mTextLayout = StaticLayout.Builder
@@ -2083,119 +2083,119 @@ class SandyaVandanamActivity : AppCompatActivity() {
                     canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
                 }
 
-      /*        if (pagnumber == 1 && totalpages >= 1) {
-    val mTextLayout1 = StaticLayout.Builder
-        .obtain(pageOneText, 0, pageOneText.length, mTextPaint, canvas.width)
-        .setAlignment(Layout.Alignment.ALIGN_CENTER)
-        .setLineSpacing(1.0f, 1.0f)
-        .setIncludePad(true)
-        .build()
-    mTextLayout1.draw(canvas)
-    paint.textSize = 14f
-    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-}
-                if (pagnumber == 2 && totalpages >= 2) {
-    val mTextLayout2 = StaticLayout.Builder
-        .obtain(pageTwoText, 0, pageTwoText.length, mTextPaint, canvas.width)
-        .setAlignment(Layout.Alignment.ALIGN_CENTER)
-        .setLineSpacing(1.0f, 1.0f)
-        .setIncludePad(true)
-        .build()
-    mTextLayout2.draw(canvas)
-    paint.textSize = 14f
-    paint.colorFilter // This line seems incomplete, consider reviewing its purpose
-    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-}
-                if (pagnumber == 3 && totalpages >= 3) {
-                    val mTextLayout3 = StaticLayout(pageThreeText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout3.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 4 && totalpages >= 4) {
-                    val mTextLayout4 = StaticLayout(pageFourText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout4.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 5 && totalpages >= 5) {
-                    val mTextLayout5 = StaticLayout(pageFiveText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout5.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 6 && totalpages >= 6) {
-                    val mTextLayout6 = StaticLayout(pageSixText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout6.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 7 && totalpages >= 7) {
-                    val mTextLayout7 = StaticLayout(pageSevenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout7.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 8 && totalpages >= 8) {
-                    val mTextLayout8 = StaticLayout(pageEightText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout8.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 9 && totalpages >= 9) {
-                    val mTextLayout9 = StaticLayout(pageNineText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout9.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 10 && totalpages >= 10) {
-                    val mTextLayout10 = StaticLayout(pageTenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout10.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 11 && totalpages >= 11) {
-                    val mTextLayout11 = StaticLayout(pageElevenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout11.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 12 && totalpages >= 12) {
-                    val mTextLayout12 = StaticLayout(pageTwelveText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout12.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 13 && totalpages >= 13) {
-                    val mTextLayout13 = StaticLayout(pageThirteenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout13.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 14 && totalpages >= 14) {
-                    val mTextLayout14 = StaticLayout(pageFourteenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout14.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 15 && totalpages >= 15) {
-                    val mTextLayout15 = StaticLayout(pageFifteenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout15.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 16 && totalpages >= 16) {
-                    val mTextLayout16 = StaticLayout(pageSixteenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout16.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }
-                if (pagnumber == 17 && totalpages >= 17) {
-                    val mTextLayout17 = StaticLayout(pageSeventeenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
-                    mTextLayout17.draw(canvas)
-                     paint.textSize = 14f
-                    canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
-                }*/
+                /*        if (pagnumber == 1 && totalpages >= 1) {
+              val mTextLayout1 = StaticLayout.Builder
+                  .obtain(pageOneText, 0, pageOneText.length, mTextPaint, canvas.width)
+                  .setAlignment(Layout.Alignment.ALIGN_CENTER)
+                  .setLineSpacing(1.0f, 1.0f)
+                  .setIncludePad(true)
+                  .build()
+              mTextLayout1.draw(canvas)
+              paint.textSize = 14f
+              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+          }
+                          if (pagnumber == 2 && totalpages >= 2) {
+              val mTextLayout2 = StaticLayout.Builder
+                  .obtain(pageTwoText, 0, pageTwoText.length, mTextPaint, canvas.width)
+                  .setAlignment(Layout.Alignment.ALIGN_CENTER)
+                  .setLineSpacing(1.0f, 1.0f)
+                  .setIncludePad(true)
+                  .build()
+              mTextLayout2.draw(canvas)
+              paint.textSize = 14f
+              paint.colorFilter // This line seems incomplete, consider reviewing its purpose
+              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+          }
+                          if (pagnumber == 3 && totalpages >= 3) {
+                              val mTextLayout3 = StaticLayout(pageThreeText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout3.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 4 && totalpages >= 4) {
+                              val mTextLayout4 = StaticLayout(pageFourText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout4.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 5 && totalpages >= 5) {
+                              val mTextLayout5 = StaticLayout(pageFiveText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout5.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 6 && totalpages >= 6) {
+                              val mTextLayout6 = StaticLayout(pageSixText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout6.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 7 && totalpages >= 7) {
+                              val mTextLayout7 = StaticLayout(pageSevenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout7.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 8 && totalpages >= 8) {
+                              val mTextLayout8 = StaticLayout(pageEightText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout8.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 9 && totalpages >= 9) {
+                              val mTextLayout9 = StaticLayout(pageNineText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout9.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 10 && totalpages >= 10) {
+                              val mTextLayout10 = StaticLayout(pageTenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout10.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 11 && totalpages >= 11) {
+                              val mTextLayout11 = StaticLayout(pageElevenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout11.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 12 && totalpages >= 12) {
+                              val mTextLayout12 = StaticLayout(pageTwelveText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout12.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 13 && totalpages >= 13) {
+                              val mTextLayout13 = StaticLayout(pageThirteenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout13.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 14 && totalpages >= 14) {
+                              val mTextLayout14 = StaticLayout(pageFourteenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout14.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 15 && totalpages >= 15) {
+                              val mTextLayout15 = StaticLayout(pageFifteenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout15.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 16 && totalpages >= 16) {
+                              val mTextLayout16 = StaticLayout(pageSixteenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout16.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }
+                          if (pagnumber == 17 && totalpages >= 17) {
+                              val mTextLayout17 = StaticLayout(pageSeventeenText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
+                              mTextLayout17.draw(canvas)
+                               paint.textSize = 14f
+                              canvas.drawText(footerText, (pageInfo.pageWidth / 3 - footerText.length).toFloat(), (pageInfo.pageHeight).toFloat(), paint)
+                          }*/
 
             }
 
@@ -2243,10 +2243,10 @@ class SandyaVandanamActivity : AppCompatActivity() {
             val mTLineCount = binding.sandyaVandanamTextView.lineCount
             println("mTLineCount : $mTLineCount")
             //val totalChar = sandyaVandanamTextView.length()
-           // val testTotalChar = totalChar.toString()
+            // val testTotalChar = totalChar.toString()
             //println("totalChar : $totalChar")
             println("totalChar : ${binding.sandyaVandanamTextView.length()}")
-           // val pagesTotal = ((mTLineCount/50 + 0.99) / 0.99 ) * 1 //(Math.round(mTLineCount.toDouble() / 30.toDouble()))
+            // val pagesTotal = ((mTLineCount/50 + 0.99) / 0.99 ) * 1 //(Math.round(mTLineCount.toDouble() / 30.toDouble()))
             //totalpages = pagesTotal.toInt()
             //println("totalpages : $totalpages")
             totalpages = ceil(mTLineCount.toDouble() / linesPerPage).toInt()

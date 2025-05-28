@@ -1,0 +1,131 @@
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+        at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+sureshbalasubramanian@BSMacBook-Pro enKarma % ./gradlew build --stacktrace --quiet | grep -i "error\|exception"
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/3A1.SandyaVandanamActivity.kt:2133:9 Syntax error: Expecting member declaration.
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/3A1.SandyaVandanamActivity.kt:2133:17 Syntax error: Expecting member declaration.
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/3A1.SandyaVandanamActivity.kt:2133:18 Syntax error: Expecting member declaration.
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/3A1.SandyaVandanamActivity.kt:2133:37 Syntax error: Expecting member declaration.
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/3A1.SandyaVandanamActivity.kt:2163:2 Syntax error: Missing '}.
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/3A1.SandyaVandanamActivity.kt:2133:9 Syntax error: Expecting member declaration.
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/3A1.SandyaVandanamActivity.kt:2133:17 Syntax error: Expecting member declaration.
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/3A1.SandyaVandanamActivity.kt:2133:18 Syntax error: Expecting member declaration.
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/3A1.SandyaVandanamActivity.kt:2133:37 Syntax error: Expecting member declaration.
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/3A1.SandyaVandanamActivity.kt:2163:2 Syntax error: Missing '}.
+1: Task failed with an exception.
+   > Compilation error. See log for more details
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileReleaseKotlin'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+        at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+2: Task failed with an exception.
+   > Compilation error. See log for more details
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+        at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+sureshbalasubramanian@BSMacBook-Pro enKarma % ./gradlew build --stacktrace --quiet | grep -i "error\|exception"
+1: Task failed with an exception.
+   > Compilation error. See log for more details
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileReleaseKotlin'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+        at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+2: Task failed with an exception.
+   > Compilation error. See log for more details
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+        at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+sureshbalasubramanian@BSMacBook-Pro enKarma % ./gradlew build --stacktrace --quiet | grep -i "error\|exception"
+FAILURE: Build failed with an exception.
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:dataBindingMergeDependencyArtifactsDebug'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:38)
+Caused by: org.gradle.api.internal.artifacts.ivyservice.DefaultLenientConfiguration$ArtifactResolveException: Could not resolve all files for configuration ':app:debugCompileClasspath'.
+        at org.gradle.api.internal.artifacts.ResolveExceptionContextualizer.mapFailures(ResolveExceptionContextualizer.java:56)
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Cause 1: org.gradle.internal.resolve.ModuleVersionNotFoundException: Could not find androidx.compose.ui:ui:2.0.21.
+Cause 2: org.gradle.internal.resolve.ModuleVersionNotFoundException: Could not find androidx.compose.material:material:2.0.21.
+Cause 3: org.gradle.internal.resolve.ModuleVersionNotFoundException: Could not find androidx.compose.ui:ui-tooling-preview:2.0.21.
+Cause 4: org.gradle.internal.resolve.ModuleVersionNotFoundException: Could not find androidx.compose.ui:ui:2.0.21.
+FAILURE: Build failed with an exception.
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:dataBindingMergeDependencyArtifactsDebug'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:38)
+Caused by: org.gradle.api.internal.artifacts.ivyservice.DefaultLenientConfiguration$ArtifactResolveException: Could not resolve all files for configuration ':app:debugCompileClasspath'.
+        at org.gradle.api.internal.artifacts.ResolveExceptionContextualizer.mapFailures(ResolveExceptionContextualizer.java:56)
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Cause 1: org.gradle.internal.resolve.ModuleVersionNotFoundException: Could not find androidx.compose.ui:ui:2.0.21.
+Cause 2: org.gradle.internal.resolve.ModuleVersionNotFoundException: Could not find androidx.compose.material:material:2.0.21.
+Cause 3: org.gradle.internal.resolve.ModuleVersionNotFoundException: Could not find androidx.compose.ui:ui-tooling-preview:2.0.21.
+Cause 4: org.gradle.internal.resolve.ModuleVersionNotFoundException: Could not find androidx.compose.ui:ui:2.0.21.
+1: Task failed with an exception.
+   > Compilation error. See log for more details
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+        at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+2: Task failed with an exception.
+   > Compilation error. See log for more details
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileReleaseKotlin'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+        at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/6C2Aa.MahalayaTpnmActivity.kt:4654:17 Syntax error: Unexpected tokens (use ';' to separate expressions on the same line).
+e: file:///Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/enKarma/app/src/main/java/com/karma/sureshtrb/enKarma/6C2Aa.MahalayaTpnmActivity.kt:4654:17 Syntax error: Unexpected tokens (use ';' to separate expressions on the same line).
+1: Task failed with an exception.
+   > Compilation error. See log for more details
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+        at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+2: Task failed with an exception.
+   > Compilation error. See log for more details
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileReleaseKotlin'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+        at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+sureshbalasubramanian@BSMacBook-Pro enKarma % ./gradlew build --stacktrace --quiet | grep -i "error\|exception" > errors.txt
+1: Task failed with an exception.
+   > Compilation error. See log for more details
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileDebugKotlin'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+        at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)
+2: Task failed with an exception.
+   > Compilation error. See log for more details
+* Exception is:
+org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:compileReleaseKotlin'.
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.gradle.workers.internal.DefaultWorkerExecutor$WorkExecutionException: A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+        at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+Caused by: org.jetbrains.kotlin.gradle.tasks.CompilationErrorException: Compilation error. See log for more details
+        at org.jetbrains.kotlin.gradle.tasks.TasksUtilsKt.throwExceptionIfCompilationFailed(tasksUtils.kt:21)

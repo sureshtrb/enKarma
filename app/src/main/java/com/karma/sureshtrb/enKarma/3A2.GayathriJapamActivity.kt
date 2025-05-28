@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 //import com.tjeannin.apprate.AppRate
 
@@ -38,7 +38,7 @@ import android.text.style.StyleSpan
 import android.text.style.UnderlineSpan
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.karma.sureshtrb.enKarma.databinding.ActivityGayathriJapamBinding
+import com.sureshtrb.enKarma.databinding.ActivityGayathriJapamBinding
 import java.io.FileOutputStream
 import java.io.IOException
 import kotlin.toString

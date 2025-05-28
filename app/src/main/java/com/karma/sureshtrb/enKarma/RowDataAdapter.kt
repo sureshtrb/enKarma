@@ -1,11 +1,11 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.karma.sureshtrb.enKarma.R // Import R class for layout
+import com.sureshtrb.enKarma.R // Import R class for layout
 data class RowData(
     var name: String = "",
     var birthOrder: String = "",
@@ -19,7 +19,7 @@ class RowDataAdapter(private val rowDataList: List<RowData>) :
     class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) { // Fully qualified name
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
         val birthOrderTextView: TextView = itemView.findViewById(R.id.birthOrderTextView)
-        val birthOrderTextView: TextView = itemView.findViewById(R.id.birthOrderTextView) // ... other TextViews
+        //val birthOrderTextView: TextView = itemView.findViewById(R.id.birthOrderTextView) // ... other TextViews
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowDataAdapter.ViewHolder {

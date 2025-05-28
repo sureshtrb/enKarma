@@ -8,7 +8,7 @@
     android:layout_marginTop="@dimen/eight_padding"
 
     android:layout_marginBottom="@dimen/eight_padding"
-    tools:context=".RegisterActivity"
+    tools:context="com.sureshtrb.enKarma.RegisterActivity"
     android:background = "@drawable/yagyavalkyar">
 
     <androidx.core.widget.NestedScrollView

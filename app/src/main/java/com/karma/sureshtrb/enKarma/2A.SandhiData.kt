@@ -1,4 +1,4 @@
-package com.karma.sureshtrb.enKarma
+package com.sureshtrb.enKarma
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -16,12 +16,13 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.karma.sureshtrb.enKarma.databinding.ActivitySandhiDataBinding
+import com.sureshtrb.enKarma.databinding.ActivitySandhiDataBinding
 import org.jsoup.Jsoup
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.apply
+import android.widget.TextView
 
 
 var urGothram: String = ""
@@ -97,7 +98,7 @@ class SandhiData : AppCompatActivity() {
 
 
         sandyaBtn.setOnClickListener {
-    val intent = Intent(this, SandyaVandanamActivity::class.java)
+    val intent = Intent(this, com.sureshtrb.enKarma.SandyaVandanamActivity::class.java)
     intent.putExtra("name", yourNameTxtVw.text.toString())
     intent.putExtra("gothram", urGothram.toString())
     intent.putExtra("pravaras", urPravaras.toString())

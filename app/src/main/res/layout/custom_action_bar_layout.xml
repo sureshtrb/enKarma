@@ -10,7 +10,7 @@
         <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-            android:contentDescription="TODO"
+
             android:src="@drawable/home"
                 android:layout_gravity="center_vertical"
                 android:background="@android:color/transparent"
@@ -32,7 +32,7 @@
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-            android:contentDescription="TODO"
+
             android:src="@drawable/karma"
                 android:background="@android:color/transparent"
                 android:id="@+id/app_logo"
