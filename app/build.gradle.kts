@@ -19,6 +19,11 @@ android {
         versionCode = 50
         versionName = "1.0.50"
     }
+    packaging {
+        jniLibs {
+            useLegacyPackaging = false
+        }
+    }
 
     buildTypes {
         release {
