@@ -16,8 +16,8 @@ android {
         applicationId = "com.karma.sureshtrb.enKarma"
         minSdk = 24
         targetSdk = 36
-        versionCode = 50
-        versionName = "1.0.50"
+        versionCode = 55
+        versionName = "1.0.55"
     }
     packaging {
         jniLibs {
