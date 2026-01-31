@@ -9,7 +9,7 @@
 
 
     <application
-        android:name="com.sureshtrb.enKarma.App"
+        android:name="com.karma.sureshtrb.enKarma.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:enableOnBackInvokedCallback="true"
@@ -32,7 +32,7 @@
             android:value="@string/back4app_client_key" />
 
         <activity
-            android:name="com.sureshtrb.enKarma.LoginActivity"
+            android:name="com.karma.sureshtrb.enKarma.LoginActivity"
             android:label="@string/app_name"
             android:exported="true"
             android:theme="@style/AppTheme"
@@ -47,53 +47,53 @@
 
         </activity>
         <activity
-            android:name="com.sureshtrb.enKarma.SelectionActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.LoginActivity" />
+            android:name="com.karma.sureshtrb.enKarma.SelectionActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.LoginActivity" />
         <activity
-            android:name="com.sureshtrb.enKarma.SkipSelectionActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.LoginActivity" />
+            android:name="com.karma.sureshtrb.enKarma.SkipSelectionActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.LoginActivity" />
         <activity
-            android:name="com.sureshtrb.enKarma.SkipScreenActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.LoginActivity" />
+            android:name="com.karma.sureshtrb.enKarma.SkipScreenActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.LoginActivity" />
         <activity
-            android:name="com.sureshtrb.enKarma.SandhiData"
-            android:parentActivityName="com.sureshtrb.enKarma.SelectionActivity"/>
+            android:name="com.karma.sureshtrb.enKarma.SandhiData"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.SelectionActivity"/>
         <activity
-            android:name="com.sureshtrb.enKarma.PariActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.SelectionActivity"/>
+            android:name="com.karma.sureshtrb.enKarma.PariActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.SelectionActivity"/>
         <activity
-            android:name="com.sureshtrb.enKarma.TharoPanchangamActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.SelectionActivity"/>
+            android:name="com.karma.sureshtrb.enKarma.TharoPanchangamActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.SelectionActivity"/>
         <activity
-            android:name="com.sureshtrb.enKarma.SandyaVandanamActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.SelectionActivity" />
+            android:name="com.karma.sureshtrb.enKarma.SandyaVandanamActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.SelectionActivity" />
         <activity
-            android:name="com.sureshtrb.enKarma.GayathriJapamActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.SelectionActivity"/>
+            android:name="com.karma.sureshtrb.enKarma.GayathriJapamActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.SelectionActivity"/>
         <activity
-            android:name="com.sureshtrb.enKarma.AnsestorDataActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.SelectionActivity"/>
+            android:name="com.karma.sureshtrb.enKarma.AnsestorDataActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.SelectionActivity"/>
         <activity
-            android:name="com.sureshtrb.enKarma.FurtherDetailsActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.SelectionActivity" />
+            android:name="com.karma.sureshtrb.enKarma.FurtherDetailsActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.SelectionActivity" />
         <activity
-            android:name="com.sureshtrb.enKarma.AmavasyaTharpanam"
-            android:parentActivityName="com.sureshtrb.enKarma.SelectionActivity"/>
+            android:name="com.karma.sureshtrb.enKarma.AmavasyaTharpanam"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.SelectionActivity"/>
         <activity
-            android:name="com.sureshtrb.enKarma.DeceasedListActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.SelectionActivity"/>
+            android:name="com.karma.sureshtrb.enKarma.DeceasedListActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.SelectionActivity"/>
         <activity
-            android:name="com.sureshtrb.enKarma.MahalayaTpnmActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.SelectionActivity" />
+            android:name="com.karma.sureshtrb.enKarma.MahalayaTpnmActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.SelectionActivity" />
         <activity
-            android:name="com.sureshtrb.enKarma.AboutActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.SelectionActivity" />
+            android:name="com.karma.sureshtrb.enKarma.AboutActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.SelectionActivity" />
         <activity
-            android:name="com.sureshtrb.enKarma.RegisterActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.LoginActivity"/>
+            android:name="com.karma.sureshtrb.enKarma.RegisterActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.LoginActivity"/>
         <activity
-            android:name="com.sureshtrb.enKarma.ForgotPasswordActivity"
-            android:parentActivityName="com.sureshtrb.enKarma.LoginActivity" />
+            android:name="com.karma.sureshtrb.enKarma.ForgotPasswordActivity"
+            android:parentActivityName="com.karma.sureshtrb.enKarma.LoginActivity" />
     </application>
 
 </manifest>

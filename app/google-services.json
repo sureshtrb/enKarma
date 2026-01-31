@@ -1,59 +1,21 @@
 {
   "project_info": {
-    "project_number": "822466081215",
-    "project_id": "karma-c9bb0",
-    "storage_bucket": "karma-c9bb0.firebasestorage.app"
+    "project_number": "184120517039",
+    "project_id": "enkarma-android",
+    "storage_bucket": "enkarma-android.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:822466081215:android:cdfd3d8519411f6a8af10a",
+        "mobilesdk_app_id": "1:184120517039:android:dd9f3e66c8cd4cfa540f5a",
         "android_client_info": {
-          "package_name": "com.example.karma"
+          "package_name": "com.karma.sureshtrb.enKarma"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA0oITSHimxgKsj1GeIIbo5iDo7W0a4buw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:822466081215:android:09527771143791d18af10a",
-        "android_client_info": {
-          "package_name": "com.sureshtrb.enKarma"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyA0oITSHimxgKsj1GeIIbo5iDo7W0a4buw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:822466081215:android:c4c1f3d9d389aacb8af10a",
-        "android_client_info": {
-          "package_name": "com.sureshtrb.karma"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyA0oITSHimxgKsj1GeIIbo5iDo7W0a4buw"
+          "current_key": "AIzaSyBNrh9ytR344VuRwxqV1dVrPjG1GkpJ9pc"
         }
       ],
       "services": {
