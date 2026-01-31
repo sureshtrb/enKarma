@@ -6,3 +6,4 @@ new-upload-key.jks
 sensitive-files.txt
 upload_certificate.pem
 
+app/google-services.json
