@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace 'com.sureshtrb.enKarma'
+    namespace 'com.karma.sureshtrb.enKarma'
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.sureshtrb.enKarma"
+        applicationId "com.karma.sureshtrb.enKarma"
         minSdk 24
         targetSdk 35
         versionCode 50
