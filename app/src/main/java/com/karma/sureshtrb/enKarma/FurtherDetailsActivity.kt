@@ -24,15 +24,6 @@ var yrGFatherLive: String = ""
 var fatherMotherLive: String = ""
 var mFatherLive: String = ""
 var motherMotherLive: String = ""
-var shakaSamvat: String = ""
-var vedicAyana: String = ""
-var vedicRithu: String = ""
-var suryaRasi: String = ""
-var paksha: String = ""
-var weekDay: String = ""
-var naksha: String = ""
-var yoga: String = ""
-var karana: String = ""
 
 class FurtherDetailsActivity : AppCompatActivity() {
 
