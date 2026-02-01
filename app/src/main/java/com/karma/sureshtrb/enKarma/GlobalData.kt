@@ -14,9 +14,15 @@ var naksha: String = ""
 var yoga: String = ""
 var karana: String = ""
 
+// Additional astronomical variables
+var suryaNakshatra: String = ""
+var chandraMasa: String = ""
+var chandraRasi: String = ""
+
 // Family member status variables
 var motherLive: String = ""
 var yrGFatherLive: String = ""
 var fatherMotherLive: String = ""
 var mFatherLive: String = ""
 var motherMotherLive: String = ""
+
