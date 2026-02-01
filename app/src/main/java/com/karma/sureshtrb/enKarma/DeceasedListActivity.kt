@@ -101,6 +101,9 @@ class DeceasedListActivity : AppCompatActivity() {
 
         // Setup spinners and adapters
         setupSpinners()
+        private fun updateViews() {
+            refreshRowVisibility()
+        }
 
         // Load previously saved data and update UI
         loadData()
@@ -257,7 +260,7 @@ class DeceasedListActivity : AppCompatActivity() {
                 break
             }
         }
-        binding.editRow.text?.clear()
+        binding.Name.text?.clear()
         saveData()
         refreshRowVisibility()
     }
