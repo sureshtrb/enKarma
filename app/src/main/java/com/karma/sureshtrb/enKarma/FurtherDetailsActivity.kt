@@ -19,11 +19,6 @@ var appaKolluPattiName: String = ""
 var ammaAmmaName: String = ""
 var ammaPattiName: String = ""
 var ammaKolluPattiName: String = ""
-
-class FurtherDetailsActivity : AppCompatActivity() {
-
-    companion object {
-        private const val SHARED_PREFS = "FurtherDetailsPrefs"
     }
 
     private lateinit var binding: ActivityFurtherDetailsBinding
