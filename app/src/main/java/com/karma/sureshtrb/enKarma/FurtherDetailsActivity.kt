@@ -20,6 +20,8 @@ var ammaAmmaName: String = ""
 var ammaPattiName: String = ""
 var ammaKolluPattiName: String = ""
 
+class FurtherDetailsActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityFurtherDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
