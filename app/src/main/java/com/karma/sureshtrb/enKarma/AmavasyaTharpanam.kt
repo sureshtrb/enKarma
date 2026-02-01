@@ -2667,7 +2667,7 @@ class AmavasyaTharpanam : AppCompatActivity() {
                 paused = false
             } else {
                 scrText()
-                mediaPlayer = MediaPlayer.create(this, R.raw.masterdouble)// switch on your state
+                mediaPlayer = MediaPlayer.create(this, R.raw.master_double)// switch on your state
                 mediaPlayer.start()
                 binding.amavasyaTPNMTextView.movementMethod = ScrollingMovementMethod()
             }
