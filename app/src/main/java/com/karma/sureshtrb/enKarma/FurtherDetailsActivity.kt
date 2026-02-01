@@ -19,11 +19,6 @@ var appaKolluPattiName: String = ""
 var ammaAmmaName: String = ""
 var ammaPattiName: String = ""
 var ammaKolluPattiName: String = ""
-var motherLive: String = ""
-var yrGFatherLive: String = ""
-var fatherMotherLive: String = ""
-var mFatherLive: String = ""
-var motherMotherLive: String = ""
 
 class FurtherDetailsActivity : AppCompatActivity() {
 

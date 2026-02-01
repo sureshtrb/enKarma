@@ -13,8 +13,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.karma.sureshtrb.enKarma.databinding.ActivityAnsestorDataBinding
 
-var yrGFatherLive: String = ""
-var mFatherLive: String = ""
 var mGothram: String = ""
 var mPravaras: String = ""
 var urName: String = ""

@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.karma.sureshtrb.enKarma" />
+                  <option name="mobileSdkAppId" value="1:184120517039:android:dd9f3e66c8cd4cfa540f5a" />
+                  <option name="projectId" value="enkarma-android" />
+                  <option name="projectNumber" value="184120517039" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
