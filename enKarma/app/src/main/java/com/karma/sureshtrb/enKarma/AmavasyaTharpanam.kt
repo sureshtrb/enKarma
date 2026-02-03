@@ -2739,8 +2739,8 @@ class AmavasyaTharpanam : AppCompatActivity() {
         private val context: Context,
         private val heading: SpannableString,
         private val fullText: SpannableStringBuilder,
-        private val GlobalData.pageBoundaries: List<Pair<Int, Int>>,
-        private val GlobalData.totalPages: Int
+        private val pageBoundaries: List<Pair<Int, Int>>,
+        private val totalPages: Int
     ) : PrintDocumentAdapter() {
 
         private var pdfDocument: PdfDocument? = null
