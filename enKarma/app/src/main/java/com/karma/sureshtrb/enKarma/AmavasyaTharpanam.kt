@@ -31,8 +31,6 @@ import kotlin.math.min
 class AmavasyaTharpanam : AppCompatActivity() {
 
     // Data for multi-page printing (dynamic allocation now)
-    var totalPages: Int = 1
-    var pageBoundaries = mutableListOf<Pair<Int, Int>>() // Store page boundaries dynamically
 
     // Media controls
     private lateinit var mediaPlayer: MediaPlayer
@@ -2616,24 +2614,24 @@ class AmavasyaTharpanam : AppCompatActivity() {
         printBtn.setOnClickListener {
             val lineCount = binding.amavasyaTPNMTextView.lineCount
             val linesPerPage = 50
-            totalPages = ceil(lineCount.toDouble() / linesPerPage).toInt()
+            GlobalData.totalPages = ceil(lineCount.toDouble() / linesPerPage).toInt()
 
             // Build all page boundaries dynamically
-            pageBoundaries.clear()
-            for (page in 0 until totalPages) {
+            GlobalData.pageBoundaries.clear()
+            for (page in 0 until GlobalData.totalPages) {
                 val startLine = page * linesPerPage
                 val endLine = min(startLine + linesPerPage, lineCount)
                 val layout = binding.amavasyaTPNMTextView.layout
                 val startPos = layout.getLineStart(startLine)
                 val endPos = layout.getLineEnd(endLine - 1)
-                pageBoundaries.add(Pair(startPos, endPos))
+                GlobalData.pageBoundaries.add(Pair(startPos, endPos))
                 println("Page ${page+1} - startPos: $startPos, endPos: $endPos")
             }
 
             val printManager = getSystemService(Context.PRINT_SERVICE) as? PrintManager
             if (printManager != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 val jobName = getString(R.string.app_name) + "-$heading"
-                printManager.print(jobName, MyPrintDocumentAdapter(this, heading, Amava_combination, pageBoundaries, totalPages), null)
+                printManager.print(jobName, MyPrintDocumentAdapter(this, heading, Amava_combination, GlobalData.pageBoundaries, GlobalData.totalPages), null)
             } else {
                 Toast.makeText(this, "Print not supported on this device", Toast.LENGTH_SHORT).show()
             }
@@ -2741,8 +2739,8 @@ class AmavasyaTharpanam : AppCompatActivity() {
         private val context: Context,
         private val heading: SpannableString,
         private val fullText: SpannableStringBuilder,
-        private val pageBoundaries: List<Pair<Int, Int>>,
-        private val totalPages: Int
+        private val GlobalData.pageBoundaries: List<Pair<Int, Int>>,
+        private val GlobalData.totalPages: Int
     ) : PrintDocumentAdapter() {
 
         private var pdfDocument: PdfDocument? = null
@@ -2760,7 +2758,7 @@ class AmavasyaTharpanam : AppCompatActivity() {
             }
             val builder = PrintDocumentInfo.Builder("$heading.pdf")
                 .setContentType(PrintDocumentInfo.CONTENT_TYPE_DOCUMENT)
-                .setPageCount(totalPages)
+                .setPageCount(GlobalData.totalPages)
                 .build()
             callback.onLayoutFinished(builder, true)
         }
@@ -2778,7 +2776,7 @@ class AmavasyaTharpanam : AppCompatActivity() {
             canvas.drawBitmap(bground, (canvas.width / 2 - bground.width / 2).toFloat(), (canvas.height / 2 - bground.height / 2).toFloat(), paint)
 
             // Page content
-            val (startPos, endPos) = pageBoundaries[pageNum]
+            val (startPos, endPos) = GlobalData.pageBoundaries[pageNum]
             val pageText = fullText.subSequence(startPos, endPos)
             val mTextPaint = TextPaint()
             val mTextLayout = StaticLayout(pageText, mTextPaint, canvas.width, Layout.Alignment.ALIGN_CENTER, 1.0f, 1.0f, true)
@@ -2786,7 +2784,7 @@ class AmavasyaTharpanam : AppCompatActivity() {
 
             // Footer
             val exExFlag = Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            val footerText = SpannableString("$heading (Page No. ${pageNum + 1} of $totalPages)").apply {
+            val footerText = SpannableString("$heading (Page No. ${pageNum + 1} of $GlobalData.totalPages)").apply {
                 setSpan(AbsoluteSizeSpan(11, true), 0, length, exExFlag)
                 setSpan(StyleSpan(Typeface.ITALIC), 0, length, exExFlag)
                 setSpan(ForegroundColorSpan(Color.RED), 0, length, exExFlag)
@@ -2797,7 +2795,7 @@ class AmavasyaTharpanam : AppCompatActivity() {
 
         override fun onWrite(pageRanges: Array<PageRange>, destination: ParcelFileDescriptor,
                              cancellationSignal: CancellationSignal, callback: WriteResultCallback) {
-            for (i in 0 until totalPages) {
+            for (i in 0 until GlobalData.totalPages) {
                 val range = pageRanges.any { range -> i >= range.start && i <= range.end }
                 if (range) {
                     val newPage = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, i).create()
