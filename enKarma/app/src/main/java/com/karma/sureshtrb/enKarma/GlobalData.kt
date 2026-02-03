@@ -27,6 +27,7 @@ var mFatherLive: String = ""
 var motherMotherLive: String = ""
 
 
+
 // Additional Panchang calculation variables
 var nextDayTithiHrToMin: Int = 0
 var nextDayTitiUptoHrOnly: Int = 0
@@ -41,4 +42,8 @@ var DataList2: String = ""
 var mapKey3: String = ""
 var DataList3: String = ""
 var mapKey4: String = ""
+
+// Gothram and Pravaras for Tharpanam rituals
+var mGothram: String = ""
+var mPravaras: String = ""
 var DataList4: String = ""
