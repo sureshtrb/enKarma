@@ -13,14 +13,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.karma.sureshtrb.enKarma.databinding.ActivityAnsestorDataBinding
 
-var urName: String = ""
-var yFName: String = ""
-var yGFName: String = ""
-var yFGFName: String = ""
-var yFGGFName: String = ""
-var MFName: String = ""
-var MGFName: String = ""
-var MGGFName: String = ""
 class AnsestorDataActivity : AppCompatActivity() {
 
     private var myPreferences = "myPrefs"
