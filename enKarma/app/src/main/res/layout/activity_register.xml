@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:layout_marginTop="@dimen/eight_padding"
+
+    android:layout_marginBottom="@dimen/eight_padding"
+    tools:context="com.sureshtrb.enKarma.RegisterActivity"
+    android:background = "@drawable/yagyavalkyar">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="@dimen/zero_padding"
+        android:layout_height="wrap_content"
+        android:fillViewport="false"
+        android:orientation="vertical"
+        android:padding="@dimen/reset_padding"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1">
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:showIn="@layout/activity_register">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="cursive"
+                    android:text="@string/app_name"
+                    android:textAlignment="center"
+                    android:textColor="@color/my_spinner_text_color"
+                    android:textSize="78sp"
+                android:gravity="center_horizontal" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_email_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:hint="@string/email"
+                android:layout_centerHorizontal="true">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edit_email"
+                    android:textColor="@color/design_default_color_primary_dark"
+                    android:textColorHint="@color/colorAccent"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="30" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/errorInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_email_input"
+                android:layout_alignEnd="@+id/edit_email_input"
+                android:layout_alignRight="@+id/edit_email_input"
+                android:hint="@string/password"
+                app:passwordToggleEnabled="true">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edit_password"
+                    android:textColorHint="@color/colorAccent"
+                    android:textColor="@color/design_default_color_primary_dark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_password"
+                    android:drawableLeft="@drawable/ic_password"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_register"
+                style="?android:attr/buttonBarButtonStyle"
+                android:textColor="@android:color/background_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/errorInputLayout"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/twenty_three"
+                android:textSize="24sp" android:textStyle="bold"
+                android:background="@drawable/mybutton"
+                android:text="@string/Register" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_login"
+                android:layout_marginTop="@dimen/twenty_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_register"
+                android:gravity="center"
+                android:paddingTop="@dimen/reset_medium_padding"
+                android:paddingBottom="@dimen/sixteen"
+                android:text="@string/click_to_login"
+                android:textSize="30sp" android:textStyle="italic|bold"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorAccent"/>
+
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

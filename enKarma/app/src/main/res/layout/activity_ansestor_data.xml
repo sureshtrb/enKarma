@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/root_layout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:scaleType = "centerCrop"
+android:background = "@drawable/yagyavalkyar">
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".AnsestorDataActivity">
+
+    <EditText
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" tools:text="Your Name"
+            android:textColor="@color/design_default_color_primary_dark" android:id="@+id/your_Name"
+            android:textColorHint="#504f4f" android:imeOptions="actionDone" android:textStyle="bold"
+            android:baselineAligned="false" android:textSize="16sp" android:maxLines="1"
+            tools:targetApi="o" android:hint="@string/your_name" tools:layout_editor_absoluteX="8dp"
+            android:layout_marginTop="10dp" app:layout_constraintTop_toTopOf="parent" android:text=""
+            android:importantForAutofill="no" android:inputType="textCapCharacters"
+        android:gravity="center_horizontal" />
+    <EditText
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/yr_father_name"
+            android:layout_marginTop="10dp" android:text="" android:maxLines="1"
+            app:layout_constraintTop_toBottomOf="@+id/your_Name" tools:text="Your Father Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
+            android:textStyle="bold" android:textColor="@color/design_default_color_primary_dark"
+            android:autofillHints="" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" tools:targetApi="o" android:hint="@string/your_father_name"
+            android:textSize="16sp" android:inputType="textCapCharacters"/>
+    <RelativeLayout
+            android:layout_width="wrap_content" android:layout_height="35dp" android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/yr_father_name" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="1.0" android:id="@+id/relativeLayout">
+        <RadioGroup
+                android:id="@+id/radio_group5" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_alignParentEnd="true" android:layout_alignParentRight="true"
+                android:layout_marginRight="0dp" android:layout_marginEnd="0dp" android:layout_alignParentStart="true"
+                android:layout_marginLeft="0dp" android:layout_marginStart="0dp" android:layout_alignParentLeft="true">
+
+            <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/yr_Gfather"
+                    android:layout_marginTop="1sp" android:text="" tools:text="Your Grand Father" android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center" android:textColor="@android:color/black"
+                    android:inputType="" android:autofillHints="" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+                    tools:targetApi="o" android:hint="@string/Your_Grand_Father" android:textSize="14sp" android:textStyle="italic"/>
+            <RadioButton
+                    android:id="@+id/radio1G5" android:layout_width="35dp" android:layout_weight="1"
+                    android:layout_height="wrap_content" android:checked="false" android:text="@string/Living" android:textSize="14sp"/>
+
+            <RadioButton
+                    android:id="@+id/radio2G5" android:layout_width="35dp" android:layout_weight="1"
+                    android:layout_height="wrap_content" android:text="@string/Deceased" android:textSize="14sp"/>
+        </RadioGroup>
+    </RelativeLayout>
+    <EditText
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/yr_Gfather_name"
+            android:layout_marginTop="10dp" android:text="" android:maxLines="1"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" tools:text="Your Grand Father Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
+            android:textStyle="bold" android:textColor="@color/design_default_color_primary_dark" android:inputType="textCapCharacters"
+            android:autofillHints="" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" tools:targetApi="o" android:hint="@string/Your_Grand_Father_Name"
+            android:textSize="16sp"/>
+    <EditText
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/yr_GGfather_name"
+            android:layout_marginTop="10dp" android:text="" android:maxLines="1"
+            app:layout_constraintTop_toBottomOf="@+id/yr_Gfather_name" tools:text="Your Great Grand Father Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
+            android:textStyle="bold" android:textColor="@color/design_default_color_primary_dark" android:inputType="textCapCharacters"
+            android:autofillHints="" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" tools:targetApi="o" android:hint="@string/Your_Great_Grand_Father_Name"
+            android:textSize="16sp"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/yr_GGGfather_name" android:maxLines="1"
+            android:layout_marginTop="10dp" android:text=""
+            app:layout_constraintTop_toBottomOf="@+id/yr_GGfather_name" tools:text="Your Great Great Grand Father Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
+            android:textStyle="bold" android:textColor="@color/design_default_color_primary_dark" android:inputType="textCapCharacters"
+            android:autofillHints="" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" tools:targetApi="o"
+            android:hint="@string/Your_Great_Great_Grand_Father_Name" android:textSize="16sp"/>
+
+    <Spinner
+            android:id="@+id/spinnerGothram" android:layout_width="match_parent" style="@style/mySpinnerItemStyle"
+            android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@+id/yr_GGGfather_name" android:theme="@style/spinnerTheme"
+            android:layout_gravity="center" android:gravity="center" android:baselineAligned="false" android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            android:background="@drawable/mybutton" android:textStyle="bold"  android:textColor="@android:color/background_light"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title" android:textSize="24sp"
+            android:textColorHint="@android:color/background_light" android:clickable="true" android:focusable="true"/>
+
+    <Spinner
+            android:id="@+id/spinnerPravaras" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:theme="@style/spinnerTheme"
+            android:layout_gravity="center" style="@style/mySpinnerItemStyle" app:layout_constraintTop_toBottomOf="@+id/spinnerGothram"
+            android:background="@drawable/mybutton" android:textStyle="bold"  android:textColor="@android:color/background_light"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title" android:textSize="24sp"
+            android:textColorHint="@android:color/background_light" android:clickable="true" android:focusable="true"/>
+    <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/motherSide" android:layout_marginTop="10dp" android:text="@string/Mother_Side"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
+            android:textStyle="bold" android:textColor="@android:color/black" android:inputType=""
+            android:autofillHints="" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" tools:targetApi="o"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerPravaras" android:textSize="18sp"/>
+    <RelativeLayout
+            android:layout_width="wrap_content" android:layout_height="35dp" android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/motherSide" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="1.0" android:id="@+id/relativeLayout2">
+        <RadioGroup
+                android:id="@+id/radio_group6" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_alignParentEnd="true" android:layout_alignParentRight="true"
+                android:layout_marginRight="0dp" android:layout_marginEnd="0dp" android:layout_alignParentStart="true"
+                android:layout_marginLeft="0dp" android:layout_marginStart="0dp" android:layout_alignParentLeft="true">
+
+            <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:id="@+id/yr_Mfather" android:layout_marginTop="1dp"
+                    android:text="@string/Mother_Father"
+                    tools:text="Mother Father" android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
+                    android:textColor="@android:color/black" android:inputType=""
+                    android:autofillHints="" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp" tools:targetApi="o" android:hint="@string/Mother_Father"
+                    android:textSize="14sp" android:textStyle="italic"/>
+            <RadioButton
+                    android:id="@+id/radio1G6" android:layout_width="35dp" android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:checked="false" android:text="@string/Living" android:textSize="14sp"/>
+
+            <RadioButton
+                    android:id="@+id/radio2G6" android:layout_width="35dp" android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Deceased" android:textSize="14sp"/>
+        </RadioGroup>
+    </RelativeLayout>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mFatherName" android:maxLines="1"
+            android:layout_marginTop="10dp" android:text=""
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" tools:text="Mother Father Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
+            android:textStyle="bold" android:textColor="@color/design_default_color_primary_dark" android:inputType="textCapCharacters"
+            android:autofillHints="" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" tools:targetApi="o" android:hint="@string/Mother_Father_Name"
+            android:textSize="16sp"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mGFatherName" android:maxLines="1"
+            android:layout_marginTop="10dp" android:text=""
+            app:layout_constraintTop_toBottomOf="@+id/mFatherName" tools:text="Mother Grand Father Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
+            android:textStyle="bold" android:textColor="@color/design_default_color_primary_dark" android:inputType="textCapCharacters"
+            android:autofillHints="" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" tools:targetApi="o" android:hint="@string/Mother_Grand_Father_Name"
+            android:textSize="14sp"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mGGFatherName" android:maxLines="1"
+            android:layout_marginTop="10dp" android:text=""
+            app:layout_constraintTop_toBottomOf="@+id/mGFatherName" tools:text="Mother Great GrandFather Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
+            android:textStyle="bold" android:textColor="@color/design_default_color_primary_dark" android:inputType="textCapCharacters"
+            android:autofillHints="" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" tools:targetApi="o" android:hint="@string/Mother_Great_GrandFather_Name"
+            android:textSize="16sp"/>
+    <Spinner
+            android:id="@+id/mspinnerGothram" android:layout_width="match_parent" style="@style/MySpinnerItemStyle"
+            android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@+id/mGGFatherName" android:theme="@style/spinnerTheme"
+            android:layout_gravity="center" android:gravity="center" android:baselineAligned="false" android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            android:background="@drawable/mybutton" android:textStyle="bold"  android:textColor="@android:color/background_light"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title" android:textSize="24sp"
+            android:textColorHint="@android:color/background_light" android:clickable="true" android:focusable="true"/>
+
+    <Spinner
+            android:id="@+id/mspinnerPravaras" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:theme="@style/spinnerTheme"
+            android:layout_gravity="center" style="@style/MySpinnerItemStyle" app:layout_constraintTop_toBottomOf="@+id/mspinnerGothram"
+            android:background="@drawable/mybutton" android:textStyle="bold"  android:textColor="@android:color/background_light"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title" android:textSize="24sp"
+            android:textColorHint="@android:color/background_light" android:clickable="true" android:focusable="true"/>
+
+    <LinearLayout
+            android:layout_width="match_parent" app:layout_constraintTop_toBottomOf="@+id/mspinnerPravaras"
+            android:layout_height="70dp" android:layout_marginTop="30dp">
+
+        <Button
+                android:id="@+id/aMAVASYA" android:layout_weight="1" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="@string/Amavasya"
+                style="?android:attr/buttonBarButtonStyle" android:background="@drawable/mybutton"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
+                android:textColor="@android:color/background_light" android:textStyle="bold" android:textSize="24sp"
+                android:lineSpacingExtra="14sp" android:textAllCaps="false" android:visibility="visible"/>
+
+        <Button
+                android:id="@+id/mAHALAYA" android:layout_weight="1"
+                android:background="@drawable/mybutton" style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/Mahalaya"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
+                android:textSize="24sp" android:lineSpacingExtra="14sp" android:textStyle="bold"
+                android:textColor="@android:color/background_light" android:textAllCaps="false"
+                android:visibility="visible"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

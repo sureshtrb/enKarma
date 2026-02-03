@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.sureshtrb.enKarma.SandhiData"
+        android:background = "@drawable/yagyavalkyar">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top" android:id="@+id/relativeLayout3">
+
+        <Button
+                android:id="@+id/pratha_button" android:layout_marginLeft="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prathasandya"
+                android:background="#d3d3d3" android:layout_marginTop="10sp"
+                android:textAppearance="@style/MyColoredButtonStyle"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" tools:layout_conversion_wrapWidth="300"
+                tools:layout_conversion_wrapHeight="126" android:layout_marginStart="10sp"/>
+
+        <Button
+                android:id="@+id/mathyaniga_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mathyanam"
+                android:background="#d3d3d3" android:layout_marginTop="10sp"
+                android:textAppearance="@style/MyColoredButtonStyle"
+                android:layout_toRightOf="@id/pratha_button"
+                app:layout_constraintTop_toTopOf="parent" android:layout_centerVertical="true"
+                app:layout_constraintLeft_toRightOf="@id/pratha_button" android:layout_centerHorizontal="true"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" tools:layout_conversion_wrapWidth="268"
+                tools:layout_conversion_wrapHeight="126" android:layout_toEndOf="@id/pratha_button"/>
+
+        <Button
+                android:id="@+id/sayamsandya_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sayamsandya" android:background="#d3d3d3"
+                android:layout_toRightOf="@+id/mathyaniga_button"
+                android:layout_marginTop="10sp" android:layout_marginRight="10sp" android:layout_marginEnd="10sp"
+                android:textAppearance="@style/MyColoredButtonStyle"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintLeft_toRightOf="@+id/mathyaniga_button"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintRight_toRightOf="parent"
+                tools:layout_conversion_wrapWidth="303" tools:layout_conversion_wrapHeight="126"
+                android:layout_toEndOf="@+id/mathyaniga_button" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+            android:text="@string/time_now" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:id="@+id/time_now_textView" android:layout_marginTop="10dp" android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp" android:layout_gravity="center" android:gravity="center" android:maxLines="1"
+            android:textSize="16sp" android:textStyle="bold|italic" android:textColor="@android:color/black"/>
+    <TextView
+            android:text="@string/sandya_time" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:id="@+id/sandya_time_textView" android:layout_marginTop="10dp" android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp" android:layout_gravity="center" android:gravity="center" android:maxLines="1"
+            android:textSize="16sp" android:textStyle="bold|italic" android:textColor="@color/design_default_color_error"/>
+    <Spinner
+            android:id="@+id/spinnerGothram" android:layout_width="match_parent" style="@style/mySpinnerItemStyle"
+            android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@+id/sandya_time_textView" android:theme="@style/spinnerTheme"
+            android:layout_gravity="center" android:gravity="center" android:baselineAligned="false" android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            android:background="@drawable/mybutton" android:textStyle="bold"  android:textColor="@android:color/background_light"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title" android:textSize="24sp"
+            android:textColorHint="@android:color/background_light" android:clickable="true" android:focusable="true"/>
+    <Spinner
+            android:id="@+id/spinnerPravaras" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:theme="@style/spinnerTheme"
+            android:layout_gravity="center" style="@style/mySpinnerItemStyle" app:layout_constraintTop_toBottomOf="@+id/spinnerGothram"
+            android:background="@drawable/mybutton" android:textStyle="bold"  android:textColor="@android:color/background_light"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title" android:textSize="24sp"
+            android:textColorHint="@android:color/background_light" android:clickable="true" android:focusable="true"/>
+    <EditText
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:textAlignment="center"
+            android:textColor="@color/design_default_color_primary_dark" android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:id="@+id/your_Name" android:textColorHint="#504f4f" android:imeOptions="actionDone" android:maxLines="1"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent" android:textStyle="bold" android:gravity="center_horizontal"
+            android:layout_marginTop="20dp" android:baselineAligned="false" android:layout_marginLeft="8dp" android:layout_marginRight="8dp"
+            android:textSize="22sp" android:inputType="textCapCharacters" android:autofillHints="" tools:targetApi="o" android:hint="@string/your_name" tools:text="Your Name"/>
+    <EditText
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/type_of_sandya_textView"
+            android:layout_marginLeft="8dp" android:textColorHint="#484747" android:imeOptions="actionDone" android:layout_marginRight="8dp"
+            android:layout_marginTop="20dp" android:gravity="center" android:layout_gravity="center" android:inputType="textCapCharacters" android:hint="@string/type_of_sandya"
+            tools:text="Select from Top" android:autofillHints="" android:textAppearance="@style/TextAppearance.AppCompat.Large" android:textStyle="bold"
+            android:textColor="@color/design_default_color_primary_dark" tools:targetApi="o" android:maxLines="1"/>
+    <RelativeLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="bottom">
+        <Button
+                android:id="@+id/sandya_button" android:text="@string/sandya_vandanam"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" android:background="@drawable/mybutton"
+                style="?android:attr/buttonBarButtonStyle"
+                android:gravity="center" android:layout_width="195dp" android:textStyle="bold"
+                android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
+                android:textColor="@android:color/background_light" android:textSize="18sp"/>
+        <Button
+                android:text="@string/gayathri_japam" android:layout_width="195dp" android:layout_height="wrap_content"
+                android:background="@drawable/mybutton" style="?android:attr/buttonBarButtonStyle"
+                android:id="@+id/gayathri_button" android:layout_marginTop="20dp"
+                android:layout_alignParentRight="true" android:textStyle="bold" android:layout_alignParentEnd="true"
+                android:textColor="@android:color/background_light" android:textSize="18sp"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,49 @@
+// settings.gradle (Groovy) - Modern pluginManagement
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url 'https://maven.pkg.jetbrains.space/public/p/compose/dev/' }
+        maven { url 'https://jitpack.io' }
+    }
+
+    resolutionStrategy {
+        eachPlugin {
+            switch (requested.id.id) {
+                case 'com.android.application':
+                case 'com.android.library':
+                    useModule("com.android.tools.build:gradle:8.6.0")
+                    break
+                case 'org.jetbrains.kotlin.android':
+                case 'org.jetbrains.kotlin.jvm':
+                case 'org.jetbrains.kotlin.kapt':
+                    useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21")
+                    break
+                case 'org.jetbrains.kotlin.plugin.compose':
+                    useModule("org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin:2.0.21")
+                    break
+                case 'com.google.devtools.ksp':
+                    useModule("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.0.21-1.0.25")
+                    break
+                case 'com.google.gms.google-services':
+                    useModule("com.google.gms:google-services:4.4.2")
+                    break
+            }
+        }
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url 'https://maven.pkg.jetbrains.space/public/p/compose/dev/' }
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+rootProject.name = 'enKarma'
+include ':app'
