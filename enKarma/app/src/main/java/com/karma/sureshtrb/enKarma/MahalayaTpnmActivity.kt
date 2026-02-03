@@ -23,7 +23,7 @@ import android.widget.Button
 import java.io.FileOutputStream
 import java.io.IOException
 import android.view.MenuInflater
-import com.karma.sureshtrb.enKarma.databinding.ActivityMahalayaTpnmBinding
+import com.karma.sureshtrb.enKarma.databinding.ActivitymahalayaTpnmBinding
 
 var todThithi:String = ""
 var dateTdy:String = ""
@@ -64,7 +64,7 @@ var noOfDays:String = ""
 var amName: String = ""
 var apAmmaName: String = ""
 var apPattiName: String = ""
-var MGothram:String = ""
+var mGothram:String = ""
 var MFatherLive:String = ""
 var apKolluPattiName: String = ""
 var amAmmaName: String = ""
@@ -782,12 +782,12 @@ var mGreenComment5 = SpannableString("")
 var mComment77 = SpannableString("")
 var mHeading7 = SpannableString("")
 
-class MahalayaTpnmActivity : AppCompatActivity() {
+class mahalayaTpnmActivity : AppCompatActivity() {
 
     var mtotalpages: Int = 1
     var mpageOneText: kotlin.CharSequence? =null
     var mpageTwoText: kotlin.CharSequence? = null
-        private lateinit var binding: ActivityMahalayaTpnmBinding
+        private lateinit var binding: ActivitymahalayaTpnmBinding
     var mpageThreeText: kotlin.CharSequence? = null
     var mpageFourText: kotlin.CharSequence? = null
     var mpageFiveText: kotlin.CharSequence? = null
@@ -845,7 +845,7 @@ class MahalayaTpnmActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMahalayaTpnmBinding.inflate(layoutInflater)
+        binding = ActivitymahalayaTpnmBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val printBtn = findViewById<Button>(R.id.printButton)
 
@@ -1046,7 +1046,7 @@ class MahalayaTpnmActivity : AppCompatActivity() {
         trial()
         bottomPithruKoorcham()
         executeData()
-        binding.mahalayaTPNMTextView.text = maha_combination
+        binding.mahalayaTpnmTextView.text = maha_combination
 
         @TargetApi(Build.VERSION_CODES.KITKAT)
         class MyPrintDocumentAdapter(private var context: Context) : PrintDocumentAdapter() {
@@ -1282,1263 +1282,1263 @@ class MahalayaTpnmActivity : AppCompatActivity() {
         }
 
         printBtn.setOnClickListener {
-            val mTLineCount = binding.mahalayaTPNMTextView.lineCount
+            val mTLineCount = binding.mahalayaTpnmTextView.lineCount
             println("mTLineCount : $mTLineCount")
-            val totalChar = binding.mahalayaTPNMTextView.length()
+            val totalChar = binding.mahalayaTpnmTextView.length()
             val testTotalChar = totalChar.toString()
             println("totalChar : $totalChar")
             val pagesTotal = ((mTLineCount/50 + 0.99) / 0.99 ) * 1 //(Math.round(mTLineCount.toDouble() / 30.toDouble()))
             mtotalpages = pagesTotal.toInt()
             println("mtotalpages : $mtotalpages")
             if (mtotalpages == 1) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount - 1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount - 1)
                 }
-                //   mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //   mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
             }
             if (mtotalpages == 2) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //     mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //     mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //      mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //      mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
             }
             if (mtotalpages == 3) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
             }
             if (mtotalpages == 4) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //   mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //   mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
             }
             if (mtotalpages == 5) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //   mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //   mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
             }
 
             if (mtotalpages == 6) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //    mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //    mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
             }
             if (mtotalpages == 7) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //    mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //    mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //     mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //     mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
                 if (mTLineCount in 301..350) {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(350)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(350)
                 }
-                //    mpageSevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos7, mendPos7)
+                //    mpageSevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos7, mendPos7)
             }
             if (mtotalpages == 8) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //    mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //    mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
                 if (mTLineCount in 301..350) {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(350)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(350)
                 }
                 println("mstartPos7 : $mstartPos7")
                 println("mendPos7 : $mendPos7")
-                //    mpageSevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos7, mendPos7)
+                //    mpageSevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos7, mendPos7)
 
                 if (mTLineCount in 351..400) {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                     println("mendPos8 : $mendPos8")
                 } else {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(400)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(400)
                     println("endPos82 : $mendPos8")
                 }
                 println("mstartPos8 : $mstartPos8")
                 println("endPos8F : $mendPos8")
-                //    mpageEightText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos8, mendPos8)
+                //    mpageEightText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos8, mendPos8)
             }
 
             if (mtotalpages == 9) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //     mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //     mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //     mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //     mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
                 if (mTLineCount in 301..350) {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(350)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(350)
                 }
-                //     mpageSevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos7, mendPos7)
+                //     mpageSevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos7, mendPos7)
                 if (mTLineCount in 351..400) {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(400)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(400)
                 }
-                //     mpageEightText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos8, mendPos8)
+                //     mpageEightText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos8, mendPos8)
                 if (mTLineCount in 401..450) {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(450)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(450)
                 }
-                //     mpageNineText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos9, mendPos9)
+                //     mpageNineText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos9, mendPos9)
             }
             if (mtotalpages == 10) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //      mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //      mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //     mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //     mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
                 if (mTLineCount in 301..350) {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(350)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(350)
                 }
-                //    mpageSevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos7, mendPos7)
+                //    mpageSevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos7, mendPos7)
                 if (mTLineCount in 351..400) {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(400)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(400)
                 }
-                //    mpageEightText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos8, mendPos8)
+                //    mpageEightText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos8, mendPos8)
                 if (mTLineCount in 401..450) {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(450)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(450)
                 }
-                //    mpageNineText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos9, mendPos9)
+                //    mpageNineText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos9, mendPos9)
                 if (mTLineCount  in 451..500) {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(500)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(500)
                 }
-                //    mpageTenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos10, mendPos10)
+                //    mpageTenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos10, mendPos10)
             }
             if (mtotalpages == 11) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount  >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //    mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //    mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount  in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount  in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount  in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount  in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount  in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
                 if (mTLineCount  in 301..350) {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(350)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(350)
                 }
-                //    mpageSevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos7, mendPos7)
+                //    mpageSevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos7, mendPos7)
                 if (mTLineCount in 351..400) {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(400)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(400)
                 }
-                //     mpageEightText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos8, mendPos8)
+                //     mpageEightText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos8, mendPos8)
                 if (mTLineCount  in 401..450) {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(450)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(450)
                 }
-                //    mpageNineText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos9, mendPos9)
+                //    mpageNineText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos9, mendPos9)
                 if (mTLineCount  in 451..500) {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(500)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(500)
                 }
-                //     mpageTenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos10, mendPos10)
+                //     mpageTenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos10, mendPos10)
                 if (mTLineCount  in 501..550) {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(550)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(550)
                 }
-                //    mpageElevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos11, mendPos11)
+                //    mpageElevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos11, mendPos11)
             }
             if (mtotalpages == 12) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //     mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //     mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount  in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //     mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //     mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount  in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //     mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //     mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount  in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount  in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount  in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
                 if (mTLineCount  in 301..350) {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(350)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(350)
                 }
-                //    mpageSevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos7, mendPos7)
+                //    mpageSevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos7, mendPos7)
                 if (mTLineCount in 351..400) {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(400)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(400)
                 }
-                //    mpageEightText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos8, mendPos8)
+                //    mpageEightText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos8, mendPos8)
                 if (mTLineCount  in 401..450) {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(450)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(450)
                 }
-                //    mpageNineText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos9, mendPos9)
+                //    mpageNineText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos9, mendPos9)
                 if (mTLineCount  in 451..500) {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(500)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(500)
                 }
-                //    mpageTenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos10, mendPos10)
+                //    mpageTenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos10, mendPos10)
                 if (mTLineCount  in 501..550) {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(550)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(550)
                 }
-                //    mpageElevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos11, mendPos11)
+                //    mpageElevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos11, mendPos11)
                 if (mTLineCount  in 551..600) {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(600)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(600)
                 }
-                //    mpageTwelveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos12, mendPos12)
+                //    mpageTwelveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos12, mendPos12)
             }
             if (mtotalpages == 13) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //     mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //     mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount  in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount  in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount  in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount  in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount  in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
                 if (mTLineCount  in 301..350) {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(350)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(350)
                 }
-                //    mpageSevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos7, mendPos7)
+                //    mpageSevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos7, mendPos7)
                 if (mTLineCount in 351..400) {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(400)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(400)
                 }
-                //    mpageEightText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos8, mendPos8)
+                //    mpageEightText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos8, mendPos8)
                 if (mTLineCount  in 401..450) {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(450)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(450)
                 }
-                //    mpageNineText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos9, mendPos9)
+                //    mpageNineText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos9, mendPos9)
                 if (mTLineCount in 451..500) {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(500)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(500)
                 }
-                //    mpageTenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos10, mendPos10)
+                //    mpageTenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos10, mendPos10)
                 if (mTLineCount in 501..550) {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(550)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(550)
                 }
-                //    mpageElevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos11, mendPos11)
+                //    mpageElevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos11, mendPos11)
                 if (mTLineCount in 551..600) {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(600)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(600)
                 }
-                //    mpageTwelveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos12, mendPos12)
+                //    mpageTwelveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos12, mendPos12)
                 if (mTLineCount in 601..650) {
-                    mstartPos13 = binding.mahalayaTPNMTextView.layout.getLineStart(601)
-                    mendPos13 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos13 = binding.mahalayaTpnmTextView.layout.getLineStart(601)
+                    mendPos13 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos13 = binding.mahalayaTPNMTextView.layout.getLineStart(601)
-                    mendPos13 = binding.mahalayaTPNMTextView.layout.getLineEnd(650)
+                    mstartPos13 = binding.mahalayaTpnmTextView.layout.getLineStart(601)
+                    mendPos13 = binding.mahalayaTpnmTextView.layout.getLineEnd(650)
                 }
-                //    mpageThirteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos13, mendPos13)
+                //    mpageThirteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos13, mendPos13)
             }
             if (mtotalpages == 14) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //    mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //    mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
                 if (mTLineCount in 301..350) {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(350)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(350)
                 }
-                //    mpageSevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos7, mendPos7)
+                //    mpageSevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos7, mendPos7)
                 if (mTLineCount in 351..400) {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(400)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(400)
                 }
-                //    mpageEightText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos8, mendPos8)
+                //    mpageEightText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos8, mendPos8)
                 if (mTLineCount in 401..450) {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(450)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(450)
                 }
-                //    mpageNineText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos9, mendPos9)
+                //    mpageNineText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos9, mendPos9)
                 if (mTLineCount in 451..500) {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(500)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(500)
                 }
-                //    mpageTenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos10, mendPos10)
+                //    mpageTenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos10, mendPos10)
                 if (mTLineCount in 501..550) {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(550)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(550)
                 }
-                //    mpageElevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos11, mendPos11)
+                //    mpageElevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos11, mendPos11)
                 if (mTLineCount in 551..600) {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(600)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(600)
                 }
-                //    mpageTwelveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos12, mendPos12)
+                //    mpageTwelveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos12, mendPos12)
                 if (mTLineCount in 601..650) {
-                    mstartPos13 = binding.mahalayaTPNMTextView.layout.getLineStart(601)
-                    mendPos13 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos13 = binding.mahalayaTpnmTextView.layout.getLineStart(601)
+                    mendPos13 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos13 = binding.mahalayaTPNMTextView.layout.getLineStart(601)
-                    mendPos13 = binding.mahalayaTPNMTextView.layout.getLineEnd(650)
+                    mstartPos13 = binding.mahalayaTpnmTextView.layout.getLineStart(601)
+                    mendPos13 = binding.mahalayaTpnmTextView.layout.getLineEnd(650)
                 }
-                //    mpageThirteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos13, mendPos13)
+                //    mpageThirteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos13, mendPos13)
                 if (mTLineCount in 651..700) {
-                    mstartPos14 = binding.mahalayaTPNMTextView.layout.getLineStart(651)
-                    mendPos14 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos14 = binding.mahalayaTpnmTextView.layout.getLineStart(651)
+                    mendPos14 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos14 = binding.mahalayaTPNMTextView.layout.getLineStart(651)
-                    mendPos14 = binding.mahalayaTPNMTextView.layout.getLineEnd(700)
+                    mstartPos14 = binding.mahalayaTpnmTextView.layout.getLineStart(651)
+                    mendPos14 = binding.mahalayaTpnmTextView.layout.getLineEnd(700)
                 }
-                //    mpageFourteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos14, mendPos14)
+                //    mpageFourteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos14, mendPos14)
             }
             if (mtotalpages == 15) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //    mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //    mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //     mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //     mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
                 if (mTLineCount in 301..350) {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(350)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(350)
                 }
-                //     mpageSevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos7, mendPos7)
+                //     mpageSevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos7, mendPos7)
                 if (mTLineCount in 351..400) {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(400)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(400)
                 }
-                //    mpageEightText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos8, mendPos8)
+                //    mpageEightText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos8, mendPos8)
                 if (mTLineCount in 401..450) {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(450)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(450)
                 }
-                //    mpageNineText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos9, mendPos9)
+                //    mpageNineText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos9, mendPos9)
                 if (mTLineCount in 451..500) {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(500)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(500)
                 }
-                //    mpageTenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos10, mendPos10)
+                //    mpageTenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos10, mendPos10)
                 if (mTLineCount in 501..550) {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(550)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(550)
                 }
-                //    mpageElevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos11, mendPos11)
+                //    mpageElevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos11, mendPos11)
                 if (mTLineCount in 551..600) {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(600)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(600)
                 }
-                //    mpageTwelveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos12, mendPos12)
+                //    mpageTwelveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos12, mendPos12)
                 if (mTLineCount in 601..650) {
-                    mstartPos13 = binding.mahalayaTPNMTextView.layout.getLineStart(601)
-                    mendPos13 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos13 = binding.mahalayaTpnmTextView.layout.getLineStart(601)
+                    mendPos13 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos13 = binding.mahalayaTPNMTextView.layout.getLineStart(601)
-                    mendPos13 = binding.mahalayaTPNMTextView.layout.getLineEnd(650)
+                    mstartPos13 = binding.mahalayaTpnmTextView.layout.getLineStart(601)
+                    mendPos13 = binding.mahalayaTpnmTextView.layout.getLineEnd(650)
                 }
-                //    mpageThirteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos13, mendPos13)
+                //    mpageThirteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos13, mendPos13)
                 if (mTLineCount in 651..700) {
-                    mstartPos14 = binding.mahalayaTPNMTextView.layout.getLineStart(651)
-                    mendPos14 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos14 = binding.mahalayaTpnmTextView.layout.getLineStart(651)
+                    mendPos14 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos14 = binding.mahalayaTPNMTextView.layout.getLineStart(651)
-                    mendPos14 = binding.mahalayaTPNMTextView.layout.getLineEnd(700)
+                    mstartPos14 = binding.mahalayaTpnmTextView.layout.getLineStart(651)
+                    mendPos14 = binding.mahalayaTpnmTextView.layout.getLineEnd(700)
                 }
-                //    mpageFourteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos14, mendPos14)
+                //    mpageFourteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos14, mendPos14)
                 if (mTLineCount in 701..750) {
-                    mstartPos15 = binding.mahalayaTPNMTextView.layout.getLineStart(701)
-                    mendPos15 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos15 = binding.mahalayaTpnmTextView.layout.getLineStart(701)
+                    mendPos15 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos15 = binding.mahalayaTPNMTextView.layout.getLineStart(701)
-                    mendPos15 = binding.mahalayaTPNMTextView.layout.getLineEnd(750)
+                    mstartPos15 = binding.mahalayaTpnmTextView.layout.getLineStart(701)
+                    mendPos15 = binding.mahalayaTpnmTextView.layout.getLineEnd(750)
                 }
-                //    mpageFifteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos15, mendPos15)
+                //    mpageFifteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos15, mendPos15)
             }
             if (mtotalpages == 16) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //   mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //   mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
                 if (mTLineCount in 301..350) {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(350)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(350)
                 }
-                //    mpageSevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos7, mendPos7)
+                //    mpageSevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos7, mendPos7)
                 if (mTLineCount in 351..400) {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(400)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(400)
                 }
-                //    mpageEightText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos8, mendPos8)
+                //    mpageEightText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos8, mendPos8)
                 if (mTLineCount in 401..450) {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(450)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(450)
                 }
-                //    mpageNineText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos9, mendPos9)
+                //    mpageNineText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos9, mendPos9)
                 if (mTLineCount in 451..500) {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(500)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(500)
                 }
-                //    mpageTenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos10, mendPos10)
+                //    mpageTenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos10, mendPos10)
                 if (mTLineCount in 501..550) {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(550)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(550)
                 }
-                //    mpageElevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos11, mendPos11)
+                //    mpageElevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos11, mendPos11)
                 if (mTLineCount in 551..600) {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(600)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(600)
                 }
-                //    mpageTwelveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos12, mendPos12)
+                //    mpageTwelveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos12, mendPos12)
                 if (mTLineCount in 601..650) {
-                    mstartPos13 = binding.mahalayaTPNMTextView.layout.getLineStart(601)
-                    mendPos13 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos13 = binding.mahalayaTpnmTextView.layout.getLineStart(601)
+                    mendPos13 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos13 = binding.mahalayaTPNMTextView.layout.getLineStart(601)
-                    mendPos13 = binding.mahalayaTPNMTextView.layout.getLineEnd(650)
+                    mstartPos13 = binding.mahalayaTpnmTextView.layout.getLineStart(601)
+                    mendPos13 = binding.mahalayaTpnmTextView.layout.getLineEnd(650)
                 }
-                //    mpageThirteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos13, mendPos13)
+                //    mpageThirteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos13, mendPos13)
                 if (mTLineCount in 651..700) {
-                    mstartPos14 = binding.mahalayaTPNMTextView.layout.getLineStart(651)
-                    mendPos14 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos14 = binding.mahalayaTpnmTextView.layout.getLineStart(651)
+                    mendPos14 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos14 = binding.mahalayaTPNMTextView.layout.getLineStart(651)
-                    mendPos14 = binding.mahalayaTPNMTextView.layout.getLineEnd(700)
+                    mstartPos14 = binding.mahalayaTpnmTextView.layout.getLineStart(651)
+                    mendPos14 = binding.mahalayaTpnmTextView.layout.getLineEnd(700)
                 }
-                //    mpageFourteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos14, mendPos14)
+                //    mpageFourteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos14, mendPos14)
                 if (mTLineCount in 701..750) {
-                    mstartPos15 = binding.mahalayaTPNMTextView.layout.getLineStart(701)
-                    mendPos15 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos15 = binding.mahalayaTpnmTextView.layout.getLineStart(701)
+                    mendPos15 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos15 = binding.mahalayaTPNMTextView.layout.getLineStart(701)
-                    mendPos15 = binding.mahalayaTPNMTextView.layout.getLineEnd(750)
+                    mstartPos15 = binding.mahalayaTpnmTextView.layout.getLineStart(701)
+                    mendPos15 = binding.mahalayaTpnmTextView.layout.getLineEnd(750)
                 }
-                //    mpageFifteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos15, mendPos15)
+                //    mpageFifteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos15, mendPos15)
                 if (mTLineCount in 751..800) {
-                    mstartPos16 = binding.mahalayaTPNMTextView.layout.getLineStart(751)
-                    mendPos16 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos16 = binding.mahalayaTpnmTextView.layout.getLineStart(751)
+                    mendPos16 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos16 = binding.mahalayaTPNMTextView.layout.getLineStart(751)
-                    mendPos16 = binding.mahalayaTPNMTextView.layout.getLineEnd(800)
+                    mstartPos16 = binding.mahalayaTpnmTextView.layout.getLineStart(751)
+                    mendPos16 = binding.mahalayaTpnmTextView.layout.getLineEnd(800)
                 }
-                //    mpageSixteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos16, mendPos16)
+                //    mpageSixteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos16, mendPos16)
             }
             if (mtotalpages == 17) {
-                mstartPos1 = binding.mahalayaTPNMTextView.layout.getLineStart(0)
+                mstartPos1 = binding.mahalayaTpnmTextView.layout.getLineStart(0)
                 if (mTLineCount >= 50) {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(50)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(50)
                 } else {
-                    mendPos1 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mendPos1 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 }
-                //    mpageOneText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos1, mendPos1)
+                //    mpageOneText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos1, mendPos1)
                 if (mTLineCount in 51..100) {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos2 = binding.mahalayaTPNMTextView.layout.getLineStart(51)
-                    mendPos2 = binding.mahalayaTPNMTextView.layout.getLineEnd(100)
+                    mstartPos2 = binding.mahalayaTpnmTextView.layout.getLineStart(51)
+                    mendPos2 = binding.mahalayaTpnmTextView.layout.getLineEnd(100)
                 }
-                //    mpageTwoText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos2, mendPos2)
+                //    mpageTwoText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos2, mendPos2)
                 if (mTLineCount in 101..150) {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos3 = binding.mahalayaTPNMTextView.layout.getLineStart(101)
-                    mendPos3 = binding.mahalayaTPNMTextView.layout.getLineEnd(150)
+                    mstartPos3 = binding.mahalayaTpnmTextView.layout.getLineStart(101)
+                    mendPos3 = binding.mahalayaTpnmTextView.layout.getLineEnd(150)
                 }
-                //    mpageThreeText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos3, mendPos3)
+                //    mpageThreeText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos3, mendPos3)
                 if (mTLineCount in 151..200) {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(151)
-                    mendPos4 = binding.mahalayaTPNMTextView.layout.getLineEnd(200)
+                    mstartPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(151)
+                    mendPos4 = binding.mahalayaTpnmTextView.layout.getLineEnd(200)
                 }
-                //    mpageFourText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos4, mendPos4)
+                //    mpageFourText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos4, mendPos4)
                 if (mTLineCount in 201..250) {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(201)
-                    mendPos5 = binding.mahalayaTPNMTextView.layout.getLineEnd(250)
+                    mstartPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(201)
+                    mendPos5 = binding.mahalayaTpnmTextView.layout.getLineEnd(250)
                 }
-                //    mpageFiveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos5, mendPos5)
+                //    mpageFiveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos5, mendPos5)
                 if (mTLineCount in 251..300) {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos6 = binding.mahalayaTPNMTextView.layout.getLineStart(251)
-                    mendPos6 = binding.mahalayaTPNMTextView.layout.getLineEnd(300)
+                    mstartPos6 = binding.mahalayaTpnmTextView.layout.getLineStart(251)
+                    mendPos6 = binding.mahalayaTpnmTextView.layout.getLineEnd(300)
                 }
-                //    mpageSixText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos6, mendPos6)
+                //    mpageSixText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos6, mendPos6)
                 if (mTLineCount in 301..350) {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos7 = binding.mahalayaTPNMTextView.layout.getLineStart(301)
-                    mendPos7 = binding.mahalayaTPNMTextView.layout.getLineEnd(350)
+                    mstartPos7 = binding.mahalayaTpnmTextView.layout.getLineStart(301)
+                    mendPos7 = binding.mahalayaTpnmTextView.layout.getLineEnd(350)
                 }
-                //    mpageSevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos7, mendPos7)
+                //    mpageSevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos7, mendPos7)
                 if (mTLineCount in 351..400) {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos8 = binding.mahalayaTPNMTextView.layout.getLineStart(351)
-                    mendPos8 = binding.mahalayaTPNMTextView.layout.getLineEnd(400)
+                    mstartPos8 = binding.mahalayaTpnmTextView.layout.getLineStart(351)
+                    mendPos8 = binding.mahalayaTpnmTextView.layout.getLineEnd(400)
                 }
-                //    mpageEightText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos8, mendPos8)
+                //    mpageEightText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos8, mendPos8)
                 if (mTLineCount in 401..450) {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos9 = binding.mahalayaTPNMTextView.layout.getLineStart(401)
-                    mendPos9 = binding.mahalayaTPNMTextView.layout.getLineEnd(450)
+                    mstartPos9 = binding.mahalayaTpnmTextView.layout.getLineStart(401)
+                    mendPos9 = binding.mahalayaTpnmTextView.layout.getLineEnd(450)
                 }
-                //    mpageNineText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos9, mendPos9)
+                //    mpageNineText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos9, mendPos9)
                 if (mTLineCount in 451..500) {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos10 = binding.mahalayaTPNMTextView.layout.getLineStart(451)
-                    mendPos10 = binding.mahalayaTPNMTextView.layout.getLineEnd(500)
+                    mstartPos10 = binding.mahalayaTpnmTextView.layout.getLineStart(451)
+                    mendPos10 = binding.mahalayaTpnmTextView.layout.getLineEnd(500)
                 }
-                //    mpageTenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos10, mendPos10)
+                //    mpageTenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos10, mendPos10)
                 if (mTLineCount in 501..550) {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos11 = binding.mahalayaTPNMTextView.layout.getLineStart(501)
-                    mendPos11 = binding.mahalayaTPNMTextView.layout.getLineEnd(550)
+                    mstartPos11 = binding.mahalayaTpnmTextView.layout.getLineStart(501)
+                    mendPos11 = binding.mahalayaTpnmTextView.layout.getLineEnd(550)
                 }
-                //    mpageElevenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos11, mendPos11)
+                //    mpageElevenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos11, mendPos11)
                 if (mTLineCount in 551..600) {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos12 = binding.mahalayaTPNMTextView.layout.getLineStart(551)
-                    mendPos12 = binding.mahalayaTPNMTextView.layout.getLineEnd(600)
+                    mstartPos12 = binding.mahalayaTpnmTextView.layout.getLineStart(551)
+                    mendPos12 = binding.mahalayaTpnmTextView.layout.getLineEnd(600)
                 }
-                //    mpageTwelveText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos12, mendPos12)
+                //    mpageTwelveText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos12, mendPos12)
                 if (mTLineCount in 601..650) {
-                    mstartPos13 = binding.mahalayaTPNMTextView.layout.getLineStart(601)
-                    mendPos13 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos13 = binding.mahalayaTpnmTextView.layout.getLineStart(601)
+                    mendPos13 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos13 = binding.mahalayaTPNMTextView.layout.getLineStart(601)
-                    mendPos13 = binding.mahalayaTPNMTextView.layout.getLineEnd(650)
+                    mstartPos13 = binding.mahalayaTpnmTextView.layout.getLineStart(601)
+                    mendPos13 = binding.mahalayaTpnmTextView.layout.getLineEnd(650)
                 }
-                //    mpageThirteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos13, mendPos13)
+                //    mpageThirteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos13, mendPos13)
                 if (mTLineCount in 651..700) {
-                    mstartPos14 = binding.mahalayaTPNMTextView.layout.getLineStart(651)
-                    mendPos14 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos14 = binding.mahalayaTpnmTextView.layout.getLineStart(651)
+                    mendPos14 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos14 = binding.mahalayaTPNMTextView.layout.getLineStart(651)
-                    mendPos14 = binding.mahalayaTPNMTextView.layout.getLineEnd(700)
+                    mstartPos14 = binding.mahalayaTpnmTextView.layout.getLineStart(651)
+                    mendPos14 = binding.mahalayaTpnmTextView.layout.getLineEnd(700)
                 }
-                //    mpageFourteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos14, mendPos14)
+                //    mpageFourteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos14, mendPos14)
                 if (mTLineCount in 701..750) {
-                    mstartPos15 = binding.mahalayaTPNMTextView.layout.getLineStart(701)
-                    mendPos15 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos15 = binding.mahalayaTpnmTextView.layout.getLineStart(701)
+                    mendPos15 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos15 = binding.mahalayaTPNMTextView.layout.getLineStart(701)
-                    mendPos15 = binding.mahalayaTPNMTextView.layout.getLineEnd(750)
+                    mstartPos15 = binding.mahalayaTpnmTextView.layout.getLineStart(701)
+                    mendPos15 = binding.mahalayaTpnmTextView.layout.getLineEnd(750)
                 }
-                //     mpageFifteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos15, mendPos15)
+                //     mpageFifteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos15, mendPos15)
                 if (mTLineCount in 751..800) {
-                    mstartPos16 = binding.mahalayaTPNMTextView.layout.getLineStart(751)
-                    mendPos16 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos16 = binding.mahalayaTpnmTextView.layout.getLineStart(751)
+                    mendPos16 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos16 = binding.mahalayaTPNMTextView.layout.getLineStart(751)
-                    mendPos16 = binding.mahalayaTPNMTextView.layout.getLineEnd(800)
+                    mstartPos16 = binding.mahalayaTpnmTextView.layout.getLineStart(751)
+                    mendPos16 = binding.mahalayaTpnmTextView.layout.getLineEnd(800)
                 }
-                //    mpageSixteenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos16, mendPos16)
+                //    mpageSixteenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos16, mendPos16)
                 if (mTLineCount in 801..850) {
-                    mstartPos17 = binding.mahalayaTPNMTextView.layout.getLineStart(801)
-                    mendPos17 = binding.mahalayaTPNMTextView.layout.getLineEnd(mTLineCount-1)
+                    mstartPos17 = binding.mahalayaTpnmTextView.layout.getLineStart(801)
+                    mendPos17 = binding.mahalayaTpnmTextView.layout.getLineEnd(mTLineCount-1)
                 } else {
-                    mstartPos17 = binding.mahalayaTPNMTextView.layout.getLineStart(801)
-                    mendPos17 = binding.mahalayaTPNMTextView.layout.getLineEnd(850)
+                    mstartPos17 = binding.mahalayaTpnmTextView.layout.getLineStart(801)
+                    mendPos17 = binding.mahalayaTpnmTextView.layout.getLineEnd(850)
                 }
-                //    mpageSeventeenText = binding.mahalayaTPNMTextView.text.toString().substring(mstartPos17, mendPos17)
+                //    mpageSeventeenText = binding.mahalayaTpnmTextView.text.toString().substring(mstartPos17, mendPos17)
             }
             val printManager = this.getSystemService(Context.PRINT_SERVICE) as PrintManager
             val jobName = this.getString(R.string.app_name) + "-$mheading"
@@ -3113,14 +3113,14 @@ fun trial() {
 
     val MBody38A = SpannableString("\n\n  motherSideGothram கோத்ராணாம் அஸ்மத் ")
     val MregexReplace17 = """(motherSideGothram)""".toRegex()
-    mMBody38 = SpannableString(MBody38A.replace(MregexReplace17, MGothram))
+    mMBody38 = SpannableString(MBody38A.replace(MregexReplace17, mGothram))
     mMBody38.setSpan(AbsoluteSizeSpan(14, true), start, mMBody38.length, exExFlag)
     mMBody38.setSpan(StyleSpan(Typeface.BOLD), start, mMBody38.length, exExFlag)
     mMBody38.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody38.length, exExFlag)
 
     val MBody38Ab = SpannableString("\n\n  motherSideGothram கோத்ராணாம் அஸ்மத் ")
     val MregexReplace17b = """(motherSideGothram)""".toRegex()
-    mMBody38b = SpannableString(MBody38Ab.replace(MregexReplace17b, MGothram))
+    mMBody38b = SpannableString(MBody38Ab.replace(MregexReplace17b, mGothram))
     mMBody38b.setSpan(AbsoluteSizeSpan(14, true), start, mMBody38b.length, exExFlag)
     mMBody38b.setSpan(StyleSpan(Typeface.BOLD), start, mMBody38b.length, exExFlag)
     mMBody38b.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody38b.length, exExFlag)
@@ -3509,7 +3509,7 @@ fun trial() {
                 "அத்தவே motherSideGothram கோத்ரான் அஸ்மத்"
     )
     val MregexReplace24 = """(motherSideGothram)""".toRegex()
-    mMBody46 = SpannableString(MBody46A.replace(MregexReplace24, MGothram))
+    mMBody46 = SpannableString(MBody46A.replace(MregexReplace24, mGothram))
     mMBody46.setSpan(AbsoluteSizeSpan(14, true), start, mMBody46.length, exExFlag)
     mMBody46.setSpan(StyleSpan(Typeface.BOLD), start, mMBody46.length, exExFlag)
     mMBody46.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody46.length, exExFlag)
@@ -3544,7 +3544,7 @@ fun trial() {
                 "\nஅஸ்மின்யக்ஞே ஸ்வதயாமதந்த: அதிப்ருவந்து தேவந்து அஸ்மான் motherSideGothram கோத்ராணாம் அஸ்மத்"
     )
     val MregexReplace30 = """(motherSideGothram)""".toRegex()
-    mMBody53 = SpannableString(MBody53A.replace(MregexReplace30, MGothram))
+    mMBody53 = SpannableString(MBody53A.replace(MregexReplace30, mGothram))
     mMBody53.setSpan(AbsoluteSizeSpan(14, true), start, mMBody53.length, exExFlag)
     mMBody53.setSpan(StyleSpan(Typeface.BOLD), start, mMBody53.length, exExFlag)
     mMBody53.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody53.length, exExFlag)
@@ -3942,7 +3942,7 @@ fun trial() {
                 "அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ motherSideGothram கோத்ர: அஸ்மத் "
     )
     val MregexReplace36 = """(motherSideGothram)""".toRegex()
-    mMBody62 = SpannableString(MBody62A.replace(MregexReplace36, MGothram))
+    mMBody62 = SpannableString(MBody62A.replace(MregexReplace36, mGothram))
     mMBody62.setSpan(AbsoluteSizeSpan(14, true), start, mMBody62.length, exExFlag)
     mMBody62.setSpan(StyleSpan(Typeface.BOLD), start, mMBody62.length, exExFlag)
     mMBody62.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody62.length, exExFlag)
@@ -3955,7 +3955,7 @@ fun trial() {
     val MregexMFN = """(motherFather)""".toRegex()
     val MBody63A = SpannableString(MBody63AA.replace(MregexMFN, MFNamee))
     val MregexGothram = """(motherSideGothram)""".toRegex()
-    mMBody63 = SpannableString(MBody63A.replace(MregexGothram, MGothram))
+    mMBody63 = SpannableString(MBody63A.replace(MregexGothram, mGothram))
     mMBody63.setSpan(AbsoluteSizeSpan(14, true), start, mMBody63.length, exExFlag)
     mMBody63.setSpan(StyleSpan(Typeface.BOLD), start, mMBody63.length, exExFlag)
     mMBody63.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody63.length, exExFlag)
@@ -3968,7 +3968,7 @@ fun trial() {
     val MregexReplace37 = """(motherFather)""".toRegex()
     val MBody64A = SpannableString(MBody64AA.replace(MregexReplace37, MFNamee))
     val MregexReplace38 = """(motherSideGothram)""".toRegex()
-    mMBody64 = SpannableString(MBody64A.replace(MregexReplace38, MGothram))
+    mMBody64 = SpannableString(MBody64A.replace(MregexReplace38, mGothram))
     mMBody64.setSpan(AbsoluteSizeSpan(14, true), start, mMBody64.length, exExFlag)
     mMBody64.setSpan(StyleSpan(Typeface.BOLD), start, mMBody64.length, exExFlag)
     mMBody64.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody64.length, exExFlag)
@@ -3980,7 +3980,7 @@ fun trial() {
     val MregexReplace39 = """(motherFather)""".toRegex()
     val MBody66A = SpannableString(MBody66AA.replace(MregexReplace39, MFNamee))
     val MregexReplace40 = """(motherSideGothram)""".toRegex()
-    mMBody66 = SpannableString(MBody66A.replace(MregexReplace40, MGothram))
+    mMBody66 = SpannableString(MBody66A.replace(MregexReplace40, mGothram))
     mMBody66.setSpan(AbsoluteSizeSpan(14, true), start, mMBody66.length, exExFlag)
     mMBody66.setSpan(StyleSpan(Typeface.BOLD), start, mMBody66.length, exExFlag)
     mMBody66.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody66.length, exExFlag)
@@ -3993,7 +3993,7 @@ fun trial() {
     val MregexReplace41 = """(motherGrandFather)""".toRegex()
     val MBody68A = SpannableString(MBody68AA.replace(MregexReplace41, MGFNamee))
     val M2regexReplace40 = """(motherSideGothram)""".toRegex()
-    mMBody68 = SpannableString(MBody68A.replace(M2regexReplace40, MGothram))
+    mMBody68 = SpannableString(MBody68A.replace(M2regexReplace40, mGothram))
     mMBody68.setSpan(AbsoluteSizeSpan(14, true), start, mMBody68.length, exExFlag)
     mMBody68.setSpan(StyleSpan(Typeface.BOLD), start, mMBody68.length, exExFlag)
     mMBody68.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody68.length, exExFlag)
@@ -4006,7 +4006,7 @@ fun trial() {
     val M2regexReplace41 = """(motherGrandFather)""".toRegex()
     val MBody69A = SpannableString(MBody69AA.replace(M2regexReplace41, MGFNamee))
     val M3regexReplace40 = """(motherSideGothram)""".toRegex()
-    mMBody69 = SpannableString(MBody69A.replace(M3regexReplace40, MGothram))
+    mMBody69 = SpannableString(MBody69A.replace(M3regexReplace40, mGothram))
     mMBody69.setSpan(AbsoluteSizeSpan(14, true), start, mMBody69.length, exExFlag)
     mMBody69.setSpan(StyleSpan(Typeface.BOLD), start, mMBody69.length, exExFlag)
     mMBody69.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody69.length, exExFlag)
@@ -4018,7 +4018,7 @@ fun trial() {
     val MregexReplace43 = """(motherGrandFather)""".toRegex()
     val MBody71A = SpannableString(MBody71AA.replace(MregexReplace43, MGFNamee))
     val MregexReplace44 = """(motherSideGothram)""".toRegex()
-    mMBody71 = SpannableString(MBody71A.replace(MregexReplace44, MGothram))
+    mMBody71 = SpannableString(MBody71A.replace(MregexReplace44, mGothram))
     mMBody71.setSpan(AbsoluteSizeSpan(14, true), start, mMBody71.length, exExFlag)
     mMBody71.setSpan(StyleSpan(Typeface.BOLD), start, mMBody71.length, exExFlag)
     mMBody71.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody71.length, exExFlag)
@@ -4030,7 +4030,7 @@ fun trial() {
     val MregexReplace45 = """(motherGreatGrandFather)""".toRegex()
     val MBody72A = SpannableString(MBody72AA.replace(MregexReplace45, MGGFNamee))
     val MregexReplace46 = """(motherSideGothram)""".toRegex()
-    mMBody72 = SpannableString(MBody72A.replace(MregexReplace46, MGothram))
+    mMBody72 = SpannableString(MBody72A.replace(MregexReplace46, mGothram))
     mMBody72.setSpan(AbsoluteSizeSpan(14, true), start, mMBody72.length, exExFlag)
     mMBody72.setSpan(StyleSpan(Typeface.BOLD), start, mMBody72.length, exExFlag)
     mMBody72.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody72.length, exExFlag)
@@ -4042,7 +4042,7 @@ fun trial() {
     val MregexReplace47 = """(motherGreatGrandFather)""".toRegex()
     val MBody74A = SpannableString(MBody74AA.replace(MregexReplace47, MGGFNamee))
     val MregexReplace48 = """(motherSideGothram)""".toRegex()
-    mMBody74 = SpannableString(MBody74A.replace(MregexReplace48, MGothram))
+    mMBody74 = SpannableString(MBody74A.replace(MregexReplace48, mGothram))
     mMBody74.setSpan(AbsoluteSizeSpan(14, true), start, mMBody74.length, exExFlag)
     mMBody74.setSpan(StyleSpan(Typeface.BOLD), start, mMBody74.length, exExFlag)
     mMBody74.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody74.length, exExFlag)
@@ -4062,7 +4062,7 @@ fun trial() {
                 "அவ்ருகா: ருதக்ஞா: தேநோவந்து பிதரோஹவேஷூ motherSideGothram கோத்ர அஸ்மத்"
     )
     val MregexReplace36M = """(motherSideGothram)""".toRegex()
-    mMBody62M = SpannableString(MBody62AM.replace(MregexReplace36M, MGothram))
+    mMBody62M = SpannableString(MBody62AM.replace(MregexReplace36M, mGothram))
     mMBody62M.setSpan(AbsoluteSizeSpan(14, true), start, mMBody62M.length, exExFlag)
     mMBody62M.setSpan(StyleSpan(Typeface.BOLD), start, mMBody62M.length, exExFlag)
     mMBody62M.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody62M.length, exExFlag)
@@ -4075,7 +4075,7 @@ fun trial() {
     val MregexMFNM = """(motherMother)""".toRegex()
     val MBody63AM = SpannableString(MBody63AAM.replace(MregexMFNM, amAmmaName))
     val MregexGothramM = """(motherSideGothram)""".toRegex()
-    mMBody63M = SpannableString(MBody63AM.replace(MregexGothramM, MGothram))
+    mMBody63M = SpannableString(MBody63AM.replace(MregexGothramM, mGothram))
     mMBody63M.setSpan(AbsoluteSizeSpan(14, true), start, mMBody63M.length, exExFlag)
     mMBody63M.setSpan(StyleSpan(Typeface.BOLD), start, mMBody63M.length, exExFlag)
     mMBody63M.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody63M.length, exExFlag)
@@ -4088,7 +4088,7 @@ fun trial() {
     val MregexReplace37M = """(motherMother)""".toRegex()
     val MBody64AM = SpannableString(MBody64AAM.replace(MregexReplace37M, amAmmaName))
     val MregexReplace38M = """(motherSideGothram)""".toRegex()
-    mMBody64M = SpannableString(MBody64AM.replace(MregexReplace38M, MGothram))
+    mMBody64M = SpannableString(MBody64AM.replace(MregexReplace38M, mGothram))
     mMBody64M.setSpan(AbsoluteSizeSpan(14, true), start, mMBody64M.length, exExFlag)
     mMBody64M.setSpan(StyleSpan(Typeface.BOLD), start, mMBody64M.length, exExFlag)
     mMBody64M.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody64M.length, exExFlag)
@@ -4100,7 +4100,7 @@ fun trial() {
     val MregexReplace39M = """(motherMother)""".toRegex()
     val MBody66AM = SpannableString(MBody66AAM.replace(MregexReplace39M, amAmmaName))
     val MregexReplace40M = """(motherSideGothram)""".toRegex()
-    mMBody66M = SpannableString(MBody66AM.replace(MregexReplace40M, MGothram))
+    mMBody66M = SpannableString(MBody66AM.replace(MregexReplace40M, mGothram))
     mMBody66M.setSpan(AbsoluteSizeSpan(14, true), start, mMBody66M.length, exExFlag)
     mMBody66M.setSpan(StyleSpan(Typeface.BOLD), start, mMBody66M.length, exExFlag)
     mMBody66M.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody66M.length, exExFlag)
@@ -4113,7 +4113,7 @@ fun trial() {
     val MregexReplace41M = """(motherGrandMother)""".toRegex()
     val MBody68AM = SpannableString(MBody68AAM.replace(MregexReplace41M, amPattiName))
     val M2regexReplace40M = """(motherSideGothram)""".toRegex()
-    mMBody68M = SpannableString(MBody68AM.replace(M2regexReplace40M, MGothram))
+    mMBody68M = SpannableString(MBody68AM.replace(M2regexReplace40M, mGothram))
     mMBody68M.setSpan(AbsoluteSizeSpan(14, true), start, mMBody68M.length, exExFlag)
     mMBody68M.setSpan(StyleSpan(Typeface.BOLD), start, mMBody68M.length, exExFlag)
     mMBody68M.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody68M.length, exExFlag)
@@ -4126,7 +4126,7 @@ fun trial() {
     val M2regexReplace41M = """(motherGrandMother)""".toRegex()
     val MBody69AM = SpannableString(MBody69AAM.replace(M2regexReplace41M, amPattiName))
     val M3regexReplace40M = """(motherSideGothram)""".toRegex()
-    mMBody69M = SpannableString(MBody69AM.replace(M3regexReplace40M, MGothram))
+    mMBody69M = SpannableString(MBody69AM.replace(M3regexReplace40M, mGothram))
     mMBody69M.setSpan(AbsoluteSizeSpan(14, true), start, mMBody69M.length, exExFlag)
     mMBody69M.setSpan(StyleSpan(Typeface.BOLD), start, mMBody69M.length, exExFlag)
     mMBody69M.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody69M.length, exExFlag)
@@ -4138,7 +4138,7 @@ fun trial() {
     val MregexReplace43M = """(motherGrandMother)""".toRegex()
     val MBody71AM = SpannableString(MBody71AAM.replace(MregexReplace43M, amPattiName))
     val MregexReplace44M = """(motherSideGothram)""".toRegex()
-    mMBody71M = SpannableString(MBody71AM.replace(MregexReplace44M, MGothram))
+    mMBody71M = SpannableString(MBody71AM.replace(MregexReplace44M, mGothram))
     mMBody71M.setSpan(AbsoluteSizeSpan(14, true), start, mMBody71M.length, exExFlag)
     mMBody71M.setSpan(StyleSpan(Typeface.BOLD), start, mMBody71M.length, exExFlag)
     mMBody71M.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody71M.length, exExFlag)
@@ -4150,7 +4150,7 @@ fun trial() {
     val MregexReplace45M = """(motherGreatGrandMother)""".toRegex()
     val MBody72AM = SpannableString(MBody72AAM.replace(MregexReplace45M, amKolluPattiName))
     val MregexReplace46M = """(motherSideGothram)""".toRegex()
-    mMBody72M = SpannableString(MBody72AM.replace(MregexReplace46M, MGothram))
+    mMBody72M = SpannableString(MBody72AM.replace(MregexReplace46M, mGothram))
     mMBody72M.setSpan(AbsoluteSizeSpan(14, true), start, mMBody72M.length, exExFlag)
     mMBody72M.setSpan(StyleSpan(Typeface.BOLD), start, mMBody72M.length, exExFlag)
     mMBody72M.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody72M.length, exExFlag)
@@ -4162,7 +4162,7 @@ fun trial() {
     val MregexReplace47M = """(motherGreatGrandMother)""".toRegex()
     val MBody74AM = SpannableString(MBody74AAM.replace(MregexReplace47M, amKolluPattiName))
     val MregexReplace48M = """(motherSideGothram)""".toRegex()
-    mMBody74M = SpannableString(MBody74AM.replace(MregexReplace48M, MGothram))
+    mMBody74M = SpannableString(MBody74AM.replace(MregexReplace48M, mGothram))
     mMBody74M.setSpan(AbsoluteSizeSpan(14, true), start, mMBody74M.length, exExFlag)
     mMBody74M.setSpan(StyleSpan(Typeface.BOLD), start, mMBody74M.length, exExFlag)
     mMBody74M.setSpan(ForegroundColorSpan(Color.parseColor("#0000ee")), start, mMBody74M.length, exExFlag)
