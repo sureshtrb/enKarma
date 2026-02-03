@@ -111,6 +111,13 @@ var mapKey2: String = ""
 var DataList2: String = ""
 var mapKey3: String = ""
 var DataList3: String = ""
+
+// ----------------------------------------------------------------------------
+// 10. PRINTING & PDF GENERATION (AmavasyaTharpanam)
+// ----------------------------------------------------------------------------
+var totalPages: Int = 1  // Total number of pages for PDF printing
+var pageBoundaries = mutableListOf<Pair<Int, Int>>()  // Page boundary pairs (start, end)
 var mapKey4: String = ""
 var DataList4: String = ""
+
 
