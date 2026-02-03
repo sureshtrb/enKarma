@@ -75,6 +75,14 @@ var motherMotherLive: String = ""  // Mother's mother status
 var appaAmmaName: String = ""      // Father's mother name
 var appaPattiName: String = ""     // Father's grandmother name
 var appaKolluPattiName: String = "" // Father's great-grandmother name
+var urName: String = ""  // User's name
+var yFName: String = ""  // Your father's name
+var yGFName: String = ""  // Your grandfather's name
+var yFGFName: String = ""  // Your great-grandfather's name (Kollu)
+var yFGGFName: String = ""  // Your great-great-grandfather's name (Yellu)
+var MFName: String = ""  // Mother's father's name
+var MGFName: String = ""  // Mother's grandfather's name
+var MGGFName: String = ""  // Mother's great-grandfather's name
 
 // ----------------------------------------------------------------------------
 // 6. FAMILY NAMES (Mother's Side)
@@ -105,3 +113,4 @@ var mapKey3: String = ""
 var DataList3: String = ""
 var mapKey4: String = ""
 var DataList4: String = ""
+
