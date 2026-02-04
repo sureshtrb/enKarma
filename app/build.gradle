@@ -39,13 +39,13 @@ android {
             keyPassword 'ViewSea2024$'
         }
     }
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.karma.sureshtrb.enkarma"
         minSdkVersion 26
         minSdk 24
-        targetSdk 34// Updated targetSdkVersion
+        targetSdk 36// Updated targetSdkVersion
         versionCode 58
         versionName "1.0.58"//Feb 04 2026
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
