@@ -1,5 +1,5 @@
 plugins {
-    id("com.autonomousapps.dependency-analysis") version "2.1.4" // Or the latest compatible version
+  //  id("com.autonomousapps.dependency-analysis") version "2.1.4" // Or the latest compatible version
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
@@ -39,13 +39,12 @@ android {
             keyPassword 'ViewSea2024$'
         }
     }
-    compileSdk 36
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.karma.sureshtrb.enkarma"
-        minSdkVersion 26
         minSdk 24
-        targetSdk 36// Updated targetSdkVersion
+        targetSdk 35// Updated targetSdkVersion
         versionCode 58
         versionName "1.0.58"//Feb 04 2026
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
