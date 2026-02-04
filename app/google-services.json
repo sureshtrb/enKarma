@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "184120517039",
+    "project_id": "enkarma-android",
+    "storage_bucket": "enkarma-android.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184120517039:android:dd9f3e66c8cd4cfa540f5a",
+        "android_client_info": {
+          "package_name": "com.karma.sureshtrb.enKarma"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNrh9ytR344VuRwxqV1dVrPjG1GkpJ9pc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

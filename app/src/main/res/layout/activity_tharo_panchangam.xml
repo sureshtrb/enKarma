@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType = "centerCrop">
+<androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:context=".TharoPanchangamActivity"
+        android:background = "@drawable/yagyavalkyar">
+
+    <Button
+            android:typeface="monospace" android:textStyle="normal|bold" android:textSize="14sp"
+            android:textAlignment="center" android:layout_width="130dp" android:layout_height="34dp"
+            android:id="@+id/button_date_1" android:focusable="false"
+            android:autofillHints="" android:hint="@string/Change_Date" android:text="@string/Change_Date"
+            tools:text="Change Date" android:orientation="horizontal"
+            android:textColor="@android:color/background_light" tools:targetApi="o"
+            style="?android:attr/buttonBarButtonStyle" android:background="@drawable/mybutton"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="40sp" android:layout_marginStart="8dp" android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_horizontal" />
+    <TextView
+            android:layout_width="248dp" android:layout_height="33dp"
+            android:id="@+id/text_view_date_1" android:text=""
+            tools:text="__/__/____" android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
+            android:textColor="@android:color/holo_red_dark" android:inputType=""
+            android:autofillHints=""
+            android:orientation="horizontal"
+            tools:targetApi="o" android:hint="@string/Today_Date"
+            android:textSize="18sp" android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/button_date_1" android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp" app:layout_constraintTop_toTopOf="parent"
+            android:background="@android:color/holo_orange_light"/>
+
+
+    <TextView
+            android:id="@+id/GEOLOCATION"
+            tools:text=" இடம் (GeoLocation):"
+            android:hint="@string/geo_location"
+            android:text="@string/geo_location"
+            app:layout_constraintTop_toBottomOf="@+id/button_date_1"
+            android:typeface="monospace"
+            android:textStyle="normal|bold"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:gravity = "center_vertical|left|start"
+            android:layout_margin="20dp"
+            android:textColor="@color/design_default_color_primary"
+            android:inputType="" android:layout_weight="1"
+            tools:targetApi="o" android:ellipsize="none"
+            android:scrollHorizontally="false"
+            android:maxLines="2"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="20dp" />
+
+    <TextView
+        android:id="@+id/Year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:autofillHints=""
+        android:gravity="center_vertical|left|start"
+        android:hint="@string/Year"
+        android:inputType=""
+        android:ellipsize="none" android:scrollHorizontally="false"
+        android:text="@string/Year" android:maxLines="2"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="15sp"
+        android:textStyle="normal|bold"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GEOLOCATION"
+        tools:targetApi="o" android:layout_weight="1"
+        tools:text="வருடம் (Year):" />
+    <TextView
+            android:id="@+id/Ayana" tools:text="அயனம் (Ayana):" android:hint="@string/ayanam" android:text="@string/ayanam" app:layout_constraintTop_toBottomOf="@+id/Year"
+            android:typeface="monospace" android:textStyle="normal|bold" android:textSize="15sp" android:maxLines="2"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:autofillHints=""
+            android:gravity = "center_vertical|left|start" android:layout_margin="20dp" android:layout_weight="1"
+            android:textColor="@color/design_default_color_primary" android:inputType="" tools:targetApi="o"
+            android:layout_marginTop="10dp" android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent" android:ellipsize="none" android:scrollHorizontally="false"
+            android:layout_marginLeft="20dp"/>
+    <TextView
+            android:id="@+id/Season" tools:text="ருது (Season-காலம்):" android:hint="@string/season"
+            android:text="@string/season"
+            app:layout_constraintTop_toBottomOf="@+id/Ayana" android:typeface="monospace"
+            android:textStyle="normal|bold" android:layout_weight="1"
+            android:textSize="15sp" android:layout_width="395dp" android:layout_height="wrap_content"
+            android:autofillHints="" android:ellipsize="none" android:scrollHorizontally="false"
+            android:textColor="@color/design_default_color_primary" android:inputType="" tools:targetApi="o"
+            android:gravity = "center_vertical|left|start" android:layout_margin="20dp"
+            android:layout_marginTop="10dp" android:layout_marginStart="20dp" android:maxLines="2"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="20dp"/>
+    <TextView
+            android:id="@+id/Rasi" tools:text="ராசி (Rasi):" android:hint="@string/Rasi" android:text="@string/Rasi"
+            app:layout_constraintTop_toBottomOf="@+id/Season" android:layout_weight="1"
+            android:typeface="monospace" android:textStyle="normal|bold" android:textSize="15sp"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:autofillHints=""
+            android:gravity = "center_vertical|left|start" android:layout_margin="20dp" android:maxLines="2"
+            android:textColor="@color/design_default_color_primary" android:inputType="" tools:targetApi="o"
+            android:layout_marginTop="10dp" android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent" android:ellipsize="none" android:scrollHorizontally="false"
+            android:layout_marginLeft="20dp"/>
+    <TextView
+            android:id="@+id/Paksha" tools:text="பக்‌ஷம் (Paksha):" android:hint="@string/Paksha"
+            android:text="@string/Paksha" android:ellipsize="none" android:scrollHorizontally="false"
+            app:layout_constraintTop_toBottomOf="@+id/Rasi" android:layout_weight="1"
+            android:typeface="monospace" android:textStyle="normal|bold" android:textSize="15sp"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:autofillHints=""
+            android:gravity = "center_vertical|left|start" android:layout_margin="20dp"
+            android:textColor="@color/design_default_color_primary" android:inputType="" tools:targetApi="o"
+            android:layout_marginTop="10dp" android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent" android:maxLines="2"
+            android:layout_marginLeft="20dp"/>
+    <TextView
+            android:id="@+id/Thithi" tools:text="திதி (Thithi):" android:hint="@string/Thithi"
+            android:text="@string/Thithi" android:ellipsize="none" android:scrollHorizontally="false"
+            app:layout_constraintTop_toBottomOf="@+id/Paksha" android:layout_weight="1"
+            android:typeface="monospace" android:textStyle="normal|bold" android:textSize="15sp"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:autofillHints=""
+            android:gravity = "center_vertical|left|start" android:layout_margin="20dp"
+            android:textColor="@color/design_default_color_primary" android:inputType="" tools:targetApi="o"
+            android:layout_marginTop="10dp" android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent" android:maxLines="2"
+            android:layout_marginLeft="20dp"/>
+    <TextView
+            android:id="@+id/Day" tools:text="கிழமை (Day):" android:hint="@string/Day" android:text="@string/Day"
+            app:layout_constraintTop_toBottomOf="@+id/Thithi" android:layout_weight="1"
+            android:typeface="monospace" android:textStyle="normal|bold" android:textSize="15sp"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:autofillHints=""
+            android:gravity = "center_vertical|left|start" android:layout_margin="20dp" android:maxLines="2"
+            android:textColor="@color/design_default_color_primary" android:inputType="" tools:targetApi="o"
+            android:layout_marginTop="10dp" android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent" android:ellipsize="none" android:scrollHorizontally="false"
+            android:layout_marginLeft="20dp"/>
+    <TextView
+            android:id="@+id/Natchatram" tools:text="நட்ஷத்ரம் (Natchatram):" android:hint="@string/Natchatram"
+            android:text="@string/Natchatram" android:ellipsize="none" android:scrollHorizontally="false"
+            app:layout_constraintTop_toBottomOf="@+id/Day" android:layout_weight="1"
+            android:typeface="monospace" android:textStyle="normal|bold" android:textSize="14sp"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:autofillHints=""
+            android:gravity = "center_vertical|left|start" android:layout_margin="20dp"
+            android:layout_marginTop="10dp" android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent" android:maxLines="2"
+            android:layout_marginLeft="20dp"/>
+    <TextView
+            android:id="@+id/Yogam" tools:text="யோகம் (Yogam):" android:hint="@string/Yogam"
+            android:text="@string/Yogam" android:ellipsize="none" android:scrollHorizontally="false"
+            app:layout_constraintTop_toBottomOf="@+id/Natchatram" android:layout_weight="1"
+            android:typeface="monospace" android:textStyle="normal|bold" android:textSize="15sp"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:autofillHints=""
+            android:gravity = "center_vertical|left|start" android:layout_margin="20dp"
+            android:textColor="@color/design_default_color_primary" android:inputType="" tools:targetApi="o"
+            android:layout_marginTop="10dp" android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent" android:maxLines="2"
+            android:layout_marginLeft="20dp"/>
+    <TextView
+            android:id="@+id/Karanam" tools:text="கரணம் (Karanam):" android:hint="@string/Karanam"
+            android:text="@string/Karanam" android:ellipsize="none" android:scrollHorizontally="false"
+            app:layout_constraintTop_toBottomOf="@+id/Yogam" android:layout_weight="1"
+            android:typeface="monospace" android:textStyle="normal|bold" android:textSize="15sp"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:autofillHints=""
+            android:gravity = "center_vertical|left|start" android:layout_margin="20dp"
+            android:textColor="@color/design_default_color_primary" android:inputType="" tools:targetApi="o"
+            android:layout_marginTop="10dp" android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent" android:maxLines="2"
+            android:layout_marginLeft="20dp"/>
+    <TextView
+            android:id="@+id/Notes" tools:text="(Above Data is considered with reference to Chennai, India)"
+            android:hint="@string/Notes" android:text="@string/Notes"
+            app:layout_constraintTop_toBottomOf="@+id/Karanam" android:ellipsize="none" android:scrollHorizontally="false"
+            android:typeface="monospace" android:textStyle="normal|bold" android:textSize="12sp"
+            android:layout_width="395dp" android:layout_weight="1" android:maxLines="2"
+            android:layout_height="wrap_content" android:autofillHints=""
+            android:textColor="@color/design_default_color_primary" android:inputType=""
+            tools:targetApi="o" android:singleLine="false" android:layout_marginTop="10dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="8dp" android:gravity="center"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/Notes"  android:id="@+id/relativeLayout"
+            android:typeface="monospace" android:textStyle="normal|bold" android:textSize="15sp"
+            android:autofillHints=""
+            android:gravity = "center_vertical|left|start" android:layout_margin="20dp"
+            android:textColor="@color/design_default_color_primary" android:inputType="" tools:targetApi="o"
+            android:singleLine="true" android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="20dp">
+
+        <RadioGroup
+                android:id="@+id/radio_group1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" android:layout_marginRight="0dp"
+                android:layout_marginEnd="0dp" android:layout_alignParentStart="true"
+                android:layout_marginLeft="0dp" android:layout_marginStart="0dp"
+                android:layout_alignParentLeft="true">
+
+            <RadioButton
+                    android:id="@+id/radio1G1"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="@string/FatherLiving" android:textSize="14sp"/>
+
+            <RadioButton
+                    android:id="@+id/radio2G1"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/FatherDeceased" android:textSize="14sp"/>
+        </RadioGroup>
+
+        <RadioGroup
+                android:id="@+id/radio_group2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" android:layout_marginRight="0dp"
+                android:layout_marginEnd="0dp" android:layout_alignParentStart="true"
+                android:layout_marginLeft="0dp" android:layout_marginStart="0dp"
+                android:layout_alignParentLeft="true" android:layout_marginTop="40dp">
+
+            <RadioButton
+                    android:id="@+id/radio1G2"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="@string/MotherLiving" android:textSize="14sp"/>
+
+            <RadioButton
+                    android:id="@+id/radio2G2"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MotherDeceased" android:textSize="14sp"/>
+        </RadioGroup>
+        <RadioGroup
+                android:id="@+id/radio_group3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" android:layout_marginRight="0dp"
+                android:layout_marginEnd="0dp" android:layout_alignParentStart="true"
+                android:layout_marginLeft="0dp" android:layout_marginStart="0dp"
+                android:layout_alignParentLeft="true" android:layout_marginTop="80dp">
+
+            <RadioButton
+                    android:id="@+id/radio1G3"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="@string/MotherMotherLiving" android:textSize="12sp"/>
+
+            <RadioButton
+                    android:id="@+id/radio2G3"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/MotherMotherDeceased" android:textSize="12sp"/>
+        </RadioGroup>
+        <RadioGroup
+                android:id="@+id/radio_group4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" android:layout_marginRight="0dp"
+                android:layout_marginEnd="0dp" android:layout_alignParentStart="true"
+                android:layout_marginLeft="0dp" android:layout_marginStart="0dp"
+                android:layout_alignParentLeft="true" android:layout_marginTop="120dp">
+
+            <RadioButton
+                    android:id="@+id/radio1G4"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="@string/FatherMotherLiving" android:textSize="12sp"/>
+
+            <RadioButton
+                    android:id="@+id/radio2G4"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/FatherMotherDeceased" android:textSize="12sp"/>
+        </RadioGroup>
+    </RelativeLayout>
+    <Button
+            android:id="@+id/Proceed" android:background="@drawable/mybutton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="200dp" android:layout_height="wrap_content" android:text="@string/Proceed"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+            android:layout_marginTop="12dp" app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp" android:layout_marginRight="20dp"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp" android:textColor="@android:color/background_light"
+             android:textSize="24sp"
+            android:textStyle="bold"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

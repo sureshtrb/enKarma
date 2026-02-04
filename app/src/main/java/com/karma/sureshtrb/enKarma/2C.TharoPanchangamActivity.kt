@@ -1,0 +1,2068 @@
+package com.karma.sureshtrb.enKarma
+
+//import kotlinx.android.synthetic.main.activity_tharo_panchangam.*
+//import android.content.Context
+//import android.text.Editable
+//import android.view.inputmethod.InputMethodManager
+//import androidx.preference.PreferenceManager
+import android.annotation.TargetApi
+import android.app.DatePickerDialog
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
+import android.os.Build
+import android.os.Bundle
+import android.os.StrictMode
+import android.text.Html
+import android.view.View
+import android.widget.Button
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
+import com.karma.sureshtrb.enKarma.databinding.ActivityTharoPanchangamBinding
+import org.jsoup.Jsoup
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+//import kotlin.text.format
+//import kotlin.toString
+
+var dateToday = ""
+var place:String = ""
+//var keyElements:List<String> =  ArrayList<String>()
+//var Datalist: String = ""
+var sunRise: String = ""
+var sunSet: String = ""
+var TithiValue: String = ""
+var TodayThithi:String = ""
+var paksha: String = ""
+var todayPaksha:String = ""
+var naksha: String = ""
+var yoga: String = ""
+var karana: String = ""
+var weekDay: String = ""
+var chandraMasa: String = ""
+var shakaSamvat: String = ""
+var suryaRasi: String = ""
+var chandraRasi: String = ""
+var suryaNakshatra: String = ""
+var vedicRithu: String = ""
+var vedicAyana: String = ""
+var madyana: String = ""
+var sayamSandya: String = ""
+var prathaSanthya: String = ""
+var DataList: String = ""
+var mapKey :String =""
+var DataList2: String = ""
+var mapKey2 :String =""
+var DataList3: String = ""
+var mapKey3 :String =""
+var DataList4: String = ""
+var mapKey4 :String =""
+//var prevMapKey :String =""
+//var mapData :String =""
+var nextDaypakshaValue:String =""
+var todaypakshaValue:String = ""
+//var mapPanch: MutableMap<String,String> = mutableMapOf()
+var mapPanch: HashMap<String,String> = HashMap<String,String>()
+var mapPanch2: HashMap<String,String> = HashMap<String,String>()
+var mapPanch3: HashMap<String,String> = HashMap<String,String>()
+var mapPanch4: HashMap<String,String> = HashMap<String,String>()
+var todThitgi:String=""
+var tithiNew:String = ""
+
+//var mapPanchAllKeys = mapPanch.keys
+var TodayThithiUptoInMinutesM: Int = 0
+
+var nowTimeInMinutes: Int = 0
+var currentTithi:String = ""
+
+var nakshatraHrToMin: Int = 0
+var currentNakshtram:String = ""
+var nextDayNakshatra:String = ""
+
+var karnaHrToMin: Int = 0
+var currentKarnam:String = ""
+var nextDayKarnam:String = ""
+
+var todayYogaUptoInMinutesM: Int = 0
+var currentYogam:String = ""
+var nextDayYogam:String = ""
+
+var sRiseInMinutes:Int = 0
+var SSetInMinutes:Int = 0
+var PrefixTithi: String = ""
+var ThithiGlobal: String = ""
+var SkippedthithiValue: String = ""
+var SkippedThithiGlobal: String = ""
+var fromSunRiseToTwelveHrs:Int = 0
+var todatTitiUptoHrOnly:Int = 0
+var SunRiseTo30NaligaiInMinutes: Int = 0
+
+var fatherLive: String = ""
+var motherLive: String = ""
+var motherMotherLive: String = ""
+var fatherMotherLive: String = ""
+var dateNow:String = "__/__/____"
+
+var nextdy:String = ""
+var NextDayThithi: String = ""
+var thithiValuex:String = ""
+
+//var nextDaysunRise:String = ""
+//var nextDaysunSet:String = ""
+var nextDaypaksha:String = ""
+//var nextDayTithiHrToMinM: Int = 0
+
+var NextDaySunRiseTime:Int = 0
+//var nextDaySSetInMinutes:Int = 0
+var nextDayTitiUptoHrOnly:Int = 0
+var nextDayTithiHrToMin:Int = 0
+
+var pradamaiDay:String = ""
+var pradamaiTithiValue:String = ""
+var pradamaiDayThithiValue:String = ""
+var pradamaiDayThithi:String = ""
+var pradamaiDaySunRise:String = ""
+var pradamaiDaySunSet:String = ""
+var pradamaiDayPaksha:String = ""
+var pradamaiThithiUptoInMinutes: Int = 0
+var pradamaiDaySRiseInMinutes:Int = 0
+//var pradamaiDaySSetInMinutes:Int = 0
+var pradamaiDayTitiUptoHrOnly:Int = 0
+//var pradamaiDayTithiCheck:Int = 0
+//var pradamaiDayTithiHrToMin:Int = 0
+
+var afterPradamaiDay:String = ""
+//var afterPradamaiDayTithiValue:String = ""
+//var afterpradamaiDayThithiValue:String = ""
+//var afterpradamaiDayThithi:String = ""
+var afterPradamaiDaySunRise:String = ""
+var afterPradamaiDaySunSet:String = ""
+var afterPradamaiDayPaksha:String = ""
+//var afterpradamaiTithiHrToMin: Int = 0
+var afterPradamaiSRiseHrAndMinConvInMinutes:Int = 0
+//var afterPradamaiDaySSetInMinutes:Int = 0
+//var afterPradamaiDayTitiUptoHrOnly:Int = 0
+//var afterPradamaiDayTithiCheck:Int = 0
+
+var bodayana = "சதுர்தஸ்யோபரி அமாவாஸ்யா"
+
+@Suppress("DEPRECATION")
+class TharoPanchangamActivity : AppCompatActivity() {
+
+    var cal = Calendar.getInstance()
+    private lateinit var binding: ActivityTharoPanchangamBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //setContentView(R.layout.activity_tharo_panchangam)
+        binding = ActivityTharoPanchangamBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        clearAllData()
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+StrictMode.setThreadPolicy(policy)
+
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.home)
+        this.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        this.supportActionBar!!.subtitle = "பஞ்சாங்கம / பித்ரு விபரங்கள்"
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        supportActionBar!!.setLogo(R.drawable.karma)
+        supportActionBar!!.setDisplayUseLogoEnabled(true)
+        //   supportActionBar!!.setTitleTextColor(Color.BLUE)
+
+        loadData()
+
+        val dateText = findViewById<TextView>(R.id.text_view_date_1)
+        val changeDateBtn = findViewById<Button>(R.id.button_date_1)
+        place = this.findViewById<TextView>(R.id.GEOLOCATION).text.toString()
+        Varusham = this.findViewById<TextView>(R.id.Year).text.toString()
+        ayyanamm = this.findViewById<TextView>(R.id.Ayana).text.toString()
+        kalam = this.findViewById<TextView>(R.id.Season).text.toString()
+       rasee = this.findViewById<TextView>(R.id.Rasi).text.toString()
+        baksham = this.findViewById<TextView>(R.id.Paksha).text.toString()
+        todThithi = this.findViewById<TextView>(R.id.Thithi).text.toString()
+        kizhamai = this.findViewById<TextView>(R.id.Day).text.toString()
+        nachathirm = this.findViewById<TextView>(R.id.Natchatram).text.toString()
+        yog = this.findViewById<TextView>(R.id.Yogam).text.toString()
+        kar = this.findViewById<TextView>(R.id.Karanam).text.toString()
+        val rg1 = this.findViewById<RadioGroup>(R.id.radio_group1)
+        val rg2 = this.findViewById<RadioGroup>(R.id.radio_group2)
+        val rg3 = this.findViewById<RadioGroup>(R.id.radio_group3)
+        val rg4 = this.findViewById<RadioGroup>(R.id.radio_group4)
+        val proceed = findViewById<Button>(R.id.Proceed)
+        val rbFLiving = this.findViewById<RadioButton>(R.id.radio1G1)
+        val rbFDeceased = this.findViewById<RadioButton>(R.id.radio2G1)
+        val rbMLiving = this.findViewById<RadioButton>(R.id.radio1G2)
+        val rbMDeceased = this.findViewById<RadioButton>(R.id.radio2G2)
+        val rbMMLiving = this.findViewById<RadioButton>(R.id.radio1G3)
+        val rbMMDeceased = this.findViewById<RadioButton>(R.id.radio2G3)
+        val rbFMLiving = this.findViewById<RadioButton>(R.id.radio1G4)
+        val rbFMDeceased = this.findViewById<RadioButton>(R.id.radio2G4)
+        // println("dateText: ,${dateText.text}")
+        // println("Varusham: ,${Varusham.text}")
+        // println("ayyanamm: ,${ayyanamm.text}")
+        // println("kalam: ,${kalam.text}")
+        // println("rasee: ,${rasee.text}")
+        // println("baksham: ,${baksham.text}")
+        // println("todThithi: ,${todThithi.text}")
+        // println("kizhamai: ,${kizhamai.text}")
+        // println("nachathirm: ,${nachathirm.text}")
+        // println("yog: ,${yog.text}")
+        // println("kar: ,${kar.text}")
+        if (rbFLiving.isChecked ){ rg2.visibility = View.INVISIBLE }else { rg2.visibility = View.VISIBLE }
+        if (rbFDeceased.isChecked){ rg2.visibility = View.VISIBLE }else { rg2.visibility = View.INVISIBLE }
+        if (rbMLiving.isChecked || rbMDeceased.isChecked) { rg3.visibility = View.VISIBLE }else{ rg3.visibility = View.INVISIBLE }
+        if (rbMMLiving.isChecked || rbMMDeceased.isChecked) { rg4.visibility = View.VISIBLE}else{rg4.visibility = View.INVISIBLE}
+        if (rbFMLiving.isChecked || rbFMDeceased.isChecked) { proceed.visibility = View.VISIBLE}else{proceed.visibility = View.INVISIBLE}
+
+
+        val dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
+dateNow = dateFormat.format(Date())
+dateText.text = dateNow
+
+        val cal1 = Calendar.getInstance()
+val sdf1 = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) // Add Locale
+cal1.time = sdf1.parse(dateNow) ?: Date() // Provide default Date if null
+        // add 1 day to the calendar
+        cal1.add(Calendar.DATE, 1)
+        // println("cal1 : $cal1")
+        //  System.out.println("1 day later: " + cal1.time)
+        nextdy = sdf1.format(cal1.time)
+        // println("nextdy : $nextdy")
+
+        val cal2 = Calendar.getInstance()
+val sdf2 = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) // Add Locale
+cal2.time = sdf2.parse(dateNow) ?: Date() // Provide default Date if null
+        // add 2 days to the calendar
+        cal2.add(Calendar.DATE, 2)
+        // println("cal2 : $cal2")
+        //  System.out.println("2 days later: " + cal2.time)
+        pradamaiDay = sdf2.format(cal2.time)
+        // println("pradamaiDay : $pradamaiDay")
+
+       val cal3 = Calendar.getInstance()
+val sdf3 = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) // Add Locale
+cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
+        // add 3 days to the calendar
+        cal3.add(Calendar.DATE, 3)
+        // println("cal3 : $cal3")
+        //  System.out.println("AfterPradamaiDay Date: " + cal3.time)
+        afterPradamaiDay = sdf3.format(cal3.time)
+        // println("afterPradamaiDay : $afterPradamaiDay")
+
+        buttonClicked(binding.buttonDate1)
+        afterPradamaiDayparseWeb()
+        pradamaiDayparseWeb()
+        nextDayparseWeb()
+        parseWeb()
+
+        val calen = Calendar.getInstance()
+        val hourtoMinInt = calen.get(Calendar.HOUR_OF_DAY) * 60
+        // println("hourtoMinInt : $hourtoMinInt")
+        val minutesInt = calen.get(Calendar.MINUTE)
+        // println("minutesInt : $minutesInt")
+        nowTimeInMinutes = hourtoMinInt + minutesInt
+        // println("nowTimeInMinutes : $nowTimeInMinutes")
+
+
+        // create an OnDateSetListener
+        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            cal.set(Calendar.YEAR, year)
+            cal.set(Calendar.MONTH, monthOfYear)
+            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateDateInView()
+        }
+
+        changeDateBtn!!.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
+                clearAllData()
+                DatePickerDialog(this@TharoPanchangamActivity,
+                    dateSetListener,
+                    // set DatePickerDialog to point to today's date when it loads up
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH)).show()
+            }
+
+        })
+        binding.textViewDate1.addTextChangedListener { editable ->
+            todThitgi = ""
+            afterPradamaiDayparseWeb()
+            pradamaiDayparseWeb()
+            nextDayparseWeb()
+            parseWeb()
+        }
+
+        proceed.setOnClickListener {
+            val intent = Intent(this, AnsestorDataActivity :: class.java)
+            intent.putExtra("Naal",dateText.text.toString())
+            intent.putExtra("Idam",place)
+            intent.putExtra("TamilYear",shakaSamvat)
+            intent.putExtra("Ayanamm",vedicAyana)
+            intent.putExtra("KAALAM",vedicRithu)
+            intent.putExtra("RASEEE",suryaRasi)
+            intent.putExtra("BAKKSHAMM",paksha)
+            intent.putExtra("TODAYSTHITHI",ThithiGlobal)
+            intent.putExtra("KIZHAMAAII",weekDay)
+            intent.putExtra("NAKSM",naksha)
+            intent.putExtra("YGM",yoga)
+            intent.putExtra("KRNM",karana)
+            saveRadioState()
+            startActivity(intent)
+        }
+
+        rg1.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.radio1G1 -> {
+                    rbFLiving.setTextColor(Color.BLUE)
+                    rbFLiving.setTypeface(null, Typeface.BOLD)
+                    rbFDeceased.setTextColor(Color.BLACK)
+                    rbFDeceased.setTypeface(null, Typeface.NORMAL)
+                    fatherLive = "Living"
+                    // println("fatherLive =  $fatherLive")
+                    rg2.visibility = View.VISIBLE
+                    rg3.visibility = View.INVISIBLE
+                    rg4.visibility = View.INVISIBLE
+                    proceed.visibility = View.INVISIBLE
+                }
+                R.id.radio2G1 -> {
+                    rbFLiving.setTextColor(Color.BLACK)
+                    rbFLiving.setTypeface(null, Typeface.NORMAL)
+                    rbFDeceased.setTextColor(Color.RED)
+                    rbFDeceased.setTypeface(null, Typeface.BOLD)
+                    fatherLive = "Deceased"
+                    // println("fatherLive =  $fatherLive")
+                    rg2.visibility = View.VISIBLE
+                    rg3.visibility = View.INVISIBLE
+                    rg4.visibility = View.INVISIBLE
+                    proceed.visibility = View.INVISIBLE
+                    //  updateDateInView()
+                }
+            }
+        }
+
+        rg2.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.radio1G2 -> {
+                    rbMLiving.setTextColor(Color.BLUE)
+                    rbMLiving.setTypeface(null, Typeface.BOLD)
+                    rbMDeceased.setTextColor(Color.BLACK)
+                    rbMDeceased.setTypeface(null, Typeface.NORMAL)
+                    motherLive = "Living"
+                    // println("motherLive =  $motherLive")
+                    rg2.isSaveEnabled
+                    rg3.visibility = View.VISIBLE
+                    rg4.visibility = View.INVISIBLE
+                    proceed.visibility = View.INVISIBLE
+                }
+                R.id.radio2G2 -> {
+                    rbMLiving.setTextColor(Color.BLACK)
+                    rbMLiving.setTypeface(null, Typeface.NORMAL)
+                    rbMDeceased.setTextColor(Color.RED)
+                    rbMDeceased.setTypeface(null, Typeface.BOLD)
+                    motherLive = "Deceased"
+                    // println("motherLive =  $motherLive")
+                    rg2.isSaveEnabled
+                    rg3.visibility = View.VISIBLE
+                    rg4.visibility = View.INVISIBLE
+                    proceed.visibility = View.INVISIBLE
+                }
+            }
+        }
+
+        rg3.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.radio1G3 -> {
+                    rbMMLiving.setTextColor(Color.BLUE)
+                    rbMMLiving.setTypeface(null, Typeface.BOLD)
+                    rbMMDeceased.setTextColor(Color.BLACK)
+                    rbMMDeceased.setTypeface(null, Typeface.NORMAL)
+                    motherMotherLive = "Living"
+                    // println("motherMotherLive =  $motherMotherLive")
+                    rg3.isSaveEnabled
+                    rg4.visibility = View.VISIBLE
+                    proceed.visibility = View.INVISIBLE
+                }
+                R.id.radio2G3 -> {
+                    rbMMLiving.setTextColor(Color.BLACK)
+                    rbMMLiving.setTypeface(null, Typeface.NORMAL)
+                    rbMMDeceased.setTextColor(Color.RED)
+                    rbMMDeceased.setTypeface(null, Typeface.BOLD)
+                    motherMotherLive = "Deceased"
+                    // println("motherMotherLive =  $motherMotherLive")
+                    rg3.isSaveEnabled
+                    rg4.visibility = View.VISIBLE
+                    proceed.visibility = View.INVISIBLE
+                }
+            }
+        }
+
+        rg4.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.radio1G4 -> {
+                    rbFMLiving.setTextColor(Color.BLUE)
+                    rbFMLiving.setTypeface(null, Typeface.BOLD)
+                    rbFMDeceased.setTextColor(Color.BLACK)
+                    rbFMDeceased.setTypeface(null, Typeface.NORMAL)
+                    fatherMotherLive = "Living"
+                    // println("fatherMotherLive =  $fatherMotherLive")
+                    rg4.isSaveEnabled
+                    proceed.visibility = View.VISIBLE
+                }
+                R.id.radio2G4 -> {
+                    rbFMLiving.setTextColor(Color.BLACK)
+                    rbFMLiving.setTypeface(null, Typeface.NORMAL)
+                    rbFMDeceased.setTextColor(Color.RED)
+                    rbFMDeceased.setTypeface(null, Typeface.BOLD)
+                    fatherMotherLive  = "Deceased"
+                    // println("fatherMotherLive =  $fatherMotherLive")
+                    rg4.isSaveEnabled
+                    proceed.visibility = View.VISIBLE
+                }
+            }
+        }
+        afterPradamaiDayparseWeb()
+        pradamaiDayparseWeb()
+        nextDayparseWeb()
+        parseWeb()
+
+    }
+   /* fun setDefaults(key: String, value: String, context: Context) {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val editor = preferences.edit()
+        editor.putString(key, value)
+        editor.apply()
+    }
+    fun getDefaults(key: String, context: Context): Editable {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        return (preferences.getString(key, null)) as Editable
+    }
+    fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }*/
+    private fun loadData() {
+        var rbFLiving = this.findViewById<RadioButton>(R.id.radio1G1)
+        var rbFDeceased = this.findViewById<RadioButton>(R.id.radio2G1)
+        var rbMLiving = this.findViewById<RadioButton>(R.id.radio1G2)
+        var rbMDeceased = this.findViewById<RadioButton>(R.id.radio2G2)
+        var rbMMLiving = this.findViewById<RadioButton>(R.id.radio1G3)
+        var rbMMDeceased = this.findViewById<RadioButton>(R.id.radio2G3)
+        var rbFMLiving = this.findViewById<RadioButton>(R.id.radio1G4)
+        var rbFMDeceased = this.findViewById<RadioButton>(R.id.radio2G4)
+
+        val settings = getSharedPreferences("Answer",0)
+        if (settings.getBoolean("question1A", rbFLiving.isChecked)){
+            rbFLiving.isChecked = settings.getBoolean("question1A",false)
+            fatherLive = "Living"
+        }
+        if (settings.getBoolean("question1B", rbFDeceased.isChecked)){
+            rbFDeceased.isChecked = settings.getBoolean("question1B", false)
+            fatherLive = "Deceased"
+        }
+        if (settings.getBoolean("question2A", rbMLiving.isChecked)){
+            rbMLiving.isChecked = settings.getBoolean("question2A", false)
+            motherLive = "Living"
+        }
+        if (settings.getBoolean("question2B", rbMDeceased.isChecked)){
+            rbMDeceased.isChecked = settings.getBoolean("question2B", false)
+            motherLive = "Deceased"
+        }
+        if (settings.getBoolean("question3A", rbMMLiving.isChecked)){
+            rbMMLiving.isChecked = settings.getBoolean("question3A", false)
+            motherMotherLive = "Living"
+        }
+        if (settings.getBoolean("question3B", rbMMDeceased.isChecked)){
+            rbMMDeceased.isChecked = settings.getBoolean("question3B", false)
+            motherMotherLive = "Deceased"
+        }
+        if (settings.getBoolean("question4A", rbFMLiving.isChecked)){
+            rbFMLiving.isChecked = settings.getBoolean("question4A", false)
+            fatherMotherLive = "Living"
+        }
+        if (settings.getBoolean("question4B", rbFMDeceased.isChecked)){
+            rbFMDeceased.isChecked = settings.getBoolean("question4B", false)
+            fatherMotherLive  = "Deceased"
+        }
+    }
+
+    private fun saveRadioState() {
+        var rbFLiving = this.findViewById<RadioButton>(R.id.radio1G1)
+        var rbFDeceased = this.findViewById<RadioButton>(R.id.radio2G1)
+        var rbMLiving = this.findViewById<RadioButton>(R.id.radio1G2)
+        var rbMDeceased = this.findViewById<RadioButton>(R.id.radio2G2)
+        var rbMMLiving = this.findViewById<RadioButton>(R.id.radio1G3)
+        var rbMMDeceased = this.findViewById<RadioButton>(R.id.radio2G3)
+        var rbFMLiving = this.findViewById<RadioButton>(R.id.radio1G4)
+        var rbFMDeceased = this.findViewById<RadioButton>(R.id.radio2G4)
+
+        val settings = getSharedPreferences("Answer",0)
+        val editor = settings.edit()
+        editor.putBoolean("question1A", rbFLiving.isChecked)
+        editor.putBoolean("question1B", rbFDeceased.isChecked)
+        editor.putBoolean("question2A", rbMLiving.isChecked)
+        editor.putBoolean("question2B", rbMDeceased.isChecked)
+        editor.putBoolean("question3A", rbMMLiving.isChecked)
+        editor.putBoolean("question3B", rbMMDeceased.isChecked)
+        editor.putBoolean("question4A", rbFMLiving.isChecked)
+        editor.putBoolean("question4B", rbFMDeceased.isChecked)
+        editor.apply()
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private fun updateDateInView() {
+        val myFormat = "dd/MM/yyyy"
+        val sdf = SimpleDateFormat(myFormat, Locale.getDefault()) // Use Locale.getDefault()
+        binding.textViewDate1.text = sdf.format(cal.time) // Remove safe call
+        dateNow = binding.textViewDate1.text.toString() // Remove safe call
+        // println("dateNow : $dateNow")
+    }
+
+  /*
+        val cal1 = Calendar.getInstance()
+        val sdf1 = SimpleDateFormat("dd/MM/yyyy")
+        cal1.time = sdf1.parse(dateNow)// all done
+        // add 1 day to the calendar
+        cal1.add(Calendar.DATE, 1)
+        // println("cal1 : $cal1")
+        // System.out.println("1 day later: " + cal1.time)
+        nextdy = sdf.format(cal1.time)
+        // println("nextdy : $nextdy")
+*/
+     /*   val cal2 = Calendar.getInstance()
+        val sdf2 = SimpleDateFormat("dd/MM/yyyy")
+        cal2.time = sdf2.parse(dateNow)// all done
+        // add 20 days to the calendar
+        cal2.add(Calendar.DATE, 2)
+        // println("cal2 : $cal2")
+        // System.out.println("2 days later: " + cal2.time)
+        pradamaiDay = sdf.format(cal2.time)
+        // println("pradamaiDay : $pradamaiDay")
+        val cal3 = Calendar.getInstance()
+        val sdf3 = SimpleDateFormat("dd/MM/yyyy")
+        cal3.time = sdf3.parse(dateNow)// all done
+        // add 3 days to the calendar
+        cal3.add(Calendar.DATE, 3)
+        // println("cal3 : $cal3")
+        //System.out.println("AfterPradamaiDay Date: " + cal3.time)
+        afterPradamaiDay = sdf3.format(cal3.time)
+        // println("afterPradamaiDay : $afterPradamaiDay")*/
+
+
+    }
+    private fun pradamaiDayparseWeb() = try {
+        val basicWeb = "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date="
+        val pradamaiDayWeb = (basicWeb + pradamaiDay)
+        // println("pradamaiDayWeb : $pradamaiDayWeb")
+        Jsoup.connect(pradamaiDayWeb).get().run {
+            //select("div.dpPanchangWrapper").forEach {  element ->
+
+            select("div.dpPHeaderWrapper").forEachIndexed { index, element ->
+                val leftData2 = element.select("div.dpPHeaderLeftWrapper")
+                for (key2 in leftData2) {
+                    if (key2.select("div.dpPHeaderLeftContent").hasText()) {
+                        val leftHeaderData2 = key2.text()
+                        // println("leftHeaderData2 : $leftHeaderData2")
+                        val retrivePaksha2 = leftHeaderData2.split(" ")[2]
+                        pradamaiDayPaksha = retrivePaksha2
+                        println("pradamaiDayPaksha : $pradamaiDayPaksha")
+                    }
+                    select("div.dpTableCardWrapper").forEachIndexed { index, element ->
+                        val sunAnchor2 = element.select("div.dpCard.dpFlexEqual")
+                        val dpSunRiseRow2 = sunAnchor2.select("div.dpCardRow")
+
+                        for (key2 in dpSunRiseRow2) {
+                            if (key2.select("span.dpTitle").hasText()) {
+                                val dataSunMoon2 = key2.text()
+                                if (dataSunMoon2.startsWith("Sunrise")) {
+                                    pradamaiDaySunRise = dataSunMoon2
+                                    //println("DataSun:$dataSunMoon")
+                                    //mapPanch.put("SunRise",dataSunMoon)
+                                } else if (dataSunMoon2.startsWith("Sunset")) {
+                                    pradamaiDaySunSet = dataSunMoon2
+                                    //mapPanch.put("SunSet",dataSunMoon)
+                                }
+                            }
+                        }
+                        var isKey2 = false
+                        val anchor2 = element.select("div.dpTableCard")
+                        val dpCardRow2 = anchor2.select("div.dpTableCell")
+                        for (key2 in dpCardRow2) {
+                            if(key2.getElementsByClass("dpTableKey").hasText()){
+                                mapKey2 = key2.getElementsByClass("dpTableKey").text()
+                                isKey2 = true
+                            }
+                            if(key2.getElementsByClass("dpTableValue").hasText()){
+                                if (isKey2 == true) {
+                                    DataList2 = key2.getElementsByClass("dpTableValue").text()
+                                    isKey2 = false
+                                }
+                            }
+                            mapPanch2[mapKey2] = DataList2
+                        }
+                    }
+                    /*  for (key2 in mapPanch2.keys) {
+                          println("pradamaiDayMap2 ---- pradamaiDayKey2 : $key2 value : ${mapPanch2[key2]}")
+                      }*/
+                    //Retrieve pradamaiDay Thithi
+                    val pradamaiDayTithiArr = mapPanch2["Tithi"]!!
+                    // println("pradamaiDayTithiArr : $pradamaiDayTithiArr")
+                    val pradamaiDayThithee = pradamaiDayTithiArr.split(" upto ")[0]
+                    // println("pradamaiDayThithee : $pradamaiDayThithee")
+                    val pradamaiDayTitiUpto0 = pradamaiDayTithiArr.split(" upto ")[1]
+                    // println("pradamaiDayTitiUpto0 : $pradamaiDayTitiUpto0")
+                    if ((pradamaiDayTithiArr.split(" ")[0]) == "Full") {
+                        pradamaiThithiUptoInMinutes = afterPradamaiSRiseHrAndMinConvInMinutes
+                    }
+                    if ((pradamaiDayTithiArr.split(" ")[0]) != "Full"){
+                        val pradmaiDayselectTimeOnly = pradamaiDayTitiUpto0.trim().split(" ")[0]
+                        // println("pradmaiDayselectTimeOnly : $pradmaiDayselectTimeOnly")
+                        pradamaiDayTitiUptoHrOnly = pradmaiDayselectTimeOnly.split(":")[0].toInt()
+                        // println("pradamaiDayTitiUptoHrOnly : $pradamaiDayTitiUptoHrOnly")
+                        val pradamaiDayTitiUptoMinutesOnly = pradmaiDayselectTimeOnly.split(":")[1].toInt()
+                        // println("pradamaiDayTitiUptoMinutesOnly : $pradamaiDayTitiUptoMinutesOnly")
+                        if (pradamaiDayTitiUpto0.split(" ")[1] == "PM"){
+                            pradamaiThithiUptoInMinutes = ((pradamaiDayTitiUptoHrOnly + 12 + 1440) * 60) + pradamaiDayTitiUptoMinutesOnly
+                        }
+                        if (pradamaiDayTitiUpto0.split(" ")[1] == "PM,"){
+                            pradamaiThithiUptoInMinutes =  ((24 * 60) - nowTimeInMinutes) + 1440 + 1440 + ((pradamaiDayTitiUptoHrOnly + 12) * 60) + pradamaiDayTitiUptoMinutesOnly
+                        }
+                        if (pradamaiDayTitiUpto0.split(" ")[1] == "AM"){
+                            pradamaiThithiUptoInMinutes = ((pradamaiDayTitiUptoHrOnly + 0 + 1440) * 60) + pradamaiDayTitiUptoMinutesOnly
+                        }
+                        if (pradamaiDayTitiUpto0.split(" ")[1] == "AM,"){
+                            if (pradamaiDayTitiUptoHrOnly == 12){
+                                pradamaiThithiUptoInMinutes = ((24 * 60) - nowTimeInMinutes) + 1440 + 1440 + pradamaiDayTitiUptoMinutesOnly
+                            }else {
+                                pradamaiThithiUptoInMinutes =
+                                    ((24 * 60) - nowTimeInMinutes) + ((pradamaiDayTitiUptoHrOnly + 0 + 1440) * 60) + pradamaiDayTitiUptoMinutesOnly
+                            }
+                        }
+                    }
+                    println("pradamaiDayTitiUptoHrOnly : $pradamaiDayTitiUptoHrOnly")
+                    println("pradamaiThithiUptoInMinutes : $pradamaiThithiUptoInMinutes")
+
+                    pradamaiTithiValue = pradamaiDayThithee
+                    // println("pradamaiTithiValue : $pradamaiTithiValue")
+                    pradamaiDayThithiValue = pradamaiTithiValue
+                    if (pradamaiDayThithiValue.contains("Amavasya")) {
+                        pradamaiDayThithi = "அமாவாஸ்யா"
+                    } else if (pradamaiDayThithiValue.contains("Pratipada")) {
+                        pradamaiDayThithi = "பிரதமை"
+                    } else if (pradamaiDayThithiValue.contains("Dwitiya")) {
+                        pradamaiDayThithi = "த்விதியை"
+                    } else if (pradamaiDayThithiValue.contains("Tritiya")) {
+                        pradamaiDayThithi = "த்ருதியை"
+                    } else if (pradamaiDayThithiValue.contains("Chaturthi")) {
+                        pradamaiDayThithi = "சதுர்தி"
+                    } else if (pradamaiDayThithiValue.contains("Panchami")) {
+                        pradamaiDayThithi = "பஞ்சமி"
+                    } else if (pradamaiDayThithiValue.contains("Shashthi")) {
+                        pradamaiDayThithi = "ஷஷ்டி"
+                    } else if (pradamaiDayThithiValue.contains("Saptami")) {
+                        pradamaiDayThithi = "ஸப்தமி"
+                    } else if (pradamaiDayThithiValue.contains("Ashtami")) {
+                        pradamaiDayThithi = "அஷ்டமி"
+                    } else if (pradamaiDayThithiValue.contains("Navami")) {
+                        pradamaiDayThithi = "நவமி"
+                    } else if (pradamaiDayThithiValue.contains("Dashami")) {
+                        pradamaiDayThithi = "தஸமி"
+                    } else if (pradamaiDayThithiValue.contains("Ekadashi")) {
+                        pradamaiDayThithi = "ஏகாதஸி"
+                    } else if (pradamaiDayThithiValue.contains("Dwadashi")) {
+                        pradamaiDayThithi = "துவாதஸி"
+                    } else if (pradamaiDayThithiValue.contains("Trayodashi")) {
+                        pradamaiDayThithi = "த்ரயோதஸி"
+                    } else if (pradamaiDayThithiValue.contains("Chaturdashi")) {
+                        pradamaiDayThithi = "சதுர்தஸி"
+                    } else {
+                        pradamaiDayThithi = "பௌர்ணமி"
+                    }
+                    println("pradamaiDayThithi : $pradamaiDayThithi")
+
+                    //Retrieve pradamaiDay SunRise
+                    val pradamaiDaySRise = mapPanch2["Sunrise"]!!
+                    // println("pradamaiDaySRise :  $pradamaiDaySRise")
+
+                    val pradamaiDaySRiseTime = pradamaiDaySRise.split(" ")[0]
+                    // println("pradamaiDaySRiseTime :  $pradamaiDaySRiseTime")
+                    val pradamaiDaySRiseHr = pradamaiDaySRiseTime.split(":")[0].toInt()
+                    // println("pradamaiDaySRiseHr :  $pradamaiDaySRiseHr")
+                    val pradamaiDaySRiseMinutes = pradamaiDaySRiseTime.split(":")[1].toInt()
+                    // println("pradamaiDaySRiseMinutes :  $pradamaiDaySRiseMinutes")
+                    pradamaiDaySRiseInMinutes = pradamaiDaySRiseHr * 60 + pradamaiDaySRiseMinutes
+                    println("pradamaiDaySRiseInMinutes :  $pradamaiDaySRiseInMinutes")
+
+                    /*   //Retrieve pradamaiDaySunSet
+                       val pradamaiDaySSet = mapPanch2["Sunset"]!!
+                       println("pradamaiDaySSet :  $pradamaiDaySSet")
+
+                           val pradamaiDaySSetTime = pradamaiDaySSet.split(" ")[0]
+                           val pradamaiDaySSetHur = pradamaiDaySSetTime.split(":")[0]
+                           println("pradamaiDaySSetHur :  $pradamaiDaySSetHur")
+                           val pradamaiDaySSetMinu = pradamaiDaySSetTime.split(":")[1]
+                           println("pradamaiDaySSetMinu :  $pradamaiDaySSetMinu")
+                           var pradamaiDaySSetHrFinal:Int = 0
+                           pradamaiDaySSetHrFinal = pradamaiDaySSetHur.toInt() + 12
+                           println("pradamaiDaySSetHrFinal :  $pradamaiDaySSetHrFinal")
+                           pradamaiDaySSetInMinutes = pradamaiDaySSetHrFinal * 60 + pradamaiDaySSetMinu.toInt()
+                           println("pradamaiDaySSetInMinutes :  $pradamaiDaySSetInMinutes")*/
+                }
+            }
+        }
+        // println("pradamaiDayFinished")
+    } catch (e: Exception) {
+        println(e)
+    }
+
+    private fun afterPradamaiDayparseWeb() = try {
+        val basicWeb = "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date="
+        val dayAfterPradamaiDayWeb = (basicWeb + afterPradamaiDay)
+        // println("dayAfterPradamaiDayWeb : $dayAfterPradamaiDayWeb")
+        Jsoup.connect(dayAfterPradamaiDayWeb).get().run {
+            //select("div.dpPanchangWrapper").forEach {  element ->
+
+            select("div.dpPHeaderWrapper").forEachIndexed { index, element ->
+                val leftData3 = element.select("div.dpPHeaderLeftWrapper")
+                for (key3 in leftData3) {
+                    if (key3.select("div.dpPHeaderLeftContent").hasText()) {
+                        val leftHeaderData3 = key3.text()
+                        // println("leftHeaderData3 : $leftHeaderData3")
+                        val retrivePaksha3 = leftHeaderData3.split(" ")[2]
+                        afterPradamaiDayPaksha = retrivePaksha3
+                        println("afterPradamaiDayPaksha : $afterPradamaiDayPaksha")
+                    }
+                    select("div.dpTableCardWrapper").forEachIndexed { index, element ->
+                        val sunAnchor3 = element.select("div.dpCard.dpFlexEqual")
+                        val dpSunRiseRow3 = sunAnchor3.select("div.dpCardRow")
+
+                        for (key3 in dpSunRiseRow3) {
+                            if (key3.select("span.dpTitle").hasText()) {
+                                val dataSunMoon3 = key3.text()
+                                if (dataSunMoon3.startsWith("Sunrise")) {
+                                    afterPradamaiDaySunRise = dataSunMoon3
+                                    //println("DataSun:$dataSunMoon")
+                                    //mapPanch.put("SunRise",dataSunMoon)
+                                } else if (dataSunMoon3.startsWith("Sunset")) {
+                                    afterPradamaiDaySunSet = dataSunMoon3
+                                    //mapPanch.put("SunSet",dataSunMoon)
+                                }
+                            }
+                        }
+                        var isKey3 = false
+                        val anchor3 = element.select("div.dpTableCard")
+                        val dpCardRow3 = anchor3.select("div.dpTableCell")
+                        for (key3 in dpCardRow3) {
+                            if(key3.getElementsByClass("dpTableKey").hasText()) {
+                                mapKey3 = key3.getElementsByClass("dpTableKey").text()
+                                isKey3 = true
+                            }
+                            if(key3.getElementsByClass("dpTableValue").hasText()) {
+                                if (isKey3 == true) {
+                                    DataList3 = key3.getElementsByClass("dpTableValue").text()
+                                    isKey3 = false
+                                }
+                            }
+                            mapPanch3[mapKey3] = DataList3
+                        }
+                    }
+                    /*      for (key3 in mapPanch3.keys) {
+                              println("dayAfterPradamaiMap3 ---- dayAfterPradamaiKey3 : $key3 value : ${mapPanch3[key3]}")
+                          }*/
+                    //Retrieve pradamaiDay SunRise
+                    val afterPradamaiDaySRise = mapPanch3["Sunrise"]!!
+                    // println("afterPradamaiDaySRise :  $afterPradamaiDaySRise")
+
+                    val afterPradamaiDaySRiseTime = afterPradamaiDaySRise.split(" ")[0]
+                    // println("afterPradamaiDaySRiseTime :  $afterPradamaiDaySRiseTime")
+                    val afterPradamaiDaySRiseHour = afterPradamaiDaySRiseTime.split(":")[0].toInt()
+                    // println("afterPradamaiDaySRiseHour :  $afterPradamaiDaySRiseHour")
+                    val afterPradamaiDaySRiseMinutes = afterPradamaiDaySRiseTime.split(":")[1].toInt()
+                    // println("afterPradamaiDaySRiseMinutes :  $afterPradamaiDaySRiseMinutes")
+
+                    afterPradamaiSRiseHrAndMinConvInMinutes = afterPradamaiDaySRiseHour * 60 + afterPradamaiDaySRiseMinutes
+
+                    println("afterPradamaiSRiseHrAndMinConvInMinutes :  $afterPradamaiSRiseHrAndMinConvInMinutes")
+                }
+            }
+        }
+        // println("afterPradamaiDayFinished")
+    } catch (e: Exception) {
+        println(e)
+    }
+    private fun nextDayparseWeb() = try {
+        val basicWeb = "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date="
+        val nextDayWeb = (basicWeb + nextdy)
+        // println("nextDayWeb : $nextDayWeb")
+        Jsoup.connect(nextDayWeb).get().run {
+            select("div.dpPHeaderWrapper").forEachIndexed { index, element ->
+                val leftData4 = element.select("div.dpPHeaderLeftWrapper")
+                for (key4 in leftData4) {
+                    if (key4.select("div.dpPHeaderLeftContent").hasText()) {
+                        val leftHeaderData4 = key4.text()
+                        println("NextDay left Header Data 4 : $leftHeaderData4")
+                        nextDaypakshaValue = leftHeaderData4.split(" ")[3]
+                        nextDaypaksha = nextDaypakshaValue
+                        println("nextDaypaksha : $nextDaypaksha")
+                    }
+                }
+            }
+            select("div.dpTableCardWrapper").forEachIndexed { index, element ->
+              //  val sunAnchor4 = element.select("div.dpCard.dpFlexEqual")
+                /*     val dpSunRiseRow4 = sunAnchor4.select("div.dpCardRow")
+                     for (key4a in dpSunRiseRow4) {
+                         if (key4a.select("span.dpTitle").hasText()) {
+                             val dataSunMoon4 = key4a.text()
+                             println("dataSunMoon4 : $dataSunMoon4")
+                             if (dataSunMoon4.startsWith("Sunrise")) {
+                                 nextDaysunRise = dataSunMoon4
+                             } else if (dataSunMoon4.startsWith("Sunset")) {
+                                 nextDaysunSet = dataSunMoon4
+                             } else if (dataSunMoon4.startsWith("Moonrise")) {
+                             } else if (dataSunMoon4.startsWith("Moonset")) {
+                             }
+                         }
+                     }
+                println("nextDaysunRise : $nextDaysunRise")*/
+                var isKey4 = false
+                val anchor4 = element.select("div.dpTableCard")
+                val dpCardRow4 = anchor4.select("div.dpTableCell")
+                for (key4 in dpCardRow4) {
+                    if (key4.getElementsByClass("dpTableKey").hasText()){
+                        mapKey4 = key4.getElementsByClass("dpTableKey").text()
+                        isKey4 = true
+                    }
+                    if (key4.getElementsByClass("dpTableValue").hasText()){
+                        if (isKey4 == true) {
+                            DataList4 = key4.getElementsByClass("dpTableValue").text()
+                            isKey4 = false
+                        }
+                    }
+                    mapPanch4[mapKey4] = DataList4
+                }
+            }
+            /*   for (key4 in mapPanch4.keys) {
+                   println("nextDayMap4 ---- nextDayKey4 : $key4 value : ${mapPanch4[key4]}")
+               }*/
+            //Retrieve nextDay Thithi
+            val nextDayTithiNew = mapPanch4["Tithi"]!!
+            println("nextDayTithiNew : $nextDayTithiNew")
+            val nextDayTitiUpto0 = nextDayTithiNew.split(" upto ")[1]
+            println("nextDayTitiUpto0 : $nextDayTitiUpto0")
+            if ((nextDayTitiUpto0.split(" ")[0]) == "Full"){
+                nextDayTithiHrToMin = pradamaiDaySRiseInMinutes
+            }
+            if ((nextDayTitiUpto0.split(" ")[0]) != "Full"){
+                val nextDayselectTimeOnely = nextDayTitiUpto0.trim().split(" ")[0]
+                println("nextDayselectTimeOnely : $nextDayselectTimeOnely")
+                nextDayTitiUptoHrOnly = nextDayselectTimeOnely.split(":")[0].toInt()
+                println("nextDayTitiUptoHrOnly : $nextDayTitiUptoHrOnly")
+                val nextDayTitiUptoMinutesOnly = nextDayselectTimeOnely.split(":")[1].toInt()
+                println("nextDayTitiUptoMinutesOnly : $nextDayTitiUptoMinutesOnly")
+                if (nextDayTitiUpto0.split(" ")[1] == "PM"){
+                    nextDayTithiHrToMin = ((nextDayTitiUptoHrOnly + 12) * 60) + nextDayTitiUptoMinutesOnly
+                }
+                if (nextDayTitiUpto0.split(" ")[1] == "PM,"){
+                    nextDayTithiHrToMin =  ((24 * 60) - nowTimeInMinutes) + 1440 + ((nextDayTitiUptoHrOnly + 12) * 60) + nextDayTitiUptoMinutesOnly
+                }
+                if (nextDayTitiUpto0.split(" ")[1] == "AM"){
+                    nextDayTithiHrToMin = ((nextDayTitiUptoHrOnly + 0) * 60) + nextDayTitiUptoMinutesOnly
+                }
+                if (nextDayTitiUpto0.split(" ")[1] == "AM,"){
+                    if (nextDayTitiUptoHrOnly == 12){
+                        nextDayTithiHrToMin = ((24 * 60) - nowTimeInMinutes) + 1440  + nextDayTitiUptoMinutesOnly
+                    }else {
+                        nextDayTithiHrToMin =
+                            ((24 * 60) - nowTimeInMinutes) + ((nextDayTitiUptoHrOnly + 0) * 60) + nextDayTitiUptoMinutesOnly
+                    }
+                }
+            }
+            println("nextDayTithiHrToMin : $nextDayTithiHrToMin")
+
+            thithiValuex = nextDayTithiNew.split(" upto ")[0]
+            // println("thithiValuex : $thithiValuex")
+            if (thithiValuex.contains("Amavasya")) {
+                NextDayThithi = "அமாவாஸ்யா"
+            } else if (thithiValuex.contains("Pratipada")) {
+                NextDayThithi = "பிரதமை"
+            } else if (thithiValuex.contains("Dwitiya")) {
+                NextDayThithi = "த்விதியை"
+            } else if (thithiValuex.contains("Tritiya")) {
+                NextDayThithi = "த்ருதியை"
+            } else if (thithiValuex.contains("Chaturthi")) {
+                NextDayThithi = "சதுர்தி"
+            } else if (thithiValuex.contains("Panchami")) {
+                NextDayThithi = "பஞ்சமி"
+            } else if (thithiValuex.contains("Shashthi")) {
+                NextDayThithi = "ஷஷ்டி"
+            } else if (thithiValuex.contains("Saptami")) {
+                NextDayThithi = "ஸப்தமி"
+            } else if (thithiValuex.contains("Ashtami")) {
+                NextDayThithi = "அஷ்டமி"
+            } else if (thithiValuex.contains("Navami")) {
+                NextDayThithi = "நவமி"
+            } else if (thithiValuex.contains("Dashami")) {
+                NextDayThithi = "தஸமி"
+            } else if (thithiValuex.contains("Ekadashi")) {
+                NextDayThithi = "ஏகாதஸி"
+            } else if (thithiValuex.contains("Dwadashi")) {
+                NextDayThithi = "துவாதஸி"
+            } else if (thithiValuex.contains("Trayodashi")) {
+                NextDayThithi = "த்ரயோதஸி"
+            } else if (thithiValuex.contains("Chaturdashi")) {
+                NextDayThithi = "சதுர்தஸி"
+            } else {
+                NextDayThithi = "பௌர்ணமி"
+            }
+            println("NextDayThithi : $NextDayThithi")
+
+            //Retrieve Next Day SunRise
+            val nextDaySRise = mapPanch4["Sunrise"]!!
+            println("nextDaySRise :  $nextDaySRise")
+
+            val nextDaySRiseTime = nextDaySRise.split(" ")[0]
+            // println("nextDaySRiseTime :  $nextDaySRiseTime")
+            val nextDaySRiseHr = nextDaySRiseTime.split(":")[0].toInt()
+            // println("nextDaySRiseHr :  $nextDaySRiseHr")
+            val nextDaySRiseHMinutes = nextDaySRiseTime.split(":")[1].toInt()
+            // println("nextDaySRiseHMinutes :  $nextDaySRiseHMinutes")
+            NextDaySunRiseTime = (nextDaySRiseHr * 60) + nextDaySRiseHMinutes
+            println("NextDaySunRiseTime :  $NextDaySunRiseTime")
+            /*
+                        //Retrieve nextDaySunSet
+                        val nextDaySSet = mapPanch4["Sunset"]!!
+                        println("nextDaySSet :  $nextDaySSet")
+                        val nextDaySSetTime = nextDaySSet.split(" ")[0]
+                        val nextDaySSetHur = nextDaySSetTime.split(":")[0]
+                        println("nextDaySSetHur :  $nextDaySSetHur")
+                        val nextDaySSetMinu = nextDaySSetTime.split(":")[1]
+                        println("nextDaySSetMinu :  $nextDaySSetMinu")
+                        var nextDaySSetHrFinal:Int = 0
+                        nextDaySSetHrFinal = nextDaySSetHur.toInt() + 12
+                        println("nextDaySSetHrFinal :  $nextDaySSetHrFinal")
+                        nextDaySSetInMinutes = nextDaySSetHrFinal * 60 + nextDaySSetMinu.toInt()
+                        println("nextDaySSetInMinutes :  $nextDaySSetInMinutes")
+            */
+            val nextDaySunNakshtra1 = mapPanch4["Nakshatra"]
+            println("nextDaySunNakshtra1 : $nextDaySunNakshtra1")
+            nextDayNakshatra = nextDaySunNakshtra1!!.split(" upto ")[0]
+            println("nextDayNakshatra : $nextDayNakshatra")
+
+            //Retrieve Karana
+            val nextDayKarnm1 = mapPanch4["Karana"]
+            println("nextDayKarnm1 : $nextDayKarnm1")
+            nextDayKarnam = nextDayKarnm1!!.split(" upto ")[0]
+            println("nextDayKarnam : $nextDayKarnam")
+
+            //Retrieve Yogam
+            val nextDayYog0 = mapPanch4["Yoga"]
+            nextDayYogam = nextDayYog0!!.split(" ")[0]
+            println("nextDayYogam : $nextDayYogam")
+        }
+        // println("Finished")
+    } catch (e: Exception) {
+        println(e)
+    }
+    @Suppress("SENSELESS_COMPARISON")
+    private fun parseWeb() = try {
+        val basicWeb = "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date="
+        val todayWeb = (basicWeb + dateNow)
+        // println("todayWeb : $todayWeb")
+        Jsoup.connect(todayWeb).get().run {
+            select("div.dpPHeaderWrapper").forEachIndexed { index, element ->
+                val leftData = element.select("div.dpPHeaderLeftWrapper")
+                for (key1 in leftData){
+                    if (key1.select("div.dpPHeaderLeftContent").hasText()) {
+                        val leftHeaderData = key1.text()
+                        println("leftHeaderData : $leftHeaderData")
+                        TodayThithi = leftHeaderData.split(" ")[1]
+                        println("TodayThithi(No Dict) : $TodayThithi")
+                        todaypakshaValue = leftHeaderData.split(" ")[2]
+                        println("todaypakshaValue :$todaypakshaValue")
+                        if (TodayThithi == "Purnima" || TodayThithi == "பௌர்ணமி") {
+                            todayPaksha = nextDaypaksha
+                        } else {
+                            todayPaksha = todaypakshaValue
+                        }
+                        // println("todayPaksha :$todayPaksha")
+                        if (todayPaksha =="Shukla") {
+                            paksha = "சுக்ல"
+                        }
+                        if (todayPaksha =="Krishna"){
+                            paksha = "க்ருஷ்ண"
+                        }
+                        println("paksha :$paksha")
+                        println("nextDaypaksha :$nextDaypaksha")
+
+                        place = "சென்னை, இந்தியா"
+                        println("place : $place")
+                    }
+                }
+                val rightData = element.select("div.dpPHeaderRightContent")
+                for (key2 in rightData){
+                    if (key2.select("div.dpPHeaderRightContent").hasText()) {
+                        val rightHeaderData = key2.text()
+                        // println("rightHeaderData : $rightHeaderData")
+
+                        dateToday = rightHeaderData
+                        println("dateToday : $dateToday")
+
+                    }
+                }
+            }
+            select("div.dpTableCardWrapper").forEachIndexed { index, element ->
+                val sunAnchor = element.select("div.dpCard.dpFlexEqual")
+                val dpSunRiseRow = sunAnchor.select("div.dpCardRow")
+
+                for (key in dpSunRiseRow) {
+                    if (key.select("span.dpTitle").hasText()) {
+                        val dataSunMoon = key.text()
+                        if (dataSunMoon.startsWith("Sunrise")) {
+                            sunRise = dataSunMoon
+                            //println("DataSun:$dataSunMoon")
+                            //mapPanch.put("SunRise",dataSunMoon)
+                        } else if (dataSunMoon.startsWith("Sunset")) {
+                            sunSet = dataSunMoon
+                            //mapPanch.put("SunSet",dataSunMoon)
+                        }
+                    }
+                }
+                var isKey = false
+                val anchor1 = element.select("div.dpTableCard")
+                val dpCardRow1 = anchor1.select("div.dpTableCell")
+                for (key in dpCardRow1) {
+                    if (key.getElementsByClass("dpTableKey").hasText()){
+                        mapKey = key.getElementsByClass("dpTableKey").text()
+                        isKey = true
+                    }
+                    if (key.getElementsByClass("dpTableValue").hasText()){
+                        if (isKey == true) {
+                            DataList = key.getElementsByClass("dpTableValue").text()
+                            isKey = false
+                        }
+                    }
+                    mapPanch[mapKey] = DataList
+                }
+            }
+            /*  for (key in mapPanch.keys) {
+                  println("Map ---- Key : $key value : ${mapPanch[key]}")
+              }*/
+
+            //Retrieve Sun Rasi
+            val suRasi0A = mapPanch["Sunsign"/* - Surya Rashi*/]
+            // println("suRasi0 : $suRasi0A")
+            val suRasi0 = suRasi0A!!.split(" ")[0]
+            if (suRasi0.contains("Dhanu")){
+                suryaRasi = "தநுர் (மார்கழி)"
+                vedicRithu = "ஹேமந்த"
+            }
+            if (suRasi0.contains("Makara")){
+                suryaRasi = "மகர (தை)"
+                vedicRithu = "ஹேமந்த"
+            }
+            if (suRasi0.contains("Kumbha")){
+                suryaRasi = "கும்ப (மாசி)"
+                vedicRithu = "சிசிர"
+            }
+            if (suRasi0.contains("Meena")){
+                suryaRasi = "மீன (பங்குனி)"
+                vedicRithu = "சிசிர"
+            }
+            if (suRasi0.contains("Mesha")){
+                suryaRasi = "மேஷ (சித்திரை)"
+                vedicRithu = "வஸந்த"
+            }
+            if (suRasi0.contains("Vrishabha")){
+                suryaRasi = "வ்ருஷப (வைகாசி)"
+                vedicRithu = "வஸந்த"
+            }
+            if (suRasi0.contains("Mithuna")){
+                suryaRasi = "மிதுன (ஆனி)"
+                vedicRithu = "க்ரீஷ்ம"
+            }
+            if (suRasi0.contains("Karka")){
+                suryaRasi = "கர்கட (ஆடி)"
+                vedicRithu = "க்ரீஷ்ம"
+            }
+            if (suRasi0.contains("Simha")){
+                suryaRasi = "ஸிம்ஹ (ஆவணி)"
+                vedicRithu = "வர்ஷ"
+            }
+            if (suRasi0.contains("Kanya")){
+                suryaRasi = "கன்யா (புரட்டாசி)"
+                vedicRithu = "வர்ஷ"
+            }
+            if (suRasi0.contains("Tula")){
+                suryaRasi = "துலா (ஐப்பசி)"
+                vedicRithu = "சரத்"
+            }
+            if (suRasi0.contains("Vrishchika")){
+                suryaRasi = "வ்ருச்சிக (கார்த்திகை)"
+                vedicRithu = "சரத்"
+            }
+            println("suryaRasi : $suryaRasi")
+            println("vedicRithu : $vedicRithu")
+
+            //Retrieve Tamil Year
+            val tamyear = mapPanch["Shaka Samvat"]
+            // println("tamyear : $tamyear")
+            val tamYrValue = tamyear!!.split(" ")[1]
+            // println("tamYrValue : $tamYrValue")
+            if (tamYrValue.contains("Hemalambi")){ shakaSamvat = "ஹேவிளம்பி" }
+            if (tamYrValue.contains("Vilambi")){ shakaSamvat = "விளம்பி" }
+            if (tamYrValue.contains("Vikari")){ shakaSamvat = "விகாரி" }
+            if (tamYrValue.contains("Sharvari")){shakaSamvat = "சார்வரி" }
+            if (tamYrValue.contains("Plava")){ shakaSamvat = "பிலவ" }
+            if (tamYrValue.contains("Shubhakrit")){ shakaSamvat = "சுபகிருது" }
+            if (tamYrValue.contains("Shobhakrit")){ shakaSamvat = "சோபகிருது" }
+            if (tamYrValue.contains("Krodhi")){ shakaSamvat = "குரோதி" }
+            if (tamYrValue.contains("Vishvavasu")){ shakaSamvat = "விசுவாசுவ" }
+            if (tamYrValue.contains("Parabhava")){ shakaSamvat = "பரபாவ" }
+            if (tamYrValue.contains("Plavanga")){ shakaSamvat = "பிலவங்க" }
+            if (tamYrValue.contains("Kilaka")){ shakaSamvat = "கீலக" }
+            if (tamYrValue.contains("Saumya")){ shakaSamvat = "சௌமிய" }
+            if (tamYrValue.contains("Sadharana")){ shakaSamvat = "சாதாரண" }
+            if (tamYrValue.contains("Sadharana")){ shakaSamvat = "விரோதகிருது" }
+            if (tamYrValue.contains("Paridhavi")){ shakaSamvat = "பரிதாபி" }
+            if (tamYrValue.contains("Pramathi")){ shakaSamvat = "பிரமாதீச" }
+            if (tamYrValue.contains("Aananda")){ shakaSamvat = "ஆனந்த" }
+            if (tamYrValue.contains("Rakshasa")){ shakaSamvat = "ராட்சச" }
+            if (tamYrValue.contains("Nala")){ shakaSamvat = "நள" }
+            if (tamYrValue.contains("Pingala")){ shakaSamvat = "பிங்கள" }
+            if (tamYrValue.contains("Kala")){ shakaSamvat = "காளயுக்தி" }
+            if (tamYrValue.contains("Siddhartha")){ shakaSamvat = "சித்தார்த்தி" }
+            if (tamYrValue.contains("Raudra")){ shakaSamvat = "ரௌத்திரி" }
+            if (tamYrValue.contains("Durmati")){ shakaSamvat = "துன்மதி" }
+            if (tamYrValue.contains("Dundubhi")){ shakaSamvat = "துந்துபி" }
+            if (tamYrValue.contains("Rudhirodgari")){ shakaSamvat = "ருத்ரோத்காரி" }
+            if (tamYrValue.contains("Raktakshi")){ shakaSamvat = "ரக்தாட்சி" }
+            if (tamYrValue.contains("Krodhana")){ shakaSamvat = "குரோதன" }
+            if (tamYrValue.contains("Kshaya")){ shakaSamvat = "அட்சய" }
+            if (tamYrValue.contains("Prabhava")){ shakaSamvat = "பிரபவ" }
+            if (tamYrValue.contains("Vibhava")){ shakaSamvat = "விபவ" }
+            if (tamYrValue.contains("Shukla")){ shakaSamvat = "சுக்ல" }
+            if (tamYrValue.contains("Pramoda")){ shakaSamvat = "பிரமோதூத" }
+            if (tamYrValue.contains("Prajapati")){ shakaSamvat = "பிரசோற்பத்தி" }
+            if (tamYrValue.contains("Angira")){ shakaSamvat = "ஆங்கீரச" }
+            if (tamYrValue.contains("Shrimukha")){ shakaSamvat = "ஸ்ரீமுக" }
+            if (tamYrValue.contains("Bhava")){ shakaSamvat = "பவ" }
+            if (tamYrValue.contains("Yuva")){ shakaSamvat = "யுவ" }
+            if (tamYrValue.contains("Dhata")){ shakaSamvat = "தாது" }
+            if (tamYrValue.contains("Ishwara")){ shakaSamvat = "ஈஸ்வர" }
+            if (tamYrValue.contains("Bahudhanya")){ shakaSamvat = "வெகுதானிய" }
+            if (tamYrValue.contains("Pramathi")){ shakaSamvat = "பிரமாதி" }
+            if (tamYrValue.contains("Vikrama")){ shakaSamvat = "விக்கிரம" }
+            if (tamYrValue.contains("Vrisha")){ shakaSamvat = "விஷு" }
+            if (tamYrValue.contains("Chitrabhanu")){ shakaSamvat = "சித்திரபானு" }
+            if (tamYrValue.contains("Subhanu")){ shakaSamvat = "சுபானு" }
+            if (tamYrValue.contains("Tarana")){ shakaSamvat = "தாரண" }
+            if (tamYrValue.contains("Parthiva")){ shakaSamvat = "பார்த்திப" }
+            if (tamYrValue.contains("Vyaya")){ shakaSamvat = "விய" }
+            if (tamYrValue.contains("Sarvajit")){shakaSamvat = "சர்வசித்து" }
+            if (tamYrValue.contains("Sarvadhari")){ shakaSamvat = "சர்வதாரி" }
+            if (tamYrValue.contains("Virodhi")){ shakaSamvat = "விரோதி" }
+            if (tamYrValue.contains("Vikriti")){ shakaSamvat = "விக்ருதி" }
+            if (tamYrValue.contains("Khara")){ shakaSamvat = "கர" }
+            if (tamYrValue.contains("Nandana")){ shakaSamvat = "நந்தன" }
+            if (tamYrValue.contains("Vijaya")){ shakaSamvat = "விஜய" }
+            if (tamYrValue.contains("Jaya")){ shakaSamvat = "ஜய" }
+            if (tamYrValue.contains("Manmatha")){ shakaSamvat = "மன்மத" }
+            if (tamYrValue.contains("Durmukha")){ shakaSamvat = "துன்முகி" }
+            println("shakaSamvat(Year) : $shakaSamvat")
+
+            //Retrieve Yogam
+            val yog0 = mapPanch["Yoga"]
+            println("Today yog0 : $yog0")
+            val yogaValue = yog0!!.split(" upto ")[0]
+            println("Today yogaValue : $yogaValue")
+
+            if((yog0.split(" upto ")[1] != "") && (yog0.split(" ")[1] == "Full")){
+                todayYogaUptoInMinutesM = NextDaySunRiseTime
+            }
+            if ((yog0.split(" upto ")[1] != "") && (yog0.split(" ")[1] != "Full")){
+                val yogaUptoTimeWithDay = yog0.split(" upto ")[1]
+                // println("yogaUptoTimeWithDay : $yogaUptoTimeWithDay")
+                val yogaUptoTime = yogaUptoTimeWithDay.split(" ")[0]
+                // println("yogaUptoTime : $yogaUptoTime")
+                val yogaUptoHrOnly = yogaUptoTime.split(":")[0].toInt()
+                // println("yogaUptoHrOnly : $yogaUptoHrOnly")
+                val yogaUptoMinutesOnly = yogaUptoTime.split(":")[1].toInt()
+                // println("yogaUptoMinutesOnly : $yogaUptoMinutesOnly")
+                if (yogaUptoTimeWithDay.split(" ")[1] == "PM"){
+                    todayYogaUptoInMinutesM = ((yogaUptoHrOnly + 12) * 60) + yogaUptoMinutesOnly
+                }
+                if (yogaUptoTimeWithDay.split(" ")[1] == "PM,"){
+                    todayYogaUptoInMinutesM =  ((24 * 60) - nowTimeInMinutes) + ((yogaUptoHrOnly + 12) * 60) + yogaUptoMinutesOnly
+                }
+                if (yogaUptoTimeWithDay.split(" ")[1] == "AM"){
+                    todayYogaUptoInMinutesM = ((yogaUptoHrOnly + 0) * 60) + yogaUptoMinutesOnly
+                }
+                if (yogaUptoTimeWithDay.split(" ")[1] == "AM,"){
+                    if (yogaUptoHrOnly == 12){
+                        todayYogaUptoInMinutesM = ((24 * 60) - nowTimeInMinutes) + ((yogaUptoHrOnly - 12) * 60) + yogaUptoMinutesOnly
+                    }else {
+                        todayYogaUptoInMinutesM =
+                            ((24 * 60) - nowTimeInMinutes) + ((yogaUptoHrOnly + 0) * 60) + yogaUptoMinutesOnly
+                    }
+                }
+            }
+            if (todayYogaUptoInMinutesM <= nowTimeInMinutes) {
+                currentYogam = nextDayYogam
+            }else{
+                currentYogam = yogaValue
+            }
+            println("currentYogam : $currentYogam")
+            if (currentYogam.contains("Vishkambha")){ yoga = "விஷ்கம்பா" }
+            if (currentYogam.contains("Priti")){ yoga = "ப்ரீதி" }
+            if (currentYogam.contains("Ayushman")){ yoga = "ஆயுஷ்மான்" }
+            if (currentYogam.contains("Saubhagya")){ yoga = "ஸௌபாக்யா" }
+            if (currentYogam.contains("Shobhana")){ yoga = "ஷோபனா" }
+            if (currentYogam.contains("Atiganda")){ yoga = "அதிகண்டா" }
+            if (currentYogam.contains("Sukarman")){ yoga = "சுகர்மன்" }
+            if (currentYogam.contains("Dhriti")){ yoga = "த்ரீதி" }
+            if (currentYogam.contains("Shula")){ yoga = "ஷூலா" }
+            if (currentYogam.contains("Ganda")){ yoga = "கண்டா" }
+            if (currentYogam.contains("Vriddhi")){ yoga = "வ்ருத்தி" }
+            if (currentYogam.contains("Dhruva")){ yoga = "த்ருவா" }
+            if (currentYogam.contains("Vyaghata")){ yoga = "வ்யாகதா" }
+            if (currentYogam.contains("Harshana")){ yoga = "ஹர்ஷாநா" }
+            if (currentYogam.contains("Vajra")){ yoga = "வஜ்ரா" }
+            if (currentYogam.contains("Siddhi")){ yoga = "ஸித்தி" }
+            if (currentYogam.contains("Vyatipata")){ yoga = "வ்யாதிபாடா" }
+            if (currentYogam.contains("Varigha")){ yoga = "வரீகா" }
+            if (currentYogam.contains("Parigha")){ yoga = "பரீகா" }
+            if (currentYogam.contains("Shiva")){ yoga = "ஷிவா" }
+            if (currentYogam.contains("Siddha")){ yoga = "சித்தா" }
+            if (currentYogam.contains("Sadhya")){ yoga = "சட்யா" }
+            if (currentYogam.contains("Shubha")){ yoga = "ஷுபா" }
+            if (currentYogam.contains("Shukla")){ yoga = "சுக்லா" }
+            if (currentYogam.contains("Brahma")){ yoga = "ப்ரஹ்மா" }
+            if (currentYogam.contains("Indra")){ yoga = "இந்தரா" }
+            if (currentYogam.contains("Vaidhriti")){ yoga = "வைதீரிடீ" }
+            // println("yoga : $yoga")
+
+            //Retrieve Today Thithi
+            tithiNew = mapPanch["Tithi"]!!
+            println("Today Tithi(Dict) : $tithiNew")
+
+            val tThitiAfterUpto = tithiNew.split(" upto ")[1]// + " " + tithiNew.split(" ")[2] + " " +  tithiNew.split(" ")[3]
+            // println("tThitiAfterUpto : $tThitiAfterUpto")
+            if ((tThitiAfterUpto.split(" ")[0]) == "Full") {
+                TodayThithiUptoInMinutesM = NextDaySunRiseTime
+            }
+            if ((tThitiAfterUpto.split(" ")[0]) != "Full") {
+                val selectTimeOnely = tThitiAfterUpto.split(" ")[0]
+                // println("selectTimeOnely : $selectTimeOnely")
+                todatTitiUptoHrOnly = selectTimeOnely.split(":")[0].toInt()
+                // println("todatTitiUptoHrOnly : $todatTitiUptoHrOnly")
+                val tThithiUptoMinutesOnly = selectTimeOnely.split(":")[1].toInt()
+                // println("tThithiUptoMinutesOnly : $tThithiUptoMinutesOnly")
+
+                if (tThitiAfterUpto.split(" ")[1] == "PM"){
+                    TodayThithiUptoInMinutesM = ((todatTitiUptoHrOnly + 12) * 60) + tThithiUptoMinutesOnly
+                }
+                if (tThitiAfterUpto.split(" ")[1] == "PM,"){
+                    TodayThithiUptoInMinutesM =  ((24 * 60) - nowTimeInMinutes) + ((todatTitiUptoHrOnly + 12) * 60) + tThithiUptoMinutesOnly
+                }
+                if (tThitiAfterUpto.split(" ")[1] == "AM"){
+                    TodayThithiUptoInMinutesM = ((todatTitiUptoHrOnly + 0) * 60) + tThithiUptoMinutesOnly
+                }
+                if (tThitiAfterUpto.split(" ")[1] == "AM,"){
+                    if (todatTitiUptoHrOnly == 12){
+                        TodayThithiUptoInMinutesM = ((24 * 60) - nowTimeInMinutes) + ((todatTitiUptoHrOnly - 12) * 60) + tThithiUptoMinutesOnly
+                    }else {
+                        TodayThithiUptoInMinutesM =
+                            ((24 * 60) - nowTimeInMinutes) + ((todatTitiUptoHrOnly + 0) * 60) + tThithiUptoMinutesOnly
+                    }
+                }
+            }
+            println("TodayThithiUptoInMinutesM : $TodayThithiUptoInMinutesM")
+
+
+            TithiValue = tithiNew.split(" ")[0]
+            println("TithiValue : $TithiValue")
+
+            if (TodayThithiUptoInMinutesM <= nowTimeInMinutes) {
+                currentTithi = NextDayThithi
+            }else{
+                currentTithi = TithiValue
+            }
+            println("currentTithi(Final) : $currentTithi")
+            println("NextDayThithi : $NextDayThithi")
+            PrefixTithi = currentTithi
+            if ((PrefixTithi.contains("Amavasya"))){
+                ThithiGlobal = "அமாவாஸ்யா"
+            }else if ((PrefixTithi.contains("Pratipada"))){
+                ThithiGlobal = "பிரதமை"
+            }else if ((PrefixTithi.contains("Dwitiya"))){
+                ThithiGlobal = "த்விதியை"
+            }else if ((PrefixTithi.contains("Tritiya"))){
+                ThithiGlobal = "த்ருதியை"
+            }else if ((PrefixTithi.contains("Chaturthi"))){
+                ThithiGlobal = "சதுர்தி"
+            }else if ((PrefixTithi.contains("Panchami"))){
+                ThithiGlobal = "பஞ்சமி"
+            }else if ((PrefixTithi.contains("Shashthi"))){
+                ThithiGlobal = "ஷஷ்டி"
+            }else if ((PrefixTithi.contains("Saptami"))){
+                ThithiGlobal = "ஸப்தமி"
+            }else if ((PrefixTithi.contains("Ashtami"))){
+                ThithiGlobal = "அஷ்டமி"
+            }else if ((PrefixTithi.contains("Navami"))){
+                ThithiGlobal = "நவமி"
+            }else if ((PrefixTithi.contains("Dashami"))){
+                ThithiGlobal = "தஸமி"
+            }else if ((PrefixTithi.contains("Ekadashi"))){
+                ThithiGlobal = "ஏகாதஸி"
+            }else if ((PrefixTithi.contains("Dwadashi"))){
+                ThithiGlobal = "துவாதஸி"
+            }else if ((PrefixTithi.contains("Trayodashi"))){
+                ThithiGlobal = "த்ரயோதஸி"
+            }else if ((PrefixTithi.contains("Chaturdashi"))){
+                ThithiGlobal = "சதுர்தஸி"
+            }else{
+                ThithiGlobal = "பௌர்ணமி"
+            }
+            println("ThithiGlobal : $ThithiGlobal")
+            if (NextDayThithi != ""){
+                SkippedthithiValue = NextDayThithi
+
+                if ((SkippedthithiValue.contains("Amavasya")) || (SkippedthithiValue.contains("அமாவாஸ்யா"))){
+                    SkippedThithiGlobal = "அமாவாஸ்யா"
+                }else if ((SkippedthithiValue.contains("Pratipada")) || (SkippedthithiValue.contains("பிரதமை"))){
+                    SkippedThithiGlobal = "பிரதமை"
+                }else if ((SkippedthithiValue.contains("Dwitiya")) || (SkippedthithiValue.contains("த்விதியை"))){
+                    SkippedThithiGlobal = "த்விதியை"
+                }else if ((SkippedthithiValue.contains("Tritiya")) || (SkippedthithiValue.contains("த்ருதியை"))){
+                    SkippedThithiGlobal = "த்ருதியை"
+                }else if ((SkippedthithiValue.contains("Chaturthi")) || (SkippedthithiValue.contains("சதுர்தி"))){
+                    SkippedThithiGlobal = "சதுர்தி"
+                }else if ((SkippedthithiValue.contains("Panchami")) || (SkippedthithiValue.contains("பஞ்சமி"))){
+                    SkippedThithiGlobal = "பஞ்சமி"
+                }else if ((SkippedthithiValue.contains("Shashthi")) || (SkippedthithiValue.contains("ஷஷ்டி"))){
+                    SkippedThithiGlobal = "ஷஷ்டி"
+                }else if ((SkippedthithiValue.contains("Saptami")) || (SkippedthithiValue.contains("ஸப்தமி"))){
+                    SkippedThithiGlobal = "ஸப்தமி"
+                }else if ((SkippedthithiValue.contains("Ashtami")) || (SkippedthithiValue.contains("அஷ்டமி"))){
+                    SkippedThithiGlobal = "அஷ்டமி"
+                }else if ((SkippedthithiValue.contains("Navami")) || (SkippedthithiValue.contains("நவமி"))){
+                    SkippedThithiGlobal = "நவமி"
+                }else if ((SkippedthithiValue.contains("Dashami")) || (SkippedthithiValue.contains("தஸமி"))){
+                    SkippedThithiGlobal = "தஸமி"
+                }else if ((SkippedthithiValue.contains("Ekadashi")) || (SkippedthithiValue.contains("ஏகாதஸி"))){
+                    SkippedThithiGlobal = "ஏகாதஸி"
+                }else if ((SkippedthithiValue.contains("Dwadashi")) || (SkippedthithiValue.contains("துவாதஸி"))){
+                    SkippedThithiGlobal = "துவாதஸி"
+                }else if ((SkippedthithiValue.contains("Trayodashi")) || (SkippedthithiValue.contains("த்ரயோதஸி"))){
+                    SkippedThithiGlobal = "த்ரயோதஸி"
+                }else if ((SkippedthithiValue.contains("Chaturdashi")) || (SkippedthithiValue.contains("சதுர்தஸி"))){
+                    SkippedThithiGlobal = "சதுர்தஸி"
+                }else{
+                    SkippedThithiGlobal = "பௌர்ணமி"
+                }
+                // println("SkippedThithiGlobal : $SkippedThithiGlobal")
+            }
+
+            //Retrieve SunRise
+            val sRise = mapPanch["Sunrise"]
+            // println("sRise :  $sRise")
+            val sRise0 = sRise!!.split(" ")[0]
+            // println("sRise0 :  $sRise0")
+            val sRise3 = sRise0.split(":")[0].toInt()
+            // println("sRise3 :  $sRise3")
+            var sRise4:Int = 0
+            sRise4 = sRise3 + 0
+            // println("sRise4 :  $sRise4")
+            sRiseInMinutes = sRise4 * 60 + sRise0.split(":")[1].toInt()
+
+            // println("sRiseInMinutes :  $sRiseInMinutes")
+            val hrvalue: Int = sRise4 + 12
+            val hrToMin: Int = hrvalue * 60
+            val minvalue: Int = sRise0.split(":")[1].toInt()
+            SunRiseTo30NaligaiInMinutes = hrToMin + minvalue
+            println("SunRiseTo30NaligaiInMinutes : $SunRiseTo30NaligaiInMinutes")
+            val twelveHrInMin = 12 * 60
+            fromSunRiseToTwelveHrs = pradamaiDaySRiseInMinutes + twelveHrInMin
+            if (pradamaiDayTitiUptoHrOnly >= 12){
+                pradamaiDayTitiUptoHrOnly = pradamaiDayTitiUptoHrOnly - 12
+                pradamaiThithiUptoInMinutes = pradamaiDayTitiUptoHrOnly * 60
+            }else{
+                pradamaiThithiUptoInMinutes = pradamaiDayTitiUptoHrOnly * 60
+            }
+            println("pradamaiThithiUptoInMinutes :  $pradamaiThithiUptoInMinutes")
+
+            //Retrieve SunSet
+            val sSet = mapPanch["Sunset"]!!
+            // println("sSet :  $sSet")
+            val sSetTime = sSet.split(" ")[0]
+            val sSetHur = sSetTime.split(":")[0]
+            // println("sSetHur :  $sSetHur")
+            val sSetMinu = sSetTime.split(":")[1]
+            // println("sSetMinu :  $sSetMinu")
+            var sSetHrFinal:Int = 0
+            sSetHrFinal = sSetHur.toInt() + 12
+            // println("sSetHrFinal :  $sSetHrFinal")
+            SSetInMinutes = sSetHrFinal * 60 + sSetMinu.toInt()
+
+            println("SSetInMinutes :  $SSetInMinutes")
+
+            //Retrieve Day of the Week
+            val weekDy = mapPanch["Weekday"]!!
+            if (weekDy.contains("Somawara")){ weekDay = "இந்து" }
+            if (weekDy.contains("Mangalawara")){ weekDay = "பௌம" }
+            if (weekDy.contains("Budhawara")){ weekDay = "ஸௌம்ய" }
+            if (weekDy.contains("Guruwara")){ weekDay = "குரு" }
+            if (weekDy.contains("Shukrawara")){ weekDay = "ப்ருகு" }
+            if (weekDy.contains("Shaniwara")){ weekDay = "ஸ்திர" }
+            if (weekDy.contains("Raviwara")){ weekDay = "பாநு" }
+            println("weekDay : $weekDay")
+
+            //Retrieve Vedic Ayanam
+            val vedAyanam = mapPanch["Vedic Ayana"]
+            // println("vedAyanam : $vedAyanam")
+            if (vedAyanam!!.contains("Dakshi")){ vedicAyana = "தக்ஷிணாயணே"
+            } else{
+                vedicAyana = "உத்தராயணே"
+            }
+            println("vedicAyana : $vedicAyana")
+            /*
+                            10/04/2021 Purva Bhadrapada    upto 06:46 AM
+                            09/04/2021 Purva Bhadrapada    upto Full Night
+                            08/04/2021 Shatabhisha         upto 04:58 AM, Apr 09
+                            30/03/2021 Chitra              upto 12:22 PM
+                            */
+            //Retrieve Sun Natchatra
+            val sunNakshtra1 = mapPanch["Nakshatra"]
+            println("sunNakshtra1 : $sunNakshtra1")
+            val nakshatravalue = sunNakshtra1!!.split(" upto ")[0]
+            println("nakshatravalue : $nakshatravalue")
+            val sunNakshatraValue = sunNakshtra1.split(" upto ")[1]
+            println("sunNakshatraValue : $sunNakshatraValue")
+            if((sunNakshatraValue.split(" upto ")[0] != "") && (sunNakshatraValue.split(" ")[0] == "Full")){
+                nakshatraHrToMin = NextDaySunRiseTime
+            }
+            if ((sunNakshatraValue.split(" ")[0] != "") && (sunNakshatraValue.split(" ")[0] != "Full")){
+                val nakshaUptoTime = sunNakshatraValue.split(" ")[0]
+                println("nakshaUptoTime : $nakshaUptoTime")
+                val nakshaUptoHrOnly = nakshaUptoTime.split(":")[0].toInt()
+                println("nakshaUptoHrOnly : $nakshaUptoHrOnly")
+                val nakshaUptoMinutesOnly = nakshaUptoTime.split(":")[1].toInt()
+                println("nakshaUptoMinutesOnly : $nakshaUptoMinutesOnly")
+                if (sunNakshatraValue.split(" ")[1] == "PM"){
+                    nakshatraHrToMin = ((nakshaUptoHrOnly + 12) * 60) + nakshaUptoMinutesOnly
+                }
+                if (sunNakshatraValue.split(" ")[1] == "PM,"){
+                    nakshatraHrToMin =  ((24 * 60) - nowTimeInMinutes) + ((nakshaUptoHrOnly + 12) * 60) + nakshaUptoMinutesOnly
+                }
+                if (sunNakshatraValue.split(" ")[1] == "AM"){
+                    nakshatraHrToMin = ((nakshaUptoHrOnly + 0) * 60) + nakshaUptoMinutesOnly
+                }
+                if (sunNakshatraValue.split(" ")[1] == "AM,"){
+                    if (nakshaUptoHrOnly == 12){
+                        nakshatraHrToMin = ((24 * 60) - nowTimeInMinutes) + ((nakshaUptoHrOnly - 12) * 60) + nakshaUptoMinutesOnly
+                    }else {
+                        nakshatraHrToMin =
+                            ((24 * 60) - nowTimeInMinutes) + ((nakshaUptoHrOnly + 0) * 60) + nakshaUptoMinutesOnly
+                    }
+                }
+            }
+            if (nakshatraHrToMin <= nowTimeInMinutes){
+                currentNakshtram = nextDayNakshatra
+            }else{
+                currentNakshtram = nakshatravalue
+            }
+            println("nakshatraHrToMin : $nakshatraHrToMin")
+            println("currentNakshtram(Final) : $currentNakshtram")
+            println("nextDayNakshatra : $nextDayNakshatra")
+            //mapPanch.filterKeys { it.contains("Sunset") }.toString()
+            if (currentNakshtram.contains("Ashwini")){ naksha = "அஶ்வினி"}
+            if (currentNakshtram.contains("Bharani")){ naksha = "அபபரணீ"}
+            if (currentNakshtram.contains("Krittika")){ naksha = "க்ருத்திகா" }
+            if (currentNakshtram.contains("Rohini")){ naksha = "ரோஹிணீ" }
+            if (currentNakshtram.contains("Mrigashirsha")){ naksha = "ம்ருகசீர்ஷ" }
+            if (currentNakshtram.contains("Ardra")){ naksha = "ஆர்த்ரா" }
+            if (currentNakshtram.contains("Punarvasu")){ naksha = "புனர்வஸு" }
+            if (currentNakshtram.contains("Pushya")){ naksha = "புஷ்ய" }
+            if (currentNakshtram.contains("Ashlesha")){ naksha = "ஆச்'லேஷா'" }
+            if (currentNakshtram.contains("Magha")){ naksha = "மகா" }
+            if (currentNakshtram.contains("Purva Phalguni")){ naksha = "பூர்வ பல்குநீ" }
+            if (currentNakshtram.contains("Uttara Phalguni")){ naksha = "உத்தர பல்குநீ" }
+            if (currentNakshtram.contains("Hasta")){ naksha = "ஹஸ்த" }
+            if (currentNakshtram.contains("Chitra")){ naksha = "சித்ரா" }
+            if (currentNakshtram.contains("Swati")){ naksha = "ஸ்வாதீ" }
+            if (currentNakshtram.contains("Vishakha")){ naksha = "விசாகா" }
+            if (currentNakshtram.contains("Anuradha")){ naksha = "அநுராதா" }
+            if (currentNakshtram.contains("Jyeshtha")){ naksha = "ஜ்யேஷ்டா" }
+            if (currentNakshtram.contains("Mula ")){ naksha = "மூலா" }
+            if (currentNakshtram.contains("Purva Ashadha ")){ naksha = "பூர்வ ஆஷாடா" }
+            if (currentNakshtram.contains("Uttara Ashadha")){ naksha = "உத்தர ஆஷாடா" }
+            if (currentNakshtram.contains("Shravana")){ naksha = "ஶ்ரவண" }
+            if (currentNakshtram.contains("Dhanishtha" )){ naksha = "ஶ்ரவிஷ்டா" }
+            if (currentNakshtram.contains("Shatabhisha")){ naksha = "சதபிஷக்" }
+            if (currentNakshtram.contains("Purva Bhadrapada")){ naksha = "பூர்வ ப்ரோஷ்டபதா" }
+            if (currentNakshtram.contains("Uttara Bhadrapada")){ naksha = "உத்தர ப்ரோஷ்டபதா" }
+            if (currentNakshtram.contains("Revati")){ naksha = "ரேவதீ" }
+            println("Today natchatram :$naksha")
+
+            //Retrieve Karana
+            val karnm1 = mapPanch["Karana"]
+            // println("karnm1 : $karnm1")
+            val karnaValue = karnm1!!.split(" upto ")[0]
+            // println("karnaValue : $karnaValue")
+            val karnaValueAfterUpto = karnm1.split(" upto ")[1]
+            // println("karnaValueAfterUpto : $karnaValueAfterUpto")
+            if ((karnaValueAfterUpto.split(" ")[0] != "") && (karnaValueAfterUpto.split(" ")[0] == "Full")){
+                karnaHrToMin = NextDaySunRiseTime
+            }
+            if ((karnaValueAfterUpto.split(" ")[0] != "") && (karnaValueAfterUpto.split(" ")[0] != "Full")){
+                val karnaUptoTimeWithDay = karnm1.split(" upto ")[1]
+                // println("karnaUptoTimeWithDay : $karnaUptoTimeWithDay")
+                val karnaUptoTime = karnaUptoTimeWithDay.split(" ")[0]
+                // println("karnaUptoTime : $karnaUptoTime")
+                val karnaUptoHrOnly = karnaUptoTime.split(":")[0].toInt()
+                // println("karnaUptoHrOnly : $karnaUptoHrOnly")
+                val karnaUptoMinutesOnly = karnaUptoTime.split(":")[1].toInt()
+                // println("karnaUptoMinutesOnly : $karnaUptoMinutesOnly")
+                if (karnaUptoTimeWithDay.split(" ")[1] == "PM"){
+                    karnaHrToMin = ((karnaUptoHrOnly + 12) * 60) + karnaUptoMinutesOnly
+                }
+                if (karnaUptoTimeWithDay.split(" ")[1] == "PM,"){
+                    karnaHrToMin =  ((24 * 60) - nowTimeInMinutes) + ((karnaUptoHrOnly + 12) * 60) + karnaUptoMinutesOnly
+                }
+                if (karnaUptoTimeWithDay.split(" ")[1] == "AM"){
+                    karnaHrToMin = ((karnaUptoHrOnly + 0) * 60) + karnaUptoMinutesOnly
+                }
+                if (karnaUptoTimeWithDay.split(" ")[1] == "AM,"){
+                    if (karnaUptoHrOnly == 12){
+                        karnaHrToMin = ((24 * 60) - nowTimeInMinutes) + ((karnaUptoHrOnly - 12) * 60) + karnaUptoMinutesOnly
+                    }else {
+                        karnaHrToMin =
+                            ((24 * 60) - nowTimeInMinutes) + ((karnaUptoHrOnly + 0) * 60) + karnaUptoMinutesOnly
+                    }
+                }
+            }
+            if (karnaHrToMin <= nowTimeInMinutes){
+                currentKarnam = nextDayKarnam
+            }else{
+                currentKarnam = karnaValue
+            }
+            println("karnaHrToMin : $karnaHrToMin")
+            println("currentKarnam(Final) : $currentKarnam")
+            println("nextDayKarnam : $nextDayKarnam")
+            if(currentKarnam.contains("Garaja")){ karana = "கரஜ" }
+            if(currentKarnam.contains("Balava")){ karana = "பாலவ" }
+            if(currentKarnam.contains("Taitila")){ karana = "தைத்தில" }
+            if(currentKarnam.contains("Vishti")){ karana = "விஷ்டி" }
+            if(currentKarnam.contains("Vanija")){ karana = "வநிஜா" }
+            if(currentKarnam.contains("Bava")){ karana = "பாவா" }
+            if(currentKarnam.contains("Kaulava")){ karana = "கௌலவ" }
+            if(currentKarnam.contains("Nagava")){ karana = "நாகவா" }
+            if(currentKarnam.contains("Shakuni")){karana = "ஷகுநி" }
+            if(currentKarnam.contains("Chatushpada")){karana = "ச்சடுஷ்பாடா" }
+            if(currentKarnam.contains("Kinstughna")){ karana = "கிந்ஸ்டுக்ணா" }
+            // println("KARANAM : $karana")
+
+            //Retrieve Surya Nakshatra
+            val surNak = mapPanch["Surya Nakshatra"]
+            suryaNakshatra = surNak!!.split(" ")[0]
+            println("suryaNakshatra : $suryaNakshatra")
+
+            //Retrieve Chandra Masa
+            val chandMasa = mapPanch["Chandramasa"]!!
+            chandraMasa = chandMasa.split(" ")[0]
+            println("chandraMasa : $chandraMasa")
+            if (chandraMasa ==  "Bhadrapada"){
+                if (TithiValue == "Purnima" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720) {
+                    if (SkippedthithiValue.isEmpty()) {
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    } else {
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if ((TithiValue ==  "Purnima") && (TodayThithiUptoInMinutesM <= 389) &&  (TodayThithiUptoInMinutesM >= 720)){
+                    TodayThithi = "பௌர்ணமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Pratipada" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Pratipada" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "பிரதமை"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Dwitiya" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Dwitiya" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "த்விதியை"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Tritiya" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Tritiya"&& TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "த்ருதியை"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Chaturthi"  && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Chaturthi"  && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TithiValue = "சதுர்தி"
+                    todThithi = TodayThithi
+                }else if (TithiValue ==  "Panchami" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Panchami" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "பஞ்சமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue ==  "Shashthi" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Shashthi" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "ஷஷ்டி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Saptami" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Saptami"&& TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "ஸப்தமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Ashtami" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Ashtami" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "அஷ்டமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue ==  "Navami" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Navami"  && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "நவமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue ==  "Dashami" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Dashami" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "தஸமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Ekadashi" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Ekadashi" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "ஏகாதஸி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Dwadashi"  && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Dwadashi" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "துவாதஸி"
+                    todThithi = TodayThithi
+                }else if (TithiValue ==  "Trayodashi" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Trayodashi" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "த்ரயோதஸி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Chaturdashi" && NextDayThithi == "அமாவாஸ்யா" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SunRiseTo30NaligaiInMinutes <= TodayThithiUptoInMinutesM){
+                        TodayThithi = bodayana
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = "சதுர்தஸி"
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Chaturdashi" && NextDayThithi == "அமாவாஸ்யா"&& TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SunRiseTo30NaligaiInMinutes  <= TodayThithiUptoInMinutesM) {
+                        TodayThithi = bodayana
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = "சதுர்தஸி"
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Chaturdashi" && NextDayThithi == "அமாவாஸ்யா" ){
+                    if  (pradamaiThithiUptoInMinutes <= fromSunRiseToTwelveHrs){
+                        TodayThithi = bodayana
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = "சதுர்தஸி"
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Chaturdashi"  && NextDayThithi == "பௌர்ணமி" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Chaturdashi" && NextDayThithi == "பௌர்ணமி" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "சதுர்தஸி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Purnima" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else{
+                    TodayThithi = ThithiGlobal
+                    todThithi = TodayThithi
+                }
+            }
+            if (chandraMasa != "Bhadrapada"){
+                if (TithiValue == "Purnima" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Purnima" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "பௌர்ணமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Pratipada"  && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Pratipada"  && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "பிரதமை"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Dwitiya" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Dwitiya" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "த்விதியை"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Tritiya" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Tritiya" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "த்ருதியை"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Chaturthi" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Chaturthi" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "சதுர்தி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Panchami" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue ==  "Panchami" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "பஞ்சமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Shashthi"  && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Shashthi" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "ஷஷ்டி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Saptami" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Saptami"  && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "ஸப்தமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Ashtami"  && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Ashtami" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "அஷ்டமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Navami" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Navami" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "நவமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Dashami" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Dashami" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "தஸமி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Ekadashi" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Ekadashi" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "ஏகாதஸி"
+                    todThithi = TodayThithi
+                }else if (TithiValue ==  "Dwadashi" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Dwadashi" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "துவாதஸி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Trayodashi" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Trayodashi" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 700){
+                    TodayThithi = "த்ரயோதஸி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Chaturdashi" && NextDayThithi == "Amavasya" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SunRiseTo30NaligaiInMinutes <= TodayThithiUptoInMinutesM){
+                        TodayThithi = bodayana
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = "சதுர்தஸி"
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Chaturdashi" && NextDayThithi == "அமாவாஸ்யா"){
+                    if  (pradamaiThithiUptoInMinutes <= fromSunRiseToTwelveHrs){
+                        TodayThithi = bodayana
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = "சதுர்தஸி"
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Chaturdashi" && NextDayThithi == "பௌர்ணமி" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else if (TithiValue == "Chaturdashi" && NextDayThithi == "பௌர்ணமி" && TodayThithiUptoInMinutesM <= 389 &&  TodayThithiUptoInMinutesM >= 720){
+                    TodayThithi = "சதுர்தஸி"
+                    todThithi = TodayThithi
+                }else if (TithiValue == "Purnima" && TodayThithiUptoInMinutesM >= 389 &&  TodayThithiUptoInMinutesM <= 720){
+                    if (SkippedthithiValue.isEmpty()){
+                        TodayThithi = NextDayThithi
+                        todThithi = TodayThithi
+                    }else{
+                        TodayThithi = SkippedThithiGlobal
+                        todThithi = TodayThithi
+                    }
+                }else{
+                    TodayThithi = ThithiGlobal
+                    todThithi = TodayThithi
+                }
+            }
+            println("TithiValue: $TithiValue")
+            println("todThithi: $todThithi")
+            println("TodayThithi: $TodayThithi")
+
+
+            //Retrieve Chandra Rasi / Moon Rasi
+            val chandRasi = mapPanch["Moonsign"]!!
+            chandraRasi = chandRasi.split(" ")[0]
+            println("chandraRasi : $chandraRasi")
+
+            //Retrieve Madyanigha
+            madyana = mapPanch["Madhyahna"]!!
+            println("madyana : $madyana")
+
+            //Retrieve Pratha
+            prathaSanthya = mapPanch["Pratah Sandhya"]!!
+            println("prathaSanthya : $prathaSanthya")
+
+            //Retrieve Sayam
+            sayamSandya = mapPanch["Sayahna Sandhya"]!!
+            println("sayamSandya : $sayamSandya")
+
+            val titiText = "<font color=#000080>திதி (Thithi):-    </font> <font color=#800000>$ThithiGlobal</font>"
+            todThithi = Html.fromHtml(titiText, Html.FROM_HTML_MODE_LEGACY).toString()
+            val paktext = "<font color=#000080>பக்ஷ்ம் (Paksha):-    </font> <font color=#800000>$paksha</font>"
+            baksham = Html.fromHtml(paktext, Html.FROM_HTML_MODE_LEGACY).toString()
+            val rasitext = "<font color=#000080>ராசி (Rasi):-    </font> <font color=#800000>$suryaRasi</font>"
+            rasee = Html.fromHtml(rasitext, Html.FROM_HTML_MODE_LEGACY).toString()
+            val placeText = "<font color=#000080>இடம் (GeoLocation):-    </font> <font color=#800000>$place</font>"
+            place = Html.fromHtml(placeText, Html.FROM_HTML_MODE_LEGACY).toString()
+            val yearText = "<font color=#000080>வருடம் (Year):-    </font> <font color=#800000>$shakaSamvat</font>"
+            Varusham = Html.fromHtml(yearText, Html.FROM_HTML_MODE_LEGACY).toString()
+            val yogaText = "<font color=#000080>யோகம் (Yogam):-    </font> <font color=#800000>$yoga</font>"
+            yog = Html.fromHtml(yogaText, Html.FROM_HTML_MODE_LEGACY).toString()
+            val ruthuText = "<font color=#000080>ருது (Season-காலம்):-    </font> <font color=#800000>$vedicRithu</font>"
+            kalam = Html.fromHtml(ruthuText, Html.FROM_HTML_MODE_LEGACY).toString()
+            val ayanaText = "<font color=#000080>அயனம் (Ayana):-    </font> <font color=#800000>$vedicAyana</font>"
+            ayyanamm = Html.fromHtml(ayanaText, Html.FROM_HTML_MODE_LEGACY).toString()
+            val wDayText = "<font color=#000080>கிழமை (Day):-    </font> <font color=#800000>$weekDay</font>"
+            kizhamai = Html.fromHtml(wDayText, Html.FROM_HTML_MODE_LEGACY).toString()
+            val nakshText = "<font color=#000080>நட்ஷத்ரம் (Natchatram):-    </font> <font color=#800000>$naksha</font>"
+            nachathirm = Html.fromHtml(nakshText, Html.FROM_HTML_MODE_LEGACY).toString()
+            val karanaText = "<font color=#000080>கரணம் (Karanam):-    </font> <font color=#800000>$karana</font>"
+            kar = Html.fromHtml(karanaText, Html.FROM_HTML_MODE_LEGACY).toString()
+        }
+        // println("Finished")
+    } catch (e: Exception) {
+        println("Error Skipped $e")
+    }
+
+    fun clearAllData() {
+        Varusham = ""
+        ayyanamm = ""
+        kalam = ""
+        rasee = ""
+        baksham = ""
+        todThithi = ""
+        kizhamai = ""
+        nachathirm = ""
+        yog = ""
+        kar = ""
+        tithiNew = ""
+        ThithiGlobal =""
+        SkippedThithiGlobal = ""
+        TithiValue = ""
+        TodayThithi = ""
+        NextDayThithi = ""
+        pradamaiTithiValue = ""
+        pradamaiDayThithi = ""
+    }
+
+    fun buttonClicked(button: Button){
+        //initiate the button
+        button.performClick()
+        button.isPressed = true // Corrected indentation
+
+
+            parseWeb()
+            nextDayparseWeb()
+            pradamaiDayparseWeb()
+
+
+        button.invalidate()
+        // delay completion till animation completes
+        button.postDelayed( Runnable {  //delay button
+       /* fun run() {
+            button.isPressed = false
+            button.invalidate()
+            //any other associated action
+        }*/
+        }, 800)  // .8secs delay time
+    }
+
+

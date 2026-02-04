@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/yagyavalkyar"
+        android:requiresFadingEdge="horizontal|vertical"
+        tools:context=".SkipScreenActivity">
+
+    <TextView
+            android:id="@+id/skipTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100sp"
+            android:fontFamily="cursive"
+            android:gravity="center_vertical"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#07155E"
+            android:textSize="30sp"
+            android:textStyle="normal|bold|italic"
+            android:typeface="serif"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/RegisterOrLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="o"
+            android:ellipsize="marquee"
+            tools:visibility="visible" />
+
+    <Button
+            android:id="@+id/RegisterOrLogin"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="268dp"
+            android:layout_height="54dp"
+            android:background="@drawable/mybutton"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/skipTextView"
+            android:text="@string/RegisterOrLogin"
+            android:textColor="@android:color/background_light"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="272dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
