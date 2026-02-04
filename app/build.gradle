@@ -46,8 +46,8 @@ android {
         minSdkVersion 26
         minSdk 24
         targetSdk 34// Updated targetSdkVersion
-        versionCode 40
-        versionName "1.0.40"//Sep 30 2024
+        versionCode 58
+        versionName "1.0.58"//Feb 04 2026
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -116,9 +116,11 @@ dependencies {
     //implementation 'com.pawegio.kandroid:kandroid:0.8.7@aar'
     implementation 'com.pusher:pusher-java-client:2.4.4'
     implementation 'com.loopj.android:android-async-http:1.4.11'
-    implementation 'com.google.code.gson:gson:2.11.0'
+    implementation 'com.google.code.gson:gson:2.13.2'
     implementation 'com.itextpdf:itextg:5.5.10'
     //implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.3'
+
 
     // Don't forget to change the line below with the latest version of Parse SDK for Android
     //implementation "com.github.parse-community.Parse-SDK-Android:parse:1.27.6"
