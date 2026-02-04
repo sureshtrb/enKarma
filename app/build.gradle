@@ -28,15 +28,14 @@ android {
                 '--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED',
                 '--add-opens=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED',
         ]
-
     }
     signingConfigs {
         config {
            // storeFile file('/Users/suresh/keystores/upload-keystore.jks')
-            storeFile file('/Users/sureshbalasubramanian/Desktop/Android_enKarma')
-            storePassword 'ViewSea2024$'
+            storeFile file('/Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/keystore_2026-02-03/enkarma_upload.jks')
+            storePassword 'SeaView2024$'
             keyAlias = 'upload'
-            keyPassword 'ViewSea2024$'
+            keyPassword 'SeaView2024$'
         }
     }
     compileSdk 35
