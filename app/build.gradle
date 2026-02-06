@@ -27,19 +27,18 @@ android {
 
     signingConfigs {
         release {
-            storeFile = file("/Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/keystore_2026-02-03/enkarma_upload.jks")
+            storeFile =
+                    file("/Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/keystore_2026-02-03/enkarma_upload.jks")
             storePassword = 'SeaView2024$'
             keyAlias = 'upload'
             keyPassword = 'SeaView2024$'
         }
     }
 
-
     buildTypes {
         debug {
             debuggable = true
         }
-
         release {
             debuggable = false
             minifyEnabled = true
@@ -62,14 +61,12 @@ android {
 }
 
 dependencies {
-
     implementation fileTree(dir: "libs", include: ["*.jar"])
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
     // AndroidX (AGP 8.9.1 compatible)
     implementation "androidx.core:core-ktx:1.17.0"
-    // implementation "androidx.appcompat:appcompat:1.7.0"
+//    implementation "androidx.appcompat:appcompat:1.7.0"
     implementation "androidx.activity:activity-ktx:1.9.3"
     implementation "androidx.annotation:annotation:1.9.1"
     implementation "androidx.constraintlayout:constraintlayout:2.2.1"
@@ -82,6 +79,9 @@ dependencies {
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.10.0"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
 
     // Firebase
     implementation "com.google.firebase:firebase-crashlytics:20.0.4"
