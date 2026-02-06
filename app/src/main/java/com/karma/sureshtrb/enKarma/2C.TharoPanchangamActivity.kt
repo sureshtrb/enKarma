@@ -165,13 +165,13 @@ class TharoPanchangamActivity : AppCompatActivity() {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
 StrictMode.setThreadPolicy(policy)
 
-        supportActionBar!!.setHomeAsUpIndicator(R.drawable.home)
-        this.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        this.supportActionBar!!.subtitle = "பஞ்சாங்கம / பித்ரு விபரங்கள்"
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
-        supportActionBar!!.setLogo(R.drawable.karma)
-        supportActionBar!!.setDisplayUseLogoEnabled(true)
-        //   supportActionBar!!.setTitleTextColor(Color.BLUE)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.home)
+        this.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        this.supportActionBar?.subtitle = "பஞ்சாங்கம / பித்ரு விபரங்கள்"
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setLogo(R.drawable.karma)
+        supportActionBar?.setDisplayUseLogoEnabled(true)
+        //   supportActionBar?.setTitleTextColor(Color.BLUE)
 
         loadData()
 
@@ -276,7 +276,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             updateDateInView()
         }
 
-        changeDateBtn!!.setOnClickListener(object : View.OnClickListener {
+        changeDateBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 clearAllData()
                 DatePickerDialog(this@TharoPanchangamActivity,
@@ -608,7 +608,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
                           println("pradamaiDayMap2 ---- pradamaiDayKey2 : $key2 value : ${mapPanch2[key2]}")
                       }*/
                     //Retrieve pradamaiDay Thithi
-                    val pradamaiDayTithiArr = mapPanch2["Tithi"]!!
+                    val pradamaiDayTithiArr = (mapPanch2["Tithi"] ?: "")
                     // println("pradamaiDayTithiArr : $pradamaiDayTithiArr")
                     val pradamaiDayThithee = pradamaiDayTithiArr.split(" upto ")[0]
                     // println("pradamaiDayThithee : $pradamaiDayThithee")
@@ -684,7 +684,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
                     println("pradamaiDayThithi : $pradamaiDayThithi")
 
                     //Retrieve pradamaiDay SunRise
-                    val pradamaiDaySRise = mapPanch2["Sunrise"]!!
+                    val pradamaiDaySRise = (mapPanch2["Sunrise"] ?: "")
                     // println("pradamaiDaySRise :  $pradamaiDaySRise")
 
                     val pradamaiDaySRiseTime = pradamaiDaySRise.split(" ")[0]
@@ -773,7 +773,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
                               println("dayAfterPradamaiMap3 ---- dayAfterPradamaiKey3 : $key3 value : ${mapPanch3[key3]}")
                           }*/
                     //Retrieve pradamaiDay SunRise
-                    val afterPradamaiDaySRise = mapPanch3["Sunrise"]!!
+                    val afterPradamaiDaySRise = (mapPanch3["Sunrise"] ?: "")
                     // println("afterPradamaiDaySRise :  $afterPradamaiDaySRise")
 
                     val afterPradamaiDaySRiseTime = afterPradamaiDaySRise.split(" ")[0]
@@ -848,7 +848,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
                    println("nextDayMap4 ---- nextDayKey4 : $key4 value : ${mapPanch4[key4]}")
                }*/
             //Retrieve nextDay Thithi
-            val nextDayTithiNew = mapPanch4["Tithi"]!!
+            val nextDayTithiNew = (mapPanch4["Tithi"] ?: "")
             println("nextDayTithiNew : $nextDayTithiNew")
             val nextDayTitiUpto0 = nextDayTithiNew.split(" upto ")[1]
             println("nextDayTitiUpto0 : $nextDayTitiUpto0")
@@ -920,7 +920,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             println("NextDayThithi : $NextDayThithi")
 
             //Retrieve Next Day SunRise
-            val nextDaySRise = mapPanch4["Sunrise"]!!
+            val nextDaySRise = (mapPanch4["Sunrise"] ?: "")
             println("nextDaySRise :  $nextDaySRise")
 
             val nextDaySRiseTime = nextDaySRise.split(" ")[0]
@@ -948,18 +948,18 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             */
             val nextDaySunNakshtra1 = mapPanch4["Nakshatra"]
             println("nextDaySunNakshtra1 : $nextDaySunNakshtra1")
-            nextDayNakshatra = nextDaySunNakshtra1!!.split(" upto ")[0]
+            nextDayNakshatra = nextDay(sunNakshtra1 ?: "").split(" upto ")[0]
             println("nextDayNakshatra : $nextDayNakshatra")
 
             //Retrieve Karana
             val nextDayKarnm1 = mapPanch4["Karana"]
             println("nextDayKarnm1 : $nextDayKarnm1")
-            nextDayKarnam = nextDayKarnm1!!.split(" upto ")[0]
+            nextDayKarnam = nextDay(karnm1 ?: "").split(" upto ")[0]
             println("nextDayKarnam : $nextDayKarnam")
 
             //Retrieve Yogam
             val nextDayYog0 = mapPanch4["Yoga"]
-            nextDayYogam = nextDayYog0!!.split(" ")[0]
+            nextDayYogam = nextDay(yog0 ?: "").split(" ")[0]
             println("nextDayYogam : $nextDayYogam")
         }
         // println("Finished")
@@ -1054,7 +1054,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             //Retrieve Sun Rasi
             val suRasi0A = mapPanch["Sunsign"/* - Surya Rashi*/]
             // println("suRasi0 : $suRasi0A")
-            val suRasi0 = suRasi0A!!.split(" ")[0]
+            val suRasi0 = (suRasi0A ?: "").split(" ")[0]
             if (suRasi0.contains("Dhanu")){
                 suryaRasi = "தநுர் (மார்கழி)"
                 vedicRithu = "ஹேமந்த"
@@ -1109,7 +1109,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             //Retrieve Tamil Year
             val tamyear = mapPanch["Shaka Samvat"]
             // println("tamyear : $tamyear")
-            val tamYrValue = tamyear!!.split(" ")[1]
+            val tamYrValue = (tamyear ?: "").split(" ")[1]
             // println("tamYrValue : $tamYrValue")
             if (tamYrValue.contains("Hemalambi")){ shakaSamvat = "ஹேவிளம்பி" }
             if (tamYrValue.contains("Vilambi")){ shakaSamvat = "விளம்பி" }
@@ -1176,7 +1176,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             //Retrieve Yogam
             val yog0 = mapPanch["Yoga"]
             println("Today yog0 : $yog0")
-            val yogaValue = yog0!!.split(" upto ")[0]
+            val yogaValue = (yog0 ?: "").split(" upto ")[0]
             println("Today yogaValue : $yogaValue")
 
             if((yog0.split(" upto ")[1] != "") && (yog0.split(" ")[1] == "Full")){
@@ -1245,7 +1245,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             // println("yoga : $yoga")
 
             //Retrieve Today Thithi
-            tithiNew = mapPanch["Tithi"]!!
+            tithiNew = (mapPanch["Tithi"] ?: "")
             println("Today Tithi(Dict) : $tithiNew")
 
             val tThitiAfterUpto = tithiNew.split(" upto ")[1]// + " " + tithiNew.split(" ")[2] + " " +  tithiNew.split(" ")[3]
@@ -1369,7 +1369,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             //Retrieve SunRise
             val sRise = mapPanch["Sunrise"]
             // println("sRise :  $sRise")
-            val sRise0 = sRise!!.split(" ")[0]
+            val sRise0 = (sRise ?: "").split(" ")[0]
             // println("sRise0 :  $sRise0")
             val sRise3 = sRise0.split(":")[0].toInt()
             // println("sRise3 :  $sRise3")
@@ -1395,7 +1395,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             println("pradamaiThithiUptoInMinutes :  $pradamaiThithiUptoInMinutes")
 
             //Retrieve SunSet
-            val sSet = mapPanch["Sunset"]!!
+            val sSet = (mapPanch["Sunset"] ?: "")
             // println("sSet :  $sSet")
             val sSetTime = sSet.split(" ")[0]
             val sSetHur = sSetTime.split(":")[0]
@@ -1410,7 +1410,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             println("SSetInMinutes :  $SSetInMinutes")
 
             //Retrieve Day of the Week
-            val weekDy = mapPanch["Weekday"]!!
+            val weekDy = (mapPanch["Weekday"] ?: "")
             if (weekDy.contains("Somawara")){ weekDay = "இந்து" }
             if (weekDy.contains("Mangalawara")){ weekDay = "பௌம" }
             if (weekDy.contains("Budhawara")){ weekDay = "ஸௌம்ய" }
@@ -1423,7 +1423,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             //Retrieve Vedic Ayanam
             val vedAyanam = mapPanch["Vedic Ayana"]
             // println("vedAyanam : $vedAyanam")
-            if (vedAyanam!!.contains("Dakshi")){ vedicAyana = "தக்ஷிணாயணே"
+            if ((vedAyanam ?: "").contains("Dakshi")){ vedicAyana = "தக்ஷிணாயணே"
             } else{
                 vedicAyana = "உத்தராயணே"
             }
@@ -1437,7 +1437,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             //Retrieve Sun Natchatra
             val sunNakshtra1 = mapPanch["Nakshatra"]
             println("sunNakshtra1 : $sunNakshtra1")
-            val nakshatravalue = sunNakshtra1!!.split(" upto ")[0]
+            val nakshatravalue = (sunNakshtra1 ?: "").split(" upto ")[0]
             println("nakshatravalue : $nakshatravalue")
             val sunNakshatraValue = sunNakshtra1.split(" upto ")[1]
             println("sunNakshatraValue : $sunNakshatraValue")
@@ -1510,7 +1510,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             //Retrieve Karana
             val karnm1 = mapPanch["Karana"]
             // println("karnm1 : $karnm1")
-            val karnaValue = karnm1!!.split(" upto ")[0]
+            val karnaValue = (karnm1 ?: "").split(" upto ")[0]
             // println("karnaValue : $karnaValue")
             val karnaValueAfterUpto = karnm1.split(" upto ")[1]
             // println("karnaValueAfterUpto : $karnaValueAfterUpto")
@@ -1567,11 +1567,11 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
 
             //Retrieve Surya Nakshatra
             val surNak = mapPanch["Surya Nakshatra"]
-            suryaNakshatra = surNak!!.split(" ")[0]
+            suryaNakshatra = (surNak ?: "").split(" ")[0]
             println("suryaNakshatra : $suryaNakshatra")
 
             //Retrieve Chandra Masa
-            val chandMasa = mapPanch["Chandramasa"]!!
+            val chandMasa = (mapPanch["Chandramasa"] ?: "")
             chandraMasa = chandMasa.split(" ")[0]
             println("chandraMasa : $chandraMasa")
             if (chandraMasa ==  "Bhadrapada"){
@@ -1978,20 +1978,20 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
 
 
             //Retrieve Chandra Rasi / Moon Rasi
-            val chandRasi = mapPanch["Moonsign"]!!
+            val chandRasi = (mapPanch["Moonsign"] ?: "")
             chandraRasi = chandRasi.split(" ")[0]
             println("chandraRasi : $chandraRasi")
 
             //Retrieve Madyanigha
-            madyana = mapPanch["Madhyahna"]!!
+            madyana = (mapPanch["Madhyahna"] ?: "")
             println("madyana : $madyana")
 
             //Retrieve Pratha
-            prathaSanthya = mapPanch["Pratah Sandhya"]!!
+            prathaSanthya = (mapPanch["Pratah Sandhya"] ?: "")
             println("prathaSanthya : $prathaSanthya")
 
             //Retrieve Sayam
-            sayamSandya = mapPanch["Sayahna Sandhya"]!!
+            sayamSandya = (mapPanch["Sayahna Sandhya"] ?: "")
             println("sayamSandya : $sayamSandya")
 
             val titiText = "<font color=#000080>திதி (Thithi):-    </font> <font color=#800000>$ThithiGlobal</font>"
