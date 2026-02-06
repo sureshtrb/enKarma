@@ -5,9 +5,10 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.google.firebase.FirebaseApp
-import com.google.firebase.database.ktx.database
+import com.google.firebase.database.FirebaseDatabase
+//import com.google.firebase.database.ktx.database
 import com.google.firebase.installations.FirebaseInstallations
-import com.google.firebase.ktx.Firebase
+//import com.google.firebase.ktx.Firebase
 
 class App : Application() {
 
@@ -22,7 +23,9 @@ class App : Application() {
 
         // Initialize Firebase
         FirebaseApp.initializeApp(this)
-        Firebase.database.setPersistenceEnabled(true)
+       // Firebase.database.setPersistenceEnabled(true)
+        // Enable offline persistence
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 /*
         Parse.initialize(
             Parse.Configuration.Builder(this)
