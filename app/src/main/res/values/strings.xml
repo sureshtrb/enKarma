@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">enKarma</string>
     <string name="back4app_server_url">https://parseapi.back4app.com/</string>
@@ -79,7 +80,7 @@
     <string name="NumberOfDays">Number Of Days</string>
     <string name="father_mother_name">Father-Mother Name</string>
     <string name="father_Grandmother_name">Father-Grandmother Name</string>
-    <string name="father_GreatGrandmother_name">Father-Great Grand Mother\'s Name</string>
+    <string name="father_GreatGrandmother_name">Father-Great Grand Mother Name</string>
     <string name="mother_mother_name">Mother-Mother Name</string>
     <string name="mother_grandmother_name">Mother-Grandmother Name</string>
     <string name="mother_greatgrandmother_name">Mother-GreatGrandmother Name</string>
@@ -181,12 +182,12 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >2 characters</string>
+    <string name="invalid_password">Password must be &gt;2 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="passwordd">Password</string>
     <string name="usernamee">Username</string>
     <string name="login">Login</string>
-    <string name="skip">skip Login></string>
+    <string name="skip">skip Login&gt;</string>
     <string name="new_here_nregister">New here? Register!</string>
     <string name="sign_upp">Sign Up</string>
     <string name="welcome_to_my_app">Welcome to enkarma!</string>
@@ -200,7 +201,7 @@
     <string name="password_again">Password Again</string>
     <string name="sign_up">Sign Up</string>
     <string name="username">Username</string>
-    <string name="forget_password">>>Forget Password>></string>
+    <string name="forget_password">&gt;&gt;Forget Password&gt;&gt;</string>
     <string name="enter_your_registered_email">Enter Your Registered Email</string>
     <string name="recoverPassword">Recover Password</string>
     <string name="tv_forgot_pass">Forgot Password?</string>
@@ -216,7 +217,7 @@
     <string name="text_view_signup">SIGNUP</string>
     <string name="Register">Register</string>
     <string name="click_to_login">Click to Login</string>
-    <string name="skip_login_button">skip Login>>>></string>
+    <string name="skip_login_button">skip Login&gt;&gt;&gt;&gt;</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_email">This email address is invalid</string>

@@ -1,11 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin" tools:ignore="MissingDefaultResource">16dp</dimen>
-    <!--Text size-->
+
+    <!-- Text size -->
     <dimen name="app_name_size">42sp</dimen>
     <dimen name="reset_big_text">20sp</dimen>
     <dimen name="reset_medium_text">14sp</dimen>
@@ -18,7 +21,7 @@
     <dimen name="general_padding">15dp</dimen>
     <dimen name="sixteen">16dp</dimen>
     <dimen name="small_padding">7dp</dimen>
-    <dimen name="margin_top">20dip</dimen>
+    <dimen name="margin_top">20dp</dimen>
     <dimen name="reset_margin_top">30dp</dimen>
     <dimen name="reset_padding">10dp</dimen>
     <dimen name="reset_medium_padding">20dp</dimen>

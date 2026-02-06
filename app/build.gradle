@@ -1,138 +1,106 @@
 plugins {
-  //  id("com.autonomousapps.dependency-analysis") version "2.1.4" // Or the latest compatible version
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
-    id 'kotlin-kapt'
-
 }
-//apply(plugin = "kotlin-kapt")
-//apply plugin: 'kotlin-android-extensions'
-android.buildTypes.release.ndk.debugSymbolLevel = 'FULL'
+
 android {
-    buildFeatures {
-        viewBinding true
-    }
-    tasks.withType(JavaCompile).configureEach {
-        options.fork = true
-        options.forkOptions.jvmArgs += [
-                '--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED',
-                '--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED',
-                '--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED',
-                '--add-opens=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED',
-                '--add-opens=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED',
-                '--add-opens=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED',
-                '--add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED',
-                '--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED',
-                '--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED',
-                '--add-opens=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED',
-        ]
-    }
-    signingConfigs {
-        config {
-           // storeFile file('/Users/suresh/keystores/upload-keystore.jks')
-            storeFile file('/Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/keystore_2026-02-03/enkarma_upload.jks')
-            storePassword 'SeaView2024$'
-            keyAlias = 'upload'
-            keyPassword 'SeaView2024$'
-        }
-    }
-    compileSdk 36
+
+    namespace = "com.karma.sureshtrb.enKarma"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId "com.karma.sureshtrb.enKarma"
-        minSdk 24
-        targetSdk 36// Updated targetSdkVersion
-        versionCode 58
-        versionName "1.0.58"//Feb 04 2026
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
+        applicationId = "com.karma.sureshtrb.enKarma"
+        minSdk = 24
+        targetSdk = 36
+        versionCode = 58
+        versionName = "1.0.58"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
     }
-    buildTypes {
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    signingConfigs {
         release {
-            debuggable false
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            //noinspection GradlePath
-         //   applicationIdSuffix = 'release'
-            signingConfig signingConfigs.config
+            storeFile = file("/Users/sureshbalasubramanian/Documents/Projects.nosync/Android_enKarma/keystore_2026-02-03/enkarma_upload.jks")
+            storePassword = 'SeaView2024$'
+            keyAlias = 'upload'
+            keyPassword = 'SeaView2024$'
         }
     }
+
+
+    buildTypes {
+        debug {
+            debuggable = true
+        }
+
+        release {
+            debuggable = false
+            minifyEnabled = true
+            signingConfig = signingConfigs.release
+            proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+            )
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-        kotlinOptions {
-            jvmTarget = "17"
-        }
-        bundle {
-            language {
-                enableSplit = true
-            }
-            density {
-                enableSplit = true
-            }
-            abi {
-                enableSplit = true
-            }
-        }
     }
-    namespace 'com.karma.sureshtrb.enKarma'
-    kapt {
-        useBuildCache = false
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
-repositories {
-    maven { url 'https://clojars.org/repo' }
-    maven { url 'https://jitpack.io' }
-}
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'androidx.core:core-ktx:1.17.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation 'com.google.firebase:firebase-crashlytics:20.0.4'
+    implementation fileTree(dir: "libs", include: ["*.jar"])
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    // AndroidX (AGP 8.9.1 compatible)
+    implementation "androidx.core:core-ktx:1.17.0"
+    // implementation "androidx.appcompat:appcompat:1.7.0"
+    implementation "androidx.activity:activity-ktx:1.9.3"
+    implementation "androidx.annotation:annotation:1.9.1"
+    implementation "androidx.constraintlayout:constraintlayout:2.2.1"
+    implementation "androidx.recyclerview:recyclerview:1.4.0"
+    implementation "androidx.preference:preference-ktx:1.2.1"
+
+    // Material
+    implementation "com.google.android.material:material:1.11.0"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.10.0"
+
+    // Firebase
+    implementation "com.google.firebase:firebase-crashlytics:20.0.4"
     implementation "com.google.firebase:firebase-firestore-ktx:25.1.4"
     implementation "com.google.firebase:firebase-auth-ktx:23.2.1"
     implementation "com.google.firebase:firebase-database-ktx:21.0.0"
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.7.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
-    implementation 'androidx.recyclerview:recyclerview:1.4.0'
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.7.1")
-    implementation 'androidx.annotation:annotation:1.9.1'
-   // implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0") // Or latest version
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.10.0")
-    implementation("androidx.activity:activity-ktx:1.12.3")
 
-    implementation 'com.google.android.material:material:1.13.0'
-    implementation 'org.jsoup:jsoup:1.22.1'
-    //implementation 'com.pawegio.kandroid:kandroid:0.8.7@aar'
-    implementation 'com.pusher:pusher-java-client:2.4.4'
-    implementation 'com.loopj.android:android-async-http:1.4.11'
-    implementation 'com.google.code.gson:gson:2.13.2'
-    implementation 'com.itextpdf:itextg:5.5.10'
-    //implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
-    implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.3'
+    // Testing
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test.ext:junit:1.2.1"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.6.1"
 
-
-    // Don't forget to change the line below with the latest version of Parse SDK for Android
-    //implementation "com.github.parse-community.Parse-SDK-Android:parse:1.27.6"
-   // implementation 'com.github.parse-community:ParseTwitterUtils-Android:1.14.7'
-
-    // Circular image view
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation("androidx.preference:preference-ktx:1.2.1")
-    // ButterKnife Dependency
- //   implementation 'com.android.support:appcompat-v7:33.0.0'
-  //  implementation 'com.jakewharton:butterknife:10.2.3'
- //   annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
- //   kapt("com.jakewharton:butterknife-compiler:10.2.3")
-
+    // Third-party
+    implementation "org.jsoup:jsoup:1.22.1"
+    implementation "com.pusher:pusher-java-client:2.4.4"
+    implementation "com.loopj.android:android-async-http:1.4.11"
+    implementation "com.google.code.gson:gson:2.13.2"
+    implementation "com.itextpdf:itextg:5.5.10"
+    implementation "com.github.mhiew:android-pdf-viewer:3.2.0-beta.3"
+    implementation "de.hdodenhof:circleimageview:3.1.0"
+    implementation "com.squareup.picasso:picasso:2.71828"
 }

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Keep this file for future reference items.
+         Every <item> must be either empty or contain
+         a single resource reference value like @style/..., @color/..., etc. -->
+
+    <!-- Example (uncomment and adapt when needed):
+    <item name="MyRefStyle" type="style">@style/AppTheme</item>
+    -->
+
 </resources>
