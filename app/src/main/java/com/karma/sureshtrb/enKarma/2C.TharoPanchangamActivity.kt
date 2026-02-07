@@ -948,18 +948,18 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             */
             val nextDaySunNakshtra1 = mapPanch4["Nakshatra"]
             println("nextDaySunNakshtra1 : $nextDaySunNakshtra1")
-            nextDayNakshatra = nextDay(sunNakshtra1 ?: "").split(" upto ")[0]
+            nextDayNakshatra = (nextDaySunNakshtra1 ?: "").split(" upto ")[0]
             println("nextDayNakshatra : $nextDayNakshatra")
 
             //Retrieve Karana
             val nextDayKarnm1 = mapPanch4["Karana"]
             println("nextDayKarnm1 : $nextDayKarnm1")
-            nextDayKarnam = nextDay(karnm1 ?: "").split(" upto ")[0]
+            nextDayKarnam = (nextDayKarnm1 ?: "").split(" upto ")[0]
             println("nextDayKarnam : $nextDayKarnam")
 
             //Retrieve Yogam
             val nextDayYog0 = mapPanch4["Yoga"]
-            nextDayYogam = nextDay(yog0 ?: "").split(" ")[0]
+            nextDayYogam = (nextDayYog0 ?: "").split(" ")[0]
             println("nextDayYogam : $nextDayYogam")
         }
         // println("Finished")
@@ -1179,11 +1179,11 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             val yogaValue = (yog0 ?: "").split(" upto ")[0]
             println("Today yogaValue : $yogaValue")
 
-            if((yog0.split(" upto ")[1] != "") && (yog0.split(" ")[1] == "Full")){
+            if(((yog0 ?: "").split(" upto ")[1] != "") && ((yog0 ?: "").split(" ")[1] == "Full")){
                 todayYogaUptoInMinutesM = NextDaySunRiseTime
             }
-            if ((yog0.split(" upto ")[1] != "") && (yog0.split(" ")[1] != "Full")){
-                val yogaUptoTimeWithDay = yog0.split(" upto ")[1]
+            if (((yog0 ?: "").split(" upto ")[1] != "") && ((yog0 ?: "").split(" ")[1] != "Full")){
+                val yogaUptoTimeWithDay = (yog0 ?: "").split(" upto ")[1]
                 // println("yogaUptoTimeWithDay : $yogaUptoTimeWithDay")
                 val yogaUptoTime = yogaUptoTimeWithDay.split(" ")[0]
                 // println("yogaUptoTime : $yogaUptoTime")
@@ -1439,7 +1439,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             println("sunNakshtra1 : $sunNakshtra1")
             val nakshatravalue = (sunNakshtra1 ?: "").split(" upto ")[0]
             println("nakshatravalue : $nakshatravalue")
-            val sunNakshatraValue = sunNakshtra1.split(" upto ")[1]
+            val sunNakshatraValue = (sunNakshtra1 ?: "").split(" upto ")[1]
             println("sunNakshatraValue : $sunNakshatraValue")
             if((sunNakshatraValue.split(" upto ")[0] != "") && (sunNakshatraValue.split(" ")[0] == "Full")){
                 nakshatraHrToMin = NextDaySunRiseTime
@@ -1512,13 +1512,13 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
             // println("karnm1 : $karnm1")
             val karnaValue = (karnm1 ?: "").split(" upto ")[0]
             // println("karnaValue : $karnaValue")
-            val karnaValueAfterUpto = karnm1.split(" upto ")[1]
+            val karnaValueAfterUpto = (karnm1 ?: "").split(" upto ")[1]
             // println("karnaValueAfterUpto : $karnaValueAfterUpto")
             if ((karnaValueAfterUpto.split(" ")[0] != "") && (karnaValueAfterUpto.split(" ")[0] == "Full")){
                 karnaHrToMin = NextDaySunRiseTime
             }
             if ((karnaValueAfterUpto.split(" ")[0] != "") && (karnaValueAfterUpto.split(" ")[0] != "Full")){
-                val karnaUptoTimeWithDay = karnm1.split(" upto ")[1]
+                val karnaUptoTimeWithDay = (karnm1 ?: "").split(" upto ")[1]
                 // println("karnaUptoTimeWithDay : $karnaUptoTimeWithDay")
                 val karnaUptoTime = karnaUptoTimeWithDay.split(" ")[0]
                 // println("karnaUptoTime : $karnaUptoTime")
