@@ -2049,9 +2049,9 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
         button.isPressed = true // Corrected indentation
 
 
-            parseWeb()
-            nextDayparseWeb()
-            pradamaiDayparseWeb()
+        parseWeb()
+        nextDayparseWeb()
+        pradamaiDayparseWeb()
 
 
         button.invalidate()
