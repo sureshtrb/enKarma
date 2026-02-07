@@ -2046,14 +2046,10 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
     fun buttonClicked(button: Button){
         //initiate the button
         button.performClick()
-        button.isPressed = true // Corrected indentation
-
-
+        button.isPressed = true
         parseWeb()
         nextDayparseWeb()
         pradamaiDayparseWeb()
-
-
         button.invalidate()
         // delay completion till animation completes
         button.postDelayed( Runnable {  //delay button
