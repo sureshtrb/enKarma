@@ -222,14 +222,14 @@ StrictMode.setThreadPolicy(policy)
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
         dateNow = dateFormat.format(Date())
         dateText.text = dateNow
-
+        println("dateText.text : $dateText.text")
         val cal1 = Calendar.getInstance()
         val sdf1 = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH) // Add Locale
         cal1.time = sdf1.parse(dateNow) ?: Date() // Provide default Date if null
         // add 1 day to the calendar
         cal1.add(Calendar.DATE, 1)
-        // println("cal1 : $cal1")
-        //  System.out.println("1 day later: " + cal1.time)
+         println("cal1 : $cal1")
+        System.out.println("1 day later: " + cal1.time)
         nextdy = sdf1.format(cal1.time)
         // println("nextdy : $nextdy")
 
@@ -557,7 +557,7 @@ StrictMode.setThreadPolicy(policy)
         val basicWeb = "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date="
         val pradamaiDayWeb = (basicWeb + pradamaiDay)
         // println("pradamaiDayWeb : $pradamaiDayWeb")
-        Jsoup.connect(pradamaiDayWeb).get().run {
+        Jsoup.connect(pradamaiDayWeb).userAgent("Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36").timeout(30000).followRedirects(true).ignoreHttpErrors(true).get().run {
             //select("div.dpPanchangWrapper").forEach {  element ->
 
             select("div.dpPHeaderWrapper").forEachIndexed { index, element ->
@@ -722,7 +722,7 @@ StrictMode.setThreadPolicy(policy)
         val basicWeb = "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date="
         val dayAfterPradamaiDayWeb = (basicWeb + afterPradamaiDay)
         // println("dayAfterPradamaiDayWeb : $dayAfterPradamaiDayWeb")
-        Jsoup.connect(dayAfterPradamaiDayWeb).get().run {
+        Jsoup.connect(dayAfterPradamaiDayWeb).userAgent("Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36").timeout(30000).followRedirects(true).ignoreHttpErrors(true).get().run {
             //select("div.dpPanchangWrapper").forEach {  element ->
 
             select("div.dpPHeaderWrapper").forEachIndexed { index, element ->
@@ -797,7 +797,7 @@ StrictMode.setThreadPolicy(policy)
         val basicWeb = "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date="
         val nextDayWeb = (basicWeb + nextdy)
         // println("nextDayWeb : $nextDayWeb")
-        Jsoup.connect(nextDayWeb).get().run {
+        Jsoup.connect(nextDayWeb).userAgent("Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36").timeout(30000).followRedirects(true).ignoreHttpErrors(true).get().run {
             select("div.dpPHeaderWrapper").forEachIndexed { index, element ->
                 val leftData4 = element.select("div.dpPHeaderLeftWrapper")
                 for (key4 in leftData4) {
@@ -971,7 +971,7 @@ StrictMode.setThreadPolicy(policy)
         val basicWeb = "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date="
         val todayWeb = (basicWeb + dateNow)
         // println("todayWeb : $todayWeb")
-        Jsoup.connect(todayWeb).get().run {
+        Jsoup.connect(todayWeb).userAgent("Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36").timeout(30000).followRedirects(true).ignoreHttpErrors(true).get().run {
             select("div.dpPHeaderWrapper").forEachIndexed { index, element ->
                 val leftData = element.select("div.dpPHeaderLeftWrapper")
                 for (key1 in leftData){
