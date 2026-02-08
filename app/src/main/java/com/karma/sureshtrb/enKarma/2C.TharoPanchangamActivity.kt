@@ -1995,27 +1995,27 @@ StrictMode.setThreadPolicy(policy)
             println("sayamSandya : $sayamSandya")
 
             val titiText = "<font color=#000000>திதி (Thithi):-    </font> <font color=#1E3A8A>$ThithiGlobal</font>"
-            todThithi = Html.fromHtml(titiText, Html.FROM_HTML_MODE_LEGACY).toString()
+            todThithi = Html.fromHtml(titiText, Html.FROM_HTML_MODE_LEGACY)
             val paktext = "<font color=#000000>பக்ஷ்ம் (Paksha):-    </font> <font color=#1E3A8A>$paksha</font>"
-            baksham = Html.fromHtml(paktext, Html.FROM_HTML_MODE_LEGACY).toString()
+            baksham = Html.fromHtml(paktext, Html.FROM_HTML_MODE_LEGACY)
             val rasitext = "<font color=#000000>ராசி (Rasi):-    </font> <font color=#1E3A8A>$suryaRasi</font>"
-            rasee = Html.fromHtml(rasitext, Html.FROM_HTML_MODE_LEGACY).toString()
+            rasee = Html.fromHtml(rasitext, Html.FROM_HTML_MODE_LEGACY)
             val placeText = "<font color=#000000>இடம் (GeoLocation):-    </font> <font color=#1E3A8A>$place</font>"
-            place = Html.fromHtml(placeText, Html.FROM_HTML_MODE_LEGACY).toString()
+            place = Html.fromHtml(placeText, Html.FROM_HTML_MODE_LEGACY)
             val yearText = "<font color=#000000>வருடம் (Year):-    </font> <font color=#1E3A8A>$shakaSamvat</font>"
-            Varusham = Html.fromHtml(yearText, Html.FROM_HTML_MODE_LEGACY).toString()
+            Varusham = Html.fromHtml(yearText, Html.FROM_HTML_MODE_LEGACY)
             val yogaText = "<font color=#000000>யோகம் (Yogam):-    </font> <font color=#1E3A8A>$yoga</font>"
-            yog = Html.fromHtml(yogaText, Html.FROM_HTML_MODE_LEGACY).toString()
+            yog = Html.fromHtml(yogaText, Html.FROM_HTML_MODE_LEGACY)
             val ruthuText = "<font color=#000000>ருது (Season-காலம்):-    </font> <font color=#1E3A8A>$vedicRithu</font>"
-            kalam = Html.fromHtml(ruthuText, Html.FROM_HTML_MODE_LEGACY).toString()
+            kalam = Html.fromHtml(ruthuText, Html.FROM_HTML_MODE_LEGACY)
             val ayanaText = "<font color=#000000>அயனம் (Ayana):-    </font> <font color=#1E3A8A>$vedicAyana</font>"
-            ayyanamm = Html.fromHtml(ayanaText, Html.FROM_HTML_MODE_LEGACY).toString()
+            ayyanamm = Html.fromHtml(ayanaText, Html.FROM_HTML_MODE_LEGACY)
             val wDayText = "<font color=#000000>கிழமை (Day):-    </font> <font color=#1E3A8A>$weekDay</font>"
-            kizhamai = Html.fromHtml(wDayText, Html.FROM_HTML_MODE_LEGACY).toString()
+            kizhamai = Html.fromHtml(wDayText, Html.FROM_HTML_MODE_LEGACY)
             val nakshText = "<font color=#000000>நட்ஷத்ரம் (Natchatram):-    </font> <font color=#1E3A8A>$naksha</font>"
-            nachathirm = Html.fromHtml(nakshText, Html.FROM_HTML_MODE_LEGACY).toString()
+            nachathirm = Html.fromHtml(nakshText, Html.FROM_HTML_MODE_LEGACY)
             val karanaText = "<font color=#000000>கரணம் (Karanam):-    </font> <font color=#1E3A8A>$karana</font>"
-            kar = Html.fromHtml(karanaText, Html.FROM_HTML_MODE_LEGACY).toString()
+            kar = Html.fromHtml(karanaText, Html.FROM_HTML_MODE_LEGACY)
         }
         // println("Finished")
     } catch (e: Exception) {
