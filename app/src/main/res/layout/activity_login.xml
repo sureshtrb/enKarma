@@ -118,7 +118,7 @@
                     android:textSize="24sp" android:textStyle="bold"
                     android:background="@drawable/mybutton"
                     android:textAllCaps="false"
-                    android:textColor="@android:color/background_light"/>
+                    android:textColor="#1E3A8A"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="fill_parent"
