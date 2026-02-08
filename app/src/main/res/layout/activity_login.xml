@@ -123,15 +123,16 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/reset_password_button"
+                android:background="#1E3A8A"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_button"
                 android:layout_marginTop="@dimen/margin_top"
-                android:background="@null"
+                android:background="#1E3A8A"
                 android:padding="@dimen/general_padding"
                 android:text="@string/btn_forgot_password"
                 android:textAllCaps="false"
-                android:textColor="@color/colorAccent" />
+                android:textColor="#FFFFFF" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_signup"
@@ -152,12 +153,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/text_view_signup"
                     android:layout_marginTop="@dimen/margin_top"
-                    android:background="@null"
+                    android:background="#1E3A8A"
                     android:gravity="end"
                     android:padding="@dimen/general_padding"
                     android:text="@string/skip_login_button"
                     android:textAllCaps="false"
-                    android:textColor="@color/design_default_color_error" />
+                    android:textColor="#FFFFFF" />
 
         </RelativeLayout>
 
