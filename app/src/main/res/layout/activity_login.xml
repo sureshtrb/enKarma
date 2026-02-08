@@ -123,11 +123,9 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/reset_password_button"
-                android:background="#1E3A8A"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_button"
-                android:layout_marginTop="@dimen/margin_top"
                 android:background="#1E3A8A"
                 android:padding="@dimen/general_padding"
                 android:text="@string/btn_forgot_password"
