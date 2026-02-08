@@ -148,6 +148,16 @@ var afterPradamaiSRiseHrAndMinConvInMinutes:Int = 0
 //var afterPradamaiDayTitiUptoHrOnly:Int = 0
 //var afterPradamaiDayTithiCheck:Int = 0
 
+var Varusham:String = ""
+var ayyanamm:String = ""
+var kalam:String = ""
+var rasee:String = ""
+var baksham:String = ""
+var todThithi:String = ""
+var kizhamai:String = ""
+var nachathirm:String = ""
+var yog:String = ""
+var kar:String = ""
 var bodayana = "சதுர்தஸ்யோபரி அமாவாஸ்யா"
 
 @Suppress("DEPRECATION")
@@ -519,6 +529,21 @@ StrictMode.setThreadPolicy(policy)
         binding.textViewDate1.text = sdf.format(cal.time) // Remove safe call
         dateNow = binding.textViewDate1.text.toString() // Remove safe call
         // println("dateNow : $dateNow")
+                val calN = Calendar.getInstance()
+        val sdfN = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+        calN.time = sdfN.parse(dateNow) ?: Date()
+        calN.add(Calendar.DATE, 1)
+        nextdy = sdfN.format(calN.time)
+        val calP = Calendar.getInstance()
+        val sdfP = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+        calP.time = sdfP.parse(dateNow) ?: Date()
+        calP.add(Calendar.DATE, 2)
+        pradamaiDay = sdfP.format(calP.time)
+        val calA = Calendar.getInstance()
+        val sdfA = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+        calA.time = sdfA.parse(dateNow) ?: Date()
+        calA.add(Calendar.DATE, 3)
+        afterPradamaiDay = sdfA.format(calA.time)
     }
 
   /*
@@ -804,7 +829,7 @@ StrictMode.setThreadPolicy(policy)
                     if (key4.select("div.dpPHeaderLeftContent").hasText()) {
                         val leftHeaderData4 = key4.text()
                         println("NextDay left Header Data 4 : $leftHeaderData4")
-                        nextDaypakshaValue = leftHeaderData4.split(" ")[3]
+                        nextDaypakshaValue = leftHeaderData4.split(" ")[2]
                         nextDaypaksha = nextDaypakshaValue
                         println("nextDaypaksha : $nextDaypaksha")
                     }
@@ -2016,6 +2041,20 @@ StrictMode.setThreadPolicy(policy)
             nachathirm = Html.fromHtml(nakshText, Html.FROM_HTML_MODE_LEGACY).toString()
             val karanaText = "<font color=#000000>கரணம் (Karanam):-    </font> <font color=#1E3A8A>$karana</font>"
             kar = Html.fromHtml(karanaText, Html.FROM_HTML_MODE_LEGACY).toString()
+                        // Update UI TextViews with parsed data
+            binding.root.post {
+                findViewById<TextView>(R.id.GEOLOCATION).text = place
+                findViewById<TextView>(R.id.Year).text = Varusham
+                findViewById<TextView>(R.id.Ayana).text = ayyanamm
+                findViewById<TextView>(R.id.Season).text = kalam
+                findViewById<TextView>(R.id.Rasi).text = rasee
+                findViewById<TextView>(R.id.Paksha).text = baksham
+                findViewById<TextView>(R.id.Thithi).text = todThithi
+                findViewById<TextView>(R.id.Day).text = kizhamai
+                findViewById<TextView>(R.id.Natchatram).text = nachathirm
+                findViewById<TextView>(R.id.Yogam).text = yog
+                findViewById<TextView>(R.id.Karanam).text = kar
+            }
         }
         // println("Finished")
     } catch (e: Exception) {
