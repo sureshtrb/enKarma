@@ -116,7 +116,7 @@
                     android:padding="@dimen/general_padding"
                     android:text="@string/login_button"
                     android:textSize="24sp" android:textStyle="bold"                    android:textAllCaps="false"
-                    android:textColor="#1E3A8A"/>
+                    android:textColor="#FFFFFF" android:background="#1E3A8A"/>
 
             <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/reset_password_button"
