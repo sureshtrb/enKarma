@@ -115,9 +115,7 @@
                     android:layout_margin="@dimen/small_padding"
                     android:padding="@dimen/general_padding"
                     android:text="@string/login_button"
-                    android:textSize="24sp" android:textStyle="bold"
-                    android:background="@drawable/mybutton"
-                    android:textAllCaps="false"
+                    android:textSize="24sp" android:textStyle="bold"                    android:textAllCaps="false"
                     android:textColor="#1E3A8A"/>
 
             <androidx.appcompat.widget.AppCompatButton
