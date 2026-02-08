@@ -121,6 +121,7 @@
                     android:textColor="#1E3A8A"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/reset_password_button"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_button"
