@@ -84,7 +84,7 @@ var fatherLive: String = ""
 var motherLive: String = ""
 var motherMotherLive: String = ""
 var fatherMotherLive: String = ""
-var dateNow: String = "__/__/____"
+var dateNow: String = "__/__ /____"
 var nextdy: String = ""
 var NextDayThithi: String = ""
 var thithiValuex: String = ""
@@ -109,22 +109,23 @@ var afterPradamaiDayPaksha: String = ""
 var afterPradamaiSRiseHrAndMinConvInMinutes: Int = 0
 var bodayana = "சதுர்தஸ்யோபரி அமாவாஸ்யா"
 
-// TextView reference variables used in onCreate
-lateinit var Varusham: TextView
-lateinit var ayyanamm: TextView
-lateinit var kalam: TextView
-lateinit var rasee: TextView
-lateinit var baksham: TextView
-lateinit var todThithi: TextView
-lateinit var kizhamai: TextView
-lateinit var nachathirm: TextView
-lateinit var yog: TextView
-lateinit var kar: TextView
-
 @Suppress("DEPRECATION")
 class TharoPanchangamActivity : AppCompatActivity() {
+
     var cal = Calendar.getInstance()
     private lateinit var binding: ActivityTharoPanchangamBinding
+
+    // TextView references (moved inside class to avoid conflicts with top-level String vars)
+    private lateinit var tvVarusham: TextView
+    private lateinit var tvAyyanamm: TextView
+    private lateinit var tvKalam: TextView
+    private lateinit var tvRasee: TextView
+    private lateinit var tvBaksham: TextView
+    private lateinit var tvTodThithi: TextView
+    private lateinit var tvKizhamai: TextView
+    private lateinit var tvNachathirm: TextView
+    private lateinit var tvYog: TextView
+    private lateinit var tvKar: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,16 +147,17 @@ class TharoPanchangamActivity : AppCompatActivity() {
 
         val dateText = findViewById<TextView>(R.id.text_view_date_1)
         val changeDateBtn = findViewById<Button>(R.id.button_date_1)
-        Varusham = this.findViewById(R.id.Year)
-        ayyanamm = this.findViewById(R.id.Ayana)
-        kalam = this.findViewById(R.id.Season)
-        rasee = this.findViewById(R.id.Rasi)
-        baksham = this.findViewById(R.id.Paksha)
-        todThithi = this.findViewById(R.id.Thithi)
-        kizhamai = this.findViewById(R.id.Day)
-        nachathirm = this.findViewById(R.id.Natchatram)
-        yog = this.findViewById(R.id.Yogam)
-        kar = this.findViewById(R.id.Karanam)
+
+        tvVarusham = this.findViewById(R.id.Year)
+        tvAyyanamm = this.findViewById(R.id.Ayana)
+        tvKalam = this.findViewById(R.id.Season)
+        tvRasee = this.findViewById(R.id.Rasi)
+        tvBaksham = this.findViewById(R.id.Paksha)
+        tvTodThithi = this.findViewById(R.id.Thithi)
+        tvKizhamai = this.findViewById(R.id.Day)
+        tvNachathirm = this.findViewById(R.id.Natchatram)
+        tvYog = this.findViewById(R.id.Yogam)
+        tvKar = this.findViewById(R.id.Karanam)
 
         place = this.findViewById<TextView>(R.id.GEOLOCATION).text.toString()
 
@@ -203,7 +205,6 @@ class TharoPanchangamActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
         dateNow = dateFormat.format(Date())
         dateText.text = dateNow
-
         recalculateDays()
 
         val calen = Calendar.getInstance()
@@ -364,12 +365,10 @@ class TharoPanchangamActivity : AppCompatActivity() {
         cal1.time = sdf.parse(dateNow) ?: Date()
         cal1.add(Calendar.DATE, 1)
         nextdy = sdf.format(cal1.time)
-
         val cal2 = Calendar.getInstance()
         cal2.time = sdf.parse(dateNow) ?: Date()
         cal2.add(Calendar.DATE, 2)
         pradamaiDay = sdf.format(cal2.time)
-
         val cal3 = Calendar.getInstance()
         cal3.time = sdf.parse(dateNow) ?: Date()
         cal3.add(Calendar.DATE, 3)
@@ -386,38 +385,14 @@ class TharoPanchangamActivity : AppCompatActivity() {
         val rbFMLiving = this.findViewById<RadioButton>(R.id.radio1G4)
         val rbFMDeceased = this.findViewById<RadioButton>(R.id.radio2G4)
         val settings = getSharedPreferences("Answer", 0)
-        if (settings.getBoolean("question1A", false)) {
-            rbFLiving.isChecked = true
-            fatherLive = "Living"
-        }
-        if (settings.getBoolean("question1B", false)) {
-            rbFDeceased.isChecked = true
-            fatherLive = "Deceased"
-        }
-        if (settings.getBoolean("question2A", false)) {
-            rbMLiving.isChecked = true
-            motherLive = "Living"
-        }
-        if (settings.getBoolean("question2B", false)) {
-            rbMDeceased.isChecked = true
-            motherLive = "Deceased"
-        }
-        if (settings.getBoolean("question3A", false)) {
-            rbMMLiving.isChecked = true
-            motherMotherLive = "Living"
-        }
-        if (settings.getBoolean("question3B", false)) {
-            rbMMDeceased.isChecked = true
-            motherMotherLive = "Deceased"
-        }
-        if (settings.getBoolean("question4A", false)) {
-            rbFMLiving.isChecked = true
-            fatherMotherLive = "Living"
-        }
-        if (settings.getBoolean("question4B", false)) {
-            rbFMDeceased.isChecked = true
-            fatherMotherLive = "Deceased"
-        }
+        if (settings.getBoolean("question1A", false)) { rbFLiving.isChecked = true; fatherLive = "Living" }
+        if (settings.getBoolean("question1B", false)) { rbFDeceased.isChecked = true; fatherLive = "Deceased" }
+        if (settings.getBoolean("question2A", false)) { rbMLiving.isChecked = true; motherLive = "Living" }
+        if (settings.getBoolean("question2B", false)) { rbMDeceased.isChecked = true; motherLive = "Deceased" }
+        if (settings.getBoolean("question3A", false)) { rbMMLiving.isChecked = true; motherMotherLive = "Living" }
+        if (settings.getBoolean("question3B", false)) { rbMMDeceased.isChecked = true; motherMotherLive = "Deceased" }
+        if (settings.getBoolean("question4A", false)) { rbFMLiving.isChecked = true; fatherMotherLive = "Living" }
+        if (settings.getBoolean("question4B", false)) { rbFMDeceased.isChecked = true; fatherMotherLive = "Deceased" }
     }
 
     private fun saveRadioState() {
@@ -468,27 +443,16 @@ class TharoPanchangamActivity : AppCompatActivity() {
                         for (k2 in dpSunRiseRow2) {
                             if (k2.select("span.dpTitle").hasText()) {
                                 val dataSunMoon2 = k2.text()
-                                if (dataSunMoon2.startsWith("Sunrise")) {
-                                    pradamaiDaySunRise = dataSunMoon2
-                                } else if (dataSunMoon2.startsWith("Sunset")) {
-                                    pradamaiDaySunSet = dataSunMoon2
-                                }
+                                if (dataSunMoon2.startsWith("Sunrise")) { pradamaiDaySunRise = dataSunMoon2 }
+                                else if (dataSunMoon2.startsWith("Sunset")) { pradamaiDaySunSet = dataSunMoon2 }
                             }
                         }
                         var isKey2 = false
                         val anchor2 = element2.select("div.dpTableCard")
                         val dpCardRow2 = anchor2.select("div.dpTableCell")
                         for (k2 in dpCardRow2) {
-                            if (k2.getElementsByClass("dpTableKey").hasText()) {
-                                mapKey2 = k2.getElementsByClass("dpTableKey").text()
-                                isKey2 = true
-                            }
-                            if (k2.getElementsByClass("dpTableValue").hasText()) {
-                                if (isKey2) {
-                                    DataList2 = k2.getElementsByClass("dpTableValue").text()
-                                    isKey2 = false
-                                }
-                            }
+                            if (k2.getElementsByClass("dpTableKey").hasText()) { mapKey2 = k2.getElementsByClass("dpTableKey").text(); isKey2 = true }
+                            if (k2.getElementsByClass("dpTableValue").hasText()) { if (isKey2) { DataList2 = k2.getElementsByClass("dpTableValue").text(); isKey2 = false } }
                             mapPanch2[mapKey2] = DataList2
                         }
                     }
@@ -518,9 +482,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 }
             }
         }
-    } catch (e: Exception) {
-        println(e)
-    }
+    } catch (e: Exception) { println(e) }
 
     private fun afterPradamaiDayparseWeb() = try {
         val basicWeb = "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date="
@@ -540,27 +502,16 @@ class TharoPanchangamActivity : AppCompatActivity() {
                         for (k3 in dpSunRiseRow3) {
                             if (k3.select("span.dpTitle").hasText()) {
                                 val dataSunMoon3 = k3.text()
-                                if (dataSunMoon3.startsWith("Sunrise")) {
-                                    afterPradamaiDaySunRise = dataSunMoon3
-                                } else if (dataSunMoon3.startsWith("Sunset")) {
-                                    afterPradamaiDaySunSet = dataSunMoon3
-                                }
+                                if (dataSunMoon3.startsWith("Sunrise")) { afterPradamaiDaySunRise = dataSunMoon3 }
+                                else if (dataSunMoon3.startsWith("Sunset")) { afterPradamaiDaySunSet = dataSunMoon3 }
                             }
                         }
                         var isKey3 = false
                         val anchor3 = element3.select("div.dpTableCard")
                         val dpCardRow3 = anchor3.select("div.dpTableCell")
                         for (k3 in dpCardRow3) {
-                            if (k3.getElementsByClass("dpTableKey").hasText()) {
-                                mapKey3 = k3.getElementsByClass("dpTableKey").text()
-                                isKey3 = true
-                            }
-                            if (k3.getElementsByClass("dpTableValue").hasText()) {
-                                if (isKey3) {
-                                    DataList3 = k3.getElementsByClass("dpTableValue").text()
-                                    isKey3 = false
-                                }
-                            }
+                            if (k3.getElementsByClass("dpTableKey").hasText()) { mapKey3 = k3.getElementsByClass("dpTableKey").text(); isKey3 = true }
+                            if (k3.getElementsByClass("dpTableValue").hasText()) { if (isKey3) { DataList3 = k3.getElementsByClass("dpTableValue").text(); isKey3 = false } }
                             mapPanch3[mapKey3] = DataList3
                         }
                     }
@@ -574,9 +525,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 }
             }
         }
-    } catch (e: Exception) {
-        println(e)
-    }
+    } catch (e: Exception) { println(e) }
 
     private fun nextDayparseWeb() = try {
         val basicWeb = "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date="
@@ -597,16 +546,8 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 val anchor4 = element.select("div.dpTableCard")
                 val dpCardRow4 = anchor4.select("div.dpTableCell")
                 for (key4 in dpCardRow4) {
-                    if (key4.getElementsByClass("dpTableKey").hasText()) {
-                        mapKey4 = key4.getElementsByClass("dpTableKey").text()
-                        isKey4 = true
-                    }
-                    if (key4.getElementsByClass("dpTableValue").hasText()) {
-                        if (isKey4) {
-                            DataList4 = key4.getElementsByClass("dpTableValue").text()
-                            isKey4 = false
-                        }
-                    }
+                    if (key4.getElementsByClass("dpTableKey").hasText()) { mapKey4 = key4.getElementsByClass("dpTableKey").text(); isKey4 = true }
+                    if (key4.getElementsByClass("dpTableValue").hasText()) { if (isKey4) { DataList4 = key4.getElementsByClass("dpTableValue").text(); isKey4 = false } }
                     mapPanch4[mapKey4] = DataList4
                 }
             }
@@ -639,9 +580,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
             val nextDayYog0 = mapPanch4["Yoga"]
             nextDayYogam = (nextDayYog0 ?: "").split(" ")[0]
         }
-    } catch (e: Exception) {
-        println(e)
-    }
+    } catch (e: Exception) { println(e) }
 
     @Suppress("SENSELESS_COMPARISON")
     private fun parseWeb() = try {
@@ -662,9 +601,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 }
                 val rightData = element.select("div.dpPHeaderRightContent")
                 for (key2 in rightData) {
-                    if (key2.select("div.dpPHeaderRightContent").hasText()) {
-                        dateToday = key2.text()
-                    }
+                    if (key2.select("div.dpPHeaderRightContent").hasText()) { dateToday = key2.text() }
                 }
             }
             select("div.dpTableCardWrapper").forEachIndexed { _, element ->
@@ -673,27 +610,16 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 for (key in dpSunRiseRow) {
                     if (key.select("span.dpTitle").hasText()) {
                         val dataSunMoon = key.text()
-                        if (dataSunMoon.startsWith("Sunrise")) {
-                            sunRise = dataSunMoon
-                        } else if (dataSunMoon.startsWith("Sunset")) {
-                            sunSet = dataSunMoon
-                        }
+                        if (dataSunMoon.startsWith("Sunrise")) { sunRise = dataSunMoon }
+                        else if (dataSunMoon.startsWith("Sunset")) { sunSet = dataSunMoon }
                     }
                 }
                 var isKey = false
                 val anchor1 = element.select("div.dpTableCard")
                 val dpCardRow1 = anchor1.select("div.dpTableCell")
                 for (key in dpCardRow1) {
-                    if (key.getElementsByClass("dpTableKey").hasText()) {
-                        mapKey = key.getElementsByClass("dpTableKey").text()
-                        isKey = true
-                    }
-                    if (key.getElementsByClass("dpTableValue").hasText()) {
-                        if (isKey) {
-                            DataList = key.getElementsByClass("dpTableValue").text()
-                            isKey = false
-                        }
-                    }
+                    if (key.getElementsByClass("dpTableKey").hasText()) { mapKey = key.getElementsByClass("dpTableKey").text(); isKey = true }
+                    if (key.getElementsByClass("dpTableValue").hasText()) { if (isKey) { DataList = key.getElementsByClass("dpTableValue").text(); isKey = false } }
                     mapPanch[mapKey] = DataList
                 }
             }
@@ -710,22 +636,14 @@ class TharoPanchangamActivity : AppCompatActivity() {
             processChandraMasa()
             updateUITexts()
         }
-    } catch (e: Exception) {
-        println("Error Skipped $e")
-    }
+    } catch (e: Exception) { println("Error Skipped $e") }
 
     private fun convertToMinutes(hour: Int, minutes: Int, amPm: String): Int {
         return when {
-            amPm == "PM" -> {
-                val hr = if (hour == 12) 12 else hour + 12
-                (hr * 60) + minutes
-            }
+            amPm == "PM" -> { val hr = if (hour == 12) 12 else hour + 12; (hr * 60) + minutes }
             amPm == "PM," -> ((24 * 60) - nowTimeInMinutes) + 1440 + ((if (hour == 12) 12 else hour + 12) * 60) + minutes
             amPm == "AM" -> ((if (hour == 12) 0 else hour) * 60) + minutes
-            amPm == "AM," -> {
-                val hr = if (hour == 12) 0 else hour
-                ((24 * 60) - nowTimeInMinutes) + (hr * 60) + minutes
-            }
+            amPm == "AM," -> { val hr = if (hour == 12) 0 else hour; ((24 * 60) - nowTimeInMinutes) + (hr * 60) + minutes }
             else -> 0
         }
     }
@@ -874,9 +792,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
         }
         val twelveHrInMin = 12 * 60
         fromSunRiseToTwelveHrs = pradamaiDaySRiseInMinutes + twelveHrInMin
-        if (pradamaiDayTitiUptoHrOnly >= 12) {
-            pradamaiDayTitiUptoHrOnly -= 12
-        }
+        if (pradamaiDayTitiUptoHrOnly >= 12) { pradamaiDayTitiUptoHrOnly -= 12 }
         pradamaiThithiUptoInMinutes = pradamaiDayTitiUptoHrOnly * 60
     }
 
@@ -931,13 +847,13 @@ class TharoPanchangamActivity : AppCompatActivity() {
 
     private fun convertNakshatraToTamil(value: String): String {
         return when {
-            value.contains("Ashwini") -> "அஶ்வினி"
+            value.contains("Ashwini") -> "அஞ்வினி"
             value.contains("Bharani") -> "அபபரணீ"
             value.contains("Krittika") -> "க்ருத்திகா"
             value.contains("Rohini") -> "ரோஹிணீ"
             value.contains("Mrigashirsha") -> "ம்ருகசீர்ஷ"
             value.contains("Ardra") -> "ஆர்த்ரா"
-            value.contains("Punarvasu") -> "புனர்வஸு"
+            value.contains("Punarvasu") -> "புனர்வசு"
             value.contains("Pushya") -> "புஷ்ய"
             value.contains("Ashlesha") -> "ஆச்'லேஷா'"
             value.contains("Magha") -> "மகா"
@@ -952,8 +868,8 @@ class TharoPanchangamActivity : AppCompatActivity() {
             value.contains("Mula") -> "மூலா"
             value.contains("Purva Ashadha") -> "பூர்வ ஆஷாடா"
             value.contains("Uttara Ashadha") -> "உத்தர ஆஷாடா"
-            value.contains("Shravana") -> "ஶ்ரவண"
-            value.contains("Dhanishtha") -> "ஶ்ரவிஷ்டா"
+            value.contains("Shravana") -> "ஞ்ரவண"
+            value.contains("Dhanishtha") -> "ஞ்ரவிஷ்டா"
             value.contains("Shatabhisha") -> "சதபிஷக்"
             value.contains("Purva Bhadrapada") -> "பூர்வ ப்ரோஷ்டபதா"
             value.contains("Uttara Bhadrapada") -> "உத்தர ப்ரோஷ்டபதா"
@@ -991,9 +907,9 @@ class TharoPanchangamActivity : AppCompatActivity() {
             value.contains("Bava") -> "பாவா"
             value.contains("Kaulava") -> "கௌலவ"
             value.contains("Nagava") -> "நாகவா"
-            value.contains("Shakuni") -> "ஷகுநி"
+            value.contains("Shakuni") -> "ஷகுணி"
             value.contains("Chatushpada") -> "ச்சடுஷ்பாடா"
-            value.contains("Kinstughna") -> "கிந்ஸ்டுக்ணா"
+            value.contains("Kinstughna") -> "கின்ஸ்டுக்ணா"
             else -> value
         }
     }
@@ -1012,26 +928,26 @@ class TharoPanchangamActivity : AppCompatActivity() {
 
     private fun updateUITexts() {
         val titiText = "திதி (Thithi):- $ThithiGlobal"
-        todThithi.text = Html.fromHtml(titiText, Html.FROM_HTML_MODE_LEGACY)
+        tvTodThithi.text = Html.fromHtml(titiText, Html.FROM_HTML_MODE_LEGACY)
         val paktext = "பக்ஷம் (Paksha):- $paksha"
-        baksham.text = Html.fromHtml(paktext, Html.FROM_HTML_MODE_LEGACY)
+        tvBaksham.text = Html.fromHtml(paktext, Html.FROM_HTML_MODE_LEGACY)
         val rasitext = "ராசி (Rasi):- $suryaRasi"
-        rasee.text = Html.fromHtml(rasitext, Html.FROM_HTML_MODE_LEGACY)
+        tvRasee.text = Html.fromHtml(rasitext, Html.FROM_HTML_MODE_LEGACY)
         val placeText = "இடம் (GeoLocation):- $place"
         val yearText = "வருடம் (Year):- $shakaSamvat"
-        Varusham.text = Html.fromHtml(yearText, Html.FROM_HTML_MODE_LEGACY)
+        tvVarusham.text = Html.fromHtml(yearText, Html.FROM_HTML_MODE_LEGACY)
         val yogaText = "யோகம் (Yogam):- $yoga"
-        yog.text = Html.fromHtml(yogaText, Html.FROM_HTML_MODE_LEGACY)
+        tvYog.text = Html.fromHtml(yogaText, Html.FROM_HTML_MODE_LEGACY)
         val ruthuText = "ருது (Season-காலம்):- $vedicRithu"
-        kalam.text = Html.fromHtml(ruthuText, Html.FROM_HTML_MODE_LEGACY)
+        tvKalam.text = Html.fromHtml(ruthuText, Html.FROM_HTML_MODE_LEGACY)
         val ayanaText = "அயனம் (Ayana):- $vedicAyana"
-        ayyanamm.text = Html.fromHtml(ayanaText, Html.FROM_HTML_MODE_LEGACY)
+        tvAyyanamm.text = Html.fromHtml(ayanaText, Html.FROM_HTML_MODE_LEGACY)
         val wDayText = "கிழமை (Day):- $weekDay"
-        kizhamai.text = Html.fromHtml(wDayText, Html.FROM_HTML_MODE_LEGACY)
+        tvKizhamai.text = Html.fromHtml(wDayText, Html.FROM_HTML_MODE_LEGACY)
         val nakshText = "நட்ஷத்ரம் (Natchatram):- $naksha"
-        nachathirm.text = Html.fromHtml(nakshText, Html.FROM_HTML_MODE_LEGACY)
+        tvNachathirm.text = Html.fromHtml(nakshText, Html.FROM_HTML_MODE_LEGACY)
         val karanaText = "கரணம் (Karanam):- $karana"
-        kar.text = Html.fromHtml(karanaText, Html.FROM_HTML_MODE_LEGACY)
+        tvKar.text = Html.fromHtml(karanaText, Html.FROM_HTML_MODE_LEGACY)
     }
 
     fun clearAllData() {
