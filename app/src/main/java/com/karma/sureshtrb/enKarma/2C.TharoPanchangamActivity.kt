@@ -219,7 +219,7 @@ StrictMode.setThreadPolicy(policy)
         if (rbFMLiving.isChecked || rbFMDeceased.isChecked) { proceed.visibility = View.VISIBLE}else{proceed.visibility = View.INVISIBLE}
 
 
-        val dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
+        val dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.ENGLISH)
 dateNow = dateFormat.format(Date())
 dateText.text = dateNow
 
@@ -515,7 +515,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
     @TargetApi(Build.VERSION_CODES.O)
     private fun updateDateInView() {
         val myFormat = "dd/MM/yyyy"
-        val sdf = SimpleDateFormat(myFormat, Locale.getDefault()) // Use Locale.getDefault()
+        val sdf = SimpleDateFormat(myFormat, Locale.ENGLISH) // Use Locale.getDefault()
         binding.textViewDate1.text = sdf.format(cal.time) // Remove safe call
         dateNow = binding.textViewDate1.text.toString() // Remove safe call
         // println("dateNow : $dateNow")
@@ -523,7 +523,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
 
   /*
         val cal1 = Calendar.getInstance()
-        val sdf1 = SimpleDateFormat("dd/MM/yyyy")
+        val sdf1 = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
         cal1.time = sdf1.parse(dateNow)// all done
         // add 1 day to the calendar
         cal1.add(Calendar.DATE, 1)
@@ -533,7 +533,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
         // println("nextdy : $nextdy")
 */
      /*   val cal2 = Calendar.getInstance()
-        val sdf2 = SimpleDateFormat("dd/MM/yyyy")
+        val sdf2 = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
         cal2.time = sdf2.parse(dateNow)// all done
         // add 20 days to the calendar
         cal2.add(Calendar.DATE, 2)
@@ -542,7 +542,7 @@ cal3.time = sdf3.parse(dateNow) ?: Date() // Provide default Date if null
         pradamaiDay = sdf.format(cal2.time)
         // println("pradamaiDay : $pradamaiDay")
         val cal3 = Calendar.getInstance()
-        val sdf3 = SimpleDateFormat("dd/MM/yyyy")
+        val sdf3 = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
         cal3.time = sdf3.parse(dateNow)// all done
         // add 3 days to the calendar
         cal3.add(Calendar.DATE, 3)
