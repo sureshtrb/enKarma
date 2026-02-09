@@ -467,7 +467,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
                     val pradamaiDayTitiUpto0 = pradamaiDayTithiArr.split(" upto ")[1]
                     if ((pradamaiDayTithiArr.split(" ")[0]) == "Full") { pradamaiThithiUptoInMinutes = afterPradamaiSRiseHrAndMinConvInMinutes }
                     if ((pradamaiDayTithiArr.split(" ")[0]) != "Full") {
-                        val pradmaiDayselectTimeOnly = pradamaiDayTitiUpto0.trim().split(" ")[0]
+                        val pradmaiDayselectTimeOnly = pradamaiDayTitiUpto0.trim().split(" ").getOrNull(0) ?: ""
                         pradamaiDayTitiUptoHrOnly = pradmaiDayselectTimeOnly.split(":")[0].toInt()
                         val pradamaiDayTitiUptoMinutesOnly = pradmaiDayselectTimeOnly.split(":")[1].toInt()
                         val amPm = pradamaiDayTitiUpto0.split(" ")[1]
@@ -540,7 +540,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 for (key4 in leftData4) {
                     if (key4.select("div.dpPHeaderLeftContent").hasText()) {
                         val leftHeaderData4 = key4.text()
-                        nextDaypakshaValue = leftHeaderData4.split(" ")[3]
+                        nextDaypakshaValue = leftHeaderData4.split(" ")[2]
                         nextDaypaksha = nextDaypakshaValue
                     }
                 }
@@ -561,7 +561,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 if ((nextDayTitiUpto0.split(" ")[0]) == "Full") {
                     nextDayTithiHrToMin = pradamaiDaySRiseInMinutes
                 } else {
-                    val nextDayselectTimeOnely = nextDayTitiUpto0.trim().split(" ")[0]
+                    val nextDayselectTimeOnely = nextDayTitiUpto0.trim().split(" ").getOrNull(0) ?: ""
                     nextDayTitiUptoHrOnly = nextDayselectTimeOnely.split(":")[0].toInt()
                     val nextDayTitiUptoMinutesOnly = nextDayselectTimeOnely.split(":")[1].toInt()
                     val amPm = nextDayTitiUpto0.split(" ")[1]
@@ -976,5 +976,11 @@ class TharoPanchangamActivity : AppCompatActivity() {
         mapPanch2.clear()
         mapPanch3.clear()
         mapPanch4.clear()
+    }
+
+        override fun onDestroy() {
+        super.onDestroy()
+        loadingAnimator?.cancel()
+        loadingAnimator = null
     }
 }
