@@ -59,18 +59,18 @@ class AnsestorDataActivity : AppCompatActivity() {
         loadRadioState()
 
         val intent = intent
-        val dateTdy: String = intent.getStringExtra("Naal").toString()
-        val place: String = intent.getStringExtra("Idam").toString()
-        val Varusham: String = intent.getStringExtra("TamilYear").toString()
-        val ayyanamm: String = intent.getStringExtra("Ayanamm").toString()
-        val kalam: String = intent.getStringExtra("KAALAM").toString()
-        val rasee: String = intent.getStringExtra("RASEEE").toString()
-        val baksham: String = intent.getStringExtra("BAKKSHAMM").toString()
-        val todThithi: String = intent.getStringExtra("TODAYSTHITHI").toString()
-        val kizhamai: String = intent.getStringExtra("KIZHAMAAII").toString()
-        val nachathirm: String = intent.getStringExtra("NAKSM").toString()
-        val yog: String = intent.getStringExtra("YGM").toString()
-        val kar: String = intent.getStringExtra("KRNM").toString()
+        val dateTdy: String = intent.getStringExtra("Naal") ?: ""
+        val place: String = intent.getStringExtra("Idam") ?: ""
+        val Varusham: String = intent.getStringExtra("TamilYear") ?: ""
+        val ayyanamm: String = intent.getStringExtra("Ayanamm") ?: ""
+        val kalam: String = intent.getStringExtra("KAALAM") ?: ""
+        val rasee: String = intent.getStringExtra("RASEEE") ?: ""
+        val baksham: String = intent.getStringExtra("BAKKSHAMM") ?: ""
+        val todThithi: String = intent.getStringExtra("TODAYSTHITHI") ?: ""
+        val kizhamai: String = intent.getStringExtra("KIZHAMAAII") ?: ""
+        val nachathirm: String = intent.getStringExtra("NAKSM") ?: ""
+        val yog: String = intent.getStringExtra("YGM") ?: ""
+        val kar: String = intent.getStringExtra("KRNM") ?: ""
         val AMAVASYA = findViewById<Button>(R.id.AMAVASYA)
         val MAHALAYA = findViewById<Button>(R.id.MAHALAYA)
 
@@ -288,7 +288,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -309,7 +309,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -329,7 +329,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -349,7 +349,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -369,7 +369,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -389,7 +389,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -409,7 +409,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -429,7 +429,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -449,7 +449,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -469,7 +469,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -489,7 +489,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -509,7 +509,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -529,7 +529,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -549,7 +549,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -569,7 +569,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -589,7 +589,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -609,7 +609,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -629,7 +629,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -650,7 +650,7 @@ class AnsestorDataActivity : AppCompatActivity() {
 
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -670,7 +670,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                     urPravaras = (mySpinner2.adapter).toString()
@@ -691,14 +691,14 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                // No action needed //To change body of created functions use File | Settings | File Templates.
             }
         }
 
@@ -825,7 +825,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -846,7 +846,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -866,7 +866,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -886,7 +886,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -906,7 +906,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -926,7 +926,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -946,7 +946,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -966,7 +966,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -986,7 +986,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1006,7 +1006,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1026,7 +1026,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1046,7 +1046,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1066,7 +1066,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1086,7 +1086,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1106,7 +1106,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1126,7 +1126,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1146,7 +1146,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1166,7 +1166,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1186,7 +1186,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1206,7 +1206,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
@@ -1226,14 +1226,14 @@ class AnsestorDataActivity : AppCompatActivity() {
                             }
 
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                                // No action needed //To change body of created functions use File | Settings | File Templates.
                             }
                         }
                 }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                // No action needed //To change body of created functions use File | Settings | File Templates.
             }
         }
 
@@ -1388,7 +1388,7 @@ class AnsestorDataActivity : AppCompatActivity() {
         if (settings.getBoolean("question5A", rb_yrGFLiving.isChecked)){
             rb_yrGFLiving.isChecked = settings.getBoolean("question5A",false)
             yrGFatherLive = "Living"
-            this.binding.yrGfatherName.setText("")
+            binding.yrGfatherName.setText("")
             binding.yrGfatherName.visibility = View.INVISIBLE
             binding.yrGGfatherName.visibility = View.VISIBLE
             binding.yrGGGfatherName.visibility = View.VISIBLE
@@ -1396,7 +1396,7 @@ class AnsestorDataActivity : AppCompatActivity() {
         if (settings.getBoolean("question5B", rb_yrGFDeceased.isChecked)){
             rb_yrGFDeceased.isChecked = settings.getBoolean("question5B", false)
             yrGFatherLive = "Deceased"
-            this.binding.yrGGGfatherName.setText("")
+            binding.yrGGGfatherName.setText("")
             binding.yrGfatherName.visibility = View.VISIBLE
             binding.yrGGfatherName.visibility = View.VISIBLE
             binding.yrGGGfatherName.visibility = View.INVISIBLE
