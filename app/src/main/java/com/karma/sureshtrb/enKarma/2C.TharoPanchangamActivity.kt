@@ -660,7 +660,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
         }
     }
 
-    private fun (value: String): String {
+    private fun convertThithiToTamil(value: String): String {
         return when {
             value.contains("Amavasya") -> "அமாவாஸ்யா"
             value.contains("Pratipada") -> "பிரதமை"
