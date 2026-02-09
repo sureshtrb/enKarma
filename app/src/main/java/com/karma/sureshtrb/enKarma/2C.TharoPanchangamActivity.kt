@@ -20,6 +20,8 @@ import org.jsoup.Jsoup
 import java.text.SimpleDateFormat
 import java.util.*
 
+import android.animation.ValueAnimator
+import android.animation.ArgbEvaluator
 var dateToday = ""
 var place: String = ""
 var sunRise: String = ""
@@ -125,7 +127,8 @@ class TharoPanchangamActivity : AppCompatActivity() {
     private lateinit var tvNachathirm: TextView
     private lateinit var tvYog: TextView
     private lateinit var tvKar: TextView
-    private lateinit var tvGeoLocation: TextView
+        private lateinit var tvGeoLocation: TextView
+    private var loadingAnimator: ValueAnimator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -334,6 +337,17 @@ class TharoPanchangamActivity : AppCompatActivity() {
     // Background thread wrapper for all web scraping
     private fun fetchAllPanchangData() {
         tvGeoLocation.text = "Loading..."
+        // Start blinking color animation for Loading text
+        loadingAnimator?.cancel()
+        loadingAnimator = ValueAnimator.ofObject(ArgbEvaluator(), Color.RED, Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE, Color.MAGENTA, Color.RED).apply {
+            duration = 2000
+            repeatCount = ValueAnimator.INFINITE
+            repeatMode = ValueAnimator.RESTART
+            addUpdateListener { animator ->
+                tvGeoLocation.setTextColor(animator.animatedValue as Int)
+            }
+            start()
+        }
         Thread {
             try {
                 afterPradamaiDayparseWeb()
@@ -922,6 +936,9 @@ class TharoPanchangamActivity : AppCompatActivity() {
     }
 
     private fun updateUITexts() {
+                // Stop the blinking Loading animation
+        loadingAnimator?.cancel()
+        loadingAnimator = null
         val titiText = "திதி (Thithi):- $ThithiGlobal"
         tvTodThithi.text = Html.fromHtml(titiText, Html.FROM_HTML_MODE_LEGACY)
         val paktext = "பக்ஷம் (Paksha):- $paksha"
