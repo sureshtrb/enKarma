@@ -47,10 +47,10 @@
 
         </activity>
         <activity
-            android:name=".SelectionActivity"
+            android:name=".SelectionActivity" android:windowSoftInputMode="stateAlwaysHidden"
             android:parentActivityName=".LoginActivity" />
         <activity
-            android:name=".SkipSelectionActivity"
+            android:name=".SkipSelectionActivity" android:windowSoftInputMode="stateAlwaysHidden"
             android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".SkipScreenActivity"
