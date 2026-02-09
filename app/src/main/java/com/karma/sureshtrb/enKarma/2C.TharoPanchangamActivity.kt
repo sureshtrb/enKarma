@@ -966,7 +966,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
         tvKar.text = Html.fromHtml(karanaText, Html.FROM_HTML_MODE_LEGACY)
     }
 
-    fun clearAllData() {
+        fun clearAllData() {         // Clear all tithi-related variables         tithiNew = ""         ThithiGlobal = ""         SkippedThithiGlobal = ""         TithiValue = ""         TodayThithi = ""         NextDayThithi = ""         currentTithi = ""         pradamaiTithiValue = ""         pradamaiDayThithi = ""                  // Clear paksha variables         paksha = ""         todayPaksha = ""         nextDaypaksha = ""                  // Clear nakshatra variables         naksha = ""         currentNakshtram = ""         nextDayNakshatra = ""                  // Clear yoga and karana variables         yoga = ""         currentYogam = ""         nextDayYogam = ""         karana = ""         currentKarnam = ""         nextDayKarnam = ""                  // Clear other panchang variables         shakaSamvat = ""         weekDay = ""         suryaRasi = ""         vedicRithu = ""         vedicAyana = ""         place = ""         sunRise = ""         sunSet = ""                  // Clear all time calculation variables         TodayThithiUptoInMinutesM = 0         nextDayTithiHrToMin = 0         nakshatraHrToMin = 0         karnaHrToMin = 0         todayYogaUptoInMinutesM = 0         sRiseInMinutes = 0         SSetInMinutes = 0         NextDaySunRiseTime = 0         pradamaiThithiUptoInMinutes = 0         pradamaiDaySRiseInMinutes = 0         afterPradamaiSRiseHrAndMinConvInMinutes = 0                  // Clear all HashMaps         mapPanch.clear()         mapPanch2.clear()         mapPanch3.clear()         mapPanch4.clear()                  // Clear UI text views to Loading state         runOnUiThread {             tvTodThithi.text = "Loading..."             tvBaksham.text = "Loading..."             tvRasee.text = "Loading..."             tvGeoLocation.text = "Loading..."             tvVarusham.text = "Loading..."             tvYog.text = "Loading..."             tvKalam.text = "Loading..."             tvAyyanamm.text = "Loading..."             tvKizhamai.text = "Loading..."             tvNachathirm.text = "Loading..."             tvKar.text = "Loading..."         }     }
         tithiNew = ""
         ThithiGlobal = ""
         SkippedThithiGlobal = ""
@@ -975,10 +975,69 @@ class TharoPanchangamActivity : AppCompatActivity() {
         NextDayThithi = ""
         pradamaiTithiValue = ""
         pradamaiDayThithi = ""
+                    currentTithi = ""
+
+                    // Clear paksha variables
+                    paksha = ""
+                    todayPaksha = ""
+                    nextDaypaksha = ""
+
+                    // Clear nakshatra variables
+                    naksha = ""
+                    currentNakshtram = ""
+                    nextDayNakshatra = ""
+
+                    // Clear yoga and karana variables
+                    yoga = ""
+                    currentYogam = ""
+                    nextDayYogam = ""
+                    karana = ""
+                    currentKarnam = ""
+                    nextDayKarnam = ""
+
+                    // Clear other panchang variables
+                    shakaSamvat = ""
+                    weekDay = ""
+                    suryaRasi = ""
+                    vedicRithu = ""
+                    vedicAyana = ""
+                    place = ""
+                    sunRise = ""
+                    sunSet = ""
+
+                    // Clear all time calculation variables
+                    TodayThithiUptoInMinutesM = 0
+                    nextDayTithiHrToMin = 0
+                    nakshatraHrToMin = 0
+                    karnaHrToMin = 0
+                    todayYogaUptoInMinutesM = 0
+                    sRiseInMinutes = 0
+                    SSetInMinutes = 0
+                    NextDaySunRiseTime = 0
+                    pradamaiThithiUptoInMinutes = 0
+                    pradamaiDaySRiseInMinutes = 0
+                    afterPradamaiSRiseHrAndMinConvInMinutes = 0
+
+                    // Clear all HashMaps
         mapPanch.clear()
         mapPanch2.clear()
         mapPanch3.clear()
         mapPanch4.clear()
+
+                        // Clear UI text views to Loading state
+                                runOnUiThread {
+                                                tvTodThithi.text = "Loading..."
+                                                tvBaksham.text = "Loading..."
+                                                tvRasee.text = "Loading..."
+                                                tvGeoLocation.text = "Loading..."
+                                                tvVarusham.text = "Loading..."
+                                                tvYog.text = "Loading..."
+                                                tvKalam.text = "Loading..."
+                                                tvAyyanamm.text = "Loading..."
+                                                tvKizhamai.text = "Loading..."
+                                                tvNachathirm.text = "Loading..."
+                                                tvKar.text = "Loading..."
+                                            }
     }
 
         override fun onDestroy() {
