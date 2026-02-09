@@ -19,6 +19,12 @@ import com.karma.sureshtrb.enKarma.databinding.ActivityTharoPanchangamBinding
 import org.jsoup.Jsoup
 import java.text.SimpleDateFormat
 import java.util.*
+import java.net.HttpURLConnection
+import java.net.URL
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 import android.animation.ValueAnimator
 import android.animation.ArgbEvaluator
@@ -1048,3 +1054,76 @@ class TharoPanchangamActivity : AppCompatActivity() {
         loadingAnimator = null
     }
 }
+
+    private fun fetchPanchangData() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                // Build URL with date format dd/mm/yyyy
+                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+                val formattedDate = dateFormat.format(selectedDate)
+                val url = "https://www.drikpanchang.com/panchang/day-panchang.html?date=$formattedDate"
+                
+                // Fetch HTML content
+                val connection = URL(url).openConnection() as HttpURLConnection
+                connection.requestMethod = "GET"
+                connection.setRequestProperty("User-Agent", "Mozilla/5.0")
+                connection.connectTimeout = 10000
+                connection.readTimeout = 10000
+                
+                val response = connection.inputStream.bufferedReader().use { it.readText() }
+                connection.disconnect()
+                
+                // Parse HTML using regex patterns
+                val tithiPattern = "Tithi[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)".toRegex(RegexOption.DOT_MATCHES_ALL)                val nakshatraPattern = "Nakshatra[^>]*>\\s*<a[^>]*>([^<]+)</a>\\s*(?:<[^>]*>\\s*)?([^<]*)"
+                val nakshatraPattern = "Nakshatra[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)".toRegex(RegexOption.DOT_MATCHES_ALL)
+                val yogaPattern = "Yoga[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)".toRegex(RegexOption.DOT_MATCHES_ALL)
+                val karanaPattern = "Karana[^>]*>\\s*([^<]+)\\s*(?:upto\\s*)?([^<]*)"
+                
+                var tithi = ""
+                var nakshatra = ""
+                var yoga = ""
+                var karana = ""
+                
+                // Extract Tithi
+                Regex(tithiPattern).find(response)?.let {
+                    tithi = "${it.groupValues[1]} ${it.groupValues[2].trim()}"
+                }
+                
+                // Extract Nakshatra
+                Regex(nakshatraPattern).find(response)?.let {
+                    nakshatra = "${it.groupValues[1]} ${it.groupValues[2].trim()}"
+                }
+                
+                // Extract Yoga
+                Regex(yogaPattern).find(response)?.let {
+                    yoga = "${it.groupValues[1]} ${it.groupValues[2].trim()}"
+                }
+                
+                // Extract Karana
+                Regex(karanaPattern).find(response)?.let {
+                    karana = "${it.groupValues[1]} ${it.groupValues[2].trim()}"
+                }
+                
+                // Update UI on main thread
+                withContext(Dispatchers.Main) {
+                    tvTodThithi.text = Html.fromHtml("<font color='#228B22'>திதி (Tithi):-</font> <font color='#0000BB'>$tithi</font>", Html.FROM_HTML_MODE_LEGACY)
+                    tvBaksham.text = Html.fromHtml("<font color='#228B22'>பக்ஷம் (Paksha):-</font> <font color='#0000BB'>Krishna Paksha</font>", Html.FROM_HTML_MODE_LEGACY)
+                    tvRasee.text = Html.fromHtml("<font color='#228B22'>ராசி (Rasi):-</font> <font color='#0000BB'>$nakshatra</font>", Html.FROM_HTML_MODE_LEGACY)
+                    tvYog.text = Html.fromHtml("<font color='#228B22'>யோகம் (Yogam):-</font> <font color='#0000BB'>$yoga</font>", Html.FROM_HTML_MODE_LEGACY)
+                    tvKalam.text = Html.fromHtml("<font color='#228B22'>கரணம் (Karanam):-</font> <font color='#0000BB'>$karana</font>", Html.FROM_HTML_MODE_LEGACY)
+                    
+                    // Hide loading animator
+                    loadingAnimator?.cancel()
+                    loadingAnimator = null
+                }
+                
+            } catch (e: Exception) {
+                e.printStackTrace()
+                withContext(Dispatchers.Main) {
+                    tvTodThithi.text = "Error loading data"
+                    loadingAnimator?.cancel()
+                    loadingAnimator = null
+                }
+            }
+        }
+    }
