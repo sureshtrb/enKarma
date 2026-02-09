@@ -339,7 +339,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
         tvGeoLocation.text = "Loading..."
         // Start blinking color animation for Loading text
         loadingAnimator?.cancel()
-        loadingAnimator = ValueAnimator.ofObject(ArgbEvaluator(), Color.RED, Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE, Color.MAGENTA, Color.RED).apply {
+        loadingAnimator = ValueAnimator.ofArgb(Color.RED, Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE, Color.MAGENTA, Color.RED).apply {
             duration = 2000
             repeatCount = ValueAnimator.INFINITE
             repeatMode = ValueAnimator.RESTART
