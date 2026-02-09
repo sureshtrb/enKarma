@@ -939,27 +939,27 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 // Stop the blinking Loading animation
         loadingAnimator?.cancel()
         loadingAnimator = null
-        val titiText = "திதி (Thithi):- $ThithiGlobal"
+        val titiText = "<font color='#228B22'>திதி (Thithi):-</font> <font color='#00008B'>$ThithiGlobal</font>"
         tvTodThithi.text = Html.fromHtml(titiText, Html.FROM_HTML_MODE_LEGACY)
-        val paktext = "பக்ஷம் (Paksha):- $paksha"
+        val paktext = "<font color='#228B22'>பக்ஷம் (Paksha):-</font> <font color='#00008B'>$paksha</font>"
         tvBaksham.text = Html.fromHtml(paktext, Html.FROM_HTML_MODE_LEGACY)
-        val rasitext = "ராசி (Rasi):- $suryaRasi"
+        val rasitext = "<font color='#228B22'>ராசி (Rasi):-</font> <font color='#00008B'>$suryaRasi</font>"
         tvRasee.text = Html.fromHtml(rasitext, Html.FROM_HTML_MODE_LEGACY)
-        val placeText = "இடம் (GeoLocation):- $place"
+        val placeText = "<font color='#228B22'>இடம் (GeoLocation):-</font> <font color='#00008B'>$place</font>"
         tvGeoLocation.text = Html.fromHtml(placeText, Html.FROM_HTML_MODE_LEGACY)
-        val yearText = "வருடம் (Year):- $shakaSamvat"
+        val yearText = "<font color='#228B22'>வருடம் (Year):-</font> <font color='#00008B'>$shakaSamvat</font>"
         tvVarusham.text = Html.fromHtml(yearText, Html.FROM_HTML_MODE_LEGACY)
-        val yogaText = "யோகம் (Yogam):- $yoga"
+        val yogaText = "<font color='#228B22'>யோகம் (Yogam):-</font> <font color='#00008B'>$yoga</font>"
         tvYog.text = Html.fromHtml(yogaText, Html.FROM_HTML_MODE_LEGACY)
-        val ruthuText = "ருது (Season-காலம்):- $vedicRithu"
+        val ruthuText = "<font color='#228B22'>ருது (Season-காலம்):-</font> <font color='#00008B'>$vedicRithu</font>"
         tvKalam.text = Html.fromHtml(ruthuText, Html.FROM_HTML_MODE_LEGACY)
-        val ayanaText = "அயனம் (Ayana):- $vedicAyana"
+        val ayanaText = "<font color='#228B22'>அயனம் (Ayana):-</font> <font color='#00008B'>$vedicAyana</font>"
         tvAyyanamm.text = Html.fromHtml(ayanaText, Html.FROM_HTML_MODE_LEGACY)
-        val wDayText = "கிழமை (Day):- $weekDay"
+        val wDayText = "<font color='#228B22'>கிழமை (Day):-</font> <font color='#00008B'>$weekDay</font>"
         tvKizhamai.text = Html.fromHtml(wDayText, Html.FROM_HTML_MODE_LEGACY)
-        val nakshText = "நட்ஷத்ரம் (Natchatram):- $naksha"
+        val nakshText = "<font color='#228B22'>நட்ஷத்ரம் (Natchatram):-</font> <font color='#00008B'>$naksha</font>"
         tvNachathirm.text = Html.fromHtml(nakshText, Html.FROM_HTML_MODE_LEGACY)
-        val karanaText = "கரணம் (Karanam):- $karana"
+        val karanaText = "<font color='#228B22'>கரணம் (Karanam):-</font> <font color='#00008B'>$karana</font>"
         tvKar.text = Html.fromHtml(karanaText, Html.FROM_HTML_MODE_LEGACY)
     }
 
