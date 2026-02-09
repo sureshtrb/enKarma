@@ -1082,10 +1082,10 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 connection.disconnect()
                 
                 // Parse HTML using regex patterns
-                val tithiPattern = "Tithi[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)".toRegex(RegexOption.DOT_MATCHES_ALL)                val nakshatraPattern = "Nakshatra[^>]*>\\s*<a[^>]*>([^<]+)</a>\\s*(?:<[^>]*>\\s*)?([^<]*)"
-                val nakshatraPattern = "Nakshatra[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)".toRegex(RegexOption.DOT_MATCHES_ALL)
-                val yogaPattern = "Yoga[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)".toRegex(RegexOption.DOT_MATCHES_ALL)
-                val karanaPattern = "Karana[^>]*>\\s*([^<]+)\\s*(?:upto\\s*)?([^<]*)"
+            val tithiPattern = Regex("Tithi[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)", RegexOption.DOT_MATCHES_ALL)                val nakshatraPattern = "Nakshatra[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)".toRegex(RegexOption.DOT_MATCHES_ALL)
+            val nakshatraPattern = Regex("Nakshatra[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)", RegexOption.DOT_MATCHES_ALL)
+                            val yogaPattern = Regex("Yoga[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)", RegexOption.DOT_MATCHES_
+                                                                val karanaPattern = Regex("Karana[^>]*>\\s*([^<]+)\\s*(?:upto\\s*)?([^<]*)")ALL)
                 
                 var tithi = ""
                 var nakshatra = ""
