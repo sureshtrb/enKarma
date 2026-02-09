@@ -475,7 +475,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
                     }
                     pradamaiTithiValue = pradamaiDayThithee
                     pradamaiDayThithiValue = pradamaiTithiValue
-                    pradamaiDayThithi = convertThithiToTamil(pradamaiDayThithiValue)
+                    pradamaiDayThithi = (pradamaiDayThithiValue)
                     val pradamaiDaySRise = (mapPanch2["Sunrise"] ?: "")
                     if (pradamaiDaySRise.isNotEmpty()) {
                         val pradamaiDaySRiseTime = pradamaiDaySRise.split(" ")[0]
@@ -568,7 +568,10 @@ class TharoPanchangamActivity : AppCompatActivity() {
                     nextDayTithiHrToMin = convertToMinutes(nextDayTitiUptoHrOnly, nextDayTitiUptoMinutesOnly, amPm)
                 }
                 thithiValuex = nextDayTithiNew.split(" upto ")[0]
-                NextDayThithi = convertThithiToTamil(thithiValuex)
+                NextDayThithi = (thithiValuex)
+                            } else {
+                // When Tithi doesn't have " upto " time boundary, extract just the Tithi name
+                NextDayThithi = nextDayTithiNew.split(" ")[0]
             }
             val nextDaySRise = (mapPanch4["Sunrise"] ?: "")
             if (nextDaySRise.isNotEmpty()) {
@@ -657,7 +660,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
         }
     }
 
-    private fun convertThithiToTamil(value: String): String {
+    private fun (value: String): String {
         return when {
             value.contains("Amavasya") -> "அமாவாஸ்யா"
             value.contains("Pratipada") -> "பிரதமை"
