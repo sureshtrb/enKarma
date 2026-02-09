@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
-import android.os.StrictMode
 import android.text.Html
 import android.view.View
 import android.widget.Button
@@ -126,15 +125,13 @@ class TharoPanchangamActivity : AppCompatActivity() {
     private lateinit var tvNachathirm: TextView
     private lateinit var tvYog: TextView
     private lateinit var tvKar: TextView
+    private lateinit var tvGeoLocation: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTharoPanchangamBinding.inflate(layoutInflater)
         setContentView(binding.root)
         clearAllData()
-
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.home)
         this.supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -158,8 +155,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
         tvNachathirm = this.findViewById(R.id.Natchatram)
         tvYog = this.findViewById(R.id.Yogam)
         tvKar = this.findViewById(R.id.Karanam)
-
-        place = this.findViewById<TextView>(R.id.GEOLOCATION).text.toString()
+        tvGeoLocation = this.findViewById(R.id.GEOLOCATION)
 
         val rg1 = this.findViewById<RadioGroup>(R.id.radio_group1)
         val rg2 = this.findViewById<RadioGroup>(R.id.radio_group2)
@@ -176,31 +172,11 @@ class TharoPanchangamActivity : AppCompatActivity() {
         val rbFMLiving = this.findViewById<RadioButton>(R.id.radio1G4)
         val rbFMDeceased = this.findViewById<RadioButton>(R.id.radio2G4)
 
-        if (rbFLiving.isChecked) {
-            rg2.visibility = View.INVISIBLE
-        } else {
-            rg2.visibility = View.VISIBLE
-        }
-        if (rbFDeceased.isChecked) {
-            rg2.visibility = View.VISIBLE
-        } else {
-            rg2.visibility = View.INVISIBLE
-        }
-        if (rbMLiving.isChecked || rbMDeceased.isChecked) {
-            rg3.visibility = View.VISIBLE
-        } else {
-            rg3.visibility = View.INVISIBLE
-        }
-        if (rbMMLiving.isChecked || rbMMDeceased.isChecked) {
-            rg4.visibility = View.VISIBLE
-        } else {
-            rg4.visibility = View.INVISIBLE
-        }
-        if (rbFMLiving.isChecked || rbFMDeceased.isChecked) {
-            proceed.visibility = View.VISIBLE
-        } else {
-            proceed.visibility = View.INVISIBLE
-        }
+        if (rbFLiving.isChecked) { rg2.visibility = View.INVISIBLE } else { rg2.visibility = View.VISIBLE }
+        if (rbFDeceased.isChecked) { rg2.visibility = View.VISIBLE } else { rg2.visibility = View.INVISIBLE }
+        if (rbMLiving.isChecked || rbMDeceased.isChecked) { rg3.visibility = View.VISIBLE } else { rg3.visibility = View.INVISIBLE }
+        if (rbMMLiving.isChecked || rbMMDeceased.isChecked) { rg4.visibility = View.VISIBLE } else { rg4.visibility = View.INVISIBLE }
+        if (rbFMLiving.isChecked || rbFMDeceased.isChecked) { proceed.visibility = View.VISIBLE } else { proceed.visibility = View.INVISIBLE }
 
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
         dateNow = dateFormat.format(Date())
@@ -212,10 +188,8 @@ class TharoPanchangamActivity : AppCompatActivity() {
         val minutesInt = calen.get(Calendar.MINUTE)
         nowTimeInMinutes = hourtoMinInt + minutesInt
 
-        afterPradamaiDayparseWeb()
-        pradamaiDayparseWeb()
-        nextDayparseWeb()
-        parseWeb()
+        // Run all web scraping on background thread to avoid ANR
+        fetchAllPanchangData()
 
         val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
             cal.set(Calendar.YEAR, year)
@@ -238,10 +212,8 @@ class TharoPanchangamActivity : AppCompatActivity() {
         binding.textViewDate1.addTextChangedListener {
             todThitgi = ""
             recalculateDays()
-            afterPradamaiDayparseWeb()
-            pradamaiDayparseWeb()
-            nextDayparseWeb()
-            parseWeb()
+            // Run on background thread to avoid ANR
+            fetchAllPanchangData()
         }
 
         proceed.setOnClickListener {
@@ -359,16 +331,36 @@ class TharoPanchangamActivity : AppCompatActivity() {
         }
     }
 
+    // Background thread wrapper for all web scraping
+    private fun fetchAllPanchangData() {
+        tvGeoLocation.text = "Loading..."
+        Thread {
+            try {
+                afterPradamaiDayparseWeb()
+                pradamaiDayparseWeb()
+                nextDayparseWeb()
+                parseWeb()
+            } catch (e: Exception) {
+                println("fetchAllPanchangData Error: $e")
+            }
+            runOnUiThread {
+                updateUITexts()
+            }
+        }.start()
+    }
+
     private fun recalculateDays() {
         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
         val cal1 = Calendar.getInstance()
         cal1.time = sdf.parse(dateNow) ?: Date()
         cal1.add(Calendar.DATE, 1)
         nextdy = sdf.format(cal1.time)
+
         val cal2 = Calendar.getInstance()
         cal2.time = sdf.parse(dateNow) ?: Date()
         cal2.add(Calendar.DATE, 2)
         pradamaiDay = sdf.format(cal2.time)
+
         val cal3 = Calendar.getInstance()
         cal3.time = sdf.parse(dateNow) ?: Date()
         cal3.add(Calendar.DATE, 3)
@@ -459,9 +451,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
                     val pradamaiDayTithiArr = (mapPanch2["Tithi"] ?: "")
                     val pradamaiDayThithee = pradamaiDayTithiArr.split(" upto ")[0]
                     val pradamaiDayTitiUpto0 = pradamaiDayTithiArr.split(" upto ")[1]
-                    if ((pradamaiDayTithiArr.split(" ")[0]) == "Full") {
-                        pradamaiThithiUptoInMinutes = afterPradamaiSRiseHrAndMinConvInMinutes
-                    }
+                    if ((pradamaiDayTithiArr.split(" ")[0]) == "Full") { pradamaiThithiUptoInMinutes = afterPradamaiSRiseHrAndMinConvInMinutes }
                     if ((pradamaiDayTithiArr.split(" ")[0]) != "Full") {
                         val pradmaiDayselectTimeOnly = pradamaiDayTitiUpto0.trim().split(" ")[0]
                         pradamaiDayTitiUptoHrOnly = pradmaiDayselectTimeOnly.split(":")[0].toInt()
@@ -587,6 +577,13 @@ class TharoPanchangamActivity : AppCompatActivity() {
         val basicWeb = "https://www.drikpanchang.com/panchang/day-panchang.html?geoname-id=1264527&date="
         val todayWeb = (basicWeb + dateNow)
         Jsoup.connect(todayWeb).userAgent("Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36").timeout(30000).followRedirects(true).ignoreHttpErrors(true).get().run {
+            // Extract location from web page header
+            val locationElement = select("span.dpHeaderLocationText")
+            if (locationElement.hasText()) {
+                place = locationElement.text()
+            } else {
+                place = "Chennai, India"
+            }
             select("div.dpPHeaderWrapper").forEachIndexed { _, element ->
                 val leftData = element.select("div.dpPHeaderLeftWrapper")
                 for (key1 in leftData) {
@@ -596,7 +593,6 @@ class TharoPanchangamActivity : AppCompatActivity() {
                         todaypakshaValue = leftHeaderData.split(" ")[2]
                         todayPaksha = if (TodayThithi == "Purnima" || TodayThithi == "பௌர்ணமி") nextDaypaksha else todaypakshaValue
                         paksha = if (todayPaksha == "Shukla") "சுக்ல" else "க்ருஷ்ண"
-                        place = "சென்னை, இந்தியா"
                     }
                 }
                 val rightData = element.select("div.dpPHeaderRightContent")
@@ -634,7 +630,6 @@ class TharoPanchangamActivity : AppCompatActivity() {
             processNakshatra()
             processKarana()
             processChandraMasa()
-            updateUITexts()
         }
     } catch (e: Exception) { println("Error Skipped $e") }
 
@@ -934,6 +929,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
         val rasitext = "ராசி (Rasi):- $suryaRasi"
         tvRasee.text = Html.fromHtml(rasitext, Html.FROM_HTML_MODE_LEGACY)
         val placeText = "இடம் (GeoLocation):- $place"
+        tvGeoLocation.text = Html.fromHtml(placeText, Html.FROM_HTML_MODE_LEGACY)
         val yearText = "வருடம் (Year):- $shakaSamvat"
         tvVarusham.text = Html.fromHtml(yearText, Html.FROM_HTML_MODE_LEGACY)
         val yogaText = "யோகம் (Yogam):- $yoga"
