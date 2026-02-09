@@ -786,8 +786,17 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 TodayThithiUptoInMinutesM = convertToMinutes(todatTitiUptoHrOnly, tThithiUptoMinutesOnly, amPm)
             }
             TithiValue = tithiNew.split(" ")[0]
+
+                    // Check if tithi expires next day (indicated by comma in time string)
+                    val expiresNextDay = tThitiAfterUpto.contains(",")
+        
+        if (expiresNextDay) {
+            // If tithi expires tomorrow, current tithi is next day's tithi
+            currentTithi = NextDayThithi
+        } else {
+            // Tithi expires today - check if current time has passed expiry time
             currentTithi = if (TodayThithiUptoInMinutesM <= nowTimeInMinutes) NextDayThithi else TithiValue
-            ThithiGlobal = convertThithiToTamil(currentTithi)
+        }            ThithiGlobal = convertThithiToTamil(currentTithi)
         }
     }
 
