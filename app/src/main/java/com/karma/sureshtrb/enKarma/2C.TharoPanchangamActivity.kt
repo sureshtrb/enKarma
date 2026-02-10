@@ -158,7 +158,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
         tvNachathirm = this.findViewById(R.id.Natchatram)
         tvYog = this.findViewById(R.id.Yogam)
         tvKar = this.findViewById(R.id.Karanam)
-        tvGeoLocation = this.findViewById(R.id.GEOLOCATION
+        tvGeoLocation = this.findViewById(R.id.GEOLOCATION)
                                          
                                                  clearAllData())
 
