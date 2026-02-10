@@ -1334,6 +1334,12 @@ class AnsestorDataActivity : AppCompatActivity() {
         editor.putString("AmmaAppa", binding.MFatherName.text.toString())
         editor.putString("AmmaThatha", binding.MGFatherName.text.toString())
         editor.putString("AmmaKolluThatha", binding.MGGFatherName.text.toString())
+                // Save Gothram and Pravara spinner positions for father's side
+        editor.putInt("gothramPosition", binding.spinnerGothram.selectedItemPosition)
+        editor.putInt("pravarasPosition", binding.spinnerPravaras.selectedItemPosition)
+        // Save Gothram and Pravara spinner positions for mother's side
+        editor.putInt("MgothramPosition", binding.MspinnerGothram.selectedItemPosition)
+        editor.putInt("MpravarasPosition", binding.MspinnerPravaras.selectedItemPosition)
 
         editor.apply()
     }
@@ -1348,6 +1354,15 @@ class AnsestorDataActivity : AppCompatActivity() {
         MFName = sharedPreferences.getString("AmmaAppa", "")!!
         MGFName = sharedPreferences.getString("AmmaThatha", "")!!
         MGGFName = sharedPreferences.getString("AmmaKolluThatha", "")!!
+                // Load Gothram and Pravara spinner positions for father's side
+        val gothramPos = sharedPreferences.getInt("gothramPosition", 0)
+        val pravarasPos = sharedPreferences.getInt("pravarasPosition", 0)
+        // Load Gothram and Pravara spinner positions for mother's side  
+        val MgothramPos = sharedPreferences.getInt("MgothramPosition", 0)
+        val MpravarasPos = sharedPreferences.getInt("MpravarasPosition", 0)
+        // Set spinner positions after a delay to ensure adapters are set
+        binding.spinnerGothram.post { binding.spinnerGothram.setSelection(gothramPos) }
+        binding.MspinnerGothram.post { binding.MspinnerGothram.setSelection(MgothramPos) }
     }
 
     fun updateViews() {
