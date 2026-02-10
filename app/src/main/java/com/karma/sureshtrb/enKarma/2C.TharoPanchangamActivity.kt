@@ -204,7 +204,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
         }
 
         changeDateBtn.setOnClickListener {
-            clearAllData()
+
             DatePickerDialog(
                 this@TharoPanchangamActivity,
                 dateSetListener,
@@ -454,6 +454,7 @@ cal1.time = parseDateSafely(dateNow) ?: Date()
         binding.textViewDate1.text = sdf.format(cal.time)
         dateNow = binding.textViewDate1.text.toString()
         // Add these lines to refresh panchang data when date changes:
+        clearAllData()
         recalculateDays()
         fetchAllPanchangData()
     }
