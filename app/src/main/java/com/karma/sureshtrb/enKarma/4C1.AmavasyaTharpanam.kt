@@ -120,7 +120,15 @@ class AmavasyaTharpanam : AppCompatActivity() {
         val yrGGGFNamee: String = intent.getStringExtra("Yellu").toString()
         val MFNamee: String = intent.getStringExtra("AmmaAppa").toString()
         val MGFNamee: String = intent.getStringExtra("AmmaThatha").toString()
-        val MGGFNamee: String = intent.getStringExtra("AmmaKolluThatha").toString()
+        val MGGFNamee: String = intent.getStringExtra("Amma
+                                                              val urGothram: String = intent.getStringExtra("Gothram").toString()
+                                                              val urPravaras: String = intent.getStringExtra("Pravaras").toString()
+                                                              val motherLive: String = intent.getStringExtra("motherLive").toString()
+                                                              val fatherMotherLive: String = intent.getStringExtra("fatherMotherLive").toString()
+                                                              val yrGFatherLive: String = intent.getStringExtra("yrGFatherLive").toString()
+                                                              val MFatherLive: String = intent.getStringExtra("MFatherLive").toString()
+                                                              val motherMotherLive: String = intent.getStringExtra("motherMotherLive").toString()
+                                                              val MGothram: String = intent.getStringExtra("MGothram").toString()KolluThatha").toString()
 
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.home)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
