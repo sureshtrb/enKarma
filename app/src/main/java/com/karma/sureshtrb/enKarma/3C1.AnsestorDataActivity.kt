@@ -155,7 +155,11 @@ class AnsestorDataActivity : AppCompatActivity() {
             intent.putExtra("Kollu", yrGGFNamee.text.toString())
             intent.putExtra("Yellu", yrGGGFNamee.text.toString())
             intent.putExtra("AmmaAppa", MFNamee.text.toString())
-            intent.putExtra("AmmaThatha", MGFNamee.text.toString())
+            intent.putExtra("AmmaThatha", MGFNamee.text.to
+                                        intent.putExtra("GOTHRAM", urGothram)
+                                        intent.putExtra("PRAVARAS", urPravaras)
+                                        intent.putExtra("MGOTHRAM", MGothram)
+                                        intent.putExtra("MPRAVARAS", MPravaras)String())
             intent.putExtra("AmmaKolluThatha", MGGFNamee.text.toString())
             SaveRadioState()
             startActivity(intent)
@@ -185,6 +189,10 @@ class AnsestorDataActivity : AppCompatActivity() {
             intent.putExtra("AmmaThatha", MGFNamee.text.toString())
             intent.putExtra("AmmaKolluThatha", MGGFNamee.text.toString())
             intent.putExtra("AppaAppaLive", yrGFatherLive)
+                        intent.putExtra("GOTHRAM", urGothram)
+                                    intent.putExtra("PRAVARAS", urPravaras)
+                                                intent.putExtra("MGOTHRAM", MGothram)
+                                                            intent.putExtra("MPRAVARAS", MPravaras)
 
             SaveRadioState()
             startActivity(intent)

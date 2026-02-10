@@ -27,7 +27,6 @@ import java.util.*
 var urGothram: String = ""
 var urPravaras: String = ""
 var tyDate: String = "__/__/____"
-var yesterday: String = ""
 var sSandyaFinishHrInMinutes: Int = 0
 var sSandyaStartHrInMinutes: Int = 0
 var pSandyaFinishHrInMinutes: Int = 0

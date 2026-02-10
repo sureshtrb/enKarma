@@ -1,5 +1,6 @@
 package com.karma.sureshtrb.enKarma
 
+import android.animation.ValueAnimator
 import android.annotation.TargetApi
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -20,8 +21,6 @@ import org.jsoup.Jsoup
 import java.text.SimpleDateFormat
 import java.util.*
 
-import android.animation.ValueAnimator
-import android.animation.ArgbEvaluator
 var dateToday = ""
 var place: String = ""
 var sunRise: String = ""
@@ -86,6 +85,7 @@ var motherLive: String = ""
 var motherMotherLive: String = ""
 var fatherMotherLive: String = ""
 var dateNow: String = "__/__ /____"
+var yesterday: String = ""
 var nextdy: String = ""
 var NextDayThithi: String = ""
 var thithiValuex: String = ""
@@ -115,6 +115,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
 
     var cal = Calendar.getInstance()
     private lateinit var binding: ActivityTharoPanchangamBinding
+    private var selectedDate: Date = Date() // Initialize with current date
 
     // TextView references (moved inside class to avoid conflicts with top-level String vars)
     private lateinit var tvVarusham: TextView
@@ -134,7 +135,6 @@ class TharoPanchangamActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTharoPanchangamBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        clearAllData()
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.home)
         this.supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -158,7 +158,9 @@ class TharoPanchangamActivity : AppCompatActivity() {
         tvNachathirm = this.findViewById(R.id.Natchatram)
         tvYog = this.findViewById(R.id.Yogam)
         tvKar = this.findViewById(R.id.Karanam)
-        tvGeoLocation = this.findViewById(R.id.GEOLOCATION)
+        tvGeoLocation = this.findViewById(R.id.GEOLOCATION
+                                         
+                                                 clearAllData())
 
         val rg1 = this.findViewById<RadioGroup>(R.id.radio_group1)
         val rg2 = this.findViewById<RadioGroup>(R.id.radio_group2)
@@ -202,7 +204,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
         }
 
         changeDateBtn.setOnClickListener {
-            clearAllData()
+
             DatePickerDialog(
                 this@TharoPanchangamActivity,
                 dateSetListener,
@@ -364,19 +366,41 @@ class TharoPanchangamActivity : AppCompatActivity() {
     }
 
     private fun recalculateDays() {
-        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
-        val cal1 = Calendar.getInstance()
-        cal1.time = sdf.parse(dateNow) ?: Date()
+                // Try parsing with multiple date formats to handle different locale settings
+                val formats = listOf(
+                                SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH),
+                                SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH)
+                                        )
+                        // Helper function to parse date with multiple formats
+                                fun parseDateSafely(dateString: String): Date {
+                                                for (format in formats) {
+                                                                    try {
+                                                                                            return format.parse(dateString) ?: Date()
+                                                                                                            } catch (e: Exception) {
+                                                                                            // Try next format
+                                                                                        }
+                                                                                }
+                                                            return Date() // Return current date if all formats fail
+                                                                    }
+        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH) // For formatting only        val cal1 = Calendar.getInstance()
+        
+        
+                // Calculate yesterday
+        val cal0 = Calendar.getInstance()
+        cal0.time = parseDateSafely(dateNow) ?: Date()
+        cal0.add(Calendar.DATE, -1)
+        yesterday = sdf.format(cal0.time)
+cal1.time = parseDateSafely(dateNow) ?: Date()
         cal1.add(Calendar.DATE, 1)
         nextdy = sdf.format(cal1.time)
 
         val cal2 = Calendar.getInstance()
-        cal2.time = sdf.parse(dateNow) ?: Date()
+        cal2.time = parseDateSafely(dateNow) ?: Date()
         cal2.add(Calendar.DATE, 2)
         pradamaiDay = sdf.format(cal2.time)
 
         val cal3 = Calendar.getInstance()
-        cal3.time = sdf.parse(dateNow) ?: Date()
+        cal3.time = parseDateSafely(dateNow) ?: Date()
         cal3.add(Calendar.DATE, 3)
         afterPradamaiDay = sdf.format(cal3.time)
     }
@@ -429,6 +453,10 @@ class TharoPanchangamActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat(myFormat, Locale.ENGLISH)
         binding.textViewDate1.text = sdf.format(cal.time)
         dateNow = binding.textViewDate1.text.toString()
+        // Add these lines to refresh panchang data when date changes:
+        clearAllData()
+        recalculateDays()
+        fetchAllPanchangData()
     }
 
     private fun pradamaiDayparseWeb() = try {
@@ -786,7 +814,17 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 TodayThithiUptoInMinutesM = convertToMinutes(todatTitiUptoHrOnly, tThithiUptoMinutesOnly, amPm)
             }
             TithiValue = tithiNew.split(" ")[0]
+
+                    // Check if tithi expires next day (indicated by comma in time string)
+                    val expiresNextDay = tThitiAfterUpto.contains(",")
+        
+        if (expiresNextDay) {
+            // If tithi expires tomorrow, current tithi is next day's tithi
+            currentTithi = NextDayThithi
+        } else {
+            // Tithi expires today - check if current time has passed expiry time
             currentTithi = if (TodayThithiUptoInMinutesM <= nowTimeInMinutes) NextDayThithi else TithiValue
+        }
             ThithiGlobal = convertThithiToTamil(currentTithi)
         }
     }
@@ -966,7 +1004,8 @@ class TharoPanchangamActivity : AppCompatActivity() {
         tvKar.text = Html.fromHtml(karanaText, Html.FROM_HTML_MODE_LEGACY)
     }
 
-    fun clearAllData() {
+        fun clearAllData() {
+        // Clear all tithi-related variables
         tithiNew = ""
         ThithiGlobal = ""
         SkippedThithiGlobal = ""
@@ -975,10 +1014,69 @@ class TharoPanchangamActivity : AppCompatActivity() {
         NextDayThithi = ""
         pradamaiTithiValue = ""
         pradamaiDayThithi = ""
+                    currentTithi = ""
+
+                    // Clear paksha variables
+                    paksha = ""
+                    todayPaksha = ""
+                    nextDaypaksha = ""
+
+                    // Clear nakshatra variables
+                    naksha = ""
+                    currentNakshtram = ""
+                    nextDayNakshatra = ""
+
+                    // Clear yoga and karana variables
+                    yoga = ""
+                    currentYogam = ""
+                    nextDayYogam = ""
+                    karana = ""
+                    currentKarnam = ""
+                    nextDayKarnam = ""
+
+                    // Clear other panchang variables
+                    shakaSamvat = ""
+                    weekDay = ""
+                    suryaRasi = ""
+                    vedicRithu = ""
+                    vedicAyana = ""
+                    place = ""
+                    sunRise = ""
+                    sunSet = ""
+
+                    // Clear all time calculation variables
+                    TodayThithiUptoInMinutesM = 0
+                    nextDayTithiHrToMin = 0
+                    nakshatraHrToMin = 0
+                    karnaHrToMin = 0
+                    todayYogaUptoInMinutesM = 0
+                    sRiseInMinutes = 0
+                    SSetInMinutes = 0
+                    NextDaySunRiseTime = 0
+                    pradamaiThithiUptoInMinutes = 0
+                    pradamaiDaySRiseInMinutes = 0
+                    afterPradamaiSRiseHrAndMinConvInMinutes = 0
+
+                    // Clear all HashMaps
         mapPanch.clear()
         mapPanch2.clear()
         mapPanch3.clear()
         mapPanch4.clear()
+
+                        // Clear UI text views to Loading state
+                                runOnUiThread {
+                                                tvTodThithi.text = "Loading..."
+                                                tvBaksham.text = "Loading..."
+                                                tvRasee.text = "Loading..."
+                                                tvGeoLocation.text = "Loading..."
+                                                tvVarusham.text = "Loading..."
+                                                tvYog.text = "Loading..."
+                                                tvKalam.text = "Loading..."
+                                                tvAyyanamm.text = "Loading..."
+                                                tvKizhamai.text = "Loading..."
+                                                tvNachathirm.text = "Loading..."
+                                                tvKar.text = "Loading..."
+                                            }
     }
 
         override fun onDestroy() {
@@ -987,3 +1085,5 @@ class TharoPanchangamActivity : AppCompatActivity() {
         loadingAnimator = null
     }
 }
+
+

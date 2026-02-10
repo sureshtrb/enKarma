@@ -22,6 +22,7 @@ import androidx.annotation.RequiresApi
 import android.text.*
 import android.text.style.*
 import android.widget.Button
+import androidx.lifecycle.lifecycleScope
 //import kotlinx.android.synthetic.main.activity_amavasya_tharpanam.*
 import com.karma.sureshtrb.enKarma.databinding.ActivityAmavasyaTharpanamBinding
 import java.io.FileOutputStream
