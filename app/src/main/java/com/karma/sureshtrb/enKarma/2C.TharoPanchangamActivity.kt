@@ -134,7 +134,6 @@ class TharoPanchangamActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTharoPanchangamBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        clearAllData()
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.home)
         this.supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -158,7 +157,9 @@ class TharoPanchangamActivity : AppCompatActivity() {
         tvNachathirm = this.findViewById(R.id.Natchatram)
         tvYog = this.findViewById(R.id.Yogam)
         tvKar = this.findViewById(R.id.Karanam)
-        tvGeoLocation = this.findViewById(R.id.GEOLOCATION)
+        tvGeoLocation = this.findViewById(R.id.GEOLOCATION
+                                         
+                                                 clearAllData())
 
         val rg1 = this.findViewById<RadioGroup>(R.id.radio_group1)
         val rg2 = this.findViewById<RadioGroup>(R.id.radio_group2)
