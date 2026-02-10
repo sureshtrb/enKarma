@@ -364,19 +364,34 @@ class TharoPanchangamActivity : AppCompatActivity() {
     }
 
     private fun recalculateDays() {
-        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
-        val cal1 = Calendar.getInstance()
-        cal1.time = sdf.parse(dateNow) ?: Date()
+                // Try parsing with multiple date formats to handle different locale settings
+                val formats = listOf(
+                                SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH),
+                                SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH)
+                                        )
+                        // Helper function to parse date with multiple formats
+                                fun parseDateSafely(dateString: String): Date {
+                                                for (format in formats) {
+                                                                    try {
+                                                                                            return format.parse(dateString) ?: Date()
+                                                                                                            } catch (e: Exception) {
+                                                                                            // Try next format
+                                                                                        }
+                                                                                }
+                                                            return Date() // Return current date if all formats fail
+                                                                    }
+        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH) // For formatting only        val cal1 = Calendar.getInstance()
+        cal1.time = parseDateSafely(dateNow) ?: Date()
         cal1.add(Calendar.DATE, 1)
         nextdy = sdf.format(cal1.time)
 
         val cal2 = Calendar.getInstance()
-        cal2.time = sdf.parse(dateNow) ?: Date()
+        cal2.time = parseDateSafely(dateNow) ?: Date()
         cal2.add(Calendar.DATE, 2)
         pradamaiDay = sdf.format(cal2.time)
 
         val cal3 = Calendar.getInstance()
-        cal3.time = sdf.parse(dateNow) ?: Date()
+        cal3.time = parseDateSafely(dateNow) ?: Date()
         cal3.add(Calendar.DATE, 3)
         afterPradamaiDay = sdf.format(cal3.time)
     }
