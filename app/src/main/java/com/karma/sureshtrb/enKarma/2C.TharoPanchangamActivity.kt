@@ -1,5 +1,6 @@
 package com.karma.sureshtrb.enKarma
 
+import android.animation.ValueAnimator
 import android.annotation.TargetApi
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -19,15 +20,7 @@ import com.karma.sureshtrb.enKarma.databinding.ActivityTharoPanchangamBinding
 import org.jsoup.Jsoup
 import java.text.SimpleDateFormat
 import java.util.*
-import java.net.HttpURLConnection
-import java.net.URL
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-import android.animation.ValueAnimator
-import android.animation.ArgbEvaluator
 var dateToday = ""
 var place: String = ""
 var sunRise: String = ""
@@ -121,6 +114,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
 
     var cal = Calendar.getInstance()
     private lateinit var binding: ActivityTharoPanchangamBinding
+    private var selectedDate: Date = Date() // Initialize with current date
 
     // TextView references (moved inside class to avoid conflicts with top-level String vars)
     private lateinit var tvVarusham: TextView
@@ -435,6 +429,9 @@ class TharoPanchangamActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat(myFormat, Locale.ENGLISH)
         binding.textViewDate1.text = sdf.format(cal.time)
         dateNow = binding.textViewDate1.text.toString()
+        // Add these lines to refresh panchang data when date changes:
+        recalculateDays()
+        fetchAllPanchangData()
     }
 
     private fun pradamaiDayparseWeb() = try {
@@ -802,7 +799,8 @@ class TharoPanchangamActivity : AppCompatActivity() {
         } else {
             // Tithi expires today - check if current time has passed expiry time
             currentTithi = if (TodayThithiUptoInMinutesM <= nowTimeInMinutes) NextDayThithi else TithiValue
-        }            ThithiGlobal = convertThithiToTamil(currentTithi)
+        }
+            ThithiGlobal = convertThithiToTamil(currentTithi)
         }
     }
 
@@ -1063,75 +1061,4 @@ class TharoPanchangamActivity : AppCompatActivity() {
     }
 }
 
-    private fun fetchPanchangData() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            try {
-                // Build URL with date format dd/mm/yyyy
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US)
-                val formattedDate = dateFormat.format(selectedDate)
-                val url = "https://www.drikpanchang.com/panchang/day-panchang.html?date=$formattedDate"
-                
-                // Fetch HTML content
-                val connection = URL(url).openConnection() as HttpURLConnection
-                connection.requestMethod = "GET"
-                connection.setRequestProperty("User-Agent", "Mozilla/5.0")
-                connection.connectTimeout = 10000
-                connection.readTimeout = 10000
-                
-                val response = connection.inputStream.bufferedReader().use { it.readText() }
-                connection.disconnect()
-                
-                // Parse HTML using regex patterns
-            val tithiPattern = Regex("Tithi[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)", RegexOption.DOT_MATCHES_ALL)                val nakshatraPattern = "Nakshatra[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)".toRegex(RegexOption.DOT_MATCHES_ALL)
-            val nakshatraPattern = Regex("Nakshatra[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)", RegexOption.DOT_MATCHES_ALL)
-                            val yogaPattern = Regex("Yoga[^>]*>[^<]*<a[^>]*>([^<]+)</a>[^<]*([^<]*upto[^<]*)", RegexOption.DOT_MATCHES_
-                                                                val karanaPattern = Regex("Karana[^>]*>\\s*([^<]+)\\s*(?:upto\\s*)?([^<]*)")ALL)
-                
-                var tithi = ""
-                var nakshatra = ""
-                var yoga = ""
-                var karana = ""
-                
-                // Extract Tithi
-                Regex(tithiPattern).find(response)?.let {
-                    tithi = "${it.groupValues[1]} ${it.groupValues[2].trim()}"
-                }
-                
-                // Extract Nakshatra
-                Regex(nakshatraPattern).find(response)?.let {
-                    nakshatra = "${it.groupValues[1]} ${it.groupValues[2].trim()}"
-                }
-                
-                // Extract Yoga
-                Regex(yogaPattern).find(response)?.let {
-                    yoga = "${it.groupValues[1]} ${it.groupValues[2].trim()}"
-                }
-                
-                // Extract Karana
-                Regex(karanaPattern).find(response)?.let {
-                    karana = "${it.groupValues[1]} ${it.groupValues[2].trim()}"
-                }
-                
-                // Update UI on main thread
-                withContext(Dispatchers.Main) {
-                    tvTodThithi.text = Html.fromHtml("<font color='#228B22'>திதி (Tithi):-</font> <font color='#0000BB'>$tithi</font>", Html.FROM_HTML_MODE_LEGACY)
-                    tvBaksham.text = Html.fromHtml("<font color='#228B22'>பக்ஷம் (Paksha):-</font> <font color='#0000BB'>Krishna Paksha</font>", Html.FROM_HTML_MODE_LEGACY)
-                    tvRasee.text = Html.fromHtml("<font color='#228B22'>ராசி (Rasi):-</font> <font color='#0000BB'>$nakshatra</font>", Html.FROM_HTML_MODE_LEGACY)
-                    tvYog.text = Html.fromHtml("<font color='#228B22'>யோகம் (Yogam):-</font> <font color='#0000BB'>$yoga</font>", Html.FROM_HTML_MODE_LEGACY)
-                    tvKalam.text = Html.fromHtml("<font color='#228B22'>கரணம் (Karanam):-</font> <font color='#0000BB'>$karana</font>", Html.FROM_HTML_MODE_LEGACY)
-                    
-                    // Hide loading animator
-                    loadingAnimator?.cancel()
-                    loadingAnimator = null
-                }
-                
-            } catch (e: Exception) {
-                e.printStackTrace()
-                withContext(Dispatchers.Main) {
-                    tvTodThithi.text = "Error loading data"
-                    loadingAnimator?.cancel()
-                    loadingAnimator = null
-                }
-            }
-        }
-    }
+
