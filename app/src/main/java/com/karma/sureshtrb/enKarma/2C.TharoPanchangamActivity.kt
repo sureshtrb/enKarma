@@ -199,6 +199,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
             cal.set(Calendar.MONTH, monthOfYear)
             cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updateDateInView()
+            fetchAllPanchangData()
         }
 
         changeDateBtn.setOnClickListener {
