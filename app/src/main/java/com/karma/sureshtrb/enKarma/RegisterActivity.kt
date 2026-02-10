@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.karma.sureshtrb.enKarma.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityRegisterBinding
     private var mProgress: ProgressDialog? = null
 
@@ -19,6 +20,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         mProgress = ProgressDialog(this)
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -28,6 +30,7 @@ class RegisterActivity : AppCompatActivity() {
         supportActionBar?.setTitle("Register / பதிவு செய்க")
 
         binding.btnRegister.setOnClickListener { doRegister() }
+
         binding.txtLogin.setOnClickListener {
             val loginIntent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(loginIntent)
@@ -95,6 +98,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 2 // You might want to adjust your password validation logic
+        // Firebase requires minimum 6 characters for passwords
+        return password.length >= 6
     }
 }

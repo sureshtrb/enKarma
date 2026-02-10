@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +19,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         mProgress = ProgressDialog(this)
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -38,9 +40,28 @@ class ForgotPasswordActivity : AppCompatActivity() {
             .show()
     }
 
+    private fun isEmailValid(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
     private fun resetPassword() {
         val email = binding.editEmail.text.toString().trim { it <= ' ' }
+
+        // Validate email before sending reset request
+        if (email.isEmpty()) {
+            binding.editEmail.error = getString(R.string.error_field_required)
+            binding.editEmail.requestFocus()
+            return
+        }
+
+        if (!isEmailValid(email)) {
+            binding.editEmail.error = getString(R.string.error_invalid_email)
+            binding.editEmail.requestFocus()
+            return
+        }
+
         mProgress?.setMessage("Please wait...")
+        mProgress?.setCancelable(false)
         mProgress?.show()
 
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
@@ -54,8 +75,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 } else {
                     Log.w("ForgotPassword", "Email not sent.", task.exception)
                     val title = "Password Reset Failed"
-                    val message = "Password cannot be changed"
-                    alertDisplayer(title, message + " :" + task.exception?.message)
+                    val message = task.exception?.message ?: "Unable to send reset email. Please check your email address."
+                    alertDisplayer(title, message)
                 }
             }
     }
