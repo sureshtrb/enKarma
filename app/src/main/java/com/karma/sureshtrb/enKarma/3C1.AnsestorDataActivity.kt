@@ -1363,6 +1363,9 @@ class AnsestorDataActivity : AppCompatActivity() {
         // Set spinner positions after a delay to ensure adapters are set
         binding.spinnerGothram.post { binding.spinnerGothram.setSelection(gothramPos) }
         binding.MspinnerGothram.post { binding.MspinnerGothram.setSelection(MgothramPos) }
+                // Restore Pravaras spinner positions after Gothram selection triggers adapter setup
+        binding.spinnerPravaras.post { binding.spinnerPravaras.setSelection(savedPravarasPos); savedPravarasPos = 0 }
+        binding.MspinnerPravaras.post { binding.MspinnerPravaras.setSelection(savedMPravarasPos); savedMPravarasPos = 0 }
     }
 
     fun updateViews() {
