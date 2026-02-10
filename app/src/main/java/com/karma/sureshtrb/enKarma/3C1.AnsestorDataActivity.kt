@@ -1356,10 +1356,10 @@ class AnsestorDataActivity : AppCompatActivity() {
         MGGFName = sharedPreferences.getString("AmmaKolluThatha", "")!!
                 // Load Gothram and Pravara spinner positions for father's side
         val gothramPos = sharedPreferences.getInt("gothramPosition", 0)
-        savedPravarasPos = sharedPreferences.getInt("pravarasPosition", 0)
+        val savedPravarasPos = sharedPreferences.getInt("pravarasPosition", 0)
         // Load Gothram and Pravara spinner positions for mother's side  
         val MgothramPos = sharedPreferences.getInt("MgothramPosition", 0)
-        savedMPravarasPos = sharedPreferences.getInt("MpravarasPosition", 0)
+        val savedMPravarasPos = sharedPreferences.getInt("MpravarasPosition", 0)
         // Set spinner positions after a delay to ensure adapters are set
         binding.spinnerGothram.post { binding.spinnerGothram.setSelection(gothramPos) }
         binding.MspinnerGothram.post { binding.MspinnerGothram.setSelection(MgothramPos) }
