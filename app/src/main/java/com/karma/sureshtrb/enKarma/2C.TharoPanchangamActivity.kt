@@ -85,6 +85,7 @@ var motherLive: String = ""
 var motherMotherLive: String = ""
 var fatherMotherLive: String = ""
 var dateNow: String = "__/__ /____"
+var yesterday: String = ""
 var nextdy: String = ""
 var NextDayThithi: String = ""
 var thithiValuex: String = ""
@@ -382,7 +383,14 @@ class TharoPanchangamActivity : AppCompatActivity() {
                                                             return Date() // Return current date if all formats fail
                                                                     }
         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH) // For formatting only        val cal1 = Calendar.getInstance()
-        cal1.time = parseDateSafely(dateNow) ?: Date()
+        
+        
+                // Calculate yesterday
+        val cal0 = Calendar.getInstance()
+        cal0.time = parseDateSafely(dateNow) ?: Date()
+        cal0.add(Calendar.DATE, -1)
+        yesterday = sdf.format(cal0.time)
+cal1.time = parseDateSafely(dateNow) ?: Date()
         cal1.add(Calendar.DATE, 1)
         nextdy = sdf.format(cal1.time)
 
