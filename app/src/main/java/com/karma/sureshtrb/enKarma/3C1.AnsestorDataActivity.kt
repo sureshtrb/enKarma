@@ -1328,12 +1328,12 @@ class AnsestorDataActivity : AppCompatActivity() {
 
         editor.putString("Peyar", binding.yourName.text.toString())
         editor.putString("Appa", binding.yrFatherName.text.toString())
-        editor.putString("Thatha", yrGFNamee)
-        editor.putString("Kollu", yrGGFNamee)
-        editor.putString("Yellu", yrGGGFNamee)
-        editor.putString("AmmaAppa", MFNamee)
-        editor.putString("AmmaThatha", MGFNamee)
-        editor.putString("AmmaKolluThatha", MGGFNamee)
+        editor.putString("Thatha", binding.yrGfatherName.text.toString())
+        editor.putString("Kollu", binding.yrGGfatherName.text.toString())
+        editor.putString("Yellu", binding.yrGGGfatherName.text.toString())
+        editor.putString("AmmaAppa", binding.MFatherName.text.toString())
+        editor.putString("AmmaThatha", binding.MGFatherName.text.toString())
+        editor.putString("AmmaKolluThatha", binding.MGGFatherName.text.toString())
                 // Save Gothram and Pravara spinner positions for father's side
         editor.putInt("gothramPosition", binding.spinnerGothram.selectedItemPosition)
         editor.putInt("pravarasPosition", binding.spinnerPravaras.selectedItemPosition)
