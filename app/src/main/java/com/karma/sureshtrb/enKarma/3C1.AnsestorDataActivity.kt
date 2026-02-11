@@ -10,10 +10,14 @@ import android.preference.PreferenceManager
 import android.text.Editable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.collections.arrayListOf
-import kotlin.collections.mutableListOf
 import com.karma.sureshtrb.enKarma.databinding.ActivityAnsestorDataBinding
 
 var yrGFatherLive: String = ""
@@ -39,6 +43,8 @@ class AnsestorDataActivity : AppCompatActivity() {
     private var MGOTHRAM = "Mgothram"
     private var PRAVARAS = "pravaras"
     private var MPRAVARAS = "Mpravaras"
+    private var pendingPravarasPos = 0
+    private var pendingMPravarasPos = 0
 
     val sharedPrefs: String = ""
     val SHARED_PREFS: String = ""
@@ -1354,19 +1360,28 @@ class AnsestorDataActivity : AppCompatActivity() {
         MFName = sharedPreferences.getString("AmmaAppa", "")!!
         MGFName = sharedPreferences.getString("AmmaThatha", "")!!
         MGGFName = sharedPreferences.getString("AmmaKolluThatha", "")!!
-                // Load Gothram and Pravara spinner positions for father's side
+
+        // Load Gothram and Pravara spinner positions for father's side
         val gothramPos = sharedPreferences.getInt("gothramPosition", 0)
         val savedPravarasPos = sharedPreferences.getInt("pravarasPosition", 0)
-        // Load Gothram and Pravara spinner positions for mother's side  
+
+        // Load Gothram and Pravara spinner positions for mother's side
         val MgothramPos = sharedPreferences.getInt("MgothramPosition", 0)
         val savedMPravarasPos = sharedPreferences.getInt("MpravarasPosition", 0)
-        // Set spinner positions after a delay to ensure adapters are set
+
+        // Set Gothram spinner positions first
         binding.spinnerGothram.post { binding.spinnerGothram.setSelection(gothramPos) }
         binding.MspinnerGothram.post { binding.MspinnerGothram.setSelection(MgothramPos) }
-                // Restore Pravaras spinner positions after Gothram selection triggers adapter setup
-        binding.spinnerPravaras.post { binding.spinnerPravaras.setSelection(savedPravarasPos) }
-        binding.MspinnerPravaras.post { binding.MspinnerPravaras.setSelection(savedMPravarasPos) }
+
+        // Restore Pravaras spinner positions with delay to allow Gothram selection to trigger adapter setup
+        binding.spinnerPravaras.postDelayed({
+            binding.spinnerPravaras.setSelection(savedPravarasPos)
+        }, 500)
+        binding.MspinnerPravaras.postDelayed({
+            binding.MspinnerPravaras.setSelection(savedMPravarasPos)
+        }, 500)
     }
+
 
     fun updateViews() {
         binding.yourName.setText(urName)
