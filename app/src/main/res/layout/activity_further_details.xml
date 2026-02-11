@@ -128,13 +128,13 @@
         <Button android:id="@+id/AddRelatives" android:layout_marginTop="10dp" android:layout_width="match_parent"
                 android:layout_height="wrap_content" tools:text="ADD/EDIT DECEASED PERSONS" app:layout_constraintEnd_toEndOf="parent"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center" android:textColorHint="#F8F5F5"
-                tools:targetApi="o" android:textColor="@android:color/background_light" app:layout_constraintTop_toBottomOf="@+id/closeRelatives"
+                tools:targetApi="o" android:textandroid:textColor="#0000FF"Color="#0000FF" app:layout_constraintTop_toBottomOf="@+id/closeRelatives"
                 android:background="@drawable/mybutton" style="?android:attr/buttonBarButtonStyle" android:textStyle="bold"  android:textSize="24sp"
                 android:text="@string/ADD_EDIT_DECEASED_PERSONS" app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"/>
 
         <Button android:id="@+id/ProceedToTharpanam" android:layout_marginTop="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"
                 tools:text="PROCEED TO THARPANAM" android:textAppearance="@style/TextAppearance.AppCompat.Large" android:gravity="center"
-                android:textColorHint="#FCFBFB" tools:targetApi="o" android:textColor="@android:color/background_light"
+                android:textandroid:textColor="#0000FF"             android:textColorHint="#FCFBFB"#0000FFandroid:textColor="#0000FF"Color="#0000FF" tools:targetApi="o" android:textandroid:textColor="#0000FF"Color="#0000FF"
                 android:background="@drawable/mybutton" android:text="@string/PROCEED_TO_THARPANAM" style="?android:attr/buttonBarButtonStyle"
                 android:textStyle="bold" app:layout_constraintTop_toBottomOf="@+id/AddRelatives"/>
 
