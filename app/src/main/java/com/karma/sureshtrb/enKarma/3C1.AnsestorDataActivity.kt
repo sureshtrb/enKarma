@@ -92,40 +92,40 @@ class AnsestorDataActivity : AppCompatActivity() {
         val MGGFNamee = findViewById<EditText>(R.id.MGGFather_name)
 
         if (rb_yrGFLiving.isChecked) {
-            yrGFNamee.visibility = View.INVISIBLE
-            yrGGFNamee.visibility = View.VISIBLE
-            yrGGGFNamee.visibility = View.VISIBLE
+            binding.yrGfatherName.visibility = View.INVISIBLE
+            binding.yrGGfatherName.visibility = View.VISIBLE
+            binding.yrGGGfatherName.visibility = View.VISIBLE
             yrGFNamee.text = null
         }else if (rb_yrGFDeceased.isChecked) {
-            yrGFNamee.visibility = View.VISIBLE
-            yrGGFNamee.visibility = View.VISIBLE
-            yrGGGFNamee.visibility = View.INVISIBLE
+            binding.yrGfatherName.visibility = View.VISIBLE
+            binding.yrGGfatherName.visibility = View.VISIBLE
+            binding.yrGGGfatherName.visibility = View.INVISIBLE
             yrGGGFNamee.text = null
         }else{
-            yrGFNamee.visibility = View.INVISIBLE
-            yrGGFNamee.visibility = View.INVISIBLE
-            yrGGGFNamee.visibility = View.INVISIBLE
+            binding.yrGfatherName.visibility = View.INVISIBLE
+            binding.yrGGfatherName.visibility = View.INVISIBLE
+            binding.yrGGGfatherName.visibility = View.INVISIBLE
         }
         if (rb_MFLiving.isChecked) {
-            MFNamee.visibility = View.INVISIBLE
-            MGFNamee.visibility = View.INVISIBLE
-            MGGFNamee.visibility = View.INVISIBLE
+            binding.MFatherName.visibility = View.INVISIBLE
+            binding.MGFatherName.visibility = View.INVISIBLE
+            binding.MGGFatherName.visibility = View.INVISIBLE
             binding.MspinnerGothram.visibility = View.INVISIBLE
             binding.MspinnerPravaras.visibility = View.INVISIBLE
             AMAVASYA.visibility = View.VISIBLE
             MAHALAYA.visibility = View.VISIBLE
         }else if (rb_MFDeceased.isChecked) {
-            MFNamee.visibility = View.VISIBLE
-            MGFNamee.visibility = View.VISIBLE
-            MGGFNamee.visibility = View.VISIBLE
+            binding.MFatherName.visibility = View.VISIBLE
+            binding.MGFatherName.visibility = View.VISIBLE
+            binding.MGGFatherName.visibility = View.VISIBLE
             binding.MspinnerGothram.visibility = View.VISIBLE
             binding.MspinnerPravaras.visibility = View.VISIBLE
             AMAVASYA.visibility = View.VISIBLE
             MAHALAYA.visibility = View.VISIBLE
         }else{
-            MFNamee.visibility = View.INVISIBLE
-            MGFNamee.visibility = View.INVISIBLE
-            MGGFNamee.visibility = View.INVISIBLE
+            binding.MFatherName.visibility = View.INVISIBLE
+            binding.MGFatherName.visibility = View.INVISIBLE
+            binding.MGGFatherName.visibility = View.INVISIBLE
             binding.MspinnerGothram.visibility = View.INVISIBLE
             binding.MspinnerPravaras.visibility = View.INVISIBLE
             AMAVASYA.visibility = View.INVISIBLE
@@ -1247,9 +1247,9 @@ class AnsestorDataActivity : AppCompatActivity() {
                     yrGFatherLive = "Living"
                     binding.yrGfatherName.setText("")
                     println("yrGFatherLive =  $yrGFatherLive")
-                    yrGFNamee.visibility = View.INVISIBLE
-                    yrGGFNamee.visibility = View.VISIBLE
-                    yrGGGFNamee.visibility = View.VISIBLE
+                    binding.yrGfatherName.visibility = View.INVISIBLE
+                    binding.yrGGfatherName.visibility = View.VISIBLE
+                    binding.yrGGGfatherName.visibility = View.VISIBLE
                 }
                 R.id.radio2G5 -> {
                     rb_yrGFLiving.setTextColor(Color.BLACK)
@@ -1259,9 +1259,9 @@ class AnsestorDataActivity : AppCompatActivity() {
                     yrGFatherLive = "Deceased"
                     binding.yrGGGfatherName.setText("")
                     println("yrGFatherLive =  $yrGFatherLive")
-                    yrGFNamee.visibility = View.VISIBLE
-                    yrGGFNamee.visibility = View.VISIBLE
-                    yrGGGFNamee.visibility = View.INVISIBLE
+                    binding.yrGfatherName.visibility = View.VISIBLE
+                    binding.yrGGfatherName.visibility = View.VISIBLE
+                    binding.yrGGGfatherName.visibility = View.INVISIBLE
                 }
             }
         }
@@ -1278,9 +1278,9 @@ class AnsestorDataActivity : AppCompatActivity() {
                     binding.MFatherName.setText("")
                     binding.MGFatherName.setText("")
                     binding.MGGFatherName.setText("")
-                    MFNamee.visibility = View.INVISIBLE
-                    MGFNamee.visibility = View.INVISIBLE
-                    MGGFNamee.visibility = View.INVISIBLE
+                    binding.MFatherName.visibility = View.INVISIBLE
+                    binding.MGFatherName.visibility = View.INVISIBLE
+                    binding.MGGFatherName.visibility = View.INVISIBLE
                     binding.MspinnerGothram.visibility = View.INVISIBLE
                     binding.MspinnerPravaras.visibility = View.INVISIBLE
                     AMAVASYA.visibility = View.VISIBLE
@@ -1293,9 +1293,9 @@ class AnsestorDataActivity : AppCompatActivity() {
                     rb_MFDeceased.setTypeface(null, Typeface.BOLD)
                     MFatherLive = "Deceased"
                     println("MFatherLive =  $MFatherLive")
-                    MFNamee.visibility = View.VISIBLE
-                    MGFNamee.visibility = View.VISIBLE
-                    MGGFNamee.visibility = View.VISIBLE
+                    binding.MFatherName.visibility = View.VISIBLE
+                    binding.MGFatherName.visibility = View.VISIBLE
+                    binding.MGGFatherName.visibility = View.VISIBLE
                     binding.MspinnerGothram.visibility = View.VISIBLE
                     binding.MspinnerPravaras.visibility = View.VISIBLE
                     AMAVASYA.visibility = View.VISIBLE
@@ -1407,17 +1407,17 @@ class AnsestorDataActivity : AppCompatActivity() {
             rb_yrGFLiving.isChecked = settings.getBoolean("question5A",false)
             yrGFatherLive = "Living"
             binding.yrGfatherName.setText("")
-            yrGFNamee.visibility = View.INVISIBLE
-            yrGGFNamee.visibility = View.VISIBLE
-            yrGGGFNamee.visibility = View.VISIBLE
+            binding.yrGfatherName.visibility = View.INVISIBLE
+            binding.yrGGfatherName.visibility = View.VISIBLE
+            binding.yrGGGfatherName.visibility = View.VISIBLE
         }
         if (settings.getBoolean("question5B", rb_yrGFDeceased.isChecked)){
             rb_yrGFDeceased.isChecked = settings.getBoolean("question5B", false)
             yrGFatherLive = "Deceased"
             binding.yrGGGfatherName.setText("")
-            yrGFNamee.visibility = View.VISIBLE
-            yrGGFNamee.visibility = View.VISIBLE
-            yrGGGFNamee.visibility = View.INVISIBLE
+            binding.yrGfatherName.visibility = View.VISIBLE
+            binding.yrGGfatherName.visibility = View.VISIBLE
+            binding.yrGGGfatherName.visibility = View.INVISIBLE
         }
         if (settings.getBoolean("question6A", rb_MFLiving.isChecked)){
             rb_MFLiving.isChecked = settings.getBoolean("question6A", false)
@@ -1425,9 +1425,9 @@ class AnsestorDataActivity : AppCompatActivity() {
             binding.MFatherName.setText("")
             binding.MGGFatherName.setText("")
             binding.MGGFatherName.setText("")
-            MFNamee.visibility = View.INVISIBLE
-            MGFNamee.visibility = View.INVISIBLE
-            MGGFNamee.visibility = View.INVISIBLE
+            binding.MFatherName.visibility = View.INVISIBLE
+            binding.MGFatherName.visibility = View.INVISIBLE
+            binding.MGGFatherName.visibility = View.INVISIBLE
             binding.MspinnerGothram.visibility = View.INVISIBLE
             binding.MspinnerPravaras.visibility = View.INVISIBLE
             amavasya.visibility = View.VISIBLE
@@ -1436,9 +1436,9 @@ class AnsestorDataActivity : AppCompatActivity() {
         if (settings.getBoolean("question6B", rb_MFDeceased.isChecked)){
             rb_MFDeceased.isChecked = settings.getBoolean("question6B", false)
             MFatherLive = "Deceased"
-            MFNamee.visibility = View.VISIBLE
-            MGFNamee.visibility = View.VISIBLE
-            MGGFNamee.visibility = View.VISIBLE
+            binding.MFatherName.visibility = View.VISIBLE
+            binding.MGFatherName.visibility = View.VISIBLE
+            binding.MGGFatherName.visibility = View.VISIBLE
             binding.MspinnerGothram.visibility = View.VISIBLE
             binding.MspinnerPravaras.visibility = View.VISIBLE
             amavasya.visibility = View.VISIBLE
