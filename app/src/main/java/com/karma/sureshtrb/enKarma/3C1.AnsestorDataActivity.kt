@@ -1245,7 +1245,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                     rb_yrGFDeceased.setTextColor(Color.BLACK)
                     rb_yrGFDeceased.setTypeface(null, Typeface.NORMAL)
                     yrGFatherLive = "Living"
-                    yrGFNamee.setText("")
+                    binding.yrGfatherName.setText("")
                     println("yrGFatherLive =  $yrGFatherLive")
                     yrGFNamee.visibility = View.INVISIBLE
                     yrGGFNamee.visibility = View.VISIBLE
@@ -1257,7 +1257,7 @@ class AnsestorDataActivity : AppCompatActivity() {
                     rb_yrGFDeceased.setTextColor(Color.RED)
                     rb_yrGFDeceased.setTypeface(null, Typeface.BOLD)
                     yrGFatherLive = "Deceased"
-                    yrGGGFNamee.setText("")
+                    binding.yrGGGfatherName.setText("")
                     println("yrGFatherLive =  $yrGFatherLive")
                     yrGFNamee.visibility = View.VISIBLE
                     yrGGFNamee.visibility = View.VISIBLE
@@ -1275,9 +1275,9 @@ class AnsestorDataActivity : AppCompatActivity() {
                     rb_MFDeceased.setTypeface(null, Typeface.NORMAL)
                     MFatherLive = "Living"
                     println("MFatherLive =  $MFatherLive")
-                    MFNamee.setText("")
-                    MGFNamee.setText("")
-                    MGGFNamee.setText("")
+                    binding.MFatherName.setText("")
+                    binding.MGFatherName.setText("")
+                    binding.MGGFatherName.setText("")
                     MFNamee.visibility = View.INVISIBLE
                     MGFNamee.visibility = View.INVISIBLE
                     MGGFNamee.visibility = View.INVISIBLE
@@ -1364,19 +1364,19 @@ class AnsestorDataActivity : AppCompatActivity() {
         binding.spinnerGothram.post { binding.spinnerGothram.setSelection(gothramPos) }
         binding.MspinnerGothram.post { binding.MspinnerGothram.setSelection(MgothramPos) }
                 // Restore Pravaras spinner positions after Gothram selection triggers adapter setup
-        binding.spinnerPravaras.post { binding.spinnerPravaras.setSelection(savedPravarasPos); savedPravarasPos = 0 }
-        binding.MspinnerPravaras.post { binding.MspinnerPravaras.setSelection(savedMPravarasPos); savedMPravarasPos = 0 }
+        binding.spinnerPravaras.post { binding.spinnerPravaras.setSelection(savedPravarasPos) }
+        binding.MspinnerPravaras.post { binding.MspinnerPravaras.setSelection(savedMPravarasPos) }
     }
 
     fun updateViews() {
         binding.yourName.setText(urName)
         binding.yrFatherName.setText(yFName)
-        yrGFNamee.setText(yGFName)
-        yrGGFNamee.setText(yFGFName)
-        yrGGGFNamee.setText(yFGGFName)
-        MFNamee.setText(MFName)
-        MGFNamee.setText(MGFName)
-        MGGFNamee.setText(MGGFName)
+        binding.yrGfatherName.setText(yGFName)
+        binding.yrGGfatherName.setText(yFGFName)
+        binding.yrGGGfatherName.setText(yFGGFName)
+        binding.MFatherName.setText(MFName)
+        binding.MGFatherName.setText(MGFName)
+        binding.MGGFatherName.setText(MGGFName)
     }
 
     private fun SaveRadioState() {
@@ -1406,7 +1406,7 @@ class AnsestorDataActivity : AppCompatActivity() {
         if (settings.getBoolean("question5A", rb_yrGFLiving.isChecked)){
             rb_yrGFLiving.isChecked = settings.getBoolean("question5A",false)
             yrGFatherLive = "Living"
-            yrGFNamee.setText("")
+            binding.yrGfatherName.setText("")
             yrGFNamee.visibility = View.INVISIBLE
             yrGGFNamee.visibility = View.VISIBLE
             yrGGGFNamee.visibility = View.VISIBLE
@@ -1414,7 +1414,7 @@ class AnsestorDataActivity : AppCompatActivity() {
         if (settings.getBoolean("question5B", rb_yrGFDeceased.isChecked)){
             rb_yrGFDeceased.isChecked = settings.getBoolean("question5B", false)
             yrGFatherLive = "Deceased"
-            yrGGGFNamee.setText("")
+            binding.yrGGGfatherName.setText("")
             yrGFNamee.visibility = View.VISIBLE
             yrGGFNamee.visibility = View.VISIBLE
             yrGGGFNamee.visibility = View.INVISIBLE
@@ -1422,9 +1422,9 @@ class AnsestorDataActivity : AppCompatActivity() {
         if (settings.getBoolean("question6A", rb_MFLiving.isChecked)){
             rb_MFLiving.isChecked = settings.getBoolean("question6A", false)
             MFatherLive = "Living"
-            MFNamee.setText("")
-            MGGFNamee.setText("")
-            MGGFNamee.setText("")
+            binding.MFatherName.setText("")
+            binding.MGGFatherName.setText("")
+            binding.MGGFatherName.setText("")
             MFNamee.visibility = View.INVISIBLE
             MGFNamee.visibility = View.INVISIBLE
             MGGFNamee.visibility = View.INVISIBLE
