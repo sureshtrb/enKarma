@@ -1795,6 +1795,7 @@ class DeceasedListActivity : AppCompatActivity() {
                 gthrmFifteen.text = personGothram
                 relspFifteen.text = personRelationShip
                 Gndr15 = personGender
+                                savedData()
             }
         }
     }
@@ -2013,7 +2014,7 @@ class DeceasedListActivity : AppCompatActivity() {
         binding.BirthOrder1.text = BrOr1
         binding.BirthOrder2.text = BrOr2
         binding.BirthOrder3.text = BrOr3
-        binding.BirthOrder5.text = BrOr4
+        binding.BirthOrder4.text = BrOr4
         binding.BirthOrder5.text = BrOr5
         binding.BirthOrder6.text = BrOr6
         binding.BirthOrder7.text = BrOr7
