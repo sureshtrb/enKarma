@@ -309,6 +309,7 @@ class DeceasedListActivity : AppCompatActivity() {
 
         loadData()
         updateViews()
+                setupRowLongClickListeners()
 
         delete1.setOnClickListener{
             nameOne.text = ""
@@ -2043,5 +2044,332 @@ class DeceasedListActivity : AppCompatActivity() {
         binding.relationship14.text = RlShp14
         binding.relationship15.text = RlShp15
 
+    }
+
+        // Variable to track selected row for reordering
+    private var selectedRowForSwap: Int = -1
+
+    // Function to swap two rows
+    fun swapRows(fromRow: Int, toRow: Int) {
+        if (fromRow == toRow || fromRow < 1 || toRow < 1 || fromRow > 15 || toRow > 15) return
+        
+        // Get data from both rows
+        val tempName = getRowName(fromRow)
+        val tempBirthOrder = getRowBirthOrder(fromRow)
+        val tempGothram = getRowGothram(fromRow)
+        val tempRelation = getRowRelation(fromRow)
+        val tempGender = getRowGender(fromRow)
+        
+        // Set fromRow data from toRow
+        setRowData(fromRow, getRowName(toRow), getRowBirthOrder(toRow), getRowGothram(toRow), getRowRelation(toRow), getRowGender(toRow))
+        
+        // Set toRow data from temp
+        setRowData(toRow, tempName, tempBirthOrder, tempGothram, tempRelation, tempGender)
+        
+        // Save and update visibility
+        savedData()
+        updateRowVisibility()
+    }
+
+    // Helper functions to get row data by index
+    fun getRowName(row: Int): String {
+        return when(row) {
+            1 -> binding.Name1.text.toString()
+            2 -> binding.Name2.text.toString()
+            3 -> binding.Name3.text.toString()
+            4 -> binding.Name4.text.toString()
+            5 -> binding.Name5.text.toString()
+            6 -> binding.Name6.text.toString()
+            7 -> binding.Name7.text.toString()
+            8 -> binding.Name8.text.toString()
+            9 -> binding.Name9.text.toString()
+            10 -> binding.Name10.text.toString()
+            11 -> binding.Name11.text.toString()
+            12 -> binding.Name12.text.toString()
+            13 -> binding.Name13.text.toString()
+            14 -> binding.Name14.text.toString()
+            15 -> binding.Name15.text.toString()
+            else -> ""
+        }
+    }
+
+    fun getRowBirthOrder(row: Int): String {
+        return when(row) {
+            1 -> binding.BirthOrder1.text.toString()
+            2 -> binding.BirthOrder2.text.toString()
+            3 -> binding.BirthOrder3.text.toString()
+            4 -> binding.BirthOrder4.text.toString()
+            5 -> binding.BirthOrder5.text.toString()
+            6 -> binding.BirthOrder6.text.toString()
+            7 -> binding.BirthOrder7.text.toString()
+            8 -> binding.BirthOrder8.text.toString()
+            9 -> binding.BirthOrder9.text.toString()
+            10 -> binding.BirthOrder10.text.toString()
+            11 -> binding.BirthOrder11.text.toString()
+            12 -> binding.BirthOrder12.text.toString()
+            13 -> binding.BirthOrder13.text.toString()
+            14 -> binding.BirthOrder14.text.toString()
+            15 -> binding.BirthOrder15.text.toString()
+            else -> ""
+        }
+    }
+
+    fun getRowGothram(row: Int): String {
+        return when(row) {
+            1 -> binding.gotram1.text.toString()
+            2 -> binding.gotram2.text.toString()
+            3 -> binding.gotram3.text.toString()
+            4 -> binding.gotram4.text.toString()
+            5 -> binding.gotram5.text.toString()
+            6 -> binding.gotram6.text.toString()
+            7 -> binding.gotram7.text.toString()
+            8 -> binding.gotram8.text.toString()
+            9 -> binding.gotram9.text.toString()
+            10 -> binding.gotram10.text.toString()
+            11 -> binding.gotram11.text.toString()
+            12 -> binding.gotram12.text.toString()
+            13 -> binding.gotram13.text.toString()
+            14 -> binding.gotram14.text.toString()
+            15 -> binding.gotram15.text.toString()
+            else -> ""
+        }
+    }
+
+    fun getRowRelation(row: Int): String {
+        return when(row) {
+            1 -> binding.relationship1.text.toString()
+            2 -> binding.relationship2.text.toString()
+            3 -> binding.relationship3.text.toString()
+            4 -> binding.relationship4.text.toString()
+            5 -> binding.relationship5.text.toString()
+            6 -> binding.relationship6.text.toString()
+            7 -> binding.relationship7.text.toString()
+            8 -> binding.relationship8.text.toString()
+            9 -> binding.relationship9.text.toString()
+            10 -> binding.relationship10.text.toString()
+            11 -> binding.relationship11.text.toString()
+            12 -> binding.relationship12.text.toString()
+            13 -> binding.relationship13.text.toString()
+            14 -> binding.relationship14.text.toString()
+            15 -> binding.relationship15.text.toString()
+            else -> ""
+        }
+    }
+
+    fun getRowGender(row: Int): String {
+        return when(row) {
+            1 -> Gndr1
+            2 -> Gndr2
+            3 -> Gndr3
+            4 -> Gndr4
+            5 -> Gndr5
+            6 -> Gndr6
+            7 -> Gndr7
+            8 -> Gndr8
+            9 -> Gndr9
+            10 -> Gndr10
+            11 -> Gndr11
+            12 -> Gndr12
+            13 -> Gndr13
+            14 -> Gndr14
+            15 -> Gndr15
+            else -> ""
+        }
+    }
+
+    fun setRowData(row: Int, name: String, birthOrder: String, gothram: String, relation: String, gender: String) {
+        when(row) {
+            1 -> {
+                binding.Name1.text = name
+                binding.BirthOrder1.text = birthOrder
+                binding.gotram1.text = gothram
+                binding.relationship1.text = relation
+                Gndr1 = gender
+            }
+            2 -> {
+                binding.Name2.text = name
+                binding.BirthOrder2.text = birthOrder
+                binding.gotram2.text = gothram
+                binding.relationship2.text = relation
+                Gndr2 = gender
+            }
+            3 -> {
+                binding.Name3.text = name
+                binding.BirthOrder3.text = birthOrder
+                binding.gotram3.text = gothram
+                binding.relationship3.text = relation
+                Gndr3 = gender
+            }
+            4 -> {
+                binding.Name4.text = name
+                binding.BirthOrder4.text = birthOrder
+                binding.gotram4.text = gothram
+                binding.relationship4.text = relation
+                Gndr4 = gender
+            }
+            5 -> {
+                binding.Name5.text = name
+                binding.BirthOrder5.text = birthOrder
+                binding.gotram5.text = gothram
+                binding.relationship5.text = relation
+                Gndr5 = gender
+            }
+            6 -> {
+                binding.Name6.text = name
+                binding.BirthOrder6.text = birthOrder
+                binding.gotram6.text = gothram
+                binding.relationship6.text = relation
+                Gndr6 = gender
+            }
+            7 -> {
+                binding.Name7.text = name
+                binding.BirthOrder7.text = birthOrder
+                binding.gotram7.text = gothram
+                binding.relationship7.text = relation
+                Gndr7 = gender
+            }
+            8 -> {
+                binding.Name8.text = name
+                binding.BirthOrder8.text = birthOrder
+                binding.gotram8.text = gothram
+                binding.relationship8.text = relation
+                Gndr8 = gender
+            }
+            9 -> {
+                binding.Name9.text = name
+                binding.BirthOrder9.text = birthOrder
+                binding.gotram9.text = gothram
+                binding.relationship9.text = relation
+                Gndr9 = gender
+            }
+            10 -> {
+                binding.Name10.text = name
+                binding.BirthOrder10.text = birthOrder
+                binding.gotram10.text = gothram
+                binding.relationship10.text = relation
+                Gndr10 = gender
+            }
+            11 -> {
+                binding.Name11.text = name
+                binding.BirthOrder11.text = birthOrder
+                binding.gotram11.text = gothram
+                binding.relationship11.text = relation
+                Gndr11 = gender
+            }
+            12 -> {
+                binding.Name12.text = name
+                binding.BirthOrder12.text = birthOrder
+                binding.gotram12.text = gothram
+                binding.relationship12.text = relation
+                Gndr12 = gender
+            }
+            13 -> {
+                binding.Name13.text = name
+                binding.BirthOrder13.text = birthOrder
+                binding.gotram13.text = gothram
+                binding.relationship13.text = relation
+                Gndr13 = gender
+            }
+            14 -> {
+                binding.Name14.text = name
+                binding.BirthOrder14.text = birthOrder
+                binding.gotram14.text = gothram
+                binding.relationship14.text = relation
+                Gndr14 = gender
+            }
+            15 -> {
+                binding.Name15.text = name
+                binding.BirthOrder15.text = birthOrder
+                binding.gotram15.text = gothram
+                binding.relationship15.text = relation
+                Gndr15 = gender
+            }
+        }
+    }
+
+    fun updateRowVisibility() {
+        binding.headRow.visibility = if (binding.Name1.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.firstRow.visibility = if (binding.Name1.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.secondRow.visibility = if (binding.Name2.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.thirdRow.visibility = if (binding.Name3.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.fourthRow.visibility = if (binding.Name4.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.fifthRow.visibility = if (binding.Name5.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.sixthRow.visibility = if (binding.Name6.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.seventhRow.visibility = if (binding.Name7.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.eighthRow.visibility = if (binding.Name8.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.ninethRow.visibility = if (binding.Name9.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.tenRow.visibility = if (binding.Name10.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.elevenRow.visibility = if (binding.Name11.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.twelveRow.visibility = if (binding.Name12.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.thirteenRow.visibility = if (binding.Name13.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.fourteenRow.visibility = if (binding.Name14.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        binding.fifteenRow.visibility = if (binding.Name15.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+    }
+
+    // Setup long-click listeners for drag-to-swap functionality
+    fun setupRowLongClickListeners() {
+        val rows = listOf(
+            Pair(1, binding.firstRow),
+            Pair(2, binding.secondRow),
+            Pair(3, binding.thirdRow),
+            Pair(4, binding.fourthRow),
+            Pair(5, binding.fifthRow),
+            Pair(6, binding.sixthRow),
+            Pair(7, binding.seventhRow),
+            Pair(8, binding.eighthRow),
+            Pair(9, binding.ninethRow),
+            Pair(10, binding.tenRow),
+            Pair(11, binding.elevenRow),
+            Pair(12, binding.twelveRow),
+            Pair(13, binding.thirteenRow),
+            Pair(14, binding.fourteenRow),
+            Pair(15, binding.fifteenRow)
+        )
+        
+        for ((rowNum, rowView) in rows) {
+            rowView.setOnLongClickListener {
+                if (selectedRowForSwap == -1) {
+                    // First selection - highlight row
+                    selectedRowForSwap = rowNum
+                    rowView.setBackgroundColor(android.graphics.Color.parseColor("#FFEB3B"))
+                    android.widget.Toast.makeText(this, "Row $rowNum selected. Tap another row to swap.", android.widget.Toast.LENGTH_SHORT).show()
+                }
+                true
+            }
+            
+            rowView.setOnClickListener {
+                if (selectedRowForSwap != -1 && selectedRowForSwap != rowNum) {
+                    // Swap the rows
+                    swapRows(selectedRowForSwap, rowNum)
+                    // Reset selection and background
+                    resetRowBackgrounds()
+                    selectedRowForSwap = -1
+                    android.widget.Toast.makeText(this, "Rows swapped!", android.widget.Toast.LENGTH_SHORT).show()
+                } else if (selectedRowForSwap == rowNum) {
+                    // Deselect if tapping the same row
+                    resetRowBackgrounds()
+                    selectedRowForSwap = -1
+                }
+            }
+        }
+    }
+    
+    fun resetRowBackgrounds() {
+        val defaultColor = android.graphics.Color.TRANSPARENT
+        binding.firstRow.setBackgroundColor(defaultColor)
+        binding.secondRow.setBackgroundColor(defaultColor)
+        binding.thirdRow.setBackgroundColor(defaultColor)
+        binding.fourthRow.setBackgroundColor(defaultColor)
+        binding.fifthRow.setBackgroundColor(defaultColor)
+        binding.sixthRow.setBackgroundColor(defaultColor)
+        binding.seventhRow.setBackgroundColor(defaultColor)
+        binding.eighthRow.setBackgroundColor(defaultColor)
+        binding.ninethRow.setBackgroundColor(defaultColor)
+        binding.tenRow.setBackgroundColor(defaultColor)
+        binding.elevenRow.setBackgroundColor(defaultColor)
+        binding.twelveRow.setBackgroundColor(defaultColor)
+        binding.thirteenRow.setBackgroundColor(defaultColor)
+        binding.fourteenRow.setBackgroundColor(defaultColor)
+        binding.fifteenRow.setBackgroundColor(defaultColor)
     }
 }
