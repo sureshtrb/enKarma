@@ -823,9 +823,6 @@ class MahalayaTpnmActivity : AppCompatActivity() {
     var mendPos16 = 0
     var mendPos17 = 0
 
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     private lateinit var binding: ActivityMahalayaTpnmBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
