@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import androidx.activity.result.contract.ActivityResultContracts
 
 //import kotlinx.android.synthetic.main.activity_further_details.*
 import com.karma.sureshtrb.enKarma.databinding.ActivityFurtherDetailsBinding
@@ -31,6 +32,15 @@ class FurtherDetailsActivity : AppCompatActivity() {
 
     val SHARED_PREFS:String = ""
     private lateinit var binding: ActivityFurtherDetailsBinding
+
+        // Launcher to receive data back from DeceasedListActivity
+    private val deceasedListLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            // Data returned; also saved in SharedPreferences by DeceasedListActivity
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_further_details)
@@ -189,7 +199,7 @@ if (MFatherLive != "Living"){
             intent.putExtra("ammaAmmaName",ammaMName.text.toString())
             intent.putExtra("ammaPattiName",ammaGMName.text.toString())
             intent.putExtra("ammaKolluPattiName",ammaGGMName.text.toString())
-            startActivity(intent)
+                        deceasedListLauncher.launch(intent)
             saveData()
         }
         mahTarpanam.setOnClickListener {
