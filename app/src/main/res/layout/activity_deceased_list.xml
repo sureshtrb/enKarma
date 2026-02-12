@@ -84,7 +84,7 @@
 
             <Button
                     android:id="@+id/MAHTARPANAMBTN" android:layout_weight="1" android:layout_width="wrap_content" android:layout_marginEnd="5dp"
-                    android:layout_height="wrap_content" android:text="@string/MAHALAYA" android:layout_marginStart="10dp"
+                    android:layout_height="wrap_content" android:text="Done" android:layout_marginStart="10dp"
                     style="?android:attr/buttonBarButtonStyle" android:background="#2196F3" android:layout_marginLeft="5dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title" android:layout_marginRight="5dp"
                     android:textColor="#0000FF" android:textStyle="bold" android:textSize="20sp"
