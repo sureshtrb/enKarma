@@ -904,52 +904,36 @@ class MahalayaTpnmActivity : AppCompatActivity() {
         nFourteen = intent.getStringExtra("N14") ?: ""
         nFifteen = intent.getStringExtra("N15") ?: ""
 
-                val Gndr1 = intent.getStringExtra("gdr1") ?: ""
-        val Gndr2 = intent.getStringExtra("gdr2") ?: ""
-        val Gndr3 = intent.getStringExtra("gdr3") ?: ""
-        val Gndr4 = intent.getStringExtra("gdr4") ?: ""
-        val Gndr5 = intent.getStringExtra("gdr5") ?: ""
-        val Gndr6 = intent.getStringExtra("gdr6") ?: ""
-        val Gndr7 = intent.getStringExtra("gdr7") ?: ""
-        val Gndr8 = intent.getStringExtra("gdr8") ?: ""
-        val Gndr9 = intent.getStringExtra("gdr9") ?: ""
-        val Gndr10 = intent.getStringExtra("gdr10") ?: ""
-        val Gndr11 = intent.getStringExtra("gdr11") ?: ""
-        val Gndr12 = intent.getStringExtra("gdr12") ?: ""
-        val Gndr13 = intent.getStringExtra("gdr13") ?: ""
-        val Gndr14 = intent.getStringExtra("gdr14") ?: ""
-        val Gndr15 = intent.getStringExtra("gdr15") ?: ""
-
         val b1 = intent.getStringExtra("B1") ?: ""
-        if(Gndr1 == "ஆண்") { if (b1 == "Elder (மூத்த)") { bOne = "ஜேஷ்ட" } else if (b1 == "Younger (இளைய)") { bOne = "கனிஷ்ட" } else{ bOne = " "} }
+        if(intent.getStringExtra("gdr1") == "ஆண்") { if (b1 == "Elder (மூத்த)") { bOne = "ஜேஷ்ட" } else if (b1 == "Younger (இளைய)") { bOne = "கனிஷ்ட" } else{ bOne = " "} }
         val b2 = intent.getStringExtra("B2") ?: ""
-        if(Gndr2 == "ஆண்") { if (b2 == "Elder (மூத்த)") { bTwo = "ஜேஷ்ட" } else  if (b2 == "Younger (இளைய)") { bTwo = "கனிஷ்ட" } else{ bTwo = " "}}
+        if(intent.getStringExtra("gdr2") == "ஆண்") { if (b2 == "Elder (மூத்த)") { bTwo = "ஜேஷ்ட" } else  if (b2 == "Younger (இளைய)") { bTwo = "கனிஷ்ட" } else{ bTwo = " "}}
         val b3 = intent.getStringExtra("B3") ?: ""
-        if(Gndr3 == "ஆண்") { if (b3 == "Elder (மூத்த)") { bThree = "ஜேஷ்ட" } else if (b3 == "Younger (இளைய)") { bThree = "கனிஷ்ட" } else{ bThree = " "}}
+        if(intent.getStringExtra("gdr3") == "ஆண்") { if (b3 == "Elder (மூத்த)") { bThree = "ஜேஷ்ட" } else if (b3 == "Younger (இளைய)") { bThree = "கனிஷ்ட" } else{ bThree = " "}}
         val b4 = intent.getStringExtra("B4") ?: ""
-        if(Gndr4 == "ஆண்") { if (b4 == "Elder (மூத்த)") { bFour = "ஜேஷ்ட" } else if (b4 == "Younger (இளைய)") { bFour = "கனிஷ்ட" } else{ bFour = " "}}
+        if(intent.getStringExtra("gdr4") == "ஆண்") { if (b4 == "Elder (மூத்த)") { bFour = "ஜேஷ்ட" } else if (b4 == "Younger (இளைய)") { bFour = "கனிஷ்ட" } else{ bFour = " "}}
         val b5 = intent.getStringExtra("B5") ?: ""
-        if(Gndr5 == "ஆண்") { if (b5 == "Elder (மூத்த)") { bFive = "ஜேஷ்ட" } else if (b5 == "Younger (இளைய)") { bFive = "கனிஷ்ட" } else{ bFive = " "}}
+        if(intent.getStringExtra("gdr5") == "ஆண்") { if (b5 == "Elder (மூத்த)") { bFive = "ஜேஷ்ட" } else if (b5 == "Younger (இளைய)") { bFive = "கனிஷ்ட" } else{ bFive = " "}}
         val b6 = intent.getStringExtra("B6") ?: ""
-        if(Gndr6 == "ஆண்") { if (b6 == "Elder (மூத்த)") { bSix = "ஜேஷ்ட" } else if (b6 == "Younger (இளைய)") { bSix = "கனிஷ்ட" } else{ bSix = " "}}
+        if(intent.getStringExtra("gdr6") == "ஆண்") { if (b6 == "Elder (மூத்த)") { bSix = "ஜேஷ்ட" } else if (b6 == "Younger (இளைய)") { bSix = "கனிஷ்ட" } else{ bSix = " "}}
         val b7 = intent.getStringExtra("B7") ?: ""
-        if(Gndr7 == "ஆண்") { if (b7 == "Elder (மூத்த)") { bSeven = "ஜேஷ்ட" } else if (b7 == "Younger (இளைய)") { bSeven = "கனிஷ்ட" } else{ bSeven = " "}}
+        if(intent.getStringExtra("gdr7") == "ஆண்") { if (b7 == "Elder (மூத்த)") { bSeven = "ஜேஷ்ட" } else if (b7 == "Younger (இளைய)") { bSeven = "கனிஷ்ட" } else{ bSeven = " "}}
         val b8 = intent.getStringExtra("B8") ?: ""
-        if(Gndr8 == "ஆண்") { if (b8 == "Elder (மூத்த)") { bEight = "ஜேஷ்ட" } else if (b8 == "Younger (இளைய)") { bEight = "கனிஷ்ட" } else{ bEight = " "}}
+        if(intent.getStringExtra("gdr8") == "ஆண்") { if (b8 == "Elder (மூத்த)") { bEight = "ஜேஷ்ட" } else if (b8 == "Younger (இளைய)") { bEight = "கனிஷ்ட" } else{ bEight = " "}}
         val b9 = intent.getStringExtra("B9") ?: ""
-        if(Gndr9 == "ஆண்") { if (b9 == "Elder (மூத்த)") { bNine = "ஜேஷ்ட" } else if (b9 == "Younger (இளைய)") { bNine = "கனிஷ்ட" } else{ bNine = " "}}
+        if(intent.getStringExtra("gdr9") == "ஆண்") { if (b9 == "Elder (மூத்த)") { bNine = "ஜேஷ்ட" } else if (b9 == "Younger (இளைய)") { bNine = "கனிஷ்ட" } else{ bNine = " "}}
         val b10 = intent.getStringExtra("B10") ?: ""
-        if(Gndr10 == "ஆண்") { if (b10 == "Elder (மூத்த)") { bTen = "ஜேஷ்ட" } else if (b10 == "Younger (இளைய)") { bTen = "கனிஷ்ட" } else{ bTen = " "}}
+        if(intent.getStringExtra("gdr10") == "ஆண்") { if (b10 == "Elder (மூத்த)") { bTen = "ஜேஷ்ட" } else if (b10 == "Younger (இளைய)") { bTen = "கனிஷ்ட" } else{ bTen = " "}}
         val b11 = intent.getStringExtra("B11") ?: ""
-        if(Gndr11 == "ஆண்") { if (b11 == "Elder (மூத்த)") { bEleven = "ஜேஷ்ட" } else if (b11 == "Younger (இளைய)") { bEleven = "கனிஷ்ட" } else{ bEleven = " "}}
+        if(intent.getStringExtra("gdr11") == "ஆண்") { if (b11 == "Elder (மூத்த)") { bEleven = "ஜேஷ்ட" } else if (b11 == "Younger (இளைய)") { bEleven = "கனிஷ்ட" } else{ bEleven = " "}}
         val b12 = intent.getStringExtra("B12") ?: ""
-        if(Gndr12 == "ஆண்") { if (b12 == "Elder (மூத்த)") { bTwelve = "ஜேஷ்ட" } else if (b12 == "Younger (இளைய)") { bTwelve = "கனிஷ்ட" } else{ bTwelve = " "}}
+        if(intent.getStringExtra("gdr12") == "ஆண்") { if (b12 == "Elder (மூத்த)") { bTwelve = "ஜேஷ்ட" } else if (b12 == "Younger (இளைய)") { bTwelve = "கனிஷ்ட" } else{ bTwelve = " "}}
         val b13 = intent.getStringExtra("B13") ?: ""
-        if(Gndr13 == "ஆண்") { if (b13 == "Elder (மூத்த)") { bThirteen = "ஜேஷ்ட" } else if (b13 == "Younger (இளைய)") { bThirteen = "கனிஷ்ட" } else{ bThirteen = " "}}
+        if(intent.getStringExtra("gdr13") == "ஆண்") { if (b13 == "Elder (மூத்த)") { bThirteen = "ஜேஷ்ட" } else if (b13 == "Younger (இளைய)") { bThirteen = "கனிஷ்ட" } else{ bThirteen = " "}}
         val b14 = intent.getStringExtra("B14") ?: ""
-        if(Gndr14 == "ஆண்") { if (b14 == "Elder (மூத்த)") { bFourteen = "ஜேஷ்ட" } else if (b14 == "Younger (இளைய)") { bFourteen = "கனிஷ்ட" } else{ bFourteen = " "}}
+        if(intent.getStringExtra("gdr14") == "ஆண்") { if (b14 == "Elder (மூத்த)") { bFourteen = "ஜேஷ்ட" } else if (b14 == "Younger (இளைய)") { bFourteen = "கனிஷ்ட" } else{ bFourteen = " "}}
         val b15 = intent.getStringExtra("B15") ?: ""
-        if(Gndr15 == "ஆண்") { if (b15 == "Elder (மூத்த)") { bFifteen = "ஜேஷ்ட" } else if (b15 == "Younger (இளைய)") { bFifteen = "கனிஷ்ட" } else{ bFifteen = " "}}
+        if(intent.getStringExtra("gdr15") == "ஆண்") { if (b15 == "Elder (மூத்த)") { bFifteen = "ஜேஷ்ட" } else if (b15 == "Younger (இளைய)") { bFifteen = "கனிஷ்ட" } else{ bFifteen = " "}}
 
         gtOne = intent.getStringExtra("G1") ?: ""
         gtTwo = intent.getStringExtra("G2") ?: ""
@@ -990,8 +974,7 @@ class MahalayaTpnmActivity : AppCompatActivity() {
         println("Maha-gtFifteen : $gtFifteen")
         println("Maha-bOne : $bOne")
         println("Maha-bFifteen : $bFifteen")
-        println("Maha-Gndr1 : $Gndr1")
-        println("Maha-Gndr15 : $Gndr15")
+
         println("Maha-reOne : $reOne")
         println("Maha-reFifteen : $reFifteen")
 
@@ -6905,6 +6888,21 @@ fun bottomPithruKoorcham(){
     mHeading7.setSpan(UnderlineSpan(), start, mHeading7.length, exExFlag)
     mHeading7.setSpan(ForegroundColorSpan(Color.parseColor("#8b008b")), start, mHeading7.length, exExFlag)
 }
+val Gndr1 = intent.getStringExtra("gdr1").toString
+val Gndr2 = intent.getStringExtra("gdr2").toString
+val Gndr3 = intent.getStringExtra("gdr3").toString
+val Gndr4 = intent.getStringExtra("gdr4").toString
+val Gndr5 = intent.getStringExtra("gdr5").toString
+val Gndr6 = intent.getStringExtra("gdr6").toString
+val Gndr7 = intent.getStringExtra("gdr7").toString
+val Gndr8 = intent.getStringExtra("gdr8").toString
+val Gndr9 = intent.getStringExtra("gdr9").toString
+val Gndr10 = intent.getStringExtra("gdr10").toString
+val Gndr11 = intent.getStringExtra("gdr11").toString
+val Gndr12 = intent.getStringExtra("gdr12").toString
+val Gndr13 = intent.getStringExtra("gdr13").toString
+val Gndr14 = intent.getStringExtra("gdr13").toString
+val Gndr15 = intent.getStringExtra("gdr15").toString
 fun executeData(){
     maha_combination.append(mHeading1, mComment1, mBody1, mComment2, mBody2, mComment3, mBody3, mComment4, mBody4, mComment5,
         mBody5, mComment6, mBody6, mComment7, mBody7, mComment8, mBody8, mComment9, mBody9, mComment10, mBody10, mComment11, mBody11,
@@ -6976,7 +6974,7 @@ fun executeData(){
             maha_combination.append(strAdditionP1cD1, strAdditionP4db, strAdditionNO2D)
             if (Gndr4 == "ஆண்") { maha_combination.append(strAdditionP4zMB, strAdditionP1aD2) } else { maha_combination.append(strAdditionP4zB, strAdditionP1bD2) }
             maha_combination.append(strAdditionP1cD2, strAdditionP4dc, strAdditionNO3D)
-            if (Gndr4 == "ஆண்") { maha_combination.append(strAdditionP4zMC, strAdditionP1aD3) } else { maha_combination.append(strAdditionP4zC, strAdditionP1bD3) }
+            if (Gndr4== "ஆண்") { maha_combination.append(strAdditionP4zMC, strAdditionP1aD3) } else { maha_combination.append(strAdditionP4zC, strAdditionP1bD3) }
             maha_combination.append(strAdditionP1cD3, space)
         }
         if (nFive != "") { maha_combination.append(strAdditionP5, strAdditionNO1E)
@@ -7054,7 +7052,7 @@ fun executeData(){
         if (nFourteen != "") { maha_combination.append(strAdditionP14, strAdditionNO1N)
             if (Gndr14 == "ஆண்") { maha_combination.append(strAdditionP14zM, strAdditionP1aN1) } else { maha_combination.append(strAdditionP14zA, strAdditionP1bN1) }
             maha_combination.append(strAdditionP1cN1, strAdditionP14nb, strAdditionNO2N)
-            if (Gndr14 == "ஆண்") { maha_combination.append(strAdditionP14zMB, strAdditionP1aN2) } else { maha_combination.append(strAdditionP14zB, strAdditionP1bN2) }
+            if (Gndr14== "ஆண்") { maha_combination.append(strAdditionP14zMB, strAdditionP1aN2) } else { maha_combination.append(strAdditionP14zB, strAdditionP1bN2) }
             maha_combination.append(strAdditionP1cN2, strAdditionP14nc, strAdditionNO3N)
             if (Gndr14 == "ஆண்") { maha_combination.append(strAdditionP14zMC, strAdditionP1aN3) } else { maha_combination.append(strAdditionP14zC, strAdditionP1bN3) }
             maha_combination.append(strAdditionP1cN3, space)
@@ -7140,123 +7138,123 @@ fun executeData(){
             maha_combination.append(mMBody62M, mMBody63M, mMBody64M, mMBody66M, mMBody68M, mMBody69M, mMBody71M, mMBody72M, mMBody74M, mMBody75M) }
         maha_combination.append(mHeading5P, personHead)
         if (nOne != "") { maha_combination.append(strAdditionP1, strAdditionNO1)
-            if (Gndr1 == "ஆண்") { maha_combination.append(strAdditionP1zM, strAdditionP1aA1) } else { maha_combination.append(strAdditionP1zA, strAdditionP1bA1) }
+            if (intent.getStringExtra("gdr1") == "ஆண்") { maha_combination.append(strAdditionP1zM, strAdditionP1aA1) } else { maha_combination.append(strAdditionP1zA, strAdditionP1bA1) }
             maha_combination.append(strAdditionP1cA1, strAdditionP1ab, strAdditionNO2)
-            if (Gndr1 == "ஆண்") { maha_combination.append(strAdditionP1zMB, strAdditionP1aA2) } else { maha_combination.append(strAdditionP1zB, strAdditionP1bA2) }
+            if (intent.getStringExtra("gdr1") == "ஆண்") { maha_combination.append(strAdditionP1zMB, strAdditionP1aA2) } else { maha_combination.append(strAdditionP1zB, strAdditionP1bA2) }
             maha_combination.append(strAdditionP1cA2, strAdditionP1ac, strAdditionNO3)
-            if (Gndr1 == "ஆண்") { maha_combination.append(strAdditionP1zMC, strAdditionP1aA3) } else { maha_combination.append(strAdditionP1zC, strAdditionP1bA3) }
+            if (intent.getStringExtra("gdr1") == "ஆண்") { maha_combination.append(strAdditionP1zMC, strAdditionP1aA3) } else { maha_combination.append(strAdditionP1zC, strAdditionP1bA3) }
             maha_combination.append(strAdditionP1cA3, space)
         }
         if (nTwo != "") { maha_combination.append(strAdditionP2, strAdditionNO1B)
-            if (Gndr2 == "ஆண்") { maha_combination.append(strAdditionP2zM, strAdditionP1aB1) } else { maha_combination.append(strAdditionP2zA, strAdditionP1bB1) }
+            if (intent.getStringExtra("gdr2") == "ஆண்") { maha_combination.append(strAdditionP2zM, strAdditionP1aB1) } else { maha_combination.append(strAdditionP2zA, strAdditionP1bB1) }
             maha_combination.append(strAdditionP1cB1, strAdditionP2bb, strAdditionNO2B)
-            if (Gndr2 == "ஆண்") { maha_combination.append(strAdditionP2zMB, strAdditionP1aB2) } else { maha_combination.append(strAdditionP2zB, strAdditionP1bB2) }
+            if (intent.getStringExtra("gdr2") == "ஆண்") { maha_combination.append(strAdditionP2zMB, strAdditionP1aB2) } else { maha_combination.append(strAdditionP2zB, strAdditionP1bB2) }
             maha_combination.append(strAdditionP1cB2, strAdditionP2bc, strAdditionNO3B)
-            if (Gndr2 == "ஆண்") { maha_combination.append(strAdditionP2zMC, strAdditionP1aB3) } else { maha_combination.append(strAdditionP2zC, strAdditionP1bB3) }
+            if (intent.getStringExtra("gdr2") == "ஆண்") { maha_combination.append(strAdditionP2zMC, strAdditionP1aB3) } else { maha_combination.append(strAdditionP2zC, strAdditionP1bB3) }
             maha_combination.append(strAdditionP1cB3, space)
         }
         if (nThree != "") { maha_combination.append(strAdditionP3, strAdditionNO1C)
-            if (Gndr3 == "ஆண்") { maha_combination.append(strAdditionP3zM, strAdditionP1aC1)} else { maha_combination.append(strAdditionP3zA, strAdditionP1bC1)}
+            if (intent.getStringExtra("gdr3") == "ஆண்") { maha_combination.append(strAdditionP3zM, strAdditionP1aC1)} else { maha_combination.append(strAdditionP3zA, strAdditionP1bC1)}
             maha_combination.append(strAdditionP1cC1, strAdditionP3cb, strAdditionNO2C)
-            if (Gndr3 == "ஆண்") { maha_combination.append(strAdditionP3zMB, strAdditionP1aC2) } else { maha_combination.append(strAdditionP3zB, strAdditionP1bC2)}
+            if (intent.getStringExtra("gdr3") == "ஆண்") { maha_combination.append(strAdditionP3zMB, strAdditionP1aC2) } else { maha_combination.append(strAdditionP3zB, strAdditionP1bC2)}
             maha_combination.append(strAdditionP1cC2, strAdditionP3cc, strAdditionNO3C)
-            if (Gndr3 == "ஆண்") { maha_combination.append(strAdditionP3zMC, strAdditionP1aC3) } else { maha_combination.append(strAdditionP3zC, strAdditionP1bC3) }
+            if (intent.getStringExtra("gdr3") == "ஆண்") { maha_combination.append(strAdditionP3zMC, strAdditionP1aC3) } else { maha_combination.append(strAdditionP3zC, strAdditionP1bC3) }
             maha_combination.append(strAdditionP1cC3, space)
         }
         if (nFour != "") { maha_combination.append(strAdditionP4, strAdditionNO1D)
-            if (Gndr4 == "ஆண்") { maha_combination.append(strAdditionP4zM, strAdditionP1aD1) } else { maha_combination.append(strAdditionP4zA, strAdditionP1bD1) }
+            if (intent.getStringExtra("gdr4") == "ஆண்") { maha_combination.append(strAdditionP4zM, strAdditionP1aD1) } else { maha_combination.append(strAdditionP4zA, strAdditionP1bD1) }
             maha_combination.append(strAdditionP1cD1, strAdditionP4db, strAdditionNO2D)
-            if (Gndr4 == "ஆண்") { maha_combination.append(strAdditionP4zMB, strAdditionP1aD2) } else { maha_combination.append(strAdditionP4zB, strAdditionP1bD2) }
+            if (intent.getStringExtra("gdr4") == "ஆண்") { maha_combination.append(strAdditionP4zMB, strAdditionP1aD2) } else { maha_combination.append(strAdditionP4zB, strAdditionP1bD2) }
             maha_combination.append(strAdditionP1cD2, strAdditionP4dc, strAdditionNO3D)
-            if (Gndr4 == "ஆண்") { maha_combination.append(strAdditionP4zMC, strAdditionP1aD3) } else { maha_combination.append(strAdditionP4zC, strAdditionP1bD3) }
+            if (intent.getStringExtra("gdr4") == "ஆண்") { maha_combination.append(strAdditionP4zMC, strAdditionP1aD3) } else { maha_combination.append(strAdditionP4zC, strAdditionP1bD3) }
             maha_combination.append(strAdditionP1cD3, space)
         }
         if (nFive != "") { maha_combination.append(strAdditionP5, strAdditionNO1E)
-            if (Gndr5 == "ஆண்") { maha_combination.append(strAdditionP5zM, strAdditionP1aE1) } else { maha_combination.append(strAdditionP5zA, strAdditionP1bE1) }
+            if (intent.getStringExtra("gdr5") == "ஆண்") { maha_combination.append(strAdditionP5zM, strAdditionP1aE1) } else { maha_combination.append(strAdditionP5zA, strAdditionP1bE1) }
             maha_combination.append(strAdditionP1cE1, strAdditionP5eb, strAdditionNO2E)
-            if (Gndr5 == "ஆண்") { maha_combination.append(strAdditionP5zMB, strAdditionP1aE2) } else { maha_combination.append(strAdditionP5zB, strAdditionP1bE2) }
+            if (intent.getStringExtra("gdr5") == "ஆண்") { maha_combination.append(strAdditionP5zMB, strAdditionP1aE2) } else { maha_combination.append(strAdditionP5zB, strAdditionP1bE2) }
             maha_combination.append(strAdditionP1cE2, strAdditionP5ec, strAdditionNO3E)
-            if (Gndr5 == "ஆண்") { maha_combination.append(strAdditionP5zMC, strAdditionP1aE3) } else { maha_combination.append(strAdditionP5zC, strAdditionP1bE3) }
+            if (intent.getStringExtra("gdr5") == "ஆண்") { maha_combination.append(strAdditionP5zMC, strAdditionP1aE3) } else { maha_combination.append(strAdditionP5zC, strAdditionP1bE3) }
             maha_combination.append(strAdditionP1cE3, space)
         }
         if (nSix != "") { maha_combination.append(strAdditionP6, strAdditionNO1F)
-            if (Gndr6 == "ஆண்") { maha_combination.append(strAdditionP6zM, strAdditionP1aF1) } else { maha_combination.append(strAdditionP6zA, strAdditionP1bF1) }
+            if (intent.getStringExtra("gdr6") == "ஆண்") { maha_combination.append(strAdditionP6zM, strAdditionP1aF1) } else { maha_combination.append(strAdditionP6zA, strAdditionP1bF1) }
             maha_combination.append(strAdditionP1cF1, strAdditionP6fb, strAdditionNO2F)
-            if (Gndr6 == "ஆண்") { maha_combination.append(strAdditionP6zMB, strAdditionP1aF2) } else { maha_combination.append(strAdditionP6zB, strAdditionP1bF2) }
+            if (intent.getStringExtra("gdr6") == "ஆண்") { maha_combination.append(strAdditionP6zMB, strAdditionP1aF2) } else { maha_combination.append(strAdditionP6zB, strAdditionP1bF2) }
             maha_combination.append(strAdditionP1cF2, strAdditionP6fc, strAdditionNO3F)
-            if (Gndr6 == "ஆண்") { maha_combination.append(strAdditionP6zMC, strAdditionP1aF3) } else { maha_combination.append(strAdditionP6zC, strAdditionP1bF3) }
+            if (intent.getStringExtra("gdr6") == "ஆண்") { maha_combination.append(strAdditionP6zMC, strAdditionP1aF3) } else { maha_combination.append(strAdditionP6zC, strAdditionP1bF3) }
             maha_combination.append(strAdditionP1cF3, space)
         }
         if (nSeven != "") { maha_combination.append(strAdditionP7, strAdditionNO1G)
-            if (Gndr7 == "ஆண்") { maha_combination.append(strAdditionP7zM, strAdditionP1aG1) } else { maha_combination.append(strAdditionP7zA, strAdditionP1bG1) }
+            if (intent.getStringExtra("gdr7") == "ஆண்") { maha_combination.append(strAdditionP7zM, strAdditionP1aG1) } else { maha_combination.append(strAdditionP7zA, strAdditionP1bG1) }
             maha_combination.append(strAdditionP1cG1, strAdditionP7gb, strAdditionNO2G)
-            if (Gndr7 == "ஆண்") { maha_combination.append(strAdditionP7zMB, strAdditionP1aG2) } else { maha_combination.append(strAdditionP7zB, strAdditionP1bG2) }
+            if (intent.getStringExtra("gdr7") == "ஆண்") { maha_combination.append(strAdditionP7zMB, strAdditionP1aG2) } else { maha_combination.append(strAdditionP7zB, strAdditionP1bG2) }
             maha_combination.append(strAdditionP1cG2, strAdditionP7gc, strAdditionNO3G)
-            if (Gndr7 == "ஆண்") { maha_combination.append(strAdditionP7zMC, strAdditionP1aG3) } else { maha_combination.append(strAdditionP7zC, strAdditionP1bG3) }
+            if (intent.getStringExtra("gdr7") == "ஆண்") { maha_combination.append(strAdditionP7zMC, strAdditionP1aG3) } else { maha_combination.append(strAdditionP7zC, strAdditionP1bG3) }
             maha_combination.append(strAdditionP1cG3, space)
         }
         if (nEight != "") { maha_combination.append(strAdditionP8, strAdditionNO1H)
-            if (Gndr8 == "ஆண்") { maha_combination.append(strAdditionP8zM, strAdditionP1aH1) } else { maha_combination.append(strAdditionP8zA, strAdditionP1bH1) }
+            if (intent.getStringExtra("gdr8") == "ஆண்") { maha_combination.append(strAdditionP8zM, strAdditionP1aH1) } else { maha_combination.append(strAdditionP8zA, strAdditionP1bH1) }
             maha_combination.append(strAdditionP1cH1, strAdditionP8hb, strAdditionNO2H)
-            if (Gndr8 == "ஆண்") { maha_combination.append(strAdditionP8zMB, strAdditionP1aH2) } else { maha_combination.append(strAdditionP8zB, strAdditionP1bH2) }
+            if (intent.getStringExtra("gdr8") == "ஆண்") { maha_combination.append(strAdditionP8zMB, strAdditionP1aH2) } else { maha_combination.append(strAdditionP8zB, strAdditionP1bH2) }
             maha_combination.append(strAdditionP1cH2, strAdditionP8hc, strAdditionNO3H)
-            if (Gndr8 == "ஆண்") { maha_combination.append(strAdditionP8zMC, strAdditionP1aH3) } else { maha_combination.append(strAdditionP8zC, strAdditionP1bH3) }
+            if (intent.getStringExtra("gdr8") == "ஆண்") { maha_combination.append(strAdditionP8zMC, strAdditionP1aH3) } else { maha_combination.append(strAdditionP8zC, strAdditionP1bH3) }
             maha_combination.append(strAdditionP1cH3, space)
         }
         if (nNine != "") { maha_combination.append(strAdditionP9, strAdditionNO1I)
-            if (Gndr9 == "ஆண்") { maha_combination.append(strAdditionP9zM, strAdditionP1aI1) } else { maha_combination.append(strAdditionP9zA, strAdditionP1bI1) }
+            if (intent.getStringExtra("gdr9") == "ஆண்") { maha_combination.append(strAdditionP9zM, strAdditionP1aI1) } else { maha_combination.append(strAdditionP9zA, strAdditionP1bI1) }
             maha_combination.append(strAdditionP1cI1, strAdditionP9ib, strAdditionNO2I)
-            if (Gndr9 == "ஆண்") { maha_combination.append(strAdditionP9zMB, strAdditionP1aI2) } else { maha_combination.append(strAdditionP9zB, strAdditionP1bI2) }
+            if (intent.getStringExtra("gdr9") == "ஆண்") { maha_combination.append(strAdditionP9zMB, strAdditionP1aI2) } else { maha_combination.append(strAdditionP9zB, strAdditionP1bI2) }
             maha_combination.append(strAdditionP1cI2, strAdditionP9ic, strAdditionNO3I)
-            if (Gndr9 == "ஆண்") { maha_combination.append(strAdditionP9zMC, strAdditionP1aI3) } else { maha_combination.append(strAdditionP9zC, strAdditionP1bI3) }
+            if (intent.getStringExtra("gdr9") == "ஆண்") { maha_combination.append(strAdditionP9zMC, strAdditionP1aI3) } else { maha_combination.append(strAdditionP9zC, strAdditionP1bI3) }
             maha_combination.append(strAdditionP1cI3, space)
         }
         if (nTen != "") { maha_combination.append(strAdditionP10, strAdditionNO1J)
-            if (Gndr10 == "ஆண்") { maha_combination.append(strAdditionP10zM, strAdditionP1aJ1) } else { maha_combination.append(strAdditionP10zA, strAdditionP1bJ1) }
+            if (intent.getStringExtra("gdr10") == "ஆண்") { maha_combination.append(strAdditionP10zM, strAdditionP1aJ1) } else { maha_combination.append(strAdditionP10zA, strAdditionP1bJ1) }
             maha_combination.append(strAdditionP1cJ1, strAdditionP10jb, strAdditionNO2J)
-            if (Gndr10 == "ஆண்") { maha_combination.append(strAdditionP10zMB, strAdditionP1aJ2) } else { maha_combination.append(strAdditionP10zB, strAdditionP1bJ2) }
+            if (intent.getStringExtra("gdr10") == "ஆண்") { maha_combination.append(strAdditionP10zMB, strAdditionP1aJ2) } else { maha_combination.append(strAdditionP10zB, strAdditionP1bJ2) }
             maha_combination.append(strAdditionP1cJ2, strAdditionP10jc, strAdditionNO3J)
-            if (Gndr10 == "ஆண்") { maha_combination.append(strAdditionP10zMC, strAdditionP1aJ3) } else { maha_combination.append(strAdditionP10zC, strAdditionP1bJ3) }
+            if (intent.getStringExtra("gdr10") == "ஆண்") { maha_combination.append(strAdditionP10zMC, strAdditionP1aJ3) } else { maha_combination.append(strAdditionP10zC, strAdditionP1bJ3) }
             maha_combination.append(strAdditionP1cJ3, space)
         }
         if (nEleven != "") { maha_combination.append(strAdditionP11, strAdditionNO1K)
-            if (Gndr11 == "ஆண்") { maha_combination.append(strAdditionP11zM, strAdditionP1aK1) } else { maha_combination.append(strAdditionP11zA, strAdditionP1bK1) }
+            if (intent.getStringExtra("gdr11") == "ஆண்") { maha_combination.append(strAdditionP11zM, strAdditionP1aK1) } else { maha_combination.append(strAdditionP11zA, strAdditionP1bK1) }
             maha_combination.append(strAdditionP1cK1, strAdditionP11kb, strAdditionNO2K)
-            if (Gndr11 == "ஆண்") { maha_combination.append(strAdditionP11zMB, strAdditionP1aK2) } else { maha_combination.append(strAdditionP11zB, strAdditionP1bK2) }
+            if (intent.getStringExtra("gdr11") == "ஆண்") { maha_combination.append(strAdditionP11zMB, strAdditionP1aK2) } else { maha_combination.append(strAdditionP11zB, strAdditionP1bK2) }
             maha_combination.append(strAdditionP1cK2, strAdditionP11kc, strAdditionNO3K)
-            if (Gndr11 == "ஆண்") { maha_combination.append(strAdditionP11zMC, strAdditionP1aK3) } else { maha_combination.append(strAdditionP11zC, strAdditionP1bK3) }
+            if (intent.getStringExtra("gdr11") == "ஆண்") { maha_combination.append(strAdditionP11zMC, strAdditionP1aK3) } else { maha_combination.append(strAdditionP11zC, strAdditionP1bK3) }
             maha_combination.append(strAdditionP1cK3, space)
         }
         if (nTwelve != "") { maha_combination.append(strAdditionP12, strAdditionNO1L)
-            if (Gndr12 == "ஆண்") { maha_combination.append(strAdditionP12zM, strAdditionP1aL1) } else { maha_combination.append(strAdditionP12zA, strAdditionP1bL1) }
+            if (intent.getStringExtra("gdr12") == "ஆண்") { maha_combination.append(strAdditionP12zM, strAdditionP1aL1) } else { maha_combination.append(strAdditionP12zA, strAdditionP1bL1) }
             maha_combination.append(strAdditionP1cL1, strAdditionP12lb, strAdditionNO2L)
-            if (Gndr12 == "ஆண்") { maha_combination.append(strAdditionP12zMB, strAdditionP1aL2) } else { maha_combination.append(strAdditionP12zB, strAdditionP1bL2) }
+            if (intent.getStringExtra("gdr12") == "ஆண்") { maha_combination.append(strAdditionP12zMB, strAdditionP1aL2) } else { maha_combination.append(strAdditionP12zB, strAdditionP1bL2) }
             maha_combination.append(strAdditionP1cL2, strAdditionP12lc, strAdditionNO3L)
-            if (Gndr12 == "ஆண்") { maha_combination.append(strAdditionP12zMC, strAdditionP1aL3) } else { maha_combination.append(strAdditionP12zC, strAdditionP1bL3) }
+            if (intent.getStringExtra("gdr12") == "ஆண்") { maha_combination.append(strAdditionP12zMC, strAdditionP1aL3) } else { maha_combination.append(strAdditionP12zC, strAdditionP1bL3) }
             maha_combination.append(strAdditionP1cL3, space)
         }
         if (nThirteen != "") { maha_combination.append(strAdditionP13, strAdditionNO1M)
-            if (Gndr13 == "ஆண்") { maha_combination.append(strAdditionP13zM, strAdditionP1aM1) } else { maha_combination.append(strAdditionP13zA, strAdditionP1bM1) }
+            if (intent.getStringExtra("gdr13") == "ஆண்") { maha_combination.append(strAdditionP13zM, strAdditionP1aM1) } else { maha_combination.append(strAdditionP13zA, strAdditionP1bM1) }
             maha_combination.append(strAdditionP1cM1, strAdditionP13mb, strAdditionNO2M)
-            if (Gndr13 == "ஆண்") { maha_combination.append(strAdditionP13zMB, strAdditionP1aM2) } else { maha_combination.append(strAdditionP13zB, strAdditionP1bM2) }
+            if (intent.getStringExtra("gdr13") == "ஆண்") { maha_combination.append(strAdditionP13zMB, strAdditionP1aM2) } else { maha_combination.append(strAdditionP13zB, strAdditionP1bM2) }
             maha_combination.append(strAdditionP1cM2, strAdditionP13mc, strAdditionNO3M)
-            if (Gndr13 == "ஆண்") { maha_combination.append(strAdditionP13zMC, strAdditionP1aM3) } else { maha_combination.append(strAdditionP13zC, strAdditionP1bM3) }
+            if (intent.getStringExtra("gdr13") == "ஆண்") { maha_combination.append(strAdditionP13zMC, strAdditionP1aM3) } else { maha_combination.append(strAdditionP13zC, strAdditionP1bM3) }
             maha_combination.append(strAdditionP1cM3, space)
         }
         if (nFourteen != "") { maha_combination.append(strAdditionP14, strAdditionNO1N)
-            if (Gndr14 == "ஆண்") { maha_combination.append(strAdditionP14zM, strAdditionP1aN1) } else { maha_combination.append(strAdditionP14zA, strAdditionP1bN1) }
+            if (intent.getStringExtra("gdr14") == "ஆண்") { maha_combination.append(strAdditionP14zM, strAdditionP1aN1) } else { maha_combination.append(strAdditionP14zA, strAdditionP1bN1) }
             maha_combination.append(strAdditionP1cN1, strAdditionP14nb, strAdditionNO2N)
-            if (Gndr14 == "ஆண்") { maha_combination.append(strAdditionP14zMB, strAdditionP1aN2) } else { maha_combination.append(strAdditionP14zB, strAdditionP1bN2) }
+            if (intent.getStringExtra("gdr14") == "ஆண்") { maha_combination.append(strAdditionP14zMB, strAdditionP1aN2) } else { maha_combination.append(strAdditionP14zB, strAdditionP1bN2) }
             maha_combination.append(strAdditionP1cN2, strAdditionP14nc, strAdditionNO3N)
-            if (Gndr14 == "ஆண்") { maha_combination.append(strAdditionP14zMC, strAdditionP1aN3) } else { maha_combination.append(strAdditionP14zC, strAdditionP1bN3) }
+            if (intent.getStringExtra("gdr14") == "ஆண்") { maha_combination.append(strAdditionP14zMC, strAdditionP1aN3) } else { maha_combination.append(strAdditionP14zC, strAdditionP1bN3) }
             maha_combination.append(strAdditionP1cN3, space)
         }
         if (nFifteen != "") { maha_combination.append(strAdditionP15, strAdditionNO1O)
-            if (Gndr15 == "ஆண்") { maha_combination.append(strAdditionP15zM, strAdditionP1aO1) } else { maha_combination.append(strAdditionP15zA, strAdditionP1bO1) }
+            if (intent.getStringExtra("gdr15") == "ஆண்") { maha_combination.append(strAdditionP15zM, strAdditionP1aO1) } else { maha_combination.append(strAdditionP15zA, strAdditionP1bO1) }
             maha_combination.append(strAdditionP1cO1, strAdditionP15ob, strAdditionNO2O)
-            if (Gndr15 == "ஆண்") { maha_combination.append(strAdditionP15zMB, strAdditionP1aO2) } else { maha_combination.append(strAdditionP15zB, strAdditionP1bO2) }
+            if (intent.getStringExtra("gdr15") == "ஆண்") { maha_combination.append(strAdditionP15zMB, strAdditionP1aO2) } else { maha_combination.append(strAdditionP15zB, strAdditionP1bO2) }
             maha_combination.append(strAdditionP1cO2, strAdditionP15oc, strAdditionNO3O)
-            if (Gndr15 == "ஆண்") { maha_combination.append(strAdditionP15zMC, strAdditionP1aO3) } else { maha_combination.append(strAdditionP15zC, strAdditionP1bO3) }
+            if (intent.getStringExtra("gdr15") == "ஆண்") { maha_combination.append(strAdditionP15zMC, strAdditionP1aO3) } else { maha_combination.append(strAdditionP15zC, strAdditionP1bO3) }
             maha_combination.append(strAdditionP1cO3, space)
         }
         maha_combination.append(strAdditionP1P, mBody87P1, strAdditionP2P, mBody87P2, strAdditionP3P, mBody87P3, mComment51, mBody88,
