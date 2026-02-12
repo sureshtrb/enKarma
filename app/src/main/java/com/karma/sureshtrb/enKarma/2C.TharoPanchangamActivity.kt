@@ -1,5 +1,6 @@
 package com.karma.sureshtrb.enKarma
 
+import android.animation.ValueAnimator
 import android.annotation.TargetApi
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -20,8 +21,6 @@ import org.jsoup.Jsoup
 import java.text.SimpleDateFormat
 import java.util.*
 
-import android.animation.ValueAnimator
-import android.animation.ArgbEvaluator
 var dateToday = ""
 var place: String = ""
 var sunRise: String = ""
@@ -339,7 +338,18 @@ class TharoPanchangamActivity : AppCompatActivity() {
 
     // Background thread wrapper for all web scraping
     private fun fetchAllPanchangData() {
-        tvGeoLocation.text = "Loading..."
+        // Set Loading text for all fields
+        tvGeoLocation.text = "Location Loading..."
+        tvVarusham.text = "Varusham Loading..."
+        tvAyyanamm.text = "Ayanam Loading..."
+        tvKalam.text = "Kalam Loading..."
+        tvRasee.text = "Rasi Loading..."
+        tvBaksham.text = "Paksham Loading..."
+        tvTodThithi.text = "Thithi Loading..."
+        tvKizhamai.text = "Kizhamai Loading..."
+        tvNachathirm.text = "Natchatram Loading..."
+        tvYog.text = "Yagam Loading..."
+        tvKar.text = "Karanam Loading..."
         // Start blinking color animation for Loading text
         loadingAnimator?.cancel()
         loadingAnimator = ValueAnimator.ofArgb(Color.RED, Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE, Color.MAGENTA, Color.RED).apply {
@@ -347,7 +357,18 @@ class TharoPanchangamActivity : AppCompatActivity() {
             repeatCount = ValueAnimator.INFINITE
             repeatMode = ValueAnimator.RESTART
             addUpdateListener { animator ->
-                tvGeoLocation.setTextColor(animator.animatedValue as Int)
+                val color = animator.animatedValue as Int
+                tvGeoLocation.setTextColor(color)
+                tvVarusham.setTextColor(color)
+                tvAyyanamm.setTextColor(color)
+                tvKalam.setTextColor(color)
+                tvRasee.setTextColor(color)
+                tvBaksham.setTextColor(color)
+                tvTodThithi.setTextColor(color)
+                tvKizhamai.setTextColor(color)
+                tvNachathirm.setTextColor(color)
+                tvYog.setTextColor(color)
+                tvKar.setTextColor(color)
             }
             start()
         }
@@ -945,6 +966,7 @@ class TharoPanchangamActivity : AppCompatActivity() {
                 // Stop the blinking Loading animation
         loadingAnimator?.cancel()
         loadingAnimator = null
+
         val titiText = "<font color='#228B22'>திதி (Thithi):-</font> <font color='#00008B'>$ThithiGlobal</font>"
         tvTodThithi.text = Html.fromHtml(titiText, Html.FROM_HTML_MODE_LEGACY)
         val paktext = "<font color='#228B22'>பக்ஷம் (Paksha):-</font> <font color='#00008B'>$paksha</font>"
