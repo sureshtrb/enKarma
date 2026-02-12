@@ -1,22 +1,26 @@
 package com.karma.sureshtrb.enKarma
 
+//import kotlinx.android.synthetic.main.activity_further_details.*
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.text.Editable
+import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-
-//import kotlinx.android.synthetic.main.activity_further_details.*
+import androidx.appcompat.app.AppCompatActivity
 import com.karma.sureshtrb.enKarma.databinding.ActivityFurtherDetailsBinding
 
 var noOfDaysTpnm: String = ""
@@ -56,6 +60,10 @@ class FurtherDetailsActivity : AppCompatActivity() {
 
         val addNames = findViewById<Button>(R.id.AddRelatives)
         val mahTarpanam = findViewById<Button>(R.id.ProceedToTharpanam)
+        // Initially disable the Proceed button until radio is selected
+        mahTarpanam.isEnabled = false
+        mahTarpanam.alpha = 0.5f  // Make it look disabled
+
         val rg7 = this.findViewById<RadioGroup>(R.id.radio_group7)
         val rb1_oneDayMTpnm = this.findViewById<RadioButton>(R.id.radio1G7)
         val rb2_FifteenDaysMTpnm = this.findViewById<RadioButton>(R.id.radio2G7)
@@ -203,6 +211,52 @@ if (MFatherLive != "Living"){
             saveData()
         }
         mahTarpanam.setOnClickListener {
+            // Check if no radio button is selected
+            if (rg7.checkedRadioButtonId == -1) {
+                // Show popup with arrow pointing to radio buttons
+                val popupView = LinearLayout(this).apply {
+                    orientation = LinearLayout.VERTICAL
+                    setPadding(32, 24, 32, 24)
+                    setBackgroundColor(Color.parseColor("#333333"))
+                }
+
+                // Arrow pointing up
+                val arrow = TextView(this).apply {
+                    text = "▲"
+                    textSize = 20f
+                    setTextColor(Color.parseColor("#333333"))
+                    gravity = Gravity.CENTER
+                }
+
+                // Message text
+                val message = TextView(this).apply {
+                    text = "Select for 1 day or all the 15 days"
+                    setTextColor(Color.WHITE)
+                    textSize = 14f
+                    gravity = Gravity.CENTER
+                }
+
+                popupView.addView(message)
+
+                val popup = PopupWindow(
+                    popupView,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    true
+                ).apply {
+                    setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    elevation = 10f
+                }
+
+                // Show popup below the radio group
+                popup.showAsDropDown(rg7, 0, 8, Gravity.CENTER)
+
+                // Auto-dismiss after 3 seconds
+                rg7.postDelayed({ popup.dismiss() }, 3000)
+
+                return@setOnClickListener
+            }
+
             val intent = Intent(this, MahalayaTpnmActivity::class.java)
             intent.putExtra("Naal", dateTdy)
             intent.putExtra("Idam", place)
@@ -238,7 +292,12 @@ if (MFatherLive != "Living"){
             startActivity(intent)
             saveData()
         }
+
         rg7.setOnCheckedChangeListener { group, checkedId ->
+            // Enable Proceed button when any radio is selected
+            mahTarpanam.isEnabled = true
+            mahTarpanam.alpha = 1.0f
+
             when (checkedId) {
                 R.id.radio1G7 -> {
                     rb1_oneDayMTpnm.setTextColor(Color.BLUE)
@@ -307,4 +366,48 @@ if (MFatherLive != "Living"){
         binding.motherGrandmotherName.setText(ammaPattiName)
         binding.motherGreatgrandmotherName.setText(ammaKolluPattiName)
     }
+    private fun showSelectionPopup(anchorView: View) {
+        // Create popup content
+        val popupView = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(24, 16, 24, 16)
+            setBackgroundColor(Color.parseColor("#333333"))
+
+            // Arrow pointing up (using unicode triangle)
+            val arrow = TextView(this@FurtherDetailsActivity).apply {
+                text = "▲"
+                textSize = 16f
+                setTextColor(Color.parseColor("#333333"))
+                gravity = Gravity.CENTER
+            }
+
+            // Message text
+            val message = TextView(this@FurtherDetailsActivity).apply {
+                text = "Select for 1 day or all the 15 days"
+                setTextColor(Color.WHITE)
+                textSize = 14f
+                gravity = Gravity.CENTER
+            }
+
+            addView(message)
+        }
+
+        // Create and show popup
+        val popup = PopupWindow(
+            popupView,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            true
+        ).apply {
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            elevation = 10f
+        }
+
+        // Show popup below the radio group with arrow effect
+        popup.showAsDropDown(anchorView, 0, 8, Gravity.CENTER)
+
+        // Auto-dismiss after 3 seconds
+        anchorView.postDelayed({ popup.dismiss() }, 3000)
+    }
+
 }
