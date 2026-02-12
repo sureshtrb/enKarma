@@ -308,7 +308,7 @@ class DeceasedListActivity : AppCompatActivity() {
 
         // MAHTARPANAMBTN Click Listener
         binding.MAHTARPANAMBTN.setOnClickListener {
-            val intent = Intent(this, MahalayaTpnmActivity::class.java)
+            val intent = Intent()
             intent.putExtra("N1", binding.Name1.text.toString())
             intent.putExtra("N2", binding.Name2.text.toString())
             intent.putExtra("N3", binding.Name3.text.toString())
@@ -332,7 +332,8 @@ class DeceasedListActivity : AppCompatActivity() {
             intent.putExtra("G11", Gndr11); intent.putExtra("G12", Gndr12)
             intent.putExtra("G13", Gndr13); intent.putExtra("G14", Gndr14)
             intent.putExtra("G15", Gndr15)
-            startActivity(intent)
+            setResult(RESULT_OK, intent)
+                        finish()
         }
 
     } // END OF onCreate()
