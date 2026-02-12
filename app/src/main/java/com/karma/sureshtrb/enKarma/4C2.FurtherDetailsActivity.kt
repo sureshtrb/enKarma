@@ -174,7 +174,11 @@ if (MFatherLive != "Living"){
 */
         loadData()
         updateViews()
-
+// Enable Proceed button if radio is already selected from saved state
+        if (rg7.checkedRadioButtonId != -1) {
+            mahTarpanam.isEnabled = true
+            mahTarpanam.alpha = 1.0f
+        }
         addNames.setOnClickListener {
             val intent = Intent(this, DeceasedListActivity::class.java)
             intent.putExtra("Naal", dateTdy)
