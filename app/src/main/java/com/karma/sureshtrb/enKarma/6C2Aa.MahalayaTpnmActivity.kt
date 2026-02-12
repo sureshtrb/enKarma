@@ -904,6 +904,22 @@ class MahalayaTpnmActivity : AppCompatActivity() {
         nFourteen = intent.getStringExtra("N14") ?: ""
         nFifteen = intent.getStringExtra("N15") ?: ""
 
+                val Gndr1 = intent.getStringExtra("gdr1") ?: ""
+        val Gndr2 = intent.getStringExtra("gdr2") ?: ""
+        val Gndr3 = intent.getStringExtra("gdr3") ?: ""
+        val Gndr4 = intent.getStringExtra("gdr4") ?: ""
+        val Gndr5 = intent.getStringExtra("gdr5") ?: ""
+        val Gndr6 = intent.getStringExtra("gdr6") ?: ""
+        val Gndr7 = intent.getStringExtra("gdr7") ?: ""
+        val Gndr8 = intent.getStringExtra("gdr8") ?: ""
+        val Gndr9 = intent.getStringExtra("gdr9") ?: ""
+        val Gndr10 = intent.getStringExtra("gdr10") ?: ""
+        val Gndr11 = intent.getStringExtra("gdr11") ?: ""
+        val Gndr12 = intent.getStringExtra("gdr12") ?: ""
+        val Gndr13 = intent.getStringExtra("gdr13") ?: ""
+        val Gndr14 = intent.getStringExtra("gdr14") ?: ""
+        val Gndr15 = intent.getStringExtra("gdr15") ?: ""
+
         val b1 = intent.getStringExtra("B1") ?: ""
         if(Gndr1 == "ஆண்") { if (b1 == "Elder (மூத்த)") { bOne = "ஜேஷ்ட" } else if (b1 == "Younger (இளைய)") { bOne = "கனிஷ்ட" } else{ bOne = " "} }
         val b2 = intent.getStringExtra("B2") ?: ""
@@ -967,21 +983,7 @@ class MahalayaTpnmActivity : AppCompatActivity() {
         reFourteen = intent.getStringExtra("R14") ?: ""
         reFifteen = intent.getStringExtra("R15") ?: ""
 
-        val Gndr1 = intent.getStringExtra("gdr1") ?: ""
-        val Gndr2 = intent.getStringExtra("gdr2") ?: ""
-        val Gndr3 = intent.getStringExtra("gdr3") ?: ""
-        val Gndr4 = intent.getStringExtra("gdr4") ?: ""
-        val Gndr5 = intent.getStringExtra("gdr5") ?: ""
-        val Gndr6 = intent.getStringExtra("gdr6") ?: ""
-        val Gndr7 = intent.getStringExtra("gdr7") ?: ""
-        val Gndr8 = intent.getStringExtra("gdr8") ?: ""
-        val Gndr9 = intent.getStringExtra("gdr9") ?: ""
-        val Gndr10 = intent.getStringExtra("gdr10") ?: ""
-        val Gndr11 = intent.getStringExtra("gdr11") ?: ""
-        val Gndr12 = intent.getStringExtra("gdr12") ?: ""
-        val Gndr13 = intent.getStringExtra("gdr13") ?: ""
-        val Gndr14 = intent.getStringExtra("gdr14") ?: ""
-        val Gndr15 = intent.getStringExtra("gdr15") ?: ""
+
         println("Maha-nOne : $nOne")
         println("Maha-nFifteen : $nFifteen")
         println("Maha-gtOne : $gtOne")
