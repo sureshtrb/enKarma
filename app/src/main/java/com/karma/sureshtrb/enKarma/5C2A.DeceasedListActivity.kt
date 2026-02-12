@@ -12,6 +12,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.karma.sureshtrb.enKarma.databinding.ActivityDeceasedListBinding
 
+var Gndr1 = ""; var Gndr2 = ""; var Gndr3 = ""; var Gndr4 = ""; var Gndr5 = ""
+var Gndr6 = ""; var Gndr7 = ""; var Gndr8 = ""; var Gndr9 = ""; var Gndr10 = ""
+var Gndr11 = ""; var Gndr12 = ""; var Gndr13 = ""; var Gndr14 = ""; var Gndr15 = ""
+
 class DeceasedListActivity : AppCompatActivity() {
 
     // Class-level variables
@@ -32,9 +36,7 @@ class DeceasedListActivity : AppCompatActivity() {
     var Goth6 = ""; var Goth7 = ""; var Goth8 = ""; var Goth9 = ""; var Goth10 = ""
     var Goth11 = ""; var Goth12 = ""; var Goth13 = ""; var Goth14 = ""; var Goth15 = ""
 
-    var Gndr1 = ""; var Gndr2 = ""; var Gndr3 = ""; var Gndr4 = ""; var Gndr5 = ""
-    var Gndr6 = ""; var Gndr7 = ""; var Gndr8 = ""; var Gndr9 = ""; var Gndr10 = ""
-    var Gndr11 = ""; var Gndr12 = ""; var Gndr13 = ""; var Gndr14 = ""; var Gndr15 = ""
+
 
     var RlShp1 = ""; var RlShp2 = ""; var RlShp3 = ""; var RlShp4 = ""; var RlShp5 = ""
     var RlShp6 = ""; var RlShp7 = ""; var RlShp8 = ""; var RlShp9 = ""; var RlShp10 = ""
