@@ -15,8 +15,8 @@ android {
         applicationId = "com.karma.sureshtrb.enKarma"
         minSdk = 24
         targetSdk = 36
-        versionCode = 59
-        versionName = "1.0.59"
+        versionCode = 60
+        versionName = "1.0.60"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
     }
@@ -47,6 +47,9 @@ android {
         }
         release {
             debuggable = false
+                        ndk {
+                debugSymbolLevel 'FULL'
+            }
             minifyEnabled = true
             signingConfig = signingConfigs.release
             proguardFiles(
