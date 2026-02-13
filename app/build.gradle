@@ -25,6 +25,12 @@ android {
         viewBinding = true
     }
 
+        packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
     signingConfigs {
         release {
             storeFile =
