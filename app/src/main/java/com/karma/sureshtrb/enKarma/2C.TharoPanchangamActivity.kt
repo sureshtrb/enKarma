@@ -1004,6 +1004,18 @@ class TharoPanchangamActivity : AppCompatActivity() {
         mapPanch2.clear()
         mapPanch3.clear()
         mapPanch4.clear()
+                // Clear UI TextViews
+        tvTodThithi.text = ""
+        tvBaksham.text = ""
+        tvRasee.text = ""
+        tvVarusham.text = ""
+        tvYog.text = ""
+        tvKalam.text = ""
+        tvAyyanamm.text = ""
+        tvKizhamai.text = ""
+        tvNachathirm.text = ""
+        tvKar.text = ""
+        tvGeoLocation.text = ""
     }
 
         override fun onDestroy() {
